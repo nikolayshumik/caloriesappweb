@@ -61,6 +61,8 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
+    search_query = request.GET.get('search')
+
     if request.method == 'POST':
         form = AddProductForm(request.POST)
         if form.is_valid():
@@ -70,7 +72,10 @@ def calories_and_bjy(request):
         form = AddProductForm()
 
     products = Add_Product.objects.all()
-    return render(request, 'calories_and_bjy.html', {'form': form, 'products': products})
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'calories_and_bjy.html', {'form': form, 'products': products, 'search_query': search_query})
 
 def profile(request):
     return render(request, 'profile.html')

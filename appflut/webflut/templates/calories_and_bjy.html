@@ -67,7 +67,10 @@
 </div>
 
 
-
+<form action="{% url 'calories_and_bjy' %}" method="GET">
+  <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
+  <button type="submit">Search</button>
+</form>
 <div class="product-container">
   {% for product in products %}
   <div class="product-item">
@@ -77,6 +80,8 @@
     <p>Fats: {{ product.fats }}</p>
     <p>Carbohydrates: {{ product.carbohydrates }}</p>
   </div>
+  {% empty %}
+  <p>No products found</p>
   {% endfor %}
 </div>
 <a href="{% url 'report' %}" class="buttonMod">report</a>
