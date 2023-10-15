@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Personal_inform
+from .models import Personal_Inform, Add_Product
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -20,5 +20,11 @@ class UserRegistrationForm(forms.ModelForm):
 
 class PersonalInformForm(forms.ModelForm):
     class Meta:
-        model = Personal_inform
-        fields = ['sex', 'date_of_birth', 'weight', 'height', 'goals', 'active']
+        model = Personal_Inform
+        fields = ['sex', 'date_of_birth', 'weight', 'height', 'goals', 'active',]
+
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Add_Product
+        fields = ['name', 'calories_in', 'proteins', 'fats', 'carbohydrates',]

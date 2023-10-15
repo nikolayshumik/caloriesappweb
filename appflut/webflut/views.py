@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm, PersonalInformForm
+from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
@@ -62,3 +62,20 @@ def login_view(request):
 
 def calories_and_bjy(request):
     return render(request, 'calories_and_bjy.html')
+
+def profile(request):
+    return render(request, 'profile.html')
+def report(request):
+    return render(request, 'report.html')
+
+def add_product(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = AddProductForm()
+    else:
+        form = AddProductForm()
+    return render(request, 'calories_and_bjy.html', {'form': form})
+
+

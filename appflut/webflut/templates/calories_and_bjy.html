@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
 <body>
 <button onclick="goBack()">Назад</button>
 <span id="currentDate"></span>
+<a href="{% url 'profile' %}" class="buttonMod">profile</a>
+<a href="{% url 'report' %}" class="buttonMod">report</a>
+<a href="#" class="buttonMod" onclick="openModal()">add_product</a>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form action="{% url 'add_product' %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
 <script>
 function goBack() {
   window.history.back();
@@ -17,15 +71,59 @@ var currentDateElement = document.getElementById("currentDate");
 
 function getCurrentDate() {
   var currentDate = new Date();
-  var day = currentDate.getDate();
-  var month = currentDate.getMonth() + 1;
-  var year = currentDate.getFullYear();
-
-  var formattedDate = day + "-" + month + "-" + year;
+  var options = { weekday: 'long', day: 'numeric', month: 'long' };
+  var formattedDate = currentDate.toLocaleDateString("ru-RU", options);
   return formattedDate;
 }
 
 currentDateElement.textContent = getCurrentDate();
+</script>
+<script>
+var modal = null;
+
+function openModal() {
+  modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <form action="{% url 'add_product' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Сохранить</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function closeModal() {
+  document.body.removeChild(modal);
+  modal = null;
+}
+
+window.onclick = function(event) {
+  if (modal && event.target === modal) {
+    closeModal();
+  }
+};
+</script>
+<script>
+    var modal = document.getElementById("modal");
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+};
 </script>
 </body>
 </html>
