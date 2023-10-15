@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Страница входа</title>
+</head>
+<body>
+<button onclick="goBack()">Назад</button>
+    {% if user.is_authenticated %}
+        <p>Вы уже вошли в систему как {{ user.username }}</p>
+        <a href="{% url 'logout' %}">Выйти</a>
+    {% else %}
+        <p>Пожалуйста, выполните вход:</p>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username">
+            <br>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password">
+            <br>
+            <input type="submit" value="Войти">
+        </form>
+    {% endif %}
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>

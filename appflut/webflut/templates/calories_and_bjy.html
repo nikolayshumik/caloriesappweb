@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="goBack()">Назад</button>
+<span id="currentDate"></span>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<script>
+var currentDateElement = document.getElementById("currentDate");
+
+function getCurrentDate() {
+  var currentDate = new Date();
+  var day = currentDate.getDate();
+  var month = currentDate.getMonth() + 1;
+  var year = currentDate.getFullYear();
+
+  var formattedDate = day + "-" + month + "-" + year;
+  return formattedDate;
+}
+
+currentDateElement.textContent = getCurrentDate();
+</script>
+</body>
+</html>

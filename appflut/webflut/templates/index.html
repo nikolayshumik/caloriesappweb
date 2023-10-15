@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        <a href="{% url 'logout' %}">Выйти</a>
+        <a href="{% url 'login' %}">Войти</a>
+<a href="{% url 'register' %}" class="buttonMod">REGISTRATION</a>
+<a href="{% url 'person_info' %}" class="buttonMod">PERSONALINFORMATION</a>
+<a href="{% url 'calories_and_bjy' %}" class="buttonMod">calories_and_bjy</a>
+<p>Вы уже вошли в систему как {{ user.username }}</p>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h2>Hello, {{ request.user.username }}</h2>
+
+<script src="/static/js/main.js"></script>
+<button onclick="goBack()">Назад</button>
+<form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Create my account"></p>
+    </form>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>
