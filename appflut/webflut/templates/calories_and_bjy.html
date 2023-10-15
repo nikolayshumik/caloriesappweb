@@ -38,18 +38,27 @@
   text-decoration: none;
   cursor: pointer;
 }
+.product-container {
+  max-height: 600px; /* Максимальная высота контейнера */
+  overflow-y: auto; /* Добавление вертикального скролла при необходимости */
+}
+
+.product-item {
+  background-color: #f2f2f2;
+  margin-bottom: 5px;
+  padding: 10px;
+}
 </style>
 <body>
 <button onclick="goBack()">Назад</button>
 <span id="currentDate"></span>
 <a href="{% url 'profile' %}" class="buttonMod">profile</a>
-<a href="{% url 'report' %}" class="buttonMod">report</a>
-<a href="#" class="buttonMod" onclick="openModal()">add_product</a>
 
+<a href="#" class="buttonMod" onclick="openModal()">add_product</a>
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
-    <form action="{% url 'add_product' %}" method="post">
+    <form action="{% url 'calories_and_bjy' %}" method="post">
       {% csrf_token %}
       {{ form }}
       <button type="submit">Сохранить</button>
@@ -59,7 +68,18 @@
 
 
 
-
+<div class="product-container">
+  {% for product in products %}
+  <div class="product-item">
+    <h4>{{ product.name }}</h4>
+    <p>Calories: {{ product.calories_in }}</p>
+    <p>Proteins: {{ product.proteins }}</p>
+    <p>Fats: {{ product.fats }}</p>
+    <p>Carbohydrates: {{ product.carbohydrates }}</p>
+  </div>
+  {% endfor %}
+</div>
+<a href="{% url 'report' %}" class="buttonMod">report</a>
 
 <script>
 function goBack() {
@@ -78,36 +98,7 @@ function getCurrentDate() {
 
 currentDateElement.textContent = getCurrentDate();
 </script>
-<script>
-var modal = null;
 
-function openModal() {
-  modal = document.createElement('div');
-  modal.className = 'modal';
-  modal.innerHTML = `
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <form action="{% url 'add_product' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Сохранить</button>
-      </form>
-    </div>
-  `;
-  document.body.appendChild(modal);
-}
-
-function closeModal() {
-  document.body.removeChild(modal);
-  modal = null;
-}
-
-window.onclick = function(event) {
-  if (modal && event.target === modal) {
-    closeModal();
-  }
-};
-</script>
 <script>
     var modal = document.getElementById("modal");
 
