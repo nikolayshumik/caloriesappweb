@@ -67,7 +67,12 @@ def calories_and_bjy(request):
         form = AddProductForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Успешно добавлено')
             return redirect('calories_and_bjy')
+        else:
+            messages.error(request, 'Возникла ошибка')
+            return render(request, 'calories_and_bjy.html', {'form': form, 'search_query': search_query})
+
     else:
         form = AddProductForm()
 
@@ -75,7 +80,8 @@ def calories_and_bjy(request):
     if search_query:
         products = products.filter(name__icontains=search_query)
 
-    return render(request, 'calories_and_bjy.html', {'form': form, 'products': products, 'search_query': search_query})
+    return render(request, 'calories_and_bjy.html', {'form': form, 'products': products, 'search_query': search_query, 'messages': messages.get_messages(request)})
+
 
 def profile(request):
     return render(request, 'profile.html')

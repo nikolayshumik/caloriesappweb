@@ -1,60 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <script defer src="{% static 'js/main.js' %}"></script>
 </head>
-<style>
-    .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-.product-container {
-  max-height: 600px; /* Максимальная высота контейнера */
-  overflow-y: auto; /* Добавление вертикального скролла при необходимости */
-}
-
-.product-item {
-  background-color: #f2f2f2;
-  margin-bottom: 5px;
-  padding: 10px;
-}
-</style>
 <body>
 <button onclick="goBack()">Назад</button>
 <span id="currentDate"></span>
-<a href="{% url 'profile' %}" class="buttonMod">profile</a>
+<a href="{% url 'profile' %}" class="buttonMod">профиль</a>
 
-<a href="#" class="buttonMod" onclick="openModal()">add_product</a>
+<a href="#" class="buttonMod" onclick="openModal()">добавить продукт</a>
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -69,57 +28,23 @@
 
 <form action="{% url 'calories_and_bjy' %}" method="GET">
   <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
-  <button type="submit">Search</button>
+  <button type="submit">Поиск</button>
 </form>
 <div class="product-container">
   {% for product in products %}
   <div class="product-item">
     <h4>{{ product.name }}</h4>
-    <p>Calories: {{ product.calories_in }}</p>
-    <p>Proteins: {{ product.proteins }}</p>
-    <p>Fats: {{ product.fats }}</p>
-    <p>Carbohydrates: {{ product.carbohydrates }}</p>
+    <p>Каллории: {{ product.calories_in }}</p>
+    <p>Белки: {{ product.proteins }}</p>
+    <p>Жиры: {{ product.fats }}</p>
+    <p>Углеводы: {{ product.carbohydrates }}</p>
   </div>
   {% empty %}
-  <p>No products found</p>
+  <p>Ничего не найдено</p>
   {% endfor %}
 </div>
 <a href="{% url 'report' %}" class="buttonMod">report</a>
 
-<script>
-function goBack() {
-  window.history.back();
-}
-</script>
-<script>
-var currentDateElement = document.getElementById("currentDate");
 
-function getCurrentDate() {
-  var currentDate = new Date();
-  var options = { weekday: 'long', day: 'numeric', month: 'long' };
-  var formattedDate = currentDate.toLocaleDateString("ru-RU", options);
-  return formattedDate;
-}
-
-currentDateElement.textContent = getCurrentDate();
-</script>
-
-<script>
-    var modal = document.getElementById("modal");
-
-function openModal() {
-  modal.style.display = "block";
-}
-
-function closeModal() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target === modal) {
-    closeModal();
-  }
-};
-</script>
 </body>
 </html>
