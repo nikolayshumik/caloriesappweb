@@ -9,5 +9,23 @@
 </head>
 <body>
 
+<h1>Отчёт завтрака</h1>
+
+<div class="product-container">
+{% for product in products %}
+  <div class="product-item">
+    <h4>{{ product.name }}</h4>
+    <p>Каллории: {{ product.calories_in }}</p>
+    <p>Белки: {{ product.proteins }}</p>
+    <p>Жиры: {{ product.fats }}</p>
+    <p>Углеводы: {{ product.carbohydrates }}</p>
+  </div>
+{% empty %}
+  <p>Ничего не найдено</p>
+{% endfor %}
+</div>
+
+
+
 </body>
 </html>

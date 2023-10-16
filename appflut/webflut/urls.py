@@ -16,6 +16,10 @@ urlpatterns = [
     path('snack/', views.snack, name='snack'),
     path('activities/', views.activities, name='activities'),
     path('eatingbase/', views.eatingbase, name='eatingbase'),
+    path('add_breakfast/', views.add_breakfast_view, name='add_breakfast_view'),
+    path('add_lunch/', views.add_lunch_view, name='add_lunch_view'),
+    path('add_dinner/', views.add_dinner_view, name='add_dinner_view'),
+    path('add_snack/', views.add_snack_view, name='add_snack_view'),
     # path('add_product', views.add_product, name='add_product'),
 
 ]

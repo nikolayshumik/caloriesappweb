@@ -8,5 +8,9 @@
 
 
 {% block contenbutton %}
-<h1>kkkkk</h1>
+<form method="post" action="{% url 'add_breakfast_view' %}">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <button type="submit">Add to breakfast</button>
+    </form>
 {% endblock %}

@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product
-from .models import Breakfast_Products
+from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
 
 # Create your views here.LoginForm,
 def index(request):
@@ -61,13 +61,22 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
-    products_for_breakfast = Breakfast_Products.objects.all()
-    return render(request, 'calories_and_bjy.html', {'products_for_breakfast': products_for_breakfast})
+    breakfast_products = Breakfast_Products.objects.all()
+    bproducts = [bp.product for bp in breakfast_products]
+    lunch_products = Lunch_Products.objects.all()
+    lproducts = [bp.product for bp in lunch_products]
+    dinner_products = Dinner_Products.objects.all()
+    dproducts = [bp.product for bp in dinner_products]
+    snack_products = Snack_Products.objects.all()
+    sproducts = [bp.product for bp in snack_products]
+    return render(request, 'calories_and_bjy.html', {'bproducts': bproducts, 'lproducts': lproducts, 'dproducts': dproducts, 'sproducts': sproducts})
 
 def profile(request):
     return render(request, 'profile.html')
 def report(request):
-    return render(request, 'report.html')
+    breakfast_products = Breakfast_Products.objects.all()
+    products = [bp.product for bp in breakfast_products]
+    return render(request, 'report.html', {'products': products})
 def breakfast(request):
     search_query = request.GET.get('search')
 
@@ -166,3 +175,39 @@ def eatingbase(request):
 #         breakfast_product.save()
 #
 #     return redirect('breakfast') # Перенаправляет пользователя на страницу 'breakfast'
+
+def add_breakfast_view(request):
+    product_id = request.POST.get('product_id')
+    product = Add_Product.objects.get(id=product_id)
+
+    # Создайте новую запись Breakfast_Products
+    Breakfast_Products.objects.create(product=product)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def add_lunch_view(request):
+    product_id = request.POST.get('product_id')
+    product = Add_Product.objects.get(id=product_id)
+
+    # Создайте новую запись Breakfast_Products
+    Lunch_Products.objects.create(product=product)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def add_dinner_view(request):
+    product_id = request.POST.get('product_id')
+    product = Add_Product.objects.get(id=product_id)
+
+    # Создайте новую запись Breakfast_Products
+    Dinner_Products.objects.create(product=product)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def add_snack_view(request):
+    product_id = request.POST.get('product_id')
+    product = Add_Product.objects.get(id=product_id)
+
+    # Создайте новую запись Breakfast_Products
+    Snack_Products.objects.create(product=product)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

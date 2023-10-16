@@ -25,3 +25,9 @@ class Add_Product(models.Model):
 
 class Breakfast_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+class Lunch_Products(models.Model):
+    product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+class Dinner_Products(models.Model):
+    product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+class Snack_Products(models.Model):
+    product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)

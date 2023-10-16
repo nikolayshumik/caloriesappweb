@@ -4,3 +4,11 @@
     <h1>Ужин</h1>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
 {% endblock %}
+
+{% block contenbutton %}
+<form method="post" action="{% url 'add_dinner_view' %}">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <button type="submit">Add to dinner</button>
+    </form>
+{% endblock %}

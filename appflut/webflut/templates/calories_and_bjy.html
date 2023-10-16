@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script defer src="{% static 'js/main.js' %}"></script>
     <style>
         .nutrition-div {
@@ -14,6 +14,53 @@
             border: 1px solid #000;
             padding: 10px;
         }
+
+
+
+    </style>
+    <style>
+
+.container .content {
+    display: none;
+
+}
+
+.container.active .content {
+    display: block;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+
+.buttonMod {
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.buttonMod:hover {
+    background-color: #f8f8f8;
+}
+.breakfast.clickable {
+  display: inline-block;
+  width: 100px;
+  font-size: 14px; /* Обратите внимание, эта строка изменяет размер текста */
+  border: 1px solid #000; /* Этот код добавляет тонкую черную обводку */
+  padding: 10px; /* Добавляет немного отступа вокруг текста */
+  text-align: center; /* Выравнивает текст по центру */
+}
+.breakfast.clickable:hover {
+  background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
+}
+
     </style>
 </head>
 <body>
@@ -22,7 +69,7 @@
 <a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
 <h>Калории и БЖУ</h>
 <div>
-<div class="nutrition-div">
+    <div class="nutrition-div">
         <h2>Потреблено</h2>
         <p>...</p>
     </div>
@@ -47,29 +94,130 @@
         <p>...</p>
     </div>
 </div>
-<div>
-    <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
-<div class="product-container">
-<ul>
-{% for breakfast in products_for_breakfast %}
-    <li>
-        <h2>{{ breakfast.product.name }}</h2>
-        <p>Calories: {{ breakfast.product.calories_in }}</p>
-        <p>Proteins: {{ breakfast.product.proteins }}</p>
-        <p>Fats: {{ breakfast.product.fats }}</p>
-        <p>Carbohydrates: {{ breakfast.product.carbohydrates }}</p>
-    </li>
-{% endfor %}
-</ul>
+
+<div class="container">
+    <div class="breakfast clickable">
+        <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+    </div>
+    <div class="content">
+        <h1>Отчёт завтрака</h1>
+
+        <div class="product-container">
+            {% for product in bproducts %}
+            <div class="product-item">
+                <h4>{{ product.name }}</h4>
+                <p>Каллории: {{ product.calories_in }}</p>
+                <p>Белки: {{ product.proteins }}</p>
+                <p>Жиры: {{ product.fats }}</p>
+                <p>Углеводы: {{ product.carbohydrates }}</p>
+            </div>
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+
+    </div>
 </div>
+
+
+<div class="container">
+    <div class="breakfast clickable">
+        <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
+    </div>
+    <div class="content">
+
+
+        <h1>Отчёт обеда</h1>
+
+        <div class="product-container">
+            {% for product in lproducts %}
+            <div class="product-item">
+                <h4>{{ product.name }}</h4>
+                <p>Каллории: {{ product.calories_in }}</p>
+                <p>Белки: {{ product.proteins }}</p>
+                <p>Жиры: {{ product.fats }}</p>
+                <p>Углеводы: {{ product.carbohydrates }}</p>
+            </div>
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+
+    </div>
 </div>
-<a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
-<a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
-<a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+
+
+<div class="container">
+    <div class="breakfast clickable">
+        <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+    </div>
+    <div class="content">
+        <h1>Отчёт Ужин</h1>
+
+        <div class="product-container">
+            {% for product in dproducts %}
+            <div class="product-item">
+                <h4>{{ product.name }}</h4>
+                <p>Каллории: {{ product.calories_in }}</p>
+                <p>Белки: {{ product.proteins }}</p>
+                <p>Жиры: {{ product.fats }}</p>
+                <p>Углеводы: {{ product.carbohydrates }}</p>
+            </div>
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="breakfast clickable">
+        <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+    </div>
+    <div class="content">
+
+        <h1>Отчёт Перекуса</h1>
+
+        <div class="product-container">
+            {% for product in sproducts %}
+            <div class="product-item">
+                <h4>{{ product.name }}</h4>
+                <p>Каллории: {{ product.calories_in }}</p>
+                <p>Белки: {{ product.proteins }}</p>
+                <p>Жиры: {{ product.fats }}</p>
+                <p>Углеводы: {{ product.carbohydrates }}</p>
+            </div>
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="container">-->
+<!--    <div class="breakfast clickable">-->
+<!--        <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        &lt;!&ndash; Весь остальной контент &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+<!--</div>-->
 <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
 
 
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
 <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
+<script>
+document.querySelectorAll('.clickable').forEach(item => {
+  item.addEventListener('click', event => {
+    event.target.parentElement.classList.toggle('active');
+  });
+})
+
+
+
+</script>
 </body>
 </html>
