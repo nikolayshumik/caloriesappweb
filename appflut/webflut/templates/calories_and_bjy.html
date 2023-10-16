@@ -19,6 +19,10 @@
 
 
 
+
+
+
+
     </style>
     <style>
 
@@ -65,6 +69,10 @@
 
 
 
+
+
+
+
     </style>
 </head>
 <body>
@@ -87,22 +95,22 @@
     </div>
     <div class="nutrition-div">
         <h2>Белки</h2>
-       <p>{{ total_proteins }}</p>
+        <p>{{ total_proteins }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Жиры</h2>
-       <p>{{ total_fats }}</p>
+        <p>{{ total_fats }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Углеводы</h2>
-       <p>{{ total_carbohydrates }}</p>
+        <p>{{ total_carbohydrates }}</p>
     </div>
 </div>
 
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
-           <div>
+        <div>
             {% if bproteins and bfats and bcarbohydrates %}
             калории: {{ bcalories_in }}<br>
             Б- {{ bproteins }}
@@ -110,24 +118,25 @@
             У- {{ bcarbohydrates }}
             {% endif %}
         </div>
-    </div>
-    <div class="content">
-        <h1>Отчёт завтрака</h1>
 
-        <div class="product-container">
-            {% for product in bproducts %}
-            <div class="product-item">
-                <h4>{{ product.name }}</h4>
-                <p>Каллории: {{ product.calories_in }}</p>
-                <p>Белки: {{ product.proteins }}</p>
-                <p>Жиры: {{ product.fats }}</p>
-                <p>Углеводы: {{ product.carbohydrates }}</p>
+        <div class="content">
+            <h1>Отчёт завтрака</h1>
+
+            <div class="product-container">
+                {% for product in bproducts %}
+                <div class="product-item">
+                    <h4>{{ product.name }}</h4>
+                    <p>Каллории: {{ product.calories_in }}</p>
+                    <p>Белки: {{ product.proteins }}</p>
+                    <p>Жиры: {{ product.fats }}</p>
+                    <p>Углеводы: {{ product.carbohydrates }}</p>
+                </div>
+                {% empty %}
+                <p>Ничего не найдено</p>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
-        </div>
 
+        </div>
     </div>
 </div>
 
@@ -143,25 +152,26 @@
             У- {{ carbohydrates }}
             {% endif %}
         </div>
-    <div class="content">
+        <div class="content">
 
 
-        <h1>Отчёт обеда</h1>
+            <h1>Отчёт обеда</h1>
 
-        <div class="product-container">
-            {% for product in lproducts %}
-            <div class="product-item">
-                <h4>{{ product.name }}</h4>
-                <p>Каллории: {{ product.calories_in }}</p>
-                <p>Белки: {{ product.proteins }}</p>
-                <p>Жиры: {{ product.fats }}</p>
-                <p>Углеводы: {{ product.carbohydrates }}</p>
+            <div class="product-container">
+                {% for product in lproducts %}
+                <div class="product-item">
+                    <h4>{{ product.name }}</h4>
+                    <p>Каллории: {{ product.calories_in }}</p>
+                    <p>Белки: {{ product.proteins }}</p>
+                    <p>Жиры: {{ product.fats }}</p>
+                    <p>Углеводы: {{ product.carbohydrates }}</p>
+                </div>
+                {% empty %}
+                <p>Ничего не найдено</p>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
-        </div>
 
+        </div>
     </div>
 </div>
 
@@ -169,7 +179,7 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
-         <div>
+        <div>
             {% if dproteins and dfats and dcarbohydrates %}
             калории: {{ dcalories_in }}<br>
             Б- {{ dproteins }}
@@ -177,22 +187,23 @@
             У- {{ dcarbohydrates }}
             {% endif %}
         </div>
-    </div>
-    <div class="content">
-        <h1>Отчёт Ужин</h1>
 
-        <div class="product-container">
-            {% for product in dproducts %}
-            <div class="product-item">
-                <h4>{{ product.name }}</h4>
-                <p>Каллории: {{ product.calories_in }}</p>
-                <p>Белки: {{ product.proteins }}</p>
-                <p>Жиры: {{ product.fats }}</p>
-                <p>Углеводы: {{ product.carbohydrates }}</p>
+        <div class="content">
+            <h1>Отчёт Ужин</h1>
+
+            <div class="product-container">
+                {% for product in dproducts %}
+                <div class="product-item">
+                    <h4>{{ product.name }}</h4>
+                    <p>Каллории: {{ product.calories_in }}</p>
+                    <p>Белки: {{ product.proteins }}</p>
+                    <p>Жиры: {{ product.fats }}</p>
+                    <p>Углеводы: {{ product.carbohydrates }}</p>
+                </div>
+                {% empty %}
+                <p>Ничего не найдено</p>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
         </div>
     </div>
 </div>
@@ -200,7 +211,7 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
-         <div>
+        <div>
             {% if sproteins and sfats and scarbohydrates %}
             калории: {{ scalories_in }}<br>
             Б- {{ sproteins }}
@@ -208,23 +219,24 @@
             У- {{ scarbohydrates }}
             {% endif %}
         </div>
-    </div>
-    <div class="content">
 
-        <h1>Отчёт Перекуса</h1>
+        <div class="content">
 
-        <div class="product-container">
-            {% for product in sproducts %}
-            <div class="product-item">
-                <h4>{{ product.name }}</h4>
-                <p>Каллории: {{ product.calories_in }}</p>
-                <p>Белки: {{ product.proteins }}</p>
-                <p>Жиры: {{ product.fats }}</p>
-                <p>Углеводы: {{ product.carbohydrates }}</p>
+            <h1>Отчёт Перекуса</h1>
+
+            <div class="product-container">
+                {% for product in sproducts %}
+                <div class="product-item">
+                    <h4>{{ product.name }}</h4>
+                    <p>Каллории: {{ product.calories_in }}</p>
+                    <p>Белки: {{ product.proteins }}</p>
+                    <p>Жиры: {{ product.fats }}</p>
+                    <p>Углеводы: {{ product.carbohydrates }}</p>
+                </div>
+                {% empty %}
+                <p>Ничего не найдено</p>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
         </div>
     </div>
 </div>
@@ -250,6 +262,10 @@ document.querySelectorAll('.clickable').forEach(item => {
     event.target.parentElement.classList.toggle('active');
   });
 })
+
+
+
+
 
 
 

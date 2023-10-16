@@ -61,45 +61,48 @@ def login_view(request):
     else:
         return render(request, 'login.html')
 
-
+@login_required
 def calories_and_bjy(request):
+    user = request.user  # get the currently logged-in user
 
-    bcalories_in = Breakfast_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    bproteins = Breakfast_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
-    bfats = Breakfast_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
-    bcarbohydrates = Breakfast_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+    # Filter your queryset by user for each category
+    breakfast_products = Breakfast_Products.objects.filter(user=user)
+    bproducts = [bp.product for bp in breakfast_products]
 
-    calories_in = Lunch_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    proteins = Lunch_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
-    fats = Lunch_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
-    carbohydrates = Lunch_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+    lunch_products = Lunch_Products.objects.filter(user=user)
+    lproducts = [bp.product for bp in lunch_products]
 
-    dcalories_in = Dinner_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    dproteins = Dinner_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
-    dfats = Dinner_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
-    dcarbohydrates = Dinner_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+    dinner_products = Dinner_Products.objects.filter(user=user)
+    dproducts = [bp.product for bp in dinner_products]
 
-    scalories_in = Snack_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    sproteins = Snack_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
-    sfats = Snack_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
-    scarbohydrates = Snack_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+    snack_products = Snack_Products.objects.filter(user=user)
+    sproducts = [bp.product for bp in snack_products]
+
+    bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    bfats = breakfast_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    bcarbohydrates = breakfast_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    calories_in = lunch_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    proteins = lunch_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    fats = lunch_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    carbohydrates = lunch_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    dcalories_in = dinner_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    dproteins = dinner_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    dfats = dinner_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    dcarbohydrates = dinner_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    scalories_in = snack_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    sproteins = snack_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    sfats = snack_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    scarbohydrates = snack_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
 
     total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
     total_proteins = bproteins + proteins + dproteins + sproteins
     total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
     total_fats = bfats + fats + dfats + sfats
 
-    breakfast_products = Breakfast_Products.objects.all()
-    bproducts = [bp.product for bp in breakfast_products]
-
-    lunch_products = Lunch_Products.objects.all()
-    lproducts = [bp.product for bp in lunch_products]
-
-    dinner_products = Dinner_Products.objects.all()
-    dproducts = [bp.product for bp in dinner_products]
-
-    snack_products = Snack_Products.objects.all()
-    sproducts = [bp.product for bp in snack_products]
 
     context = {
         'bproducts': bproducts,
@@ -246,30 +249,33 @@ def add_breakfast_view(request):
     Breakfast_Products.objects.create(product=product, user=user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+@login_required
 def add_lunch_view(request):
     product_id = request.POST.get('product_id')
     product = Add_Product.objects.get(id=product_id)
 
     # Создайте новую запись Breakfast_Products
-    Lunch_Products.objects.create(product=product)
+    user = request.user
+    Lunch_Products.objects.create(product=product, user=user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+@login_required
 def add_dinner_view(request):
     product_id = request.POST.get('product_id')
     product = Add_Product.objects.get(id=product_id)
 
     # Создайте новую запись Breakfast_Products
-    Dinner_Products.objects.create(product=product)
+    user = request.user
+    Dinner_Products.objects.create(product=product, user=user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+@login_required
 def add_snack_view(request):
     product_id = request.POST.get('product_id')
     product = Add_Product.objects.get(id=product_id)
 
     # Создайте новую запись Breakfast_Products
-    Snack_Products.objects.create(product=product)
+    user = request.user
+    Snack_Products.objects.create(product=product, user=user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
