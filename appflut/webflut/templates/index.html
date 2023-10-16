@@ -9,12 +9,12 @@
 </head>
 <body>
 
-        <a href="{% url 'logout' %}">Выйти</a>
-        <a href="{% url 'login' %}">Войти</a>
+        <a href="{% url 'logout' %}" class="buttonMod">Выйти</a>
+        <a href="{% url 'login' %}" class="buttonMod">Войти</a>
 <a href="{% url 'register' %}" class="buttonMod">регистрация</a>
 <a href="{% url 'person_info' %}" class="buttonMod">персональная информация</a>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">каллории и БЖУ</a>
-<a href="{% url 'profile' %}" class="buttonMod">профиль/a>
+<a href="{% url 'profile' %}" class="buttonMod">профиль</a>
 <p>Вы уже вошли в систему как {{ user.username }}</p>
 
 </body>

@@ -17,6 +17,8 @@
 
 
 
+
+
     </style>
     <style>
 
@@ -51,7 +53,7 @@
 }
 .breakfast.clickable {
   display: inline-block;
-  width: 100px;
+  width: 200px;
   font-size: 14px; /* Обратите внимание, эта строка изменяет размер текста */
   border: 1px solid #000; /* Этот код добавляет тонкую черную обводку */
   padding: 10px; /* Добавляет немного отступа вокруг текста */
@@ -60,6 +62,8 @@
 .breakfast.clickable:hover {
   background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
 }
+
+
 
     </style>
 </head>
@@ -123,6 +127,13 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
+        <div>
+            {% if proteins and fats and carbohydrates %}
+            Proteins: {{ proteins }}<br>
+            Fats: {{ fats }}<br>
+            Carbohydrates: {{ carbohydrates }}
+            {% endif %}
+        </div>
     </div>
     <div class="content">
 
@@ -215,6 +226,8 @@ document.querySelectorAll('.clickable').forEach(item => {
     event.target.parentElement.classList.toggle('active');
   });
 })
+
+
 
 
 

@@ -44,3 +44,19 @@
   margin-bottom: 5px;
   padding: 10px;
 }
+
+.buttonMod {
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.buttonMod:hover {
+    background-color: #f8f8f8;
+}

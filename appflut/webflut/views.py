@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product
 from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
+from django.db.models import Sum
 
 # Create your views here.LoginForm,
 def index(request):
@@ -61,6 +62,16 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
+    proteins = Lunch_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum']
+    fats = Lunch_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum']
+    carbohydrates = Lunch_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum']
+
+    # context = {
+    #     'proteins': proteins,
+    #     'fats': fats,
+    #     'carbohydrates': carbohydrates,
+    # }
+
     breakfast_products = Breakfast_Products.objects.all()
     bproducts = [bp.product for bp in breakfast_products]
     lunch_products = Lunch_Products.objects.all()
@@ -69,7 +80,7 @@ def calories_and_bjy(request):
     dproducts = [bp.product for bp in dinner_products]
     snack_products = Snack_Products.objects.all()
     sproducts = [bp.product for bp in snack_products]
-    return render(request, 'calories_and_bjy.html', {'bproducts': bproducts, 'lproducts': lproducts, 'dproducts': dproducts, 'sproducts': sproducts})
+    return render(request, 'calories_and_bjy.html', {'bproducts': bproducts, 'lproducts': lproducts, 'dproducts': dproducts, 'sproducts': sproducts, 'proteins': proteins, 'fats': fats, 'carbohydrates': carbohydrates,})
 
 def profile(request):
     return render(request, 'profile.html')
