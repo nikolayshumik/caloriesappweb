@@ -42,3 +42,13 @@ class Dinner_Products(models.Model):
 class Snack_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+
+
+
+class Activities(models.Model):
+    name = models.TextField()
+    calories_in = models.TextField()
+    time = models.TextField()
+class Activities_Add(models.Model):
+    product = models.ForeignKey(Activities, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
