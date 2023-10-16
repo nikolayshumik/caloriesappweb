@@ -3,7 +3,7 @@ from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product
-from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
+from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activities, Activities_Add
 from django.db.models import Sum
 
 from django.contrib.auth.decorators import login_required  # add this to your imports
@@ -78,6 +78,9 @@ def calories_and_bjy(request):
     snack_products = Snack_Products.objects.filter(user=user)
     sproducts = [bp.product for bp in snack_products]
 
+    activity_prod = Activities_Add.objects.filter(user=user)
+    activity = [bp.product for bp in activity_prod]
+
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
     bfats = breakfast_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
@@ -129,6 +132,8 @@ def calories_and_bjy(request):
         'total_proteins': total_proteins,
         'total_carbohydrates': total_carbohydrates,
         'total_fats': total_fats,
+        'activity_prod': activity_prod,
+        'activity': activity,
 
     }
     return render(request, 'calories_and_bjy.html', context)
@@ -208,7 +213,11 @@ def snack(request):
 
     return render(request, 'snack.html', {'form': form, 'products': products, 'search_query': search_query})
 def activities(request):
-    return render(request, 'activities.html')
+    search_query = request.GET.get('search')
+    activity = Activities.objects.all()
+    if search_query:
+        activity = activity.filter(name__icontains=search_query)
+    return render(request, 'activities.html', {'activity': activity, 'search_query': search_query})
 def eatingbase(request):
     search_query = request.GET.get('search')
 
@@ -277,5 +286,23 @@ def add_snack_view(request):
     # Создайте новую запись Breakfast_Products
     user = request.user
     Snack_Products.objects.create(product=product, user=user)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def add_activity_view(request):
+    activity_id = request.POST.get('product_id')
+
+    if activity_id:  # check if activity_id is not empty
+        try:
+            activity = Activities.objects.get(id=activity_id)
+            user = request.user
+            Activities_Add.objects.create(product=activity, user=user)
+        except Activities.DoesNotExist:
+            pass            # add error handling logic here
+        except ValueError:
+            pass            # add error handling logic here
+    else:
+        pass                # add error handling logic here
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
