@@ -61,27 +61,14 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
-    search_query = request.GET.get('search')
-
-    if request.method == 'POST':
-        form = AddProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'calories_and_bjy.html', {'form': form, 'search_query': search_query})
-
-    else:
-        form = AddProductForm()
-
-    products = Add_Product.objects.all()
-    if search_query:
-        products = products.filter(name__icontains=search_query)
-
-    return render(request, 'calories_and_bjy.html', {'form': form, 'products': products, 'search_query': search_query, 'messages': messages.get_messages(request)})
+       return render(request, 'calories_and_bjy.html')
 
 def profile(request):
     return render(request, 'profile.html')
 def report(request):
     return render(request, 'report.html')
+def return_back(request):
+    return render(request, 'calories_and_bjy.html')
 def breakfast(request):
     search_query = request.GET.get('search')
 

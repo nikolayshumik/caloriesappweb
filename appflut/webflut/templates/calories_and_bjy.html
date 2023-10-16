@@ -6,51 +6,55 @@
     <title>Title</title>
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script defer src="{% static 'js/main.js' %}"></script>
+    <style>
+        .nutrition-div {
+            display: inline-block;
+            width: 30%;
+            text-align: center;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+    </style>
 </head>
-
 <body>
-<button onclick="goBack()">Назад</button>
+
 <span id="currentDate"></span>
-<a href="{% url 'profile' %}" class="buttonMod">профиль</a>
-
-<a href="#" class="buttonMod" onclick="openModal()">добавить продукт</a>
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <form action="{% url 'calories_and_bjy' %}" method="post">
-      {% csrf_token %}
-      {{ form }}
-      <button type="submit">Сохранить</button>
-    </form>
-  </div>
+<a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
+<h>Калории и БЖУ</h>
+<div>
+<div class="nutrition-div">
+        <h2>Потреблено</h2>
+        <p>...</p>
+    </div>
+    <div class="nutrition-div">
+        <h2>Норма</h2>
+        <p>...</p>
+    </div>
+    <div class="nutrition-div">
+        <h2>Сожжено</h2>
+        <p>...</p>
+    </div>
+    <div class="nutrition-div">
+        <h2>Белки</h2>
+        <p>...</p>
+    </div>
+    <div class="nutrition-div">
+        <h2>Жиры</h2>
+        <p>...</p>
+    </div>
+    <div class="nutrition-div">
+        <h2>Углеводы</h2>
+        <p>...</p>
+    </div>
 </div>
+<a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+<a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
+<a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+<a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+<a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
 
 
-<form action="{% url 'calories_and_bjy' %}" method="GET">
-  <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
-  <button type="submit">Поиск</button>
-</form>
-<div class="product-container">
-  {% for product in products %}
-  <div class="product-item">
-    <h4>{{ product.name }}</h4>
-    <p>Каллории: {{ product.calories_in }}</p>
-    <p>Белки: {{ product.proteins }}</p>
-    <p>Жиры: {{ product.fats }}</p>
-    <p>Углеводы: {{ product.carbohydrates }}</p>
-  </div>
-  {% empty %}
-  <p>Ничего не найдено</p>
-  {% endfor %}
-</div>
-<a href="{% url 'report' %}" class="buttonMod">report</a><br>
-
-
-<a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a>
-<a href="{% url 'lunch' %}" class="buttonMod">Обед</a>
-<a href="{% url 'dinner' %}" class="buttonMod">Ужин</a>
-<a href="{% url 'snack' %}" class="buttonMod">Перекус</a>
-<a href="{% url 'activities' %}" class="buttonMod">Активности</a>
-
+<a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
+<a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
 </body>
 </html>
