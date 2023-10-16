@@ -9,6 +9,9 @@
 </head>
 
 <body>
+{% block content %}
+        <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
+        {% endblock %}
 <button onclick="goBack()">Назад</button>
 <span id="currentDate"></span>
 <a href="{% url 'profile' %}" class="buttonMod">профиль</a>
@@ -43,14 +46,8 @@
   <p>Ничего не найдено</p>
   {% endfor %}
 </div>
-<a href="{% url 'report' %}" class="buttonMod">report</a><br>
+<a href="{% url 'report' %}" class="buttonMod">report</a>
 
-
-<a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a>
-<a href="{% url 'launch' %}" class="buttonMod">Обед</a>
-<a href="{% url 'dinner' %}" class="buttonMod">Ужин</a>
-<a href="{% url 'snack' %}" class="buttonMod">Перекус</a>
-<a href="{% url 'activities' %}" class="buttonMod">Активности</a>
 
 </body>
 </html>

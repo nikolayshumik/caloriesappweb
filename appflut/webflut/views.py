@@ -82,11 +82,18 @@ def calories_and_bjy(request):
 
     return render(request, 'calories_and_bjy.html', {'form': form, 'products': products, 'search_query': search_query, 'messages': messages.get_messages(request)})
 
-
 def profile(request):
     return render(request, 'profile.html')
 def report(request):
     return render(request, 'report.html')
-
-
+def breakfast(request):
+    return render(request, 'breakfast.html')
+def lunch(request):
+    return render(request, 'lunch.html')
+def dinner(request):
+    return render(request, 'dinner.html')
+def snack(request):
+    return render(request, 'snack.html')
+def activities(request):
+    return render(request, 'activities.html')
 
