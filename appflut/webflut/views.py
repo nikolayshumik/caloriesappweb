@@ -67,10 +67,6 @@ def calories_and_bjy(request):
         form = AddProductForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Успешно добавлено')
-            return redirect('calories_and_bjy')
-        else:
-            messages.error(request, 'Возникла ошибка')
             return render(request, 'calories_and_bjy.html', {'form': form, 'search_query': search_query})
 
     else:
@@ -87,13 +83,90 @@ def profile(request):
 def report(request):
     return render(request, 'report.html')
 def breakfast(request):
-    return render(request, 'breakfast.html')
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'breakfast.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'breakfast.html', {'form': form, 'products': products, 'search_query': search_query})
 def lunch(request):
-    return render(request, 'lunch.html')
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'lunch.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'lunch.html', {'form': form, 'products': products, 'search_query': search_query})
 def dinner(request):
-    return render(request, 'dinner.html')
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'dinner.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'dinner.html', {'form': form, 'products': products, 'search_query': search_query})
 def snack(request):
-    return render(request, 'snack.html')
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'snack.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'snack.html', {'form': form, 'products': products, 'search_query': search_query})
 def activities(request):
     return render(request, 'activities.html')
+def eatingbase(request):
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'eatingbase.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'eatingbase.html', {'form': form, 'products': products, 'search_query': search_query})
 

@@ -20,7 +20,7 @@
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
-    <form action="{% url 'calories_and_bjy' %}" method="post">
+    <form action="" method="post">
       {% csrf_token %}
       {{ form }}
       <button type="submit">Сохранить</button>
@@ -29,7 +29,7 @@
 </div>
 
 
-<form action="{% url 'calories_and_bjy' %}" method="GET">
+<form action="" method="GET">
   <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
   <button type="submit">Поиск</button>
 </form>
@@ -47,7 +47,6 @@
   {% endfor %}
 </div>
 <a href="{% url 'report' %}" class="buttonMod">report</a>
-
 
 </body>
 </html>
