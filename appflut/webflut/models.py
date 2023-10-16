@@ -16,6 +16,7 @@ class Personal_Inform(models.Model):
 
 
 
+
 class Add_Product(models.Model):
     name = models.TextField()
     calories_in = models.TextField()
@@ -23,11 +24,21 @@ class Add_Product(models.Model):
     fats = models.TextField()
     carbohydrates = models.TextField()
 
+def get_default_user():
+    return User.objects.get_or_create(username='default')[0].id
 class Breakfast_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+
+
 class Lunch_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+
 class Dinner_Products(models.Model):
-    product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+
 class Snack_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)

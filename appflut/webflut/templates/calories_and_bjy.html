@@ -75,7 +75,7 @@
 <div>
     <div class="nutrition-div">
         <h2>Потреблено</h2>
-        <p>...</p>
+        <p>{{ total_calories }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Норма</h2>
@@ -87,21 +87,29 @@
     </div>
     <div class="nutrition-div">
         <h2>Белки</h2>
-        <p>...</p>
+       <p>{{ total_proteins }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Жиры</h2>
-        <p>...</p>
+       <p>{{ total_fats }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Углеводы</h2>
-        <p>...</p>
+       <p>{{ total_carbohydrates }}</p>
     </div>
 </div>
 
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+           <div>
+            {% if bproteins and bfats and bcarbohydrates %}
+            калории: {{ bcalories_in }}<br>
+            Б- {{ bproteins }}
+            Ж- {{ bfats }}
+            У- {{ bcarbohydrates }}
+            {% endif %}
+        </div>
     </div>
     <div class="content">
         <h1>Отчёт завтрака</h1>
@@ -129,12 +137,12 @@
         <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
         <div>
             {% if proteins and fats and carbohydrates %}
-            Proteins: {{ proteins }}<br>
-            Fats: {{ fats }}<br>
-            Carbohydrates: {{ carbohydrates }}
+            калории: {{ calories_in }}<br>
+            Б- {{ proteins }}
+            Ж- {{ fats }}
+            У- {{ carbohydrates }}
             {% endif %}
         </div>
-    </div>
     <div class="content">
 
 
@@ -161,6 +169,14 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+         <div>
+            {% if dproteins and dfats and dcarbohydrates %}
+            калории: {{ dcalories_in }}<br>
+            Б- {{ dproteins }}
+            Ж- {{ dfats }}
+            У- {{ dcarbohydrates }}
+            {% endif %}
+        </div>
     </div>
     <div class="content">
         <h1>Отчёт Ужин</h1>
@@ -184,6 +200,14 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+         <div>
+            {% if sproteins and sfats and scarbohydrates %}
+            калории: {{ scalories_in }}<br>
+            Б- {{ sproteins }}
+            Ж- {{ sfats }}
+            У- {{ scarbohydrates }}
+            {% endif %}
+        </div>
     </div>
     <div class="content">
 

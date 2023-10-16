@@ -6,6 +6,7 @@ from .models import Add_Product
 from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
 from django.db.models import Sum
 
+from django.contrib.auth.decorators import login_required  # add this to your imports
 # Create your views here.LoginForm,
 def index(request):
     return render(request, 'index.html')
@@ -62,25 +63,72 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
-    proteins = Lunch_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum']
-    fats = Lunch_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum']
-    carbohydrates = Lunch_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum']
 
-    # context = {
-    #     'proteins': proteins,
-    #     'fats': fats,
-    #     'carbohydrates': carbohydrates,
-    # }
+    bcalories_in = Breakfast_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    bproteins = Breakfast_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    bfats = Breakfast_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    bcarbohydrates = Breakfast_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    calories_in = Lunch_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    proteins = Lunch_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    fats = Lunch_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    carbohydrates = Lunch_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    dcalories_in = Dinner_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    dproteins = Dinner_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    dfats = Dinner_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    dcarbohydrates = Dinner_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    scalories_in = Snack_Products.objects.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    sproteins = Snack_Products.objects.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    sfats = Snack_Products.objects.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    scarbohydrates = Snack_Products.objects.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
+    total_proteins = bproteins + proteins + dproteins + sproteins
+    total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
+    total_fats = bfats + fats + dfats + sfats
 
     breakfast_products = Breakfast_Products.objects.all()
     bproducts = [bp.product for bp in breakfast_products]
+
     lunch_products = Lunch_Products.objects.all()
     lproducts = [bp.product for bp in lunch_products]
+
     dinner_products = Dinner_Products.objects.all()
     dproducts = [bp.product for bp in dinner_products]
+
     snack_products = Snack_Products.objects.all()
     sproducts = [bp.product for bp in snack_products]
-    return render(request, 'calories_and_bjy.html', {'bproducts': bproducts, 'lproducts': lproducts, 'dproducts': dproducts, 'sproducts': sproducts, 'proteins': proteins, 'fats': fats, 'carbohydrates': carbohydrates,})
+
+    context = {
+        'bproducts': bproducts,
+        'lproducts': lproducts,
+        'dproducts': dproducts,
+        'sproducts': sproducts,
+        'bcalories_in': bcalories_in,
+        'bproteins': bproteins,
+        'bfats': bfats,
+        'bcarbohydrates': bcarbohydrates,
+        'calories_in': calories_in,
+        'proteins': proteins,
+        'fats': fats,
+        'carbohydrates': carbohydrates,
+        'dcalories_in': dcalories_in,
+        'dproteins': dproteins,
+        'dfats': dfats,
+        'dcarbohydrates': dcarbohydrates,
+        'scalories_in': scalories_in,
+        'sproteins': sproteins,
+        'sfats': sfats,
+        'scarbohydrates': scarbohydrates,
+        'total_calories': total_calories,
+        'total_proteins': total_proteins,
+        'total_carbohydrates': total_carbohydrates,
+        'total_fats': total_fats,
+
+    }
+    return render(request, 'calories_and_bjy.html', context)
 
 def profile(request):
     return render(request, 'profile.html')
@@ -187,12 +235,15 @@ def eatingbase(request):
 #
 #     return redirect('breakfast') # Перенаправляет пользователя на страницу 'breakfast'
 
+
+@login_required
 def add_breakfast_view(request):
     product_id = request.POST.get('product_id')
     product = Add_Product.objects.get(id=product_id)
 
-    # Создайте новую запись Breakfast_Products
-    Breakfast_Products.objects.create(product=product)
+    # Получите текущего пользователя с помощью `request.user` и создайте новую запись Breakfast_Products
+    user = request.user
+    Breakfast_Products.objects.create(product=product, user=user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
