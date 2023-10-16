@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product
-
+from .models import Breakfast_Products
 
 # Create your views here.LoginForm,
 def index(request):
@@ -61,14 +61,13 @@ def login_view(request):
 
 
 def calories_and_bjy(request):
-       return render(request, 'calories_and_bjy.html')
+    products_for_breakfast = Breakfast_Products.objects.all()
+    return render(request, 'calories_and_bjy.html', {'products_for_breakfast': products_for_breakfast})
 
 def profile(request):
     return render(request, 'profile.html')
 def report(request):
     return render(request, 'report.html')
-def return_back(request):
-    return render(request, 'calories_and_bjy.html')
 def breakfast(request):
     search_query = request.GET.get('search')
 
@@ -157,3 +156,13 @@ def eatingbase(request):
 
     return render(request, 'eatingbase.html', {'form': form, 'products': products, 'search_query': search_query})
 
+
+# def add_product(request):
+#     if request.method == 'POST':
+#         product_id = request.POST.get('product_id')
+#         product = Add_Product.objects.get(pk=product_id)
+#
+#         breakfast_product = Breakfast_Products(product=product)
+#         breakfast_product.save()
+#
+#     return redirect('breakfast') # Перенаправляет пользователя на страницу 'breakfast'

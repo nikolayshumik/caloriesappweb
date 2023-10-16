@@ -16,6 +16,6 @@ urlpatterns = [
     path('snack/', views.snack, name='snack'),
     path('activities/', views.activities, name='activities'),
     path('eatingbase/', views.eatingbase, name='eatingbase'),
-    path('return_back/', views.return_back, name='return_back'),
+    # path('add_product', views.add_product, name='add_product'),
 
 ]

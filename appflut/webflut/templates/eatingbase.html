@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    <script defer src="{% static 'js/main.js' %}"></script>
+
 </head>
 
 <body>
 {% block content %}
         <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
         {% endblock %}
-
 
 <a href="#" class="buttonMod" onclick="openModal()">добавить продукт</a>
 <div id="modal" class="modal">
@@ -32,19 +31,38 @@
   <button type="submit">Поиск</button>
 </form>
 <div class="product-container">
-  {% for product in products %}
+{% for product in products %}
   <div class="product-item">
     <h4>{{ product.name }}</h4>
     <p>Каллории: {{ product.calories_in }}</p>
     <p>Белки: {{ product.proteins }}</p>
     <p>Жиры: {{ product.fats }}</p>
     <p>Углеводы: {{ product.carbohydrates }}</p>
+{% block contenbutton %}
+    {% endblock %}
   </div>
-  {% empty %}
+{% empty %}
   <p>Ничего не найдено</p>
-  {% endfor %}
+{% endfor %}
 </div>
 
+<script>
+    var modal = document.getElementById("modal");
 
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+};
+
+</script>
 </body>
 </html>

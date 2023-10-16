@@ -1,8 +1,3 @@
-//back button
-function goBack() {
-  window.history.back();
-}
-
 
 //datetime
 var currentDateElement = document.getElementById("currentDate");

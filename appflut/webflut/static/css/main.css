@@ -33,6 +33,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+
 .product-container {
   max-height: 600px; /* Максимальная высота контейнера */
   overflow-y: auto; /* Добавление вертикального скролла при необходимости */

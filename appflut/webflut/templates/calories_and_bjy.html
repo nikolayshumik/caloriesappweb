@@ -47,7 +47,22 @@
         <p>...</p>
     </div>
 </div>
-<a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+<div>
+    <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+<div class="product-container">
+<ul>
+{% for breakfast in products_for_breakfast %}
+    <li>
+        <h2>{{ breakfast.product.name }}</h2>
+        <p>Calories: {{ breakfast.product.calories_in }}</p>
+        <p>Proteins: {{ breakfast.product.proteins }}</p>
+        <p>Fats: {{ breakfast.product.fats }}</p>
+        <p>Carbohydrates: {{ breakfast.product.carbohydrates }}</p>
+    </li>
+{% endfor %}
+</ul>
+</div>
+</div>
 <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
 <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
 <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>

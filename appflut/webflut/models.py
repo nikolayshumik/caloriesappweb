@@ -19,6 +19,9 @@ class Personal_Inform(models.Model):
 class Add_Product(models.Model):
     name = models.TextField()
     calories_in = models.TextField()
-    proteins  = models.TextField()
+    proteins = models.TextField()
     fats = models.TextField()
     carbohydrates = models.TextField()
+
+class Breakfast_Products(models.Model):
+    product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
