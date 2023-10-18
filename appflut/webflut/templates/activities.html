@@ -32,15 +32,16 @@
 <div class="product-container">
 {% for el in activity %}
   <div class="product-item">
-<!--    <h4>{{ product.name }}</h4>-->
     <p>Назв: {{ el.name }}</p>
     <p>Каллории: {{ el.calories_in }}</p>
-    <p>Время: {{ el.time }}</p>
-    <form method="post" action="{% url 'add_activity_view' %}">
-        {% csrf_token %}
-       <input type="hidden" name="product_id" value="{{ el.id }}">
-        <button type="submit">Add to activities</button>
-    </form>
+<!--    <p>Время: {{ el.time }}</p>-->
+  <form method="post" action="{% url 'add_activity_view' %}">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ el.id }}">
+    <label for="time-input">Введите время:</label>
+    <input type="number" name="time" id="time-input">
+    <button type="submit">Add to activities</button>
+</form>
   </div>
 {% empty %}
   <p>Ничего не найдено</p>

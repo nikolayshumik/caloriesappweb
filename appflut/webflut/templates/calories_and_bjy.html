@@ -269,14 +269,16 @@
             <div class="product-container">
                 {% for el in activity %}
                 <div class="product-item">
-                    <h4>{{ el.name }}</h4>
-                    <p>Каллории: {{ el.calories_in }}</p>
+                    <h4>{{ el.product.name }}</h4>
+                    <p>Каллории: {{ el.product.calories_in }}</p>
                     <p>Время: {{ el.time }}</p>
                 </div>
                 {% empty %}
                 <p>Ничего не найдено</p>
                 {% endfor %}
-            </div
+            </div>
+
+
         </div>
     </div>
 </div>

@@ -79,7 +79,7 @@ def calories_and_bjy(request):
     sproducts = [bp.product for bp in snack_products]
 
     activity_prod = Activities_Add.objects.filter(user=user)
-    activity = [bp.product for bp in activity_prod]
+    activity = activity_prod
 
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
@@ -297,20 +297,20 @@ def add_snack_view(request):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-@login_required
 def add_activity_view(request):
     activity_id = request.POST.get('product_id')
+    time = request.POST.get('time')
 
-    if activity_id:  # check if activity_id is not empty
+    if activity_id and time:  # проверяем, что activity_id и time не пустые
         try:
             activity = Activities.objects.get(id=activity_id)
             user = request.user
-            Activities_Add.objects.create(product=activity, user=user)
+            Activities_Add.objects.create(product=activity, user=user, time=time)
         except Activities.DoesNotExist:
-            pass            # add error handling logic here
+            pass  # добавьте обработку ошибки здесь
         except ValueError:
-            pass            # add error handling logic here
+            pass  # добавьте обработку ошибки здесь
     else:
-        pass                # add error handling logic here
+        pass  # добавьте обработку ошибки здесь
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
