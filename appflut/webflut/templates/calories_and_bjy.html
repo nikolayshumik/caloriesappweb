@@ -103,7 +103,7 @@
     </div>
     <div class="nutrition-div">
         <h2>Сожжено</h2>
-        <p>...</p>
+        <p>{{ total_calories_activities }}</p>
     </div>
     <div class="nutrition-div">
         <h2>Белки</h2>
@@ -257,7 +257,12 @@
 <div class="container">
     <div class="breakfast clickable">
         <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
+        <div>
+            {% if acalories_in %}
+            калории: {{ acalories_in }}<br>
 
+            {% endif %}
+        </div>
         <div class="content">
             <h1>Отчёт Активности</h1>
 

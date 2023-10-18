@@ -101,10 +101,16 @@ def calories_and_bjy(request):
     sfats = snack_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
     scarbohydrates = snack_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
 
+    acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+
+
     total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
     total_proteins = bproteins + proteins + dproteins + sproteins
     total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
     total_fats = bfats + fats + dfats + sfats
+
+    total_calories_activities = 0
+    total_calories_activities += acalories_in
 
 
     context = {
@@ -134,6 +140,8 @@ def calories_and_bjy(request):
         'total_fats': total_fats,
         'activity_prod': activity_prod,
         'activity': activity,
+        'acalories_in': acalories_in,
+        'total_calories_activities': total_calories_activities,
 
     }
     return render(request, 'calories_and_bjy.html', context)
