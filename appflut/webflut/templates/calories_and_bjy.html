@@ -30,6 +30,8 @@
 
 
 
+
+
     </style>
     <style>
 
@@ -73,6 +75,8 @@
 .breakfast.clickable:hover {
   background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
 }
+
+
 
 
 
@@ -146,6 +150,7 @@
                     <p>Углеводы: {{ product.carbohydrates }}</p>
                     <form method="POST" action="{% url 'remove_from_list' product.id %}">
                         {% csrf_token %}
+                        <input type="hidden" name="meal_type" value="breakfast">
                         <input type="submit" value="Удалить">
                     </form>
                 </div>
@@ -183,6 +188,11 @@
                     <p>Белки: {{ product.proteins }}</p>
                     <p>Жиры: {{ product.fats }}</p>
                     <p>Углеводы: {{ product.carbohydrates }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="meal_type" value="lunch">
+                        <input type="submit" value="Удалить">
+                    </form>
                 </div>
                 {% empty %}
                 <p>Ничего не найдено</p>
@@ -217,6 +227,11 @@
                     <p>Белки: {{ product.proteins }}</p>
                     <p>Жиры: {{ product.fats }}</p>
                     <p>Углеводы: {{ product.carbohydrates }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="meal_type" value="dinner">
+                        <input type="submit" value="Удалить">
+                    </form>
                 </div>
                 {% empty %}
                 <p>Ничего не найдено</p>
@@ -250,6 +265,11 @@
                     <p>Белки: {{ product.proteins }}</p>
                     <p>Жиры: {{ product.fats }}</p>
                     <p>Углеводы: {{ product.carbohydrates }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="meal_type" value="snack">
+                        <input type="submit" value="Удалить">
+                    </form>
                 </div>
                 {% empty %}
                 <p>Ничего не найдено</p>
@@ -278,6 +298,10 @@
                     <h4>{{ el.product.name }}</h4>
                     <p>Каллории: {{ el.product.calories_in }}</p>
                     <p>Время: {{ el.time }}</p>
+                    <form action="{% url 'delete_activity' id=el.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Удалить активность"/>
+                    </form>
                 </div>
                 {% empty %}
                 <p>Ничего не найдено</p>
@@ -298,6 +322,8 @@ document.querySelectorAll('.clickable').forEach(item => {
     event.target.parentElement.classList.toggle('active');
   });
 })
+
+
 
 
 

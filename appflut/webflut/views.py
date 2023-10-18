@@ -317,6 +317,29 @@ def add_activity_view(request):
 
 def remove_from_list(request, product_id):
     if request.method == 'POST':
-        product = get_object_or_404(Breakfast_Products, product_id=product_id, user=request.user)
+        meal_type = request.POST.get('meal_type','') # Получаем тип продукта для удаления из POST
+        if meal_type == 'breakfast':
+            product = get_object_or_404(Breakfast_Products, product_id=product_id, user=request.user)
+        elif meal_type == 'lunch':
+            product = get_object_or_404(Lunch_Products, product_id=product_id, user=request.user)
+        elif meal_type == 'dinner':
+            product = get_object_or_404(Dinner_Products, product_id=product_id, user=request.user)
+        elif meal_type == 'snack':
+            product = get_object_or_404(Snack_Products, product_id=product_id, user=request.user)
+        elif meal_type == 'activities':
+            product = get_object_or_404(Activities_Add, product_id=product_id, user=request.user)
+        else:
+            raise Http404("Invalid meal type.") # Или другой подход к обработке ошибок
+
         product.delete()
         return redirect('calories_and_bjy')
+
+
+from django.http import HttpResponseRedirect
+from .models import Activities_Add
+from django.urls import reverse
+def delete_activity(request, id):
+    activity_to_delete = Activities_Add.objects.get(pk=id)
+    activity_to_delete.delete()
+
+    return HttpResponseRedirect(reverse('calories_and_bjy'))

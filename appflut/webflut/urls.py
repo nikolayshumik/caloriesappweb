@@ -22,6 +22,7 @@ urlpatterns = [
     path('add_snack/', views.add_snack_view, name='add_snack_view'),
     path('add_activity_view/', views.add_activity_view, name='add_activity_view'),
     path('remove_from_list/<int:product_id>/', views.remove_from_list, name='remove_from_list'),
+    path('delete_activity/<int:id>/', views.delete_activity, name='delete_activity'),
     # path('add_product', views.add_product, name='add_product'),
 
 ]

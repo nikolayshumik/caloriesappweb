@@ -62,12 +62,16 @@
 <!--  </div>-->
 <!--</div>-->
 
-
+<form action="" method="GET">
+  <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
+  <button type="submit">Поиск</button>
+</form>
 <div class="product-container">
     {% for el in activity %}
     <div class="product-item">
         <p>Назв: {{ el.name }}</p>
         <p>Каллории: {{ el.calories_in }}</p>
+
         <!-- <p>Время: {{ el.time }}</p>-->
         <button onclick="openModal({{ el.id }})">Открыть</button>
         <div id="modal-{{ el.id }}" class="modal">
