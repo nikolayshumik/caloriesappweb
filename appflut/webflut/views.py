@@ -5,7 +5,7 @@ from django.contrib import messages
 from .models import Add_Product
 from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activities, Activities_Add
 from django.db.models import Sum
-
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required  # add this to your imports
 # Create your views here.LoginForm,
 def index(request):
@@ -314,3 +314,9 @@ def add_activity_view(request):
         pass  # добавьте обработку ошибки здесь
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def remove_from_list(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Breakfast_Products, product_id=product_id, user=request.user)
+        product.delete()
+        return redirect('calories_and_bjy')
