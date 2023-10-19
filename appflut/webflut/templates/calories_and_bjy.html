@@ -32,6 +32,7 @@
 
 
 
+
     </style>
     <style>
 
@@ -77,25 +78,16 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </style>
 </head>
 <body>
 
-<span id="currentDate"></span>
+<form method="get">
+    {{ form }}
+    <button type="submit" name="move" value="prev">Назад</button>
+    <button type="submit" name="move" value="next">Вперед</button>
+</form>
+
 <a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
 <h>Калории и БЖУ</h>
 <div>
@@ -322,6 +314,7 @@ document.querySelectorAll('.clickable').forEach(item => {
     event.target.parentElement.classList.toggle('active');
   });
 })
+
 
 
 

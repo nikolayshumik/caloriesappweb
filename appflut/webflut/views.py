@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirec
 from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Add_Product
+from .models import Add_Product, Ttime_Test
 from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activities, Activities_Add
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
@@ -63,22 +63,39 @@ def login_view(request):
 
 @login_required
 def calories_and_bjy(request):
+    if 'date' in request.GET:
+        selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
+    else:
+        selected_date = datetime.now().date()
+
+    if 'move' in request.GET:
+        if request.GET['move'] == 'next':
+            selected_date += timedelta(days=1)
+        elif request.GET['move'] == 'prev':
+            selected_date -= timedelta(days=1)
+    form = DateForm(initial={"date": selected_date})
+
+    selected_date += timedelta(days=1)
+    request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
+    # models = Ttime_Test.objects.filter(date__date=selected_date)
+
+    # return render(request, 'date.html', {'form': form, 'models': models})
     user = request.user  # get the currently logged-in user
 
     # Filter your queryset by user for each category
-    breakfast_products = Breakfast_Products.objects.filter(user=user)
+    breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
     bproducts = [bp.product for bp in breakfast_products]
 
-    lunch_products = Lunch_Products.objects.filter(user=user)
+    lunch_products = Lunch_Products.objects.filter(user=user, date__date=selected_date)
     lproducts = [bp.product for bp in lunch_products]
 
-    dinner_products = Dinner_Products.objects.filter(user=user)
+    dinner_products = Dinner_Products.objects.filter(user=user, date__date=selected_date)
     dproducts = [bp.product for bp in dinner_products]
 
-    snack_products = Snack_Products.objects.filter(user=user)
+    snack_products = Snack_Products.objects.filter(user=user, date__date=selected_date)
     sproducts = [bp.product for bp in snack_products]
 
-    activity_prod = Activities_Add.objects.filter(user=user)
+    activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
     activity = activity_prod
 
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
@@ -142,6 +159,7 @@ def calories_and_bjy(request):
         'activity': activity,
         'acalories_in': acalories_in,
         'total_calories_activities': total_calories_activities,
+        'form': form,
 
     }
     return render(request, 'calories_and_bjy.html', context)
@@ -289,51 +307,96 @@ def add_dinner_view(request):
 @login_required
 def add_snack_view(request):
     product_id = request.POST.get('product_id')
-    product = Add_Product.objects.get(id=product_id)
+    selected_date_str = request.session.get('selected_date', None)
 
-    # Создайте новую запись Breakfast_Products
-    user = request.user
-    Snack_Products.objects.create(product=product, user=user)
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+            Snack_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+from django.utils.timezone import make_aware
+
+
+@login_required
 def add_activity_view(request):
     activity_id = request.POST.get('product_id')
     time = request.POST.get('time')
+    selected_date_str = request.session.get('selected_date', None)
 
-    if activity_id and time:  # проверяем, что activity_id и time не пустые
+    if activity_id and time and selected_date_str:
         try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
             activity = Activities.objects.get(id=activity_id)
             user = request.user
-            Activities_Add.objects.create(product=activity, user=user, time=time)
+            Activities_Add.objects.create(product=activity, user=user, time=time, date=selected_datetime_aware)
         except Activities.DoesNotExist:
-            pass  # добавьте обработку ошибки здесь
+            pass
         except ValueError:
-            pass  # добавьте обработку ошибки здесь
+            pass
     else:
-        pass  # добавьте обработку ошибки здесь
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+# def remove_from_list(request, instance_id):
+#     if request.method == 'POST':
+#         meal_type = request.POST.get('meal_type','') # Получаем тип продукта для удаления из POST
+#         if meal_type == 'breakfast':
+#             product = get_object_or_404(Breakfast_Products, id=instance_id, user=request.user)
+#         elif meal_type == 'lunch':
+#             product = get_object_or_404(Lunch_Products, id=instance_id, user=request.user)
+#         elif meal_type == 'dinner':
+#             product = get_object_or_404(Dinner_Products, id=instance_id, user=request.user)
+#         elif meal_type == 'snack':
+#             product = get_object_or_404(Snack_Products, id=instance_id, user=request.user)
+#         elif meal_type == 'activities':
+#             product = get_object_or_404(Activities_Add, id=instance_id, user=request.user)
+#         else:
+#             raise Http404("Invalid meal type.")  # Или другой подход к обработке ошибок
+#
+#         product.delete()
+#         return redirect('calories_and_bjy')
+
+from datetime import datetime
 
 def remove_from_list(request, product_id):
     if request.method == 'POST':
         meal_type = request.POST.get('meal_type','') # Получаем тип продукта для удаления из POST
+        selected_date_str = request.session.get('selected_date', None)
+        selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d") if selected_date_str else None
+
         if meal_type == 'breakfast':
-            product = get_object_or_404(Breakfast_Products, product_id=product_id, user=request.user)
+            product = Breakfast_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
         elif meal_type == 'lunch':
-            product = get_object_or_404(Lunch_Products, product_id=product_id, user=request.user)
+            product = Lunch_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
         elif meal_type == 'dinner':
-            product = get_object_or_404(Dinner_Products, product_id=product_id, user=request.user)
+            product = Dinner_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
         elif meal_type == 'snack':
-            product = get_object_or_404(Snack_Products, product_id=product_id, user=request.user)
+            product = Snack_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
         elif meal_type == 'activities':
-            product = get_object_or_404(Activities_Add, product_id=product_id, user=request.user)
+            product = Activities_Add.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
         else:
             raise Http404("Invalid meal type.") # Или другой подход к обработке ошибок
 
-        product.delete()
-        return redirect('calories_and_bjy')
-
+        if product is not None:
+            product.delete()
+            return redirect('calories_and_bjy')
+        else:
+            return HttpResponse("Product not found")
 
 from django.http import HttpResponseRedirect
 from .models import Activities_Add
@@ -343,3 +406,25 @@ def delete_activity(request, id):
     activity_to_delete.delete()
 
     return HttpResponseRedirect(reverse('calories_and_bjy'))
+
+
+
+from django.shortcuts import render
+from .forms import DateForm
+from datetime import datetime, timedelta
+def date_view(request):
+    if 'date' in request.GET:
+        selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
+    else:
+        selected_date = datetime.now().date()
+
+    if 'move' in request.GET:
+        if request.GET['move'] == 'next':
+            selected_date += timedelta(days=1)
+        elif request.GET['move'] == 'prev':
+            selected_date -= timedelta(days=1)
+
+    form = DateForm(initial={"date": selected_date})
+    models = Ttime_Test.objects.filter(date__date=selected_date)
+
+    return render(request, 'date.html', {'form': form, 'models': models})

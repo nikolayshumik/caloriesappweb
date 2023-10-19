@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get">
+    {{ form }}
+    <button type="submit" name="move" value="prev">Назад</button>
+    <button type="submit" name="move" value="next">Вперед</button>
+</form>
+
+{% if models %}
+    <ul>
+    {% for model in models %}
+        <li>{{ model.name }} - {{ model.date }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No models for the selected date.</p>
+{% endif %}
+</body>
+</html>

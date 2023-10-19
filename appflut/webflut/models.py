@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from django.utils.crypto import get_random_string
 # Create your models here.
 class Personal_Inform(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
@@ -29,19 +31,27 @@ def get_default_user():
 class Breakfast_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+    date = models.DateTimeField(default=timezone.now)
 
 
 class Lunch_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+    date = models.DateTimeField(default=timezone.now)
 
 class Dinner_Products(models.Model):
      product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
      user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+     date = models.DateTimeField(default=timezone.now)
+
+
+
 
 class Snack_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+    date = models.DateTimeField(default=timezone.now)
+
 
 
 
@@ -49,7 +59,14 @@ class Activities(models.Model):
     name = models.TextField()
     calories_in = models.TextField()
     time = models.TextField()
+
 class Activities_Add(models.Model):
     product = models.ForeignKey(Activities, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     time = models.IntegerField(default=0)
+    date = models.DateTimeField(default=timezone.now)
+
+
+class Ttime_Test(models.Model):
+    name = models.TextField()
+    date = models.DateTimeField()
