@@ -277,31 +277,64 @@ def eatingbase(request):
 @login_required
 def add_breakfast_view(request):
     product_id = request.POST.get('product_id')
-    product = Add_Product.objects.get(id=product_id)
+    selected_date_str = request.session.get('selected_date', None)
 
-    # Получите текущего пользователя с помощью `request.user` и создайте новую запись Breakfast_Products
-    user = request.user
-    Breakfast_Products.objects.create(product=product, user=user)
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 @login_required
 def add_lunch_view(request):
     product_id = request.POST.get('product_id')
-    product = Add_Product.objects.get(id=product_id)
+    selected_date_str = request.session.get('selected_date', None)
 
-    # Создайте новую запись Breakfast_Products
-    user = request.user
-    Lunch_Products.objects.create(product=product, user=user)
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+            Lunch_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 @login_required
 def add_dinner_view(request):
     product_id = request.POST.get('product_id')
-    product = Add_Product.objects.get(id=product_id)
+    selected_date_str = request.session.get('selected_date', None)
 
-    # Создайте новую запись Breakfast_Products
-    user = request.user
-    Dinner_Products.objects.create(product=product, user=user)
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+            Dinner_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 @login_required

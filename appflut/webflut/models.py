@@ -32,6 +32,7 @@ class Breakfast_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
+    weight = models.TextField(default=0)
 
 
 class Lunch_Products(models.Model):
