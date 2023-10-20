@@ -84,16 +84,28 @@ def calories_and_bjy(request):
 
     # Filter your queryset by user for each category
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
-    bproducts = [bp.product for bp in breakfast_products]
+    bproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in breakfast_products]
 
     lunch_products = Lunch_Products.objects.filter(user=user, date__date=selected_date)
-    lproducts = [bp.product for bp in lunch_products]
+    lproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in lunch_products]
 
     dinner_products = Dinner_Products.objects.filter(user=user, date__date=selected_date)
-    dproducts = [bp.product for bp in dinner_products]
+    dproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in dinner_products]
 
     snack_products = Snack_Products.objects.filter(user=user, date__date=selected_date)
-    sproducts = [bp.product for bp in snack_products]
+    sproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in snack_products]
 
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
     activity = activity_prod
@@ -277,16 +289,17 @@ def eatingbase(request):
 @login_required
 def add_breakfast_view(request):
     product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
     selected_date_str = request.session.get('selected_date', None)
 
-    if product_id and selected_date_str:
+    if product_id and selected_date_str and weight:
         try:
             selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
             selected_datetime = datetime.combine(selected_date, datetime.now().time())
             selected_datetime_aware = make_aware(selected_datetime)
             product = Add_Product.objects.get(id=product_id)
             user = request.user
-            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight)
         except Add_Product.DoesNotExist:
             pass
         except ValueError:
@@ -298,6 +311,7 @@ def add_breakfast_view(request):
 @login_required
 def add_lunch_view(request):
     product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
     selected_date_str = request.session.get('selected_date', None)
 
     if product_id and selected_date_str:
@@ -307,7 +321,7 @@ def add_lunch_view(request):
             selected_datetime_aware = make_aware(selected_datetime)
             product = Add_Product.objects.get(id=product_id)
             user = request.user
-            Lunch_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+            Lunch_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight)
         except Add_Product.DoesNotExist:
             pass
         except ValueError:
@@ -319,6 +333,7 @@ def add_lunch_view(request):
 @login_required
 def add_dinner_view(request):
     product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
     selected_date_str = request.session.get('selected_date', None)
 
     if product_id and selected_date_str:
@@ -328,7 +343,7 @@ def add_dinner_view(request):
             selected_datetime_aware = make_aware(selected_datetime)
             product = Add_Product.objects.get(id=product_id)
             user = request.user
-            Dinner_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+            Dinner_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight)
         except Add_Product.DoesNotExist:
             pass
         except ValueError:
@@ -340,6 +355,7 @@ def add_dinner_view(request):
 @login_required
 def add_snack_view(request):
     product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
     selected_date_str = request.session.get('selected_date', None)
 
     if product_id and selected_date_str:
@@ -349,7 +365,7 @@ def add_snack_view(request):
             selected_datetime_aware = make_aware(selected_datetime)
             product = Add_Product.objects.get(id=product_id)
             user = request.user
-            Snack_Products.objects.create(product=product, user=user, date=selected_datetime_aware)
+            Snack_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight)
         except Add_Product.DoesNotExist:
             pass
         except ValueError:

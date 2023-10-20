@@ -2,14 +2,64 @@
 
 
 {% block content %}
-    <h1>Обед</h1>
+<h1>Обед</h1>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
 {% endblock %}
 
 {% block contenbutton %}
-<form method="post" action="{% url 'add_lunch_view' %}">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value="{{ product.id }}">
-        <button type="submit">Add to lunch</button>
-    </form>
+<style>
+    .modal3 {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content3 {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close3 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close3:hover,
+    .close3:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+</style>
+
+<button onclick="openModal3()">Открыть</button>
+<div id="modal3" class="modal3">
+    <div class="modal-content3">
+        <span class="close3" onclick="closeModal3()">&times;</span>
+        <form method="post" action="{% url 'add_lunch_view' %}">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <label for="weight-input">Введите массу:</label>
+            <input type="number" name="weight" id="weight-input">
+            <button type="submit">Add to lunch</button>
+        </form>
+
+    </div>
+</div>
+
 {% endblock %}

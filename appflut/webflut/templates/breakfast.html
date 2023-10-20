@@ -45,27 +45,24 @@
         cursor: pointer;
     }
 
+
+
+
 </style>
 
 <button onclick="openModal2()">Открыть</button>
-        <div id="modal2" class="modal2">
-            <div class="modal-content2">
-                <span class="close2" onclick="closeModal2()">&times;</span>
-                <p>Hi</p>
-                <p>Hi</p>
-
-            </div>
-        </div>
-
-<!-- <button type="submit">открыть</button>-->
-
-<!--<form method="post" action="{% url 'add_breakfast_view' %}">-->
-<!--    {% csrf_token %}-->
-<!--    <input type="hidden" name="product_id" value="{{ product.id }}">-->
-<!--    <button type="submit">Add to breakfast</button>-->
-
-<!--</form>-->
-
+<div id="modal2" class="modal2">
+    <div class="modal-content2">
+        <span class="close2" onclick="closeModal2()">&times;</span>
+        <form id="breakfast-form" method="post" action="{% url 'add_breakfast_view' %}">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <label for="weight-input">Введите массу:</label>
+            <input type="number" name="weight" id="weight-input">
+            <button type="submit">Add to breakfast</button>
+        </form>
+    </div>
+</div>
 
 
 {% endblock %}

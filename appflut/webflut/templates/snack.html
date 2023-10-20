@@ -1,14 +1,65 @@
 {% extends 'eatingbase.html' %}
 
 {% block content %}
-    <h1>Перекус</h1>
+<h1>Перекус</h1>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
 {% endblock %}
 
 {% block contenbutton %}
-<form method="post" action="{% url 'add_snack_view' %}">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value="{{ product.id }}">
-        <button type="submit">Add to snack</button>
-    </form>
+<style>
+    .modal4 {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content4 {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close4 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close4:hover,
+    .close4:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+</style>
+
+<button onclick="openModal4()">Открыть</button>
+<div id="modal4" class="modal4">
+    <div class="modal-content4">
+        <span class="close4" onclick="closeModal4()">&times;</span>
+        <form method="post" action="{% url 'add_snack_view' %}">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <label for="weight-input">Введите массу:</label>
+            <input type="number" name="weight" id="weight-input">
+            <button type="submit">Add to snack</button>
+        </form>
+
+    </div>
+</div>
+
 {% endblock %}

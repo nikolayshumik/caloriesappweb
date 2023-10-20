@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/newmчain.css' %}" rel="stylesheet">
     <script defer src="{% static 'js/main.js' %}"></script>
     <style>
         .nutrition-div {
@@ -13,25 +13,6 @@
             text-align: center;
             border: 1px solid #000;
             padding: 10px;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </style>
     <style>
@@ -77,11 +58,20 @@
   background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
 }
 
-
+.main-container {
+            width: 390px;
+            height: 844px;
+            overflow: auto, /* or use 'scroll' if you want permanent scrollbars */
+            margin: auto; /* to center the container in the middle if viewport is larger */
+        }
+.threthre{
+           margin-left: 30%;
+           width: 700px;
+           }
     </style>
 </head>
 <body>
-
+<div class="main-container">
 <form method="get">
     {{ form }}
     <button type="submit" name="move" value="prev">Назад</button>
@@ -90,7 +80,7 @@
 
 <a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
 <h>Калории и БЖУ</h>
-<div>
+<div class="threthre">
     <div class="nutrition-div">
         <h2>Потреблено</h2>
         <p>{{ total_calories }}</p>
@@ -135,12 +125,13 @@
             <div class="product-container">
                 {% for product in bproducts %}
                 <div class="product-item">
-                    <h4>{{ product.name }}</h4>
-                    <p>Каллории: {{ product.calories_in }}</p>
-                    <p>Белки: {{ product.proteins }}</p>
-                    <p>Жиры: {{ product.fats }}</p>
-                    <p>Углеводы: {{ product.carbohydrates }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                    <h4>{{ product.product.name }}</h4>
+                    <p>Каллории: {{ product.product.calories_in }}</p>
+                    <p>Белки: {{ product.product.proteins }}</p>
+                    <p>Жиры: {{ product.product.fats }}</p>
+                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                    <p>Масса: {{ product.weight }}</p>
+                    <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="meal_type" value="breakfast">
                         <input type="submit" value="Удалить">
@@ -175,12 +166,13 @@
             <div class="product-container">
                 {% for product in lproducts %}
                 <div class="product-item">
-                    <h4>{{ product.name }}</h4>
-                    <p>Каллории: {{ product.calories_in }}</p>
-                    <p>Белки: {{ product.proteins }}</p>
-                    <p>Жиры: {{ product.fats }}</p>
-                    <p>Углеводы: {{ product.carbohydrates }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                    <h4>{{ product.product.name }}</h4>
+                    <p>Каллории: {{ product.product.calories_in }}</p>
+                    <p>Белки: {{ product.product.proteins }}</p>
+                    <p>Жиры: {{ product.product.fats }}</p>
+                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                    <p>Масса: {{ product.weight }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="meal_type" value="lunch">
                         <input type="submit" value="Удалить">
@@ -214,12 +206,13 @@
             <div class="product-container">
                 {% for product in dproducts %}
                 <div class="product-item">
-                    <h4>{{ product.name }}</h4>
-                    <p>Каллории: {{ product.calories_in }}</p>
-                    <p>Белки: {{ product.proteins }}</p>
-                    <p>Жиры: {{ product.fats }}</p>
-                    <p>Углеводы: {{ product.carbohydrates }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                    <h4>{{ product.product.name }}</h4>
+                    <p>Каллории: {{ product.product.calories_in }}</p>
+                    <p>Белки: {{ product.product.proteins }}</p>
+                    <p>Жиры: {{ product.product.fats }}</p>
+                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                    <p>Масса: {{ product.weight }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="meal_type" value="dinner">
                         <input type="submit" value="Удалить">
@@ -252,12 +245,13 @@
             <div class="product-container">
                 {% for product in sproducts %}
                 <div class="product-item">
-                    <h4>{{ product.name }}</h4>
-                    <p>Каллории: {{ product.calories_in }}</p>
-                    <p>Белки: {{ product.proteins }}</p>
-                    <p>Жиры: {{ product.fats }}</p>
-                    <p>Углеводы: {{ product.carbohydrates }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.id %}">
+                    <h4>{{ product.product.name }}</h4>
+                    <p>Каллории: {{ product.product.calories_in }}</p>
+                    <p>Белки: {{ product.product.proteins }}</p>
+                    <p>Жиры: {{ product.product.fats }}</p>
+                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                    <p>Масса: {{ product.weight }}</p>
+                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="meal_type" value="snack">
                         <input type="submit" value="Удалить">
@@ -308,7 +302,8 @@
 
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
 <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
-<script>
+</div>
+    <script>
 document.querySelectorAll('.clickable').forEach(item => {
   item.addEventListener('click', event => {
     event.target.parentElement.classList.toggle('active');

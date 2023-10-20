@@ -6,6 +6,7 @@ from .models import Personal_Inform, Add_Product
 class DateForm(forms.Form):
     date = forms.DateField()
 
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 

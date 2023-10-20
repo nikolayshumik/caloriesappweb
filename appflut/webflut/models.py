@@ -39,11 +39,13 @@ class Lunch_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
+    weight = models.TextField(default=0)
 
 class Dinner_Products(models.Model):
      product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
      user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
      date = models.DateTimeField(default=timezone.now)
+     weight = models.TextField(default=0)
 
 
 
@@ -52,6 +54,9 @@ class Snack_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
+    weight = models.TextField(default=0)
+
+
 
 
 
@@ -71,3 +76,9 @@ class Activities_Add(models.Model):
 class Ttime_Test(models.Model):
     name = models.TextField()
     date = models.DateTimeField()
+
+class Activity(models.Model):
+    id = models.IntegerField(primary_key=True)
+    category = models.CharField(max_length=200)
+    activity_type = models.CharField(max_length=200)
+    met = models.FloatField()
