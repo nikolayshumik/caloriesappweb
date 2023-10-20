@@ -1,38 +1,50 @@
-import pandas as pd
-from .models import Activity
-
-# load the data
-df = pd.read_excel('file.xlsx')
-
-# iterate through the data and create Activity instances
-for index, row in df.iterrows():
-    Activity.objects.create(
-        id=row['№'],
-        category=row['Категория'],
-        activity_type=row['Вид активности'],
-        met=row['МЕТ']
-    )
-
 import sqlite3
 import pandas as pd
+import numpy as np
 
 # Загрузите данные
-df = pd.read_excel('file.xlsx')
+df = pd.read_excel(r'D:\flutappweb\appflut\МЕТы_для_БГУиР.xlsx')
+
+df['Категория'] = df['Категория'].fillna(method='ffill')
+# Fill NaN values with an arbitrary number
+df['№'] = df['№'].fillna(0)
+
+# Convert numbers to integer safely
+df['№'] = df['№'].apply(lambda x: int(x) if x == x else "")
+
+# Fill NaN values with an empty string for other columns
+df = df.replace(np.nan, "", regex=True)
 
 # Подключитесь к БД
-conn = sqlite3.connect('db.sqlite3')
+conn = sqlite3.connect(r'D:\flutappweb\appflut\db.sqlite3')
 cur = conn.cursor()
 
 # Итерируйте по данным и создайте экземпляры Activity
 for index, row in df.iterrows():
-    # Здесь формируется SQL запрос, который заменяет Django ORM
-    query = f"""
-    INSERT INTO your_app_activity (id, category, activity_type, met)
-    VALUES ({row['№']}, "{row['Категория']}", "{row['Вид активности']}", "{row['МЕТ']}");
-    """
+    try:
+        met_value = float(row['МЕТ'])
+    except ValueError:
+        met_value = 0.0
 
-    cur.execute(query)
+    data = (str(row['Категория']), str(row['Вид активности']), met_value)
+    print(data)  # Add this line
+    cur.execute("INSERT INTO webflut_activity (category, activity_type, met) VALUES (?, ?, ?)", data)
+
+
 
 # Закройте соединение
 conn.commit()
 conn.close()
+
+# import sqlite3
+#
+# # Подключитесь к базе данных
+# conn = sqlite3.connect(r'D:\flutappweb\appflut\db.sqlite3')
+# cur = conn.cursor()
+#
+# # Удалите все записи из таблицы
+# cur.execute("DELETE FROM webflut_activity")
+#
+# # Закройте соединение
+# conn.commit()
+# conn.close()

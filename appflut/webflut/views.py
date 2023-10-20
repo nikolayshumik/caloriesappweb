@@ -3,7 +3,7 @@ from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product, Ttime_Test
-from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activities, Activities_Add
+from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Activities_Add
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required  # add this to your imports
@@ -110,6 +110,17 @@ def calories_and_bjy(request):
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
     activity = activity_prod
 
+    # activities = Activities_Add.objects.filter(user=request.user, date__date=selected_date)
+    #
+    # total_cost = 0
+    # for activity in activities:
+    #     met = activity.product.met
+    #     weight = activity.user.weight
+    #     time = activity.time
+    #
+    #     cost = (met * weight) / time
+    #     total_cost += cost
+
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
     bfats = breakfast_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
@@ -130,7 +141,7 @@ def calories_and_bjy(request):
     sfats = snack_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
     scarbohydrates = snack_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
 
-    acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    # acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
 
 
     total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
@@ -138,8 +149,8 @@ def calories_and_bjy(request):
     total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
     total_fats = bfats + fats + dfats + sfats
 
-    total_calories_activities = 0
-    total_calories_activities += acalories_in
+    # total_calories_activities = 0
+    # total_calories_activities += acalories_in
 
 
     context = {
@@ -169,9 +180,10 @@ def calories_and_bjy(request):
         'total_fats': total_fats,
         'activity_prod': activity_prod,
         'activity': activity,
-        'acalories_in': acalories_in,
-        'total_calories_activities': total_calories_activities,
+        # 'acalories_in': acalories_in,
+        # 'total_calories_activities': total_calories_activities,
         'form': form,
+        # 'total_cost': total_cost,
 
     }
     return render(request, 'calories_and_bjy.html', context)
@@ -252,9 +264,9 @@ def snack(request):
     return render(request, 'snack.html', {'form': form, 'products': products, 'search_query': search_query})
 def activities(request):
     search_query = request.GET.get('search')
-    activity = Activities.objects.all()
+    activity = Activity.objects.all()
     if search_query:
-        activity = activity.filter(name__icontains=search_query)
+        activity = activity.filter(activity_type__icontains=search_query)
     return render(request, 'activities.html', {'activity': activity, 'search_query': search_query})
 def eatingbase(request):
     search_query = request.GET.get('search')
@@ -389,10 +401,10 @@ def add_activity_view(request):
             selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
             selected_datetime = datetime.combine(selected_date, datetime.now().time())
             selected_datetime_aware = make_aware(selected_datetime)
-            activity = Activities.objects.get(id=activity_id)
+            activity = Activity.objects.get(id=activity_id)
             user = request.user
             Activities_Add.objects.create(product=activity, user=user, time=time, date=selected_datetime_aware)
-        except Activities.DoesNotExist:
+        except Activity.DoesNotExist:
             pass
         except ValueError:
             pass

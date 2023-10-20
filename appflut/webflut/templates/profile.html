@@ -7,7 +7,56 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
+<style>
+   .container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.petushok {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: #ffcc00;
+  position: relative;
+  animation: move-and-color 2s ease infinite;
+}
+
+@keyframes move-and-color {
+  0%, 100% {
+    top: 0;
+    left: 0;
+    background-image: url('/static/cock/cock.jpg'); /* Укажите путь к картинке */
+  background-size: cover; /* Задает размер и масштаб изображения */
+  }
+  25% {
+    top: 0;
+    left: calc(100% - 50px);
+    background-image: url('/static/cock/cock.jpg'); /* Укажите путь к картинке */
+  background-size: cover; /* Задает размер и масштаб изображения */
+  }
+  50% {
+    top: calc(100% - 50px);
+    left: calc(100% - 50px);
+    background-image: url('/static/cock/cock.jpg'); /* Укажите путь к картинке */
+  background-size: cover; /* Задает размер и масштаб изображения */
+  }
+  75% {
+    top: calc(100% - 50px);
+    left: 0;
+    background-image: url('/static/cock/cock.jpg'); /* Укажите путь к картинке */
+  background-size: cover; /* Задает размер и масштаб изображения */
+  }
+}
+</style>
 <body>
-<h>тут будущий профиль от Станислава</h>
+<h>А его нету петушара</h>
+<p>И это тольок CSS</p>
+<div class="container">
+  <div class="petushok"></div>
+</div>
 </body>
 </html>
