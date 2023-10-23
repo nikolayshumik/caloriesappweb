@@ -3,7 +3,7 @@ from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product, Ttime_Test
-from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Activities_Add
+from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Personal_Inform, Activities_Add
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required  # add this to your imports
@@ -107,19 +107,22 @@ def calories_and_bjy(request):
         'weight': bp.weight
     } for bp in snack_products]
 
-    activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
-    activity = activity_prod
+    # activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+    # activity = activity_prod
 
-    # activities = Activities_Add.objects.filter(user=request.user, date__date=selected_date)
-    #
-    # total_cost = 0
-    # for activity in activities:
-    #     met = activity.product.met
-    #     weight = activity.user.weight
-    #     time = activity.time
-    #
-    #     cost = (met * weight) / time
-    #     total_cost += cost
+    user = request.user
+    personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
+    weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
+    activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+
+    acttotal_calories = 0  # общее количество сожженных калорий
+    activities_and_calories = []
+
+    for activity in activity_prod:
+        burned_calories = activity.product.met * weight / activity.time  # рассчитать затраты калорий
+        acttotal_calories += burned_calories  # добавить к общему количеству
+        activities_and_calories.append((activity, burned_calories))
+
 
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
@@ -179,10 +182,12 @@ def calories_and_bjy(request):
         'total_carbohydrates': total_carbohydrates,
         'total_fats': total_fats,
         'activity_prod': activity_prod,
-        'activity': activity,
+        # 'activity': activity,
         # 'acalories_in': acalories_in,
         # 'total_calories_activities': total_calories_activities,
         'form': form,
+        'acttotal_calories': acttotal_calories,
+        'activities_and_calories': activities_and_calories,
         # 'total_cost': total_cost,
 
     }

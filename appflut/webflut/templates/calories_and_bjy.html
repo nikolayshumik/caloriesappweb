@@ -14,6 +14,7 @@
             border: 1px solid #000;
             padding: 10px;
 
+
     </style>
     <style>
 
@@ -68,249 +69,253 @@
            margin-left: 30%;
            width: 700px;
            }
+
     </style>
 </head>
 <body>
 <div class="main-container">
-<form method="get">
-    {{ form }}
-    <button type="submit" name="move" value="prev"><-Стас</button>
-    <button type="submit" name="move" value="next">Петух-></button>
-</form>
+    <form method="get">
+        {{ form }}
+        <button type="submit" name="move" value="prev"><-Стас</button>
+        <button type="submit" name="move" value="next">Петух-></button>
+    </form>
 
-<a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
-<h>Калории и БЖУ</h>
-<div class="threthre">
-    <div class="nutrition-div">
-        <h2>Потреблено</h2>
-        <p>{{ total_calories }}</p>
-    </div>
-    <div class="nutrition-div">
-        <h2>Норма</h2>
-        <p>...</p>
-    </div>
-    <div class="nutrition-div">
-        <h2>Сожжено</h2>
-        <p>Стили делай а не читай все подряд</p>
-<!--        <p>{{ total_calories_activities }}</p>-->
-    </div>
-    <div class="nutrition-div">
-        <h2>Белки</h2>
-        <p>{{ total_proteins }}</p>
-    </div>
-    <div class="nutrition-div">
-        <h2>Жиры</h2>
-        <p>{{ total_fats }}</p>
-    </div>
-    <div class="nutrition-div">
-        <h2>Углеводы</h2>
-        <p>{{ total_carbohydrates }}</p>
-    </div>
-</div>
-
-<div class="container">
-    <div class="breakfast clickable">
-        <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
-        <div>
-            {% if bproteins and bfats and bcarbohydrates %}
-            калории: {{ bcalories_in }}<br>
-            Б- {{ bproteins }}
-            Ж- {{ bfats }}
-            У- {{ bcarbohydrates }}
-            {% endif %}
+    <a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
+    <h>Калории и БЖУ</h>
+    <div class="threthre">
+        <div class="nutrition-div">
+            <h2>Потреблено</h2>
+            <p>{{ total_calories }}</p>
         </div>
+        <div class="nutrition-div">
+            <h2>Норма</h2>
+            <p>...</p>
+        </div>
+        <div class="nutrition-div">
+            <h2>Сожжено</h2>
+            <p>Сумма: {{ acttotal_calories }}</p>
+            <!--        <p>{{ total_calories_activities }}</p>-->
+        </div>
+        <div class="nutrition-div">
+            <h2>Белки</h2>
+            <p>{{ total_proteins }}</p>
+        </div>
+        <div class="nutrition-div">
+            <h2>Жиры</h2>
+            <p>{{ total_fats }}</p>
+        </div>
+        <div class="nutrition-div">
+            <h2>Углеводы</h2>
+            <p>{{ total_carbohydrates }}</p>
+        </div>
+    </div>
 
-        <div class="content">
-            <h1>Отчёт завтрака</h1>
-
-            <div class="product-container">
-                {% for product in bproducts %}
-                <div class="product-item">
-                    <h4>{{ product.product.name }}</h4>
-                    <p>Каллории: {{ product.product.calories_in }}</p>
-                    <p>Белки: {{ product.product.proteins }}</p>
-                    <p>Жиры: {{ product.product.fats }}</p>
-                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                    <p>Масса: {{ product.weight }}</p>
-                    <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="meal_type" value="breakfast">
-                        <input type="submit" value="Удалить">
-                    </form>
-                </div>
-                {% empty %}
-                <p>Ничего не найдено</p>
-                {% endfor %}
+    <div class="container">
+        <div class="breakfast clickable">
+            <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+            <div>
+                {% if bproteins and bfats and bcarbohydrates %}
+                калории: {{ bcalories_in }}<br>
+                Б- {{ bproteins }}
+                Ж- {{ bfats }}
+                У- {{ bcarbohydrates }}
+                {% endif %}
             </div>
 
-        </div>
-    </div>
-</div>
+            <div class="content">
+                <h1>Отчёт завтрака</h1>
 
-
-<div class="container">
-    <div class="breakfast clickable">
-        <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
-        <div>
-            {% if proteins and fats and carbohydrates %}
-            калории: {{ calories_in }}<br>
-            Б- {{ proteins }}
-            Ж- {{ fats }}
-            У- {{ carbohydrates }}
-            {% endif %}
-        </div>
-        <div class="content">
-
-
-            <h1>Отчёт обеда</h1>
-
-            <div class="product-container">
-                {% for product in lproducts %}
-                <div class="product-item">
-                    <h4>{{ product.product.name }}</h4>
-                    <p>Каллории: {{ product.product.calories_in }}</p>
-                    <p>Белки: {{ product.product.proteins }}</p>
-                    <p>Жиры: {{ product.product.fats }}</p>
-                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                    <p>Масса: {{ product.weight }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="meal_type" value="lunch">
-                        <input type="submit" value="Удалить">
-                    </form>
+                <div class="product-container">
+                    {% for product in bproducts %}
+                    <div class="product-item">
+                        <h4>{{ product.product.name }}</h4>
+                        <p>Каллории: {{ product.product.calories_in }}</p>
+                        <p>Белки: {{ product.product.proteins }}</p>
+                        <p>Жиры: {{ product.product.fats }}</p>
+                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                        <p>Масса: {{ product.weight }}</p>
+                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_type" value="breakfast">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                    {% empty %}
+                    <p>Ничего не найдено</p>
+                    {% endfor %}
                 </div>
-                {% empty %}
-                <p>Ничего не найдено</p>
-                {% endfor %}
-            </div>
 
-        </div>
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="breakfast clickable">
-        <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
-        <div>
-            {% if dproteins and dfats and dcarbohydrates %}
-            калории: {{ dcalories_in }}<br>
-            Б- {{ dproteins }}
-            Ж- {{ dfats }}
-            У- {{ dcarbohydrates }}
-            {% endif %}
-        </div>
-
-        <div class="content">
-            <h1>Отчёт Ужин</h1>
-
-            <div class="product-container">
-                {% for product in dproducts %}
-                <div class="product-item">
-                    <h4>{{ product.product.name }}</h4>
-                    <p>Каллории: {{ product.product.calories_in }}</p>
-                    <p>Белки: {{ product.product.proteins }}</p>
-                    <p>Жиры: {{ product.product.fats }}</p>
-                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                    <p>Масса: {{ product.weight }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="meal_type" value="dinner">
-                        <input type="submit" value="Удалить">
-                    </form>
-                </div>
-                {% empty %}
-                <p>Ничего не найдено</p>
-                {% endfor %}
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="breakfast clickable">
-        <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
-        <div>
-            {% if sproteins and sfats and scarbohydrates %}
-            калории: {{ scalories_in }}<br>
-            Б- {{ sproteins }}
-            Ж- {{ sfats }}
-            У- {{ scarbohydrates }}
-            {% endif %}
-        </div>
 
-        <div class="content">
+    <div class="container">
+        <div class="breakfast clickable">
+            <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
+            <div>
+                {% if proteins and fats and carbohydrates %}
+                калории: {{ calories_in }}<br>
+                Б- {{ proteins }}
+                Ж- {{ fats }}
+                У- {{ carbohydrates }}
+                {% endif %}
+            </div>
+            <div class="content">
 
-            <h1>Отчёт Перекуса</h1>
 
-            <div class="product-container">
-                {% for product in sproducts %}
-                <div class="product-item">
-                    <h4>{{ product.product.name }}</h4>
-                    <p>Каллории: {{ product.product.calories_in }}</p>
-                    <p>Белки: {{ product.product.proteins }}</p>
-                    <p>Жиры: {{ product.product.fats }}</p>
-                    <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                    <p>Масса: {{ product.weight }}</p>
-                    <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="meal_type" value="snack">
-                        <input type="submit" value="Удалить">
-                    </form>
+                <h1>Отчёт обеда</h1>
+
+                <div class="product-container">
+                    {% for product in lproducts %}
+                    <div class="product-item">
+                        <h4>{{ product.product.name }}</h4>
+                        <p>Каллории: {{ product.product.calories_in }}</p>
+                        <p>Белки: {{ product.product.proteins }}</p>
+                        <p>Жиры: {{ product.product.fats }}</p>
+                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                        <p>Масса: {{ product.weight }}</p>
+                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_type" value="lunch">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                    {% empty %}
+                    <p>Ничего не найдено</p>
+                    {% endfor %}
                 </div>
-                {% empty %}
-                <p>Ничего не найдено</p>
-                {% endfor %}
+
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="container">
-    <div class="breakfast clickable">
-        <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
-        <div>
-<!--            {% if total_cost %}-->
-<!--            калории: {{ total_cost }}<br>-->
-
-<!--            {% endif %}-->
-             {% for el in activity %}
-
-
-                    <p>МЕТ: {{ el.product.met }}</p>
-
-
-
-                {% endfor %}
-        <div class="content">
-            <h1>Отчёт Активности</h1>
-
-            <div class="product-container">
-                {% for el in activity %}
-                <div class="product-item">
-                    <h4>{{ el.product.activity_type }}</h4>
-                    <p>Категория: {{ el.product.category }}</p>
-                    <p>Время: {{ el.time }}</p>
-                    <form action="{% url 'delete_activity' id=el.id %}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" value="Удалить активность"/>
-                    </form>
-                </div>
-                {% empty %}
-                <p>Ничего не найдено</p>
-                {% endfor %}
+    <div class="container">
+        <div class="breakfast clickable">
+            <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+            <div>
+                {% if dproteins and dfats and dcarbohydrates %}
+                калории: {{ dcalories_in }}<br>
+                Б- {{ dproteins }}
+                Ж- {{ dfats }}
+                У- {{ dcarbohydrates }}
+                {% endif %}
             </div>
 
+            <div class="content">
+                <h1>Отчёт Ужин</h1>
 
+                <div class="product-container">
+                    {% for product in dproducts %}
+                    <div class="product-item">
+                        <h4>{{ product.product.name }}</h4>
+                        <p>Каллории: {{ product.product.calories_in }}</p>
+                        <p>Белки: {{ product.product.proteins }}</p>
+                        <p>Жиры: {{ product.product.fats }}</p>
+                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                        <p>Масса: {{ product.weight }}</p>
+                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_type" value="dinner">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                    {% empty %}
+                    <p>Ничего не найдено</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="breakfast clickable">
+            <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+            <div>
+                {% if sproteins and sfats and scarbohydrates %}
+                калории: {{ scalories_in }}<br>
+                Б- {{ sproteins }}
+                Ж- {{ sfats }}
+                У- {{ scarbohydrates }}
+                {% endif %}
+            </div>
+
+            <div class="content">
+
+                <h1>Отчёт Перекуса</h1>
+
+                <div class="product-container">
+                    {% for product in sproducts %}
+                    <div class="product-item">
+                        <h4>{{ product.product.name }}</h4>
+                        <p>Каллории: {{ product.product.calories_in }}</p>
+                        <p>Белки: {{ product.product.proteins }}</p>
+                        <p>Жиры: {{ product.product.fats }}</p>
+                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
+                        <p>Масса: {{ product.weight }}</p>
+                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_type" value="snack">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                    {% empty %}
+                    <p>Ничего не найдено</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
-<a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
-</div>
+    <div class="container">
+        <div class="breakfast clickable">
+            <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
+            <div>
+                <!--            {% if total_cost %}-->
+                <!--            калории: {{ total_cost }}<br>-->
+
+                <!--            {% endif %}-->
+                <!--             {% for el in activity_prod %}-->
+                <!--                    <p>МЕТ: {{ el.product.met }}</p>-->
+                <!--                     <p>Сумма: {{ acttotal_calories }}</p>-->
+                <!--            {% endfor %}-->
+<!--                {% for activity, burned_calories in activities_and_calories %}-->
+<!--                <p>{{  activity.product.activity_type }}: burned {{ burned_calories }} calories</p>-->
+<!--&lt;!&ndash;                <p>МЕТ: {{ activity.product.met }}</p>&ndash;&gt;-->
+
+<!--                {% endfor %}-->
+                 <p>Сумма: {{ acttotal_calories }}</p>
+                <div class="content">
+                    <h1>Отчёт Активности</h1>
+
+                    <div class="product-container">
+                         {% for activity, burned_calories in activities_and_calories %}
+                        <div class="product-item">
+                            <h4>{{ activity.product.activity_type }}</h4>
+                            <p>Категория: {{  activity.product.category }}</p>
+                            <p>Время: {{ activity.time }}</p>
+                            <p>Сожженые {{ burned_calories }}</p>
+                            <form action="{% url 'delete_activity' id=activity.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" value="Удалить активность"/>
+                            </form>
+                        </div>
+                        {% empty %}
+                        <p>Ничего не найдено</p>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
+        <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
+    </div>
     <script>
 document.querySelectorAll('.clickable').forEach(item => {
   item.addEventListener('click', event => {
@@ -318,7 +323,8 @@ document.querySelectorAll('.clickable').forEach(item => {
   });
 })
 
-</script>
+
+    </script>
 
 </body>
 </html>

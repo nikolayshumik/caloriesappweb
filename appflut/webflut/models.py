@@ -7,8 +7,8 @@ class Personal_Inform(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
     sex = models.TextField()
     date_of_birth = models.TextField()
-    weight = models.TextField()
-    height = models.TextField()
+    weight = models.IntegerField()
+    height = models.IntegerField()
 
     # YOUR GOALS
     goals = models.TextField()
