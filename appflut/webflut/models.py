@@ -5,30 +5,43 @@ from django.utils.crypto import get_random_string
 # Create your models here.
 class Personal_Inform(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
-    sex = models.TextField()
-    date_of_birth = models.DateField()
-    weight = models.IntegerField()
-    height = models.IntegerField()
+    SEX_CHOICES = [
+        ('M', 'Мужчина'),
+        ('F', 'Женщина'),
+    ]
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
+    date_of_birth = models.FloatField()
+    weight = models.FloatField()
+    height = models.FloatField()
 
-    # YOUR GOALS
-    goals = models.TextField()
+    GOAL_CHOICES = [
+        ('L', 'Похудение'),
+        ('M', 'Набор массы'),
+        ('F', 'Поддержание веса'),
+    ]
+    goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
+    ACTIVE_CHOICES = [
+        ('L', 'Низкая активность'),
+        ('M', 'Средняя активность'),
+        ('H', 'Высокая активность'),
+    ]
+    active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
 
-    # YOUR LIFESTYLE
-    active = models.TextField()
+
     class Meta:
         verbose_name = 'Личная Информация'
         verbose_name_plural = 'Личная Информация'
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 
 class Add_Product(models.Model):
     name = models.TextField()
-    calories_in = models.IntegerField()
-    proteins = models.IntegerField()
-    fats = models.IntegerField()
-    carbohydrates = models.IntegerField()
+    calories_in = models.FloatField()
+    proteins = models.FloatField()
+    fats = models.FloatField()
+    carbohydrates = models.FloatField()
     class Meta:
         verbose_name = 'Продукты Все'
         verbose_name_plural = 'Продукты Все'
@@ -40,7 +53,7 @@ class Breakfast_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
-    weight = models.IntegerField(default=0)
+    weight = models.FloatField(default=0)
     class Meta:
         verbose_name = 'Продукты Завтрака'
         verbose_name_plural = 'Продукты Завтрака'
@@ -51,7 +64,7 @@ class Lunch_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
-    weight = models.IntegerField(default=0)
+    weight = models.FloatField(default=0)
     class Meta:
         verbose_name = 'Продукты Обеда'
         verbose_name_plural = 'Продукты Обеда'
@@ -62,7 +75,7 @@ class Dinner_Products(models.Model):
      product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
      user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
      date = models.DateTimeField(default=timezone.now)
-     weight = models.IntegerField(default=0)
+     weight = models.FloatField(default=0)
      class Meta:
          verbose_name = 'Продукты Ужина'
          verbose_name_plural = 'Продукты Ужина'
@@ -76,7 +89,7 @@ class Snack_Products(models.Model):
     product = models.ForeignKey(Add_Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
-    weight = models.IntegerField(default=0)
+    weight = models.FloatField(default=0)
     class Meta:
         verbose_name = 'Продукты Перекуса'
         verbose_name_plural = 'Продукты Перекуса'

@@ -77,10 +77,8 @@ def calories_and_bjy(request):
 
     selected_date += timedelta(days=1)
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
-    # models = Ttime_Test.objects.filter(date__date=selected_date)
 
-    # return render(request, 'date.html', {'form': form, 'models': models})
-    user = request.user  # get the currently logged-in user
+    user = request.user
 
     # Filter your queryset by user for each category
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
@@ -123,6 +121,11 @@ def calories_and_bjy(request):
         acttotal_calories += burned_calories  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
 
+    inf = Personal_Inform.objects.get(user=user)
+    height2 = inf.height
+    weight2 = inf.weight
+    date_of_birth2 = inf.date_of_birth
+    male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
 
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
@@ -182,13 +185,10 @@ def calories_and_bjy(request):
         'total_carbohydrates': total_carbohydrates,
         'total_fats': total_fats,
         'activity_prod': activity_prod,
-        # 'activity': activity,
-        # 'acalories_in': acalories_in,
-        # 'total_calories_activities': total_calories_activities,
         'form': form,
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
-        # 'total_cost': total_cost,
+        'male': male,
 
     }
     return render(request, 'calories_and_bjy.html', context)
