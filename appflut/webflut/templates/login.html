@@ -2,12 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Страница входа</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <title>Авторизация</title>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <!--Медиа запросы, адаптив-->
+    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
+    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-<button onclick="goBack()">Назад</button>
+
     {% if user.is_authenticated %}
         <p>Вы уже вошли в систему как {{ user.username }}</p>
         <a href="{% url 'logout' %}">Выйти</a>
@@ -20,8 +28,7 @@
             <br>
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password">
-            <br>
-            <input type="submit" value="Войти">
+            <input type="submit" value="Войти" class="enter" style="margin-top: 50px; margin-bottom: 0px;">
         </form>
     {% endif %}
 

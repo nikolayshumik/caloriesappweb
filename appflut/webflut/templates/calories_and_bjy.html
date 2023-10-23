@@ -2,118 +2,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{% static 'css/newmчain.css' %}" rel="stylesheet">
-    <script defer src="{% static 'js/main.js' %}"></script>
-    <style>
-        .nutrition-div {
-            display: inline-block;
-            width: 30%;
-            text-align: center;
-            border: 1px solid #000;
-            padding: 10px;
+    <title>Калории</title>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <!--Медиа запросы, адаптив-->
+    <link media="screen and (max-width: 400px)" href="{% static 'css/Calories Page/calories400.css' %}" rel="stylesheet"/>
+    <link media="screen and (min-width: 401px)" href="{% static 'css/Calories Page/calories600.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт
+        <script defer src="{% static 'js/main.js' %}"></script>
+    -->
+    <script>
+        document.querySelectorAll('.clickable').forEach(item => {
+          item.addEventListener('click', event => {
+            event.target.parentElement.classList.toggle('active');
+          });
+        })
+        </script>
+<!--    это стили которые делают рабочим выдвижную чтучку на завтраке обеде и ужене при нажатии, а без них не работает так что подредачь их-->
+<!--    <style>-->
+<!--        .eatings .content {-->
+<!--    display: none;-->
 
+<!--}-->
 
-    </style>
-    <style>
+<!--.eatings.active .content {-->
+<!--    display: block;-->
+<!--}-->
 
-.container .content {
-    display: none;
-
-}
-
-.container.active .content {
-    display: block;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-
-.buttonMod {
-    display: inline-block;
-    font-size: 16px;
-    border: 2px solid #000;
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #fff;
-    color: #000;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.buttonMod:hover {
-    background-color: #f8f8f8;
-}
-.breakfast.clickable {
-  display: inline-block;
-  width: 200px;
-  font-size: 14px; /* Обратите внимание, эта строка изменяет размер текста */
-  border: 1px solid #000; /* Этот код добавляет тонкую черную обводку */
-  padding: 10px; /* Добавляет немного отступа вокруг текста */
-  text-align: center; /* Выравнивает текст по центру */
-}
-.breakfast.clickable:hover {
-  background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
-}
-
-.main-container {
-            width: 390px;
-            height: 844px;
-            overflow: auto, /* or use 'scroll' if you want permanent scrollbars */
-            margin: auto; /* to center the container in the middle if viewport is larger */
-        }
-.threthre{
-           margin-left: 30%;
-           width: 700px;
-           }
-
-    </style>
+<!--.clickable {-->
+<!--    cursor: pointer;-->
+<!--}-->
+<!--    </style>-->
 </head>
 <body>
-<div class="main-container">
+<a href="{% url 'profile' %}" class="profile">p</a>
+
     <form method="get">
         {{ form }}
+        <div class="row-buttons">
         <button type="submit" name="move" value="prev"><-Стас</button>
         <button type="submit" name="move" value="next">Петух-></button>
+            </div>
     </form>
 
-    <a href="{% url 'profile' %}" class="buttonMod">профиль</a><br>
-    <h>Калории и БЖУ</h>
-    <div class="threthre">
-        <div class="nutrition-div">
-            <h2>Потреблено</h2>
-            <p>{{ total_calories }}</p>
-        </div>
-        <div class="nutrition-div">
-            <h2>Норма:</h2>
-            <p>{{ male }}</p>
-        </div>
-        <div class="nutrition-div">
-            <h2>Сожжено</h2>
-            <p>Сумма: {{ acttotal_calories }}</p>
-            <!--        <p>{{ total_calories_activities }}</p>-->
-        </div>
-        <div class="nutrition-div">
-            <h2>Белки</h2>
-            <p>{{ total_proteins }}</p>
-        </div>
-        <div class="nutrition-div">
-            <h2>Жиры</h2>
-            <p>{{ total_fats }}</p>
-        </div>
-        <div class="nutrition-div">
-            <h2>Углеводы</h2>
-            <p>{{ total_carbohydrates }}</p>
-        </div>
-    </div>
+<div class="block">Калории
+<div class="nutrition-div" style="margin-top: 20px; font-size: 20px;">Норма
+    <p>{{ male }}</p>
+</div>
 
-    <div class="container">
-        <div class="breakfast clickable">
-            <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
-            <div>
+<div class="container" style="grid-template-columns: auto auto">
+    <div class="nutrition-div">Потреблено
+        <p>{{ total_calories }}</p>
+    </div>
+    <div class="nutrition-div">Сожжено
+        <p>{{ acttotal_calories }}</p>
+    </div>
+</div>
+</div>
+
+<div class="block">
+БЖУ
+<div class="container">
+    <div class="nutrition-div">Белки
+        <p  style="color: #ca517a;">{{ total_proteins }}</p>
+    </div>
+    <div class="nutrition-div">Жиры
+        <p style="color: #fbb20d;">{{ total_fats }}</p>
+    </div>
+    <div class="nutrition-div">Углеводы
+        <p style="color: #4887ba" >{{ total_carbohydrates }}</p>
+    </div>
+</div>
+</div>
+
+   <div class="eatings" style="margin-top: 40px;">
+    <div class="breakfast clickable">
+        <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
+        <div>
                 {% if bproteins and bfats and bcarbohydrates %}
                 калории: {{ bcalories_in }}<br>
                 Б- {{ bproteins }}
@@ -125,7 +93,7 @@
             <div class="content">
                 <h1>Отчёт завтрака</h1>
 
-                <div class="product-container">
+                <div class="product-eatings">
                     {% for product in bproducts %}
                     <div class="product-item">
                         <h4>{{ product.product.name }}</h4>
@@ -150,10 +118,10 @@
     </div>
 
 
-    <div class="container">
-        <div class="breakfast clickable">
-            <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
-            <div>
+    <div class="eatings">
+    <div class="breakfast clickable">
+        <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
+        <div>
                 {% if proteins and fats and carbohydrates %}
                 калории: {{ calories_in }}<br>
                 Б- {{ proteins }}
@@ -166,7 +134,7 @@
 
                 <h1>Отчёт обеда</h1>
 
-                <div class="product-container">
+                <div class="product-eatings">
                     {% for product in lproducts %}
                     <div class="product-item">
                         <h4>{{ product.product.name }}</h4>
@@ -191,10 +159,10 @@
     </div>
 
 
-    <div class="container">
-        <div class="breakfast clickable">
-            <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
-            <div>
+   <div class="eatings">
+    <div class="breakfast clickable">
+        <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+        <div>
                 {% if dproteins and dfats and dcarbohydrates %}
                 калории: {{ dcalories_in }}<br>
                 Б- {{ dproteins }}
@@ -206,7 +174,7 @@
             <div class="content">
                 <h1>Отчёт Ужин</h1>
 
-                <div class="product-container">
+                <div class="product-eatings">
                     {% for product in dproducts %}
                     <div class="product-item">
                         <h4>{{ product.product.name }}</h4>
@@ -229,7 +197,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="eatings">
         <div class="breakfast clickable">
             <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
             <div>
@@ -245,7 +213,7 @@
 
                 <h1>Отчёт Перекуса</h1>
 
-                <div class="product-container">
+                <div class="product-eatings">
                     {% for product in sproducts %}
                     <div class="product-item">
                         <h4>{{ product.product.name }}</h4>
@@ -269,28 +237,17 @@
     </div>
 
 
-    <div class="container">
+    <div class="eatings">
         <div class="breakfast clickable">
             <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
             <div>
-                <!--            {% if total_cost %}-->
-                <!--            калории: {{ total_cost }}<br>-->
-
-                <!--            {% endif %}-->
-                <!--             {% for el in activity_prod %}-->
-                <!--                    <p>МЕТ: {{ el.product.met }}</p>-->
-                <!--                     <p>Сумма: {{ acttotal_calories }}</p>-->
-                <!--            {% endfor %}-->
-<!--                {% for activity, burned_calories in activities_and_calories %}-->
-<!--                <p>{{  activity.product.activity_type }}: burned {{ burned_calories }} calories</p>-->
-<!--&lt;!&ndash;                <p>МЕТ: {{ activity.product.met }}</p>&ndash;&gt;-->
-
-<!--                {% endfor %}-->
                  <p>Сумма: {{ acttotal_calories }}</p>
+             </div>
+
                 <div class="content">
                     <h1>Отчёт Активности</h1>
 
-                    <div class="product-container">
+                    <div class="product-eatings">
                          {% for activity, burned_calories in activities_and_calories %}
                         <div class="product-item">
                             <h4>{{ activity.product.activity_type }}</h4>
@@ -315,7 +272,7 @@
 
         <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
         <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
-    </div>
+
     <script>
 document.querySelectorAll('.clickable').forEach(item => {
   item.addEventListener('click', event => {

@@ -2,9 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Авторизация</title>
+    <!--Медиа запросы, адаптив-->
+    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
+    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
@@ -13,12 +20,19 @@
 <h2>добрый день, {{ request.user.username }}</h2>
 
 
-<button onclick="goBack()">Назад</button>
 <form action="." method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
         <p><input type="submit" value="Create my account"></p>
     </form>
 
+<footer>
+    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
+        <img src="{% static 'accets/kkal.png' %}" class="imgFooter"/></a>
+    <a href="{% url 'profile' %}" class="buttonFooter">
+        <img src="{% static 'accets/profile.png' %}" class="imgFooter"/></a>
+    <a href="{% url 'person_info' %}" class="buttonFooter">
+        <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"/></a>
+</footer>
 </body>
 </html>
