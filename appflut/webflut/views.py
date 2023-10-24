@@ -30,19 +30,31 @@ def register(request):
 
 
 def person_info(request):
+    if Personal_Inform.objects.filter(user=request.user).exists():
+        return redirect('edit_person_info')  # Redirect to a different page indicating that the information is already filled
+
     if request.method == 'POST':
         form = PersonalInformForm(request.POST)
         if form.is_valid():
             personal_info = form.save(commit=False)
             personal_info.user = request.user
             personal_info.save()
-            # return redirect('/success_url/')
+            return redirect('home')  # Redirect to the successful registration page
     else:
         form = PersonalInformForm()
 
     return render(request, 'register_done.html', {'form': form})
 
-
+def edit_person_info(request):
+    personal_info = Personal_Inform.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = PersonalInformForm(request.POST, instance=personal_info)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to the successful registration page
+    else:
+        form = PersonalInformForm(instance=personal_info)
+    return render(request, 'edit_person_info.html', {'form': form})
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -122,10 +134,16 @@ def calories_and_bjy(request):
         activities_and_calories.append((activity, burned_calories))
 
     inf = Personal_Inform.objects.get(user=user)
-    height2 = inf.height
-    weight2 = inf.weight
-    date_of_birth2 = inf.date_of_birth
-    male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
+    if inf.sex=='M':
+        height2 = inf.height
+        weight2 = inf.weight
+        date_of_birth2 = inf.date_of_birth
+        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
+    else:
+        height2 = inf.height
+        weight2 = inf.weight
+        date_of_birth2 = inf.date_of_birth
+        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
 
     bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0

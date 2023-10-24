@@ -23,6 +23,7 @@ urlpatterns = [
     path('add_activity_view/', views.add_activity_view, name='add_activity_view'),
     path('remove_from_list/<int:product_id>/', views.remove_from_list, name='remove_from_list'),
     path('delete_activity/<int:id>/', views.delete_activity, name='delete_activity'),
+    path('edit_person_info/', views.edit_person_info, name='edit_person_info'),
     # path('add_product', views.add_product, name='add_product'),
 
 ]

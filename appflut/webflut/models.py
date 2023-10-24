@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.utils.crypto import get_random_string
 # Create your models here.
 class Personal_Inform(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)  # Add this line
     SEX_CHOICES = [
         ('M', 'Мужчина'),
         ('F', 'Женщина'),
