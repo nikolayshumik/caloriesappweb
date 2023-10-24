@@ -24,6 +24,12 @@ urlpatterns = [
     path('remove_from_list/<int:product_id>/', views.remove_from_list, name='remove_from_list'),
     path('delete_activity/<int:id>/', views.delete_activity, name='delete_activity'),
     path('edit_person_info/', views.edit_person_info, name='edit_person_info'),
+    # path('list_of_users/', views.list_of_users, name='list_of_users'),
+    path('list_of_groups/', views.list_of_groups, name='list_of_groups'),
+    path('groups/', views.list_of_groups, name='list_of_groups'),
+    path('group/<int:group_id>/', views.group_detail, name='group_detail'),
+    path('user/<int:user_id>/', views.user_detail, name='user_detail'),
+    path('groups/<int:group_id>/add_user/', views.add_user_to_group, name='add_user_to_group'),
     # path('add_product', views.add_product, name='add_product'),
 
 ]

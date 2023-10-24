@@ -9,6 +9,7 @@ from .models import Snack_Products
 from .models import Activities_Add
 from .models import Ttime_Test
 from .models import Activity
+from .models import UserGroup
 # Register your models here.
 admin.site.register(Personal_Inform)
 admin.site.register(Add_Product)
@@ -20,3 +21,4 @@ admin.site.register(Snack_Products)
 admin.site.register(Activities_Add)
 admin.site.register(Ttime_Test)
 admin.site.register(Activity)
+admin.site.register(UserGroup)

@@ -7,6 +7,8 @@ from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_P
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required  # add this to your imports
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.LoginForm,
 def index(request):
     return render(request, 'index.html')
@@ -512,3 +514,37 @@ def date_view(request):
     models = Ttime_Test.objects.filter(date__date=selected_date)
 
     return render(request, 'date.html', {'form': form, 'models': models})
+
+# @login_required
+# @user_passes_test(lambda u: u.is_superuser)
+# def list_of_users(request):
+#     users = User.objects.filter(is_superuser=False)
+#     return render(request, 'list_of_users.html', {'users': users})
+
+from .models import UserGroup
+def list_of_groups(request):
+    groups = UserGroup.objects.all()
+    users = User.objects.all()  # Retrieve all users
+    return render(request, 'list_of_groups.html', {'groups': groups, 'users': users})
+
+def group_detail(request, group_id):
+    group = get_object_or_404(UserGroup, pk=group_id)
+    return render(request, 'group_detail.html', {'group': group})
+
+def user_detail(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    return render(request, 'user_detail.html', {'user': user})
+
+
+def add_user_to_group(request, group_id):
+    if request.method == 'POST':
+        group = get_object_or_404(UserGroup, pk=group_id)
+        user_id = request.POST.get('user_id')  # Get the selected user ID from the form
+        user = get_object_or_404(User, pk=user_id)
+        group.users.add(user)  # Add the user to the group
+        return redirect('group_detail', group_id=group_id)
+
+    # Retrieve the users to populate the dropdown
+    users = User.objects.all()
+
+    return render(request, 'add_user_to_group.html', {'group_id': group_id, 'users': users})

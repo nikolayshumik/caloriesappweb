@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 # Create your models here.
+
+
 class Personal_Inform(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)  # Add this line
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
     SEX_CHOICES = [
         ('M', 'Мужчина'),
         ('F', 'Женщина'),
@@ -35,6 +37,24 @@ class Personal_Inform(models.Model):
         return self.user.username
 
 
+from django.contrib.auth.models import AbstractUser, Group
+
+# class CustomUser(AbstractUser):
+#     # Your custom fields and methods here
+#
+# class UserGroup(models.Model):
+#     users = models.ManyToManyField(CustomUser)
+#
+# class UserGroup(models.Model):
+#     users = models.ManyToManyField(User, related_name='user_groups')
+
+
+class UserGroup(models.Model):
+    name = models.CharField(max_length=255)
+    users = models.ManyToManyField(User, related_name='user_groups')
+
+    def __str__(self):
+        return self.name
 
 class Add_Product(models.Model):
     name = models.TextField()
