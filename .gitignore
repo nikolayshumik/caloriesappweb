@@ -1,4 +1,4 @@
-# Игнорирование баз данных SQLite
+# Игнорирование бд SQLite
 *.sqlite3
 .db.sqlite3
 
