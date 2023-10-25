@@ -1,3 +1,8 @@
-*db.sqlite3
-db.sqlite3
+# Игнорирование баз данных SQLite
+*.sqlite3
+.db.sqlite3
+
+# Игнорирование виртуальной среды (venv)
 /venv/
+
+.idea/
