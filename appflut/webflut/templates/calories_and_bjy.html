@@ -21,21 +21,8 @@
           });
         })
         </script>
-<!--    это стили которые делают рабочим выдвижную чтучку на завтраке обеде и ужене при нажатии, а без них не работает так что подредачь их-->
-<!--    <style>-->
-<!--        .eatings .content {-->
-<!--    display: none;-->
 
-<!--}-->
 
-<!--.eatings.active .content {-->
-<!--    display: block;-->
-<!--}-->
-
-<!--.clickable {-->
-<!--    cursor: pointer;-->
-<!--}-->
-<!--    </style>-->
 </head>
 <body>
 <a href="{% url 'profile' %}" class="profile">p</a>
@@ -43,22 +30,22 @@
     <form method="get">
         {{ form }}
         <div class="row-buttons">
-        <button type="submit" name="move" value="prev"><-Стас</button>
-        <button type="submit" name="move" value="next">Петух-></button>
+        <button type="submit" name="move" value="prev"><</button>
+        <button type="submit" name="move" value="next">></button>
             </div>
     </form>
 
 <div class="block">Калории
-<div class="nutrition-div" style="margin-top: 20px; font-size: 20px;">Норма
-    <p>{{ male }}</p>
+<div class="nutrition-div" style="margin-top: 20px; font-size: 20px; ">Норма
+    <p style="color: #1ecb95;">{{ male }}</p>
 </div>
 
 <div class="container" style="grid-template-columns: auto auto">
     <div class="nutrition-div">Потреблено
-        <p>{{ total_calories }}</p>
+        <p style="color: #FF4040;">{{ total_calories }}</p>
     </div>
     <div class="nutrition-div">Сожжено
-        <p>{{ acttotal_calories }}</p>
+        <p style="color: #FFD100;">{{ acttotal_calories }}</p>
     </div>
 </div>
 </div>
@@ -79,29 +66,28 @@
 </div>
 
    <div class="eatings" style="margin-top: 40px;">
-    <div class="breakfast clickable">
-        <a href="{% url 'breakfast' %}" class="buttonMod">Завтрак</a><br>
-        <div>
+    <div class="breakfast clickable">Завтрак<a href="{% url 'breakfast' %}">+</a></div>
+        <div class="summ_kkal">
                 {% if bproteins and bfats and bcarbohydrates %}
-                калории: {{ bcalories_in }}<br>
-                Б- {{ bproteins }}
-                Ж- {{ bfats }}
-                У- {{ bcarbohydrates }}
+                {{ bcalories_in }} ккал
                 {% endif %}
             </div>
 
-            <div class="content">
-                <h1>Отчёт завтрака</h1>
-
+            <div class="content" style="margin-top: 20px;">
                 <div class="product-eatings">
                     {% for product in bproducts %}
                     <div class="product-item">
-                        <h4>{{ product.product.name }}</h4>
-                        <p>Каллории: {{ product.product.calories_in }}</p>
-                        <p>Белки: {{ product.product.proteins }}</p>
-                        <p>Жиры: {{ product.product.fats }}</p>
-                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                        <p>Масса: {{ product.weight }}</p>
+                        <div class="title">
+                            <text style="text-decoration: dotted;">{{ product.product.name }}
+                                ({{ product.weight }} г.)</text>
+                            <text>{{ product.product.calories_in }} ккал</text>
+                        </div>
+                        <div class="product-row">
+                            <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
+                            <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
+                            <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                        </div>
+
                         <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="meal_type" value="breakfast">
@@ -114,38 +100,35 @@
                 </div>
 
             </div>
-        </div>
     </div>
 
 
     <div class="eatings">
-    <div class="breakfast clickable">
-        <a href="{% url 'lunch' %}" class="buttonMod">Обед</a><br>
-        <div>
+        <div class="breakfast clickable">Обед<a href="{% url 'lunch' %}">+</a></div>
+        <div class="summ_kkal">
                 {% if proteins and fats and carbohydrates %}
-                калории: {{ calories_in }}<br>
-                Б- {{ proteins }}
-                Ж- {{ fats }}
-                У- {{ carbohydrates }}
+                {{ bcalories_in }} ккал
                 {% endif %}
             </div>
-            <div class="content">
 
-
-                <h1>Отчёт обеда</h1>
-
+            <div class="content" style="margin-top: 20px;">
                 <div class="product-eatings">
                     {% for product in lproducts %}
                     <div class="product-item">
-                        <h4>{{ product.product.name }}</h4>
-                        <p>Каллории: {{ product.product.calories_in }}</p>
-                        <p>Белки: {{ product.product.proteins }}</p>
-                        <p>Жиры: {{ product.product.fats }}</p>
-                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                        <p>Масса: {{ product.weight }}</p>
-                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                        <div class="title">
+                            <text style="text-decoration: dotted;">{{ product.product.name }}
+                                ({{ product.weight }} г.)</text>
+                            <text>{{ product.product.calories_in }} ккал</text>
+                        </div>
+                        <div class="product-row">
+                            <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
+                            <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
+                            <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                        </div>
+
+                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                             {% csrf_token %}
-                            <input type="hidden" name="meal_type" value="lunch">
+                            <input type="hidden" name="meal_type" value="breakfast">
                             <input type="submit" value="Удалить">
                         </form>
                     </div>
@@ -155,13 +138,11 @@
                 </div>
 
             </div>
-        </div>
     </div>
 
 
    <div class="eatings">
-    <div class="breakfast clickable">
-        <a href="{% url 'dinner' %}" class="buttonMod">Ужин</a><br>
+    <div class="breakfast clickable">Ужин<a href="{% url 'dinner' %}">+</a></div>
         <div>
                 {% if dproteins and dfats and dcarbohydrates %}
                 калории: {{ dcalories_in }}<br>
@@ -194,12 +175,11 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="eatings">
-        <div class="breakfast clickable">
-            <a href="{% url 'snack' %}" class="buttonMod">Перекус</a><br>
+        <div class="breakfast clickable">Перекус<a href="{% url 'snack' %}" class="buttonMod">+</a></div>
+
             <div>
                 {% if sproteins and sfats and scarbohydrates %}
                 калории: {{ scalories_in }}<br>
@@ -233,13 +213,12 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
     </div>
 
 
     <div class="eatings">
-        <div class="breakfast clickable">
-            <a href="{% url 'activities' %}" class="buttonMod">Активности</a><br>
+        <div class="breakfast clickable"><a href="{% url 'activities' %}" class="buttonMod">Активности</a></div>
+
             <div>
                  <p>Сумма: {{ acttotal_calories }}</p>
              </div>
@@ -266,7 +245,6 @@
 
 
                 </div>
-            </div>
         </div>
 
 

@@ -1,21 +1,28 @@
+{% extends 'footer.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Авторизация</title>
+    <!--Медиа запросы, адаптив-->
+    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
+    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-
-        <a href="{% url 'logout' %}" class="buttonMod">Выйти</a>
-        <a href="{% url 'login' %}" class="buttonMod">Войти</a>
-<a href="{% url 'register' %}" class="buttonMod">регистрация</a>
-<a href="{% url 'person_info' %}" class="buttonMod">персональная информация</a>
-<a href="{% url 'calories_and_bjy' %}" class="buttonMod">каллории и БЖУ</a>
-<a href="{% url 'profile' %}" class="buttonMod">профиль</a>
-<p>Вы уже вошли в систему как {{ user.username }}</p>
-
+    {% block content %}
+<div class="main">
+    <a href="{% url 'login' %}" >Войти</a>
+    <a href="{% url 'register' %}" style="margin-bottom: 0px;" >Регистрация</a>
+    <p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>
+    <a href="{% url 'logout' %}" style="margin-bottom: 0px;">Выйти</a>
+</div>
+{% endblock %}
 </body>
 </html>
