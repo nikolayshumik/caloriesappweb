@@ -1,0 +1,42 @@
+
+.container .content {
+    display: none;
+
+}
+
+.container.active .content {
+    display: block;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+
+.buttonMod {
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.buttonMod:hover {
+    background-color: #f8f8f8;
+}
+.breakfast.clickable {
+  display: inline-block;
+  width: 200px;
+  font-size: 14px; /* Обратите внимание, эта строка изменяет размер текста */
+  border: 1px solid #000; /* Этот код добавляет тонкую черную обводку */
+  padding: 10px; /* Добавляет немного отступа вокруг текста */
+  text-align: center; /* Выравнивает текст по центру */
+}
+.breakfast.clickable:hover {
+  background-color: #f0f0f0; /* Меняет цвет фона при наведении мыши */
+}
+

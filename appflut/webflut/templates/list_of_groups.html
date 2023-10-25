@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Список групп пользователей</h1>
+    <ul>
+        {% for group in groups %}
+            <li>
+                <a href="{% url 'group_detail' group.id %}">{{ group.name }}</a>
+                <ul>
+                    {% for user in group.users.all %}
+                        <li><a href="{% url 'user_detail' user.id %}">{{ user.username }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+<h1>List of Groups</h1>
+
+<ul>
+  {% for group in groups %}
+    <li>
+      <a href="{% url 'group_detail' group.id %}">{{ group.name }}</a>
+      <ul>
+        {% for user in group.users.all %}
+          <li><a href="{% url 'user_detail' user.id %}">{{ user.username }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,140 @@
+html {
+  height: 100%;
+  font-family: "Inter";
+  background-color: #f7f8fa;
+}
+
+body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+}
+.data .row-buttons {
+  flex-direction: row;
+  margin-top: 5px;
+}
+.data .row-buttons > * {
+  width: 60px;
+  font-size: 22px;
+  color: #0c1c2c;
+  border: 0px;
+  background-color: rgb(4, 177, 211);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.profile {
+  margin-left: auto;
+  font-size: 25px;
+  color: #0c1c2c;
+  border: 0px;
+  background-color: rgb(4, 177, 211);
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.block {
+  font-size: 25px;
+  border-radius: 10px;
+  margin-top: 20px;
+  background-color: white;
+  color: #0c1c2c;
+  padding-top: 5px;
+}
+.block .nutrition-div {
+  background-color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5px;
+}
+.container > * {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.eatings {
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  font-size: 25px;
+  color: #0c1c2c;
+  margin: 10px auto 0 auto;
+  border: 0px;
+  padding: 8px 15px;
+  text-decoration: none;
+}
+.eatings .buttonMod {
+  color: white;
+  text-decoration: none;
+}
+.eatings .breakfast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.eatings .breakfast a {
+  text-decoration: none;
+  color: rgb(4, 177, 211);
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-item {
+  border-bottom: 1px solid #141414;
+  font-size: 18px;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+.product-item .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.product-item > p {
+  font-size: 13px;
+}
+.product-item .product-row {
+  margin-top: 10px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summ_kkal {
+  margin-right: auto;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.eatings .content {
+  display: none;
+}
+
+.eatings.active .content {
+  display: block;
+}
+
+.clickable {
+  cursor: pointer;
+}/*# sourceMappingURL=calories400.css.map */

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Страница редактирования информации</p>
+<!--{% if form.instance %}-->
+<!--        <a href="{% url 'edit_person_info' %}">Edit Personal Information</a>-->
+<!--    {% endif %}-->
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

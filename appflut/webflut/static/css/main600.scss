@@ -1,0 +1,113 @@
+/* calories_and_bjy*/
+$blue_color: red;
+$gray_color:rgb(47,47,47);
+$main_backgrounde: #1d1d1d;
+$text_color: white;
+$back_dark: #141414;
+$font_main_text: 25px;
+$font_ps_text: 15px;
+
+html{
+   height: 100%;
+    font-family: "Inter";
+    background-color: $main_backgrounde;
+}
+body{
+  position:relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.main-orientations{
+    width: 11vw; 
+    height: 11vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin: 3vw;
+    margin-left: -77%;
+    font-size: 12vw;
+    border-radius: 10px;
+    border: none;
+    background-color: $blue_color;
+    color: $text_color;
+}
+footer{
+    background-color: $blue_color;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 90%;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    .buttonFooter{
+        color: $text_color;
+        display: inline-block;
+        font-size: 10px;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        //border: 0;
+        background-color: $blue_color;
+        .imgFooter{
+          width: 8vw;
+        }
+    }
+    .buttonFooter:hover{
+        box-shadow: 0px 0px 10px -1px #a8fff1;
+    }
+
+}
+
+  .main{
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-color: $gray_color;
+    padding: 5%;
+    text-align: center;
+    color: $text_color;
+    font-size: $font_main_text;
+    >a, .enter{
+        font-size: $font_main_text;
+        color: $text_color;
+        border: 0px;
+        margin: auto;
+        background-color: $blue_color;
+        text-align: center;
+      padding: 5px 20px;
+      text-decoration: none;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+    >label{
+        margin-top: 20px;
+    }
+
+    a:hover {
+        background-color: #04b1d3b0;
+    }
+  }
+  
+  .buttonMod:hover {
+      background-color: #04b1d3b0;
+  }
+
+input{
+    background-image: url(../../accets/profile.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    font-size: $font_ps_text;
+    border-width: 0px;
+    border-radius: 10px;/*rounded border */
+    padding: 20px 40px;
+    background-color: $back_dark;
+    color: $text_color;
+    margin-top: 20px;
+  }
