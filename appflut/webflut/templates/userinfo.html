@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get">
+        {{ form }}
+        <div class="row-buttons">
+        <button type="submit" name="move" value="prev"><</button>
+        <button type="submit" name="move" value="next">></button>
+            </div>
+    </form>
+<h1>Информация о пользователе</h1>
+<p>Имя пользователя: {{ user.username }}</p>
+<!-- Дополнительная информация о пользователе -->
+
+<div class="block">Калории
+<div class="nutrition-div" style="margin-top: 20px; font-size: 20px; ">Норма
+    <p style="color: #1ecb95;">{{ male }}</p>
+</div>
+
+<div class="container" style="grid-template-columns: auto auto">
+    <div class="nutrition-div">Потреблено
+        <p style="color: #FF4040;">{{ total_calories }}</p>
+    </div>
+    <div class="nutrition-div">Сожжено
+        <p style="color: #FFD100;">{{ acttotal_calories }}</p>
+    </div>
+</div>
+</div>
+
+<div class="block">
+БЖУ
+<div class="container">
+    <div class="nutrition-div">Белки
+        <p  style="color: #ca517a;">{{ total_proteins }}</p>
+    </div>
+    <div class="nutrition-div">Жиры
+        <p style="color: #fbb20d;">{{ total_fats }}</p>
+    </div>
+    <div class="nutrition-div">Углеводы
+        <p style="color: #4887ba" >{{ total_carbohydrates }}</p>
+    </div>
+</div>
+</div>
+</body>
+</html>

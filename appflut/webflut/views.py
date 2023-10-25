@@ -558,3 +558,137 @@ def removeuser(request, group_id):
         group.users.remove(user)  # Удаление пользователя из группы
 
     return redirect('groupdetail', group_id=group.id)
+
+def userinfo(request, user_id):
+    if 'date' in request.GET:
+        selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
+    else:
+        selected_date = datetime.now().date()
+
+    if 'move' in request.GET:
+        if request.GET['move'] == 'next':
+            selected_date += timedelta(days=1)
+        elif request.GET['move'] == 'prev':
+            selected_date -= timedelta(days=1)
+    form = DateForm(initial={"date": selected_date})
+
+    selected_date += timedelta(days=1)
+    request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
+    user = User.objects.get(id=user_id)
+    breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
+    bproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in breakfast_products]
+
+    lunch_products = Lunch_Products.objects.filter(user=user, date__date=selected_date)
+    lproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in lunch_products]
+
+    dinner_products = Dinner_Products.objects.filter(user=user, date__date=selected_date)
+    dproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in dinner_products]
+
+    snack_products = Snack_Products.objects.filter(user=user, date__date=selected_date)
+    sproducts = [{
+        'product': bp.product,
+        'weight': bp.weight
+    } for bp in snack_products]
+
+    # activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+    # activity = activity_prod
+
+    user = request.user
+    personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
+    weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
+    activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+
+    acttotal_calories = 0  # общее количество сожженных калорий
+    activities_and_calories = []
+
+    for activity in activity_prod:
+        burned_calories = round(activity.product.met * weight / activity.time, 1)
+        acttotal_calories += burned_calories  # добавить к общему количеству
+        activities_and_calories.append((activity, burned_calories))
+
+    inf = Personal_Inform.objects.get(user=user)
+    if inf.sex == 'M':
+        height2 = inf.height
+        weight2 = inf.weight
+        date_of_birth2 = inf.date_of_birth
+        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
+    else:
+        height2 = inf.height
+        weight2 = inf.weight
+        date_of_birth2 = inf.date_of_birth
+        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
+
+    bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    bfats = breakfast_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    bcarbohydrates = breakfast_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    calories_in = lunch_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    proteins = lunch_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    fats = lunch_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    carbohydrates = lunch_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    dcalories_in = dinner_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    dproteins = dinner_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    dfats = dinner_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    dcarbohydrates = dinner_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    scalories_in = snack_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    sproteins = snack_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
+    sfats = snack_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
+    scarbohydrates = snack_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+
+    # acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+
+    total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
+    total_proteins = bproteins + proteins + dproteins + sproteins
+    total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
+    total_fats = bfats + fats + dfats + sfats
+
+    # total_calories_activities = 0
+    # total_calories_activities += acalories_in
+
+    context = {
+        'bproducts': bproducts,
+        'lproducts': lproducts,
+        'dproducts': dproducts,
+        'sproducts': sproducts,
+        'bcalories_in': bcalories_in,
+        'bproteins': bproteins,
+        'bfats': bfats,
+        'bcarbohydrates': bcarbohydrates,
+        'calories_in': calories_in,
+        'proteins': proteins,
+        'fats': fats,
+        'carbohydrates': carbohydrates,
+        'dcalories_in': dcalories_in,
+        'dproteins': dproteins,
+        'dfats': dfats,
+        'dcarbohydrates': dcarbohydrates,
+        'scalories_in': scalories_in,
+        'sproteins': sproteins,
+        'sfats': sfats,
+        'scarbohydrates': scarbohydrates,
+        'total_calories': total_calories,
+        'total_proteins': total_proteins,
+        'total_carbohydrates': total_carbohydrates,
+        'total_fats': total_fats,
+        'activity_prod': activity_prod,
+        'form': form,
+        'acttotal_calories': acttotal_calories,
+        'activities_and_calories': activities_and_calories,
+        'male': male,
+        'user': user,
+
+    }
+
+    return render(request, 'userinfo.html', context)

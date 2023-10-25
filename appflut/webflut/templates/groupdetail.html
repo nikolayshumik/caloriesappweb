@@ -7,12 +7,11 @@
 <body>
 <h1>Детали группы {{ group.name }}</h1>
 
-
 <h3>Пользователи в группе:</h3>
 <ul>
   {% for user in group.users.all %}
     <li>
-      {{ user.username }}
+      <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
       <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;">
         {% csrf_token %}
         <input type="hidden" name="username" value="{{ user.username }}">
