@@ -37,24 +37,14 @@ class Personal_Inform(models.Model):
         return self.user.username
 
 
-from django.contrib.auth.models import AbstractUser, Group
-
-# class CustomUser(AbstractUser):
-#     # Your custom fields and methods here
-#
-# class UserGroup(models.Model):
-#     users = models.ManyToManyField(CustomUser)
-#
-# class UserGroup(models.Model):
-#     users = models.ManyToManyField(User, related_name='user_groups')
-
-
-class UserGroup(models.Model):
-    name = models.CharField(max_length=255)
-    users = models.ManyToManyField(User, related_name='user_groups')
+class Group(models.Model):
+    name = models.CharField(max_length=100)
+    users = models.ManyToManyField(User)  # Отношение "многие ко многим" с моделью User
 
     def __str__(self):
         return self.name
+
+
 
 class Add_Product(models.Model):
     name = models.TextField()

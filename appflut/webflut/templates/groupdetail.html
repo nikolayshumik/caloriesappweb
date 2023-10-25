@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Детали группы {{ group.name }}</h1>
+
+
+<h3>Пользователи в группе:</h3>
+<ul>
+  {% for user in group.users.all %}
+    <li>
+      {{ user.username }}
+      <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ user.username }}">
+        <button type="submit">Удалить</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+<form action="{% url 'adduser' group_id=group.id %}" method="post">
+  {% csrf_token %}
+  <select name="username">
+    {% for user in users %}
+      <option value="{{ user.username }}">{{ user.username }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Добавить пользователя</button>
+</form>
+</body>
+</html>

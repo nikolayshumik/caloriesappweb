@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'creategroup' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="group_name" placeholder="Введите название группы">
+  <button type="submit">Создать группу</button>
+</form>
+
+</body>
+</html>
