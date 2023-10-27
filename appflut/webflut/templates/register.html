@@ -20,11 +20,12 @@
 <h2>добрый день, {{ request.user.username }}</h2>
 
 
-<form action="." method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
-    </form>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Зарегистрироваться</button>
+</form>
+
 
 <footer>
     <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">

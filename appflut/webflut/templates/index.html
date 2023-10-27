@@ -21,6 +21,7 @@
     <a href="{% url 'login' %}" >Войти</a>
     <a href="{% url 'register' %}" style="margin-bottom: 0px;" >Регистрация</a>
     <p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>
+    <p style="font-size: 15px;">тип {{ user.user_type }}</p>
     <a href="{% url 'logout' %}" style="margin-bottom: 0px;">Выйти</a>
 </div>
 {% endblock %}

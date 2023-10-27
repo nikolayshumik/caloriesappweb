@@ -9,11 +9,11 @@ class DateForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-
+    user_type = forms.ChoiceField(choices=[('user', 'Пользователь'), ('trainer', 'Тренер')])
 
     class Meta:
         model = User
-        fields = ('username','email',)
+        fields = ('username', 'email', 'password', 'user_type',)
 
     # def clean_password2(self):
     #     cd = self.cleaned_data

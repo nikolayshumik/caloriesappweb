@@ -10,7 +10,20 @@ from .models import Activities_Add
 from .models import Ttime_Test
 from .models import Activity
 from .models import Group
-# Register your models here.
+from .models import UserProfile
+
+from django.contrib import admin
+
+
+
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'user_type')
+
+admin.site.register(UserProfile, UserProfileAdmin)
+
+
+
 admin.site.register(Personal_Inform)
 admin.site.register(Add_Product)
 admin.site.register(Breakfast_Products)

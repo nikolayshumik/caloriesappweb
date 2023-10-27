@@ -16,19 +16,26 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user_type = form.cleaned_data.get('user_type')
 
-            # Выполнение входа пользователя после успешной регистрации
-            login(request, new_user)
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
 
+            if user_type == 'trainer':
+                # Дополнительная логика для регистрации тренера
+                pass
+            else:
+                # Дополнительная логика для регистрации пользователя
+                pass
+            login(request, user)
             return redirect('home')
     else:
-        user_form = UserRegistrationForm()
-    return render(request, 'register.html', {'user_form': user_form})
+        form = UserRegistrationForm()
+
+    return render(request, 'register.html', {'form': form})
 
 
 def person_info(request):
@@ -599,13 +606,11 @@ def userinfo(request, user_id):
         'weight': bp.weight
     } for bp in snack_products]
 
-    # activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
-    # activity = activity_prod
-
-    user = request.user
+    # user = request.user
     personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
     weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+    # Остальной код для получения данных пользователя
 
     acttotal_calories = 0  # общее количество сожженных калорий
     activities_and_calories = []
@@ -656,8 +661,9 @@ def userinfo(request, user_id):
 
     # total_calories_activities = 0
     # total_calories_activities += acalories_in
-
     context = {
+        'user': user,
+        'form': form,
         'bproducts': bproducts,
         'lproducts': lproducts,
         'dproducts': dproducts,
@@ -683,11 +689,9 @@ def userinfo(request, user_id):
         'total_carbohydrates': total_carbohydrates,
         'total_fats': total_fats,
         'activity_prod': activity_prod,
-        'form': form,
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
         'male': male,
-        'user': user,
 
     }
 

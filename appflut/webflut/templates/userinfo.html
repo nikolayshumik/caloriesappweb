@@ -45,5 +45,36 @@
     </div>
 </div>
 </div>
+
+
+    <div class="content" style="margin-top: 20px;">
+                <div class="product-eatings">
+                    {% for product in bproducts %}
+                    <div class="product-item">
+                        <div class="title">
+                            <text style="text-decoration: dotted;">{{ product.product.name }}
+                                ({{ product.weight }} г.)</text>
+                            <text>{{ product.product.calories_in }} ккал</text>
+                        </div>
+                        <div class="product-row">
+                            <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
+                            <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
+                            <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                        </div>
+
+                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_type" value="breakfast">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                    {% empty %}
+                    <p>Ничего не найдено</p>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+<h1>{{weight}}</h1>
 </body>
 </html>

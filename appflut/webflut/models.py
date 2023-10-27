@@ -135,3 +135,11 @@ class Ttime_Test(models.Model):
     name = models.TextField()
     date = models.DateTimeField()
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=255, choices=[('user', 'Пользователь'), ('trainer', 'Тренер')])
+
+    def __str__(self):
+        return self.user.username
+
