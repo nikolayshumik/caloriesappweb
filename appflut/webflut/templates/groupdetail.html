@@ -2,34 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <title>Title</title></head>
 <body>
+<style> body { font-family: Arial, sans-serif; }
+h1, h3 { color: #333; }
+
+ul { list-style-type: none; padding: 0; }
+
+li { padding: 10px 0; border-bottom: 1px solid #ccc; }
+
+li a { text-decoration: none; color: #333; }
+
+li button { background-color: #ff0000; color: white; padding: 5px 10px; border: none; cursor: pointer; }
+
+form { margin-top: 20px; }
+
+select { padding: 5px; }
+
+button[type="submit"] { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-left: 10px; }
+</style>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class="container">
 <h1>Детали группы {{ group.name }}</h1>
-
 <h3>Пользователи в группе:</h3>
-<ul>
-  {% for user in group.users.all %}
-    <li>
-      <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
-      <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;">
-        {% csrf_token %}
-        <input type="hidden" name="username" value="{{ user.username }}">
-        <button type="submit">Удалить</button>
-      </form>
+<ul> {% for user in group.users.all %}
+    <li><a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
+        <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;"> {% csrf_token %}
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <button type="submit">Удалить</button>
+        </form>
     </li>
-
-  {% endfor %}
-</ul>
-
-<form action="{% url 'adduser' group_id=group.id %}" method="post">
-  {% csrf_token %}
-  <select name="username">
-    {% for user in users %}
-      <option value="{{ user.username }}">{{ user.username }}</option>
     {% endfor %}
-  </select>
-  <button type="submit">Добавить пользователя</button>
+
+</ul>
+<form action="{% url 'adduser' group_id=group.id %}" method="post"> {% csrf_token %} <select name="username">
+    {% for user in users %}
+    <option value="{{ user.username }}">{{ user.username }}</option>
+    {% endfor %} </select>
+    <button type="submit">Добавить пользователя</button>
 </form>
+    </div>
 </body>
 </html>

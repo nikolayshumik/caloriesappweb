@@ -5,11 +5,72 @@
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'creategroup' %}" method="post">
-  {% csrf_token %}
-  <input type="text" name="group_name" placeholder="Введите название группы">
-  <button type="submit">Создать группу</button>
-</form>
+<style>
+   .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+</style>
+<div class="container">
+    <form action="{% url 'creategroup' %}" method="post"> {% csrf_token %} <input type="text" name="group_name"
+                                                                                  placeholder="Введите название группы">
+        <button type="submit">Создать группу</button>
+    </form>
+    <ul> {% for group in groups %}
+        <li><a href="{% url 'groupdetail' group_id=group.id %}">{{ group.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
 </body>
 </html>

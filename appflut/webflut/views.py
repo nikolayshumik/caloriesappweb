@@ -528,11 +528,13 @@ def creategroup(request):
     if request.method == 'POST':
         group_name = request.POST.get('group_name')
         group = Group.objects.create(name=group_name)
-        return redirect('groupdetail', group_id=group.id)
+        return redirect('creategroup')
 
-        # return HttpResponse('Группа успешно создана')  # Отправка ответа об успешном создании группы
+    groups = Group.objects.all()
 
-    return render(request, 'creategroup.html')
+
+
+    return render(request, 'creategroup.html', {'groups': groups,})
 
 def groupdetail(request, group_id):
     group = Group.objects.get(id=group_id)
