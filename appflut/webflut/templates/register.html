@@ -16,24 +16,10 @@
 </head>
 <body>
 
+<form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Create my account">
+    </form>
 
-<h2>добрый день, {{ request.user.username }}</h2>
-
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Зарегистрироваться</button>
-</form>
-
-
-<footer>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
-        <img src="{% static 'accets/kkal.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'profile' %}" class="buttonFooter">
-        <img src="{% static 'accets/profile.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'person_info' %}" class="buttonFooter">
-        <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"/></a>
-</footer>
-</body>
 </html>
