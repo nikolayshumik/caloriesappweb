@@ -20,15 +20,11 @@
         <p>Вы уже вошли в систему как {{ user.username }}</p>
         <a href="{% url 'logout' %}">Выйти</a>
     {% else %}
-        <p>Пожалуйста, выполните вход:</p>
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            <label for="username">Имя пользователя:</label>
-            <input type="text" id="username" name="username">
-            <br>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password">
-            <input type="submit" value="Войти" class="enter" style="margin-top: 50px; margin-bottom: 0px;">
+            <input type="text" id="username" name="username" placeholder="Логин">
+            <input type="password" id="password" name="password" placeholder="Пароль">
+            <input type="submit" value="Войти" class="enter">
         </form>
     {% endif %}
 
