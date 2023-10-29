@@ -1,3 +1,4 @@
+{% extends 'footer.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -15,15 +16,19 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
+  {% block content %}
+тут будет лого
+      <img src="{% static 'accets/profile.png' %}" style="width: 50vw;" />
 
-
-        <p style="color: red; font-size: 30px;">r34r443{{ user.username }}</p>
-        <a href="{% url 'logout' %}">Выйти</a>
+      <div class="title"> 
+        почему-то ник не показывает{{ user.username }}
+        <a href="{% url 'logout' %}"><img src="{% static 'accets/выйти.png' %}" style="width: 10vw;" /></a>
+      </div>      
 
         <form method="post" action="{% url 'login' %}">
-            <textarea placeholder="Тут какой-то ипут, хз для чего"></textarea>
+            <textarea placeholder="Тут какой-то input, хз для чего"></textarea>
         </form>
-
+        {% endblock %}
 
 </body>
 </html>

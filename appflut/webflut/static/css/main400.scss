@@ -38,33 +38,29 @@ body{
     height: 11vw;
     text-align: center;
     display: flex;
+    color: $main_backgrounde;
     align-items: center;
     margin-right: auto;
     font-size: 15vw;
     border-radius: 10px;
     border: none;
-    background-color: $blue_color;
+    background-color: $gray_color;
 }
 footer{
-    background-color: $blue_color;
-    display: flex;
-    justify-content: space-around;
+    background-color: $gray_color;
     border-radius: 10px;
     padding: 5px;
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
     position: fixed;
-    bottom: 8vw;
+    bottom: 4vw;
     .buttonFooter{
-  
         display: inline-block;
         font-size: 10px;
         padding: 10px 20px;
         text-decoration: none;
         border-radius: 5px;
         border: 0;
-        background-color: $blue_color;
-        border-left: #0387a0;
         .imgFooter{
           width: 8vw;
         }
@@ -73,7 +69,7 @@ footer{
         border: 2px solid black;
     }
 }
-
+/*
   .modal {
     display: none;
     position: fixed;
@@ -85,6 +81,7 @@ footer{
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
   }
+  */
   .main{
     margin-top: 50%;
     box-sizing: border-box;

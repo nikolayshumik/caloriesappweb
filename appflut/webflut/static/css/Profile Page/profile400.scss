@@ -16,7 +16,7 @@ $border_radius: 15px;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Segoe UI_Bold';
+  font-family: 'Segoe UI Bold';
   src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
       url('SegoeUI-Bold.woff2') format('woff2'),
       url('SegoeUI-Bold.woff') format('woff'),
@@ -32,5 +32,20 @@ body{
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+.title{
+    font-family: "Segoe UI Bold";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    color: $blue_color;
+    font-size: $font_main_text;
+}
+textarea{
+    padding: 15px;
+    font-size: $font_main_text;
+    border: 2px solid $blue_color;
+    border-radius: $border_radius;
 }
 
