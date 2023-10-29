@@ -1,4 +1,4 @@
-{% extends 'footer.html' %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -16,14 +16,14 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-    {% block content %}
+<img src="{% static 'accets/settings.png' %}" style="width: 50vw;" />
+тут будет лого
 <div class="main">
-    <a href="{% url 'login' %}" >Войти</a>
-    Коля лох + попуск + петушара
-    <a href="{% url 'register' %}" style="margin-bottom: 0px;" >Регистрация</a>
-    <p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>
-    <a href="{% url 'logout' %}" style="margin-bottom: 0px;">Выйти</a>
+    <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
+    <a href="{% url 'register' %}">Регистрация</a>
+    <!--<p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>-->
+    <a href="{% url 'logout' %}">Выйти</a>
 </div>
-{% endblock %}
+
 </body>
 </html>

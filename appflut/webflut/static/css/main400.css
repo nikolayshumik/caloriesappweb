@@ -1,7 +1,18 @@
 /* calories_and_bjy*/
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI_Bold";
+  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
 html {
-  font-family: "Inter";
-  background-color: #1d1d1d;
+  font-family: "Segoe UI";
+  background-color: #f2f3ed;
 }
 
 body {
@@ -20,12 +31,11 @@ body {
   font-size: 15vw;
   border-radius: 10px;
   border: none;
-  background-color: rgb(4, 177, 211);
-  color: white;
+  background-color: #008187;
 }
 
 footer {
-  background-color: rgb(4, 177, 211);
+  background-color: #008187;
   display: flex;
   justify-content: space-around;
   border-radius: 10px;
@@ -36,14 +46,13 @@ footer {
   bottom: 8vw;
 }
 footer .buttonFooter {
-  color: white;
   display: inline-block;
   font-size: 10px;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
   border: 0;
-  background-color: rgb(4, 177, 211);
+  background-color: #008187;
   border-left: #0387a0;
 }
 footer .buttonFooter .imgFooter {
@@ -67,26 +76,26 @@ footer .buttonFooter:hover {
 
 .main {
   margin-top: 50%;
-  border-radius: 20px;
+  box-sizing: border-box;
   display: flex;
+  width: 100%;
   flex-direction: column;
-  background-color: rgb(47, 47, 47);
-  padding: 5%;
+  padding: 10%;
   text-align: center;
-  color: white;
-  font-size: 25px;
+  background-color: #293b4b;
+  font-size: 28px;
 }
-.main > a, .main .enter {
-  font-size: 25px;
-  color: white;
-  border: 0px;
-  margin: auto;
-  background-color: rgb(4, 177, 211);
+.main > a {
+  font-size: 28px;
+  text-transform: uppercase;
+  background-color: #008187;
   text-align: center;
-  padding: 5px 20px;
+  padding: 10px;
+  color: #f2f3ed;
+  font-family: "Segoe UI_Bold";
   text-decoration: none;
-  margin-bottom: 15px;
-  border-radius: 10px;
+  margin-top: 30px;
+  border-radius: 15px;
 }
 .main > label {
   margin-top: 20px;
@@ -95,20 +104,41 @@ footer .buttonFooter:hover {
   background-color: rgba(4, 177, 211, 0.6901960784);
 }
 
+.enter {
+  width: 100%;
+  font-size: 28px;
+  text-transform: uppercase;
+  background-color: #008187;
+  text-align: center;
+  padding: 10px;
+  color: #f2f3ed;
+  font-family: "Segoe UI_Bold";
+  text-decoration: none;
+  margin-top: 80vw;
+  border-radius: 15px;
+}
+
 .buttonMod:hover {
   background-color: rgba(4, 177, 211, 0.6901960784);
 }
 
-input {
-  background-image: url(../../accets/profile.png);
-  background-size: 16px 16px;
-  background-repeat: no-repeat;
-  background-position: left top;
-  font-size: 15px;
-  border-width: 0px;
-  border-radius: 10px;
-  padding: 20px 40px;
-  background-color: #141414;
-  color: white;
-  margin-top: 20px;
+form {
+  width: 85%;
+  margin-top: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%;
+  text-align: center;
+  font-size: 28px;
+}
+form input {
+  font-size: 28px;
+  border: 3px solid #008187;
+  border-radius: 15px;
+  padding: 20px 30px;
+  background-color: #f2f3ed;
+  color: #293b4b;
+  margin-top: 30px;
 }/*# sourceMappingURL=main400.css.map */
