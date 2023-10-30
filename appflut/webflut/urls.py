@@ -30,5 +30,8 @@ urlpatterns = [
     path('removeuser/<int:group_id>', views.removeuser, name='removeuser'),
     path('userinfo/<int:user_id>', views.userinfo, name='userinfo'),
     # path('add_product', views.add_product, name='add_product'),
+    path('step1/', views.step1_view, name='step1'),
+    path('step2/', views.step2_view, name='step2'),
+    path('step3/', views.step3_view, name='step3'),
 
 ]

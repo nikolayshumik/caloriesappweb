@@ -17,9 +17,9 @@
 <body>
 
 <form action="." method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <input type="submit" value="Create my account">
-    </form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create my account">
+</form>
 
 </html>

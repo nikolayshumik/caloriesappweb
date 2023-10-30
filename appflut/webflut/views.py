@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
-from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm
+from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step2Form, Step3Form
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product, Ttime_Test
@@ -31,12 +31,84 @@ def register(request):
                 # Дополнительная логика для регистрации пользователя
                 pass
             login(request, user)
-            return redirect('home')
+            return redirect('step1')
     else:
         form = UserRegistrationForm()
 
     return render(request, 'register.html', {'form': form})
 
+
+def step1_view(request):
+    if request.method == 'POST':
+        form = Step1Form(request.POST)
+        if form.is_valid():
+            # Retrieve the existing Personal_Inform object for the current user
+            try:
+                personal_info = Personal_Inform.objects.get(user=request.user)
+            except Personal_Inform.DoesNotExist:
+                personal_info = Personal_Inform(user=request.user)
+
+            # Update the fields with the entered values
+            personal_info.first_name = form.cleaned_data['first_name']
+            personal_info.last_name = form.cleaned_data['last_name']
+            personal_info.date_of_birth = form.cleaned_data['date_of_birth']
+
+            personal_info.save()
+
+            return redirect('step2')
+    else:
+        form = Step1Form()
+
+    context = {'form': form}
+    return render(request, 'info1.html', context)
+
+
+def step2_view(request):
+    if request.method == 'POST':
+        form = Step2Form(request.POST)
+        if form.is_valid():
+            # Retrieve the existing Personal_Inform object for the current user
+            try:
+                personal_info = Personal_Inform.objects.get(user=request.user)
+            except Personal_Inform.DoesNotExist:
+                personal_info = Personal_Inform(user=request.user)
+
+            # Update the fields with the entered values
+            personal_info.sex = form.cleaned_data['sex']
+
+
+            personal_info.save()
+
+            return redirect('step3')
+    else:
+        form = Step2Form()
+
+    context = {'form': form}
+    return render(request, 'info2.html', context)
+
+
+def step3_view(request):
+    if request.method == 'POST':
+        form = Step3Form(request.POST)
+        if form.is_valid():
+            # Retrieve the existing Personal_Inform object for the current user
+            try:
+                personal_info = Personal_Inform.objects.get(user=request.user)
+            except Personal_Inform.DoesNotExist:
+                personal_info = Personal_Inform(user=request.user)
+
+            # Update the fields with the entered values
+            personal_info.height = form.cleaned_data['height']
+            personal_info.weight = form.cleaned_data['weight']
+
+            personal_info.save()
+
+            return redirect('calories_and_bjy')
+    else:
+        form = Step3Form()
+
+    context = {'form': form}
+    return render(request, 'info3.html', context)
 
 def person_info(request):
     if Personal_Inform.objects.filter(user=request.user).exists():

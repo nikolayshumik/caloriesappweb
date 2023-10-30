@@ -11,6 +11,9 @@ from .models import Ttime_Test
 from .models import Activity
 from .models import Group
 from .models import UserProfile
+from .models import Step1Model
+from .models import Step2Model
+from .models import Step3Model
 
 from django.contrib import admin
 
@@ -35,3 +38,6 @@ admin.site.register(Activities_Add)
 admin.site.register(Ttime_Test)
 admin.site.register(Activity)
 admin.site.register(Group)
+admin.site.register(Step1Model)
+admin.site.register(Step2Model)
+admin.site.register(Step3Model)

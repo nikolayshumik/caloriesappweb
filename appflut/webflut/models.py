@@ -7,14 +7,16 @@ from django.utils.crypto import get_random_string
 
 class Personal_Inform(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this line
+    first_name = models.CharField(max_length=10)
+    last_name = models.CharField(max_length=10)
     SEX_CHOICES = [
         ('M', 'Мужчина'),
         ('F', 'Женщина'),
     ]
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
-    date_of_birth = models.FloatField()
-    weight = models.FloatField()
-    height = models.FloatField()
+    date_of_birth = models.FloatField(default=0)
+    weight = models.FloatField(default=0)
+    height = models.FloatField(default=0)
 
     GOAL_CHOICES = [
         ('L', 'Похудение'),
@@ -35,6 +37,25 @@ class Personal_Inform(models.Model):
         verbose_name_plural = 'Личная Информация'
     def __str__(self):
         return self.user.username
+
+
+
+class Step1Model(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.FloatField()
+
+class Step2Model(models.Model):
+    SEX_CHOICES = [
+        ('M', 'Мужчина'),
+        ('F', 'Женщина'),
+    ]
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
+
+
+class Step3Model(models.Model):
+    height = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
 
 
 class Group(models.Model):
