@@ -147,7 +147,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('calories_and_bjy')
         else:
             messages.error(request, "Неверное имя пользователя или пароль.")
             return redirect('login')
@@ -770,3 +770,61 @@ def userinfo(request, user_id):
     }
 
     return render(request, 'userinfo.html', context)
+
+
+
+
+
+
+import matplotlib
+matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
+import matplotlib.pyplot as plt
+# import datetime
+
+
+from django.conf import settings
+import os
+from datetime import datetime, timedelta, date
+
+def display_calories_chart(request):
+    user = request.user
+    personal_info = Personal_Inform.objects.get(user=user)
+    weight = float(personal_info.weight)
+
+    week_start = datetime.now().date() - timedelta(days=6)
+    activity_prod = Activities_Add.objects.filter(user=user, date__date__range=[week_start, date.today()])
+
+    acttotal_calories = 0
+    activities_and_calories = []
+
+    for activity in activity_prod:
+        burned_calories = round(activity.product.met * weight / activity.time, 1)
+        acttotal_calories += burned_calories
+        activities_and_calories.append((activity.date.date(), burned_calories))
+
+    dates = [activity[0] for activity in activities_and_calories]
+    calories = [activity[1] for activity in activities_and_calories]
+
+    plt.plot(dates, calories, marker='o')
+    plt.xlabel('Дата')
+    plt.ylabel('Сожженные калории')
+    plt.title('Сожженные калории за неделю')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    # Получите путь к текущему файлу
+    current_path = os.path.dirname(os.path.abspath(__file__))
+    image_dir = os.path.join(current_path, 'static', 'phototest')
+    os.makedirs(image_dir, exist_ok=True)
+
+    image_path = os.path.join(image_dir, 'calories_chart.png')
+    plt.plot(dates, calories, marker='o')
+    plt.xlabel('Дата')
+    plt.ylabel('Сожженные калории')
+    plt.title('Сожженные калории за неделю')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig(image_path)  # Сохранить диаграмму как изображение
+    plt.close()
+
+    return render(request, 'chart.html', {'image_path': '/static/phototest/calories_chart.png'})

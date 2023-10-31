@@ -140,11 +140,6 @@ class Activity(models.Model):
         return self.activity_type
 
 
-# class Activities(models.Model):
-#     name = models.TextField()
-#     calories_in = models.TextField()
-#     time = models.TextField()
-
 class Activities_Add(models.Model):
     product = models.ForeignKey(Activity, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
