@@ -22,6 +22,7 @@ urlpatterns = [
     path('add_snack/', views.add_snack_view, name='add_snack_view'),
     path('add_activity_view/', views.add_activity_view, name='add_activity_view'),
     path('remove_from_list/<int:product_id>/', views.remove_from_list, name='remove_from_list'),
+    path('remove_from_list2/<int:product_id>/', views.remove_from_list2, name='remove_from_list2'),
     path('delete_activity/<int:id>/', views.delete_activity, name='delete_activity'),
     path('edit_person_info/', views.edit_person_info, name='edit_person_info'),
     path('creategroup', views.creategroup, name='creategroup'),

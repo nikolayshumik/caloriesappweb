@@ -538,29 +538,43 @@ def add_activity_view(request):
 
 from datetime import datetime
 
+
 def remove_from_list(request, product_id):
     if request.method == 'POST':
-        meal_type = request.POST.get('meal_type', '') # Получаем тип продукта для удаления из POST
+        meal_type = request.POST.get('meal_type', '')
         selected_date_str = request.session.get('selected_date', None)
         selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d") if selected_date_str else None
 
-        if meal_type == 'breakfast':
-            product = Breakfast_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
-        elif meal_type == 'lunch':
-            product = Lunch_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
-        elif meal_type == 'dinner':
-            product = Dinner_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
-        elif meal_type == 'snack':
-            product = Snack_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
-        elif meal_type == 'activities':
-            product = Activities_Add.objects.filter(product_id=product_id, user=request.user, date__date=selected_date).first()
-        else:
-            raise Http404("Invalid meal type.") # Или другой подход к обработке ошибок
+        try:
+            if meal_type == 'breakfast':
+                product = Breakfast_Products.objects.filter(product_id=product_id, user=request.user)
+            elif meal_type == 'lunch':
+                product = Lunch_Products.objects.filter(product_id=product_id, user=request.user)
+            elif meal_type == 'dinner':
+                product = Dinner_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
+            elif meal_type == 'snack':
+                product = Snack_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
+            elif meal_type == 'activities':
+                product = Activities_Add.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
+            else:
+                raise Http404("Invalid meal type.")
 
-        if product is not None:
             product.delete()
             return redirect('calories_and_bjy')
-        else:
+
+        except (Breakfast_Products.DoesNotExist, Lunch_Products.DoesNotExist, Dinner_Products.DoesNotExist,
+                Snack_Products.DoesNotExist, Activities_Add.DoesNotExist):
+            return HttpResponse("Product not found")
+
+
+def remove_from_list2(request, product_id):
+    if request.method == 'POST':
+        try:
+            products = Breakfast_Products.objects.filter(product_id=product_id)
+            products.delete()
+            return redirect('calories_and_bjy')
+
+        except Breakfast_Products.DoesNotExist:
             return HttpResponse("Product not found")
 
 from django.http import HttpResponseRedirect

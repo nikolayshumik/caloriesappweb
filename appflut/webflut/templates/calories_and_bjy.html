@@ -86,7 +86,7 @@
                             <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
                         </div>
 
-                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
+                        <form method="POST" action="{% url 'remove_from_list2'  product.product.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="meal_type" value="breakfast">
                             <input type="submit" value="Удалить">
@@ -124,7 +124,7 @@
 
                         <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                             {% csrf_token %}
-                            <input type="hidden" name="meal_type" value="breakfast">
+                            <input type="hidden" name="meal_type" value="lunch">
                             <input type="submit" value="Удалить">
                         </form>
                     </div>
