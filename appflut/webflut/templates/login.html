@@ -5,8 +5,7 @@
     <title>Авторизация</title>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
-    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
-    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>
     <!--Подключение шрифтов-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +14,10 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-
+    <div class="page-container">
     {% if user.is_authenticated %}
-        <p>Вы уже вошли в систему как {{ user.username }}</p>
-        <a href="{% url 'logout' %}">Выйти</a>
+        <text>Вы уже вошли в систему как {{ user.username }}</text>
+        <a href="{% url 'logout' %}" style="background-color: #293b4b;">Выйти</a>
     {% else %}
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
@@ -27,6 +26,6 @@
             <input type="submit" value="Войти" class="enter">
         </form>
     {% endif %}
-
+</div>
 </body>
 </html>

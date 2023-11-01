@@ -9,7 +9,9 @@ class DateForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    user_type = forms.ChoiceField(choices=[('user', 'Пользователь'), ('trainer', 'Тренер')])
+    #user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')), widget=forms.RadioSelect)
+    user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
+    widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}))
 
     class Meta:
         model = User
