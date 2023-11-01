@@ -31,6 +31,17 @@ class Step1Form(forms.ModelForm):
     class Meta:
         model = Step1Model
         fields = ['first_name', 'last_name', 'date_of_birth']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Фамилию'}),
+            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Полных лет'}),
+        }
+        labels = {
+            'first_name': '',
+            'last_name': '',
+            'date_of_birth': '',
+        }
+
 
 class Step2Form(forms.ModelForm):
     class Meta:
@@ -41,6 +52,14 @@ class Step3Form(forms.ModelForm):
     class Meta:
         model = Step3Model
         fields = ['height', 'weight']
+        widgets = {
+            'height': forms.TextInput(attrs={'placeholder': 'Рост, см'}),
+            'weight': forms.TextInput(attrs={'placeholder': 'Вес, кг'}),
+        }
+        labels = {
+            'height': '',
+            'weight': '',
+        }
 
 
 class AddProductForm(forms.ModelForm):

@@ -1,0 +1,75 @@
+$blue_color: #008187;
+$gray_color:#293b4b;
+$main_backgrounde: #f2f3ed;
+$font_main_text: 28px;
+$font_ps_text: 15px;
+$border_radius: 15px;
+
+@font-face {
+    font-family: 'Segoe UI';
+    src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
+        url('SegoeUI.woff2') format('woff2'),
+        url('SegoeUI.woff') format('woff'),
+        url('SegoeUI.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Segoe UI_Bold';
+    src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
+        url('SegoeUI-Bold.woff2') format('woff2'),
+        url('SegoeUI-Bold.woff') format('woff'),
+        url('SegoeUI-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+
+  html{
+    font-family: "Segoe UI";
+    background-color: $main_backgrounde;
+}
+text{
+    width: 80%;
+    font-size: $font_main_text;
+    color: $gray_color;
+    text-align: center;
+    margin-bottom: 20%; /* Увеличиваем нижний отступ для текста */
+}
+form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10%; /* Добавляем отступ от верха страницы */
+  }
+  
+  button{
+    position: absolute;
+    bottom: -30%;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+    border: 0;
+    background-color: $blue_color;
+    font-size: $font_main_text;
+    padding: 10px 20px;
+    font-family: "Segoe UI";
+    color: $main_backgrounde;
+    border-radius: $border_radius;
+  }
+  input{
+    font-size: $font_main_text;
+    border: 3px solid $blue_color;
+    border-radius: $border_radius;
+    padding: 20px 30px;
+    background-color: $main_backgrounde;
+    color: $gray_color;
+    margin-top: 30px;
+  }
+  
