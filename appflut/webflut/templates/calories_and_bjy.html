@@ -68,9 +68,7 @@
    <div class="eatings" style="margin-top: 40px;">
     <div class="breakfast clickable">Завтрак<a href="{% url 'breakfast' %}">+</a></div>
         <div class="summ_kkal">
-                {% if bproteins and bfats and bcarbohydrates %}
                 {{ bcalories_in }} ккал
-                {% endif %}
             </div>
 
             <div class="content" style="margin-top: 20px;">
@@ -106,9 +104,7 @@
     <div class="eatings">
         <div class="breakfast clickable">Обед<a href="{% url 'lunch' %}">+</a></div>
         <div class="summ_kkal">
-                {% if proteins and fats and carbohydrates %}
-                {{ bcalories_in }} ккал
-                {% endif %}
+                {{ calories_in }} ккал
             </div>
 
             <div class="content" style="margin-top: 20px;">
@@ -141,30 +137,28 @@
     </div>
 
 
-   <div class="eatings">
-    <div class="breakfast clickable">Ужин<a href="{% url 'dinner' %}">+</a></div>
-        <div>
-                {% if dproteins and dfats and dcarbohydrates %}
-                калории: {{ dcalories_in }}<br>
-                Б- {{ dproteins }}
-                Ж- {{ dfats }}
-                У- {{ dcarbohydrates }}
-                {% endif %}
+    <div class="eatings">
+        <div class="breakfast clickable">Ужин<a href="{% url 'dinner' %}">+</a></div>
+        <div class="summ_kkal">
+                {{ dcalories_in }} ккал
             </div>
 
-            <div class="content">
-                <h1>Отчёт Ужин</h1>
-
+            <div class="content" style="margin-top: 20px;">
                 <div class="product-eatings">
                     {% for product in dproducts %}
                     <div class="product-item">
-                        <h4>{{ product.product.name }}</h4>
-                        <p>Каллории: {{ product.product.calories_in }}</p>
-                        <p>Белки: {{ product.product.proteins }}</p>
-                        <p>Жиры: {{ product.product.fats }}</p>
-                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                        <p>Масса: {{ product.weight }}</p>
-                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                        <div class="title">
+                            <text style="text-decoration: dotted;">{{ product.product.name }}
+                                ({{ product.weight }} г.)</text>
+                            <text>{{ product.product.calories_in }} ккал</text>
+                        </div>
+                        <div class="product-row">
+                            <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
+                            <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
+                            <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                        </div>
+
+                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="meal_type" value="dinner">
                             <input type="submit" value="Удалить">
@@ -174,35 +168,32 @@
                     <p>Ничего не найдено</p>
                     {% endfor %}
                 </div>
+
             </div>
     </div>
 
     <div class="eatings">
-        <div class="breakfast clickable">Перекус<a href="{% url 'snack' %}" class="buttonMod">+</a></div>
-
-            <div>
-                {% if sproteins and sfats and scarbohydrates %}
-                калории: {{ scalories_in }}<br>
-                Б- {{ sproteins }}
-                Ж- {{ sfats }}
-                У- {{ scarbohydrates }}
-                {% endif %}
+        <div class="breakfast clickable">Перекус<a href="{% url 'snack' %}">+</a></div>
+        <div class="summ_kkal">
+                {{ scalories_in }} ккал
             </div>
 
-            <div class="content">
-
-                <h1>Отчёт Перекуса</h1>
-
+            <div class="content" style="margin-top: 20px;">
                 <div class="product-eatings">
                     {% for product in sproducts %}
                     <div class="product-item">
-                        <h4>{{ product.product.name }}</h4>
-                        <p>Каллории: {{ product.product.calories_in }}</p>
-                        <p>Белки: {{ product.product.proteins }}</p>
-                        <p>Жиры: {{ product.product.fats }}</p>
-                        <p>Углеводы: {{ product.product.carbohydrates }}</p>
-                        <p>Масса: {{ product.weight }}</p>
-                        <form method="POST" action="{% url 'remove_from_list' product.product.id %}">
+                        <div class="title">
+                            <text style="text-decoration: dotted;">{{ product.product.name }}
+                                ({{ product.weight }} г.)</text>
+                            <text>{{ product.product.calories_in }} ккал</text>
+                        </div>
+                        <div class="product-row">
+                            <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
+                            <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
+                            <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                        </div>
+
+                        <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="meal_type" value="snack">
                             <input type="submit" value="Удалить">
@@ -217,7 +208,8 @@
 
 
     <div class="eatings">
-        <div class="breakfast clickable"><a href="{% url 'activities' %}" class="buttonMod">Активности</a></div>
+<!--        <div class="breakfast clickable"><a href="{% url 'activities' %}" class="buttonMod">Активности</a></div>-->
+        <div class="breakfast clickable">Активности<a href="{% url 'activities' %}">+</a></div>
 
             <div>
                  <p>Сумма: {{ acttotal_calories }}</p>

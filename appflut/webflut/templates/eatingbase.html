@@ -57,28 +57,34 @@ function closeModal() {
   modal.style.display = "none";
 }
 
-function openModal2(id) {
-  document.querySelector('#modal2').style.display = "block";
+function openModal2(productID) {
+  var modalID = 'modal2_' + productID;
+  document.getElementById(modalID).style.display = "block";
 }
 
-function closeModal2(id) {
-  document.querySelector('#modal2').style.display = "none";
+function closeModal2(productID) {
+  var modalID = 'modal2_' + productID;
+  document.getElementById(modalID).style.display = "none";
 }
 
-function openModal3(id) {
-  document.querySelector('#modal3').style.display = "block";
+function openModal3(productID) {
+  var modalID = 'modal3_' + productID;
+  document.getElementById(modalID).style.display = "block";
 }
 
-function closeModal3(id) {
-  document.querySelector('#modal3').style.display = "none";
+function closeModal3(productID) {
+  var modalID = 'modal3_' + productID;
+  document.getElementById(modalID).style.display = "none";
 }
 
-function openModal4(id) {
-  document.querySelector('#modal4').style.display = "block";
+function openModal4(productID) {
+  var modalID = 'modal4_' + productID;
+  document.getElementById(modalID).style.display = "block";
 }
 
-function closeModal4(id) {
-  document.querySelector('#modal4').style.display = "none";
+function closeModal4(productID) {
+  var modalID = 'modal4_' + productID;
+  document.getElementById(modalID).style.display = "none";
 }
 
 window.onclick = function(event) {

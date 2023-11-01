@@ -540,7 +540,7 @@ from datetime import datetime
 
 def remove_from_list(request, product_id):
     if request.method == 'POST':
-        meal_type = request.POST.get('meal_type','') # Получаем тип продукта для удаления из POST
+        meal_type = request.POST.get('meal_type', '') # Получаем тип продукта для удаления из POST
         selected_date_str = request.session.get('selected_date', None)
         selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d") if selected_date_str else None
 
@@ -824,31 +824,43 @@ def display_calories_chart(request):
     return render(request, 'chart.html', {'image_path': '/static/phototest/calories_chart.png'})
 
 
+import calendar
+
 def display(request):
     user = request.user
     week_start = datetime.now().date() - timedelta(days=6)
 
+    # Retrieve consumed products for each meal type
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     lunch_products = Lunch_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     dinner_products = Dinner_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     snack_products = Snack_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
 
-    bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    calories_in = lunch_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    dcalories_in = dinner_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    scalories_in = snack_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-
-    total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
+    # Calculate calories sum for each day
+    calories_by_day = {}
+    for i in range(7):
+        current_date = week_start + timedelta(days=i)
+        total_calories = (
+                (breakfast_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
+                     'product__calories_in__sum'] or 0)
+                + (lunch_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
+                       'product__calories_in__sum'] or 0)
+                + (dinner_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
+                       'product__calories_in__sum'] or 0)
+                + (snack_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
+                       'product__calories_in__sum'] or 0)
+        )
+        calories_by_day[current_date] = total_calories
 
     # Prepare chart data
-    labels = ['Breakfast', 'Lunch', 'Dinner', 'Snack']
-    calories = [bcalories_in, calories_in, dcalories_in, scalories_in]
+    days = [calendar.day_name[d.weekday()] for d in calories_by_day.keys()]
+    calories = list(calories_by_day.values())
 
     # Plot the chart
-    plt.bar(labels, calories)
-    plt.xlabel('Meal')
-    plt.ylabel('Calories')
-    plt.title('Consumed Calories by Meal')
+    plt.bar(days, calories)
+    plt.xlabel('Day of the Week')
+    plt.ylabel('Total Calories')
+    plt.title('Total Consumed Calories by Day')
     plt.tight_layout()
 
     # Save the chart as an image
@@ -860,9 +872,7 @@ def display(request):
     plt.savefig(image_path)
     plt.close()
 
-
     context = {
-        'total_calories': total_calories,
         'image_path': '/static/phototest/chart.png',
     }
     return render(request, 'display.html', context)

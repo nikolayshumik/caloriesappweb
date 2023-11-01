@@ -50,8 +50,8 @@
 
 </style>
 
-<button onclick="openModal2()">Открыть</button>
-<div id="modal2" class="modal2">
+<button onclick="openModal2({{ product.id }})">Открыть</button>
+<div id="modal2_{{ product.id }}" class="modal2">
     <div class="modal-content2">
         <span class="close2" onclick="closeModal2()">&times;</span>
         <form id="breakfast-form" method="post" action="{% url 'add_breakfast_view' %}">

@@ -47,11 +47,11 @@
 
 </style>
 
-<button onclick="openModal3()">Открыть</button>
-<div id="modal3" class="modal3">
+<button onclick="openModal3({{ product.id }})">Открыть</button>
+<div id="modal3_{{ product.id }}" class="modal3">
     <div class="modal-content3">
         <span class="close3" onclick="closeModal3()">&times;</span>
-        <form method="post" action="{% url 'add_lunch_view' %}">
+        <form id="lunch-form" method="post" action="{% url 'add_lunch_view' %}">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{ product.id }}">
             <label for="weight-input">Введите массу:</label>
@@ -63,3 +63,4 @@
 </div>
 
 {% endblock %}
+

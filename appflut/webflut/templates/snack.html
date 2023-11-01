@@ -47,8 +47,8 @@
 
 </style>
 
-<button onclick="openModal4()">Открыть</button>
-<div id="modal4" class="modal4">
+<button onclick="openModal4({{ product.id }})">Открыть</button>
+<div id="modal4_{{ product.id }}" class="modal4">
     <div class="modal-content4">
         <span class="close4" onclick="closeModal4()">&times;</span>
         <form method="post" action="{% url 'add_snack_view' %}">
