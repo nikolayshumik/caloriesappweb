@@ -818,13 +818,51 @@ def display_calories_chart(request):
     os.makedirs(image_dir, exist_ok=True)
 
     image_path = os.path.join(image_dir, 'calories_chart.png')
-    plt.plot(dates, calories, marker='o')
-    plt.xlabel('Дата')
-    plt.ylabel('Сожженные калории')
-    plt.title('Сожженные калории за неделю')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
     plt.savefig(image_path)  # Сохранить диаграмму как изображение
     plt.close()
 
     return render(request, 'chart.html', {'image_path': '/static/phototest/calories_chart.png'})
+
+
+def display(request):
+    user = request.user
+    week_start = datetime.now().date() - timedelta(days=6)
+
+    breakfast_products = Breakfast_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    lunch_products = Lunch_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    dinner_products = Dinner_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    snack_products = Snack_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+
+    bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    calories_in = lunch_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    dcalories_in = dinner_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+    scalories_in = snack_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
+
+    total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
+
+    # Prepare chart data
+    labels = ['Breakfast', 'Lunch', 'Dinner', 'Snack']
+    calories = [bcalories_in, calories_in, dcalories_in, scalories_in]
+
+    # Plot the chart
+    plt.bar(labels, calories)
+    plt.xlabel('Meal')
+    plt.ylabel('Calories')
+    plt.title('Consumed Calories by Meal')
+    plt.tight_layout()
+
+    # Save the chart as an image
+    current_path = os.path.dirname(os.path.abspath(__file__))
+    image_dir = os.path.join(current_path, 'static', 'phototest')
+    os.makedirs(image_dir, exist_ok=True)
+
+    image_path = os.path.join(image_dir, 'chart.png')
+    plt.savefig(image_path)
+    plt.close()
+
+
+    context = {
+        'total_calories': total_calories,
+        'image_path': '/static/phototest/chart.png',
+    }
+    return render(request, 'display.html', context)
