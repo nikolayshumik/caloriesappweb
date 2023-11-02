@@ -1,6 +1,5 @@
 {% extends 'eatingbase.html' %}
 
-
 {% block content %}
 <h1>Обед</h1>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
@@ -8,6 +7,9 @@
 
 {% block contenbutton %}
 <style>
+    .product-container{
+        background-color: red;
+    }
     .modal3 {
         display: none;
         position: fixed;

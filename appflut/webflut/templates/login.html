@@ -1,11 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Авторизация</title>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
     <!--Подключение шрифтов-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +14,21 @@
     <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
+
 <body>
     <div class="page-container">
-    {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         <text>Вы уже вошли в систему как {{ user.username }}</text>
         <a href="{% url 'logout' %}" style="background-color: #293b4b;">Выйти</a>
-    {% else %}
+        {% else %}
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <input type="text" id="username" name="username" placeholder="Логин">
             <input type="password" id="password" name="password" placeholder="Пароль">
             <input type="submit" value="Войти" class="enter">
         </form>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 </body>
+
 </html>
