@@ -52,12 +52,26 @@ class Step2Model(models.Model):
     ]
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
 
-
+class StepTestModel(models.Model):
+    is_male = models.BooleanField(verbose_name='Мужчина')
+    is_female = models.BooleanField(verbose_name='Женщина')
 class Step3Model(models.Model):
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
 
-
+class Step4Model(models.Model):
+    GOAL_CHOICES = [
+        ('L', 'Похудение'),
+        ('M', 'Набор массы'),
+        ('F', 'Поддержание веса'),
+    ]
+    goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
+    ACTIVE_CHOICES = [
+        ('L', 'Низкая активность'),
+        ('M', 'Средняя активность'),
+        ('H', 'Высокая активность'),
+    ]
+    active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
 class Group(models.Model):
     name = models.CharField(max_length=100)
     users = models.ManyToManyField(User)  # Отношение "многие ко многим" с моделью User

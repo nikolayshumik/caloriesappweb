@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Personal_Inform, Add_Product, Step1Model, Step2Model, Step3Model
+from .models import Personal_Inform, Add_Product, Step1Model, Step2Model, Step3Model, Step4Model, StepTestModel
 
 
 class DateForm(forms.Form):
@@ -36,12 +36,19 @@ class Step2Form(forms.ModelForm):
     class Meta:
         model = Step2Model
         fields = ['sex']
-
+class StepTestForm(forms.ModelForm):
+    class Meta:
+        model = StepTestModel
+        fields = ['is_male', 'is_female']
 class Step3Form(forms.ModelForm):
     class Meta:
         model = Step3Model
         fields = ['height', 'weight']
 
+class Step4Form(forms.ModelForm):
+    class Meta:
+        model = Step4Model
+        fields = ['goals', 'active']
 
 class AddProductForm(forms.ModelForm):
     class Meta:

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
-from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step2Form, Step3Form
+from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step2Form, Step3Form, Step4Form, StepTestForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Add_Product, Ttime_Test
@@ -103,13 +103,36 @@ def step3_view(request):
 
             personal_info.save()
 
-            return redirect('calories_and_bjy')
+            return redirect('step4')
     else:
         form = Step3Form()
 
     context = {'form': form}
     return render(request, 'info3.html', context)
 
+
+def step4_view(request):
+    if request.method == 'POST':
+        form = Step4Form(request.POST)
+        if form.is_valid():
+            # Retrieve the existing Personal_Inform object for the current user
+            try:
+                personal_info = Personal_Inform.objects.get(user=request.user)
+            except Personal_Inform.DoesNotExist:
+                personal_info = Personal_Inform(user=request.user)
+
+            # Update the fields with the entered values
+            personal_info.goals = form.cleaned_data['goals']
+            personal_info.active = form.cleaned_data['active']
+
+            personal_info.save()
+
+            return redirect('calories_and_bjy')
+    else:
+        form = StepTestForm()
+
+    context = {'form': form}
+    return render(request, 'info4.html', context)
 def person_info(request):
     if Personal_Inform.objects.filter(user=request.user).exists():
         return redirect('edit_person_info')  # Redirect to a different page indicating that the information is already filled
