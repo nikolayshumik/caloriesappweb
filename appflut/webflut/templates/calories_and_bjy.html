@@ -25,6 +25,8 @@
 
 
 </head>
+{% block content %}
+{% include 'footer.html' %}
 
 <body>
     <a href="{% url 'profile' %}" class="profile">p</a>
@@ -253,7 +255,7 @@
 
     <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
     <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
-
+    {% endblock %}
     <script>
         document.querySelectorAll('.clickable').forEach(item => {
             item.addEventListener('click', event => {

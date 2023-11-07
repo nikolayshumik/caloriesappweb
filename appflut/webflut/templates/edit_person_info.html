@@ -15,6 +15,9 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
+    {% block content %}
+    {% include 'footer.html' %}
+
     
     <text>Привет, {{ request.user.username }}</text>
 <!--{% if form.instance %}-->
@@ -35,21 +38,12 @@
             {{ field }}
         {% endif %}
     {% endfor %}
-    <button type="submit">Сохранить</button>
+    <button type="submit" class="save">Сохранить</button>
 </form>
 
-<footer>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
-        <img src="{% static 'accets/журнал.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
-        <img src="{% static 'accets/статистика.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'profile' %}" class="buttonFooter">
-        <img src="{% static 'accets/profile.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
-        <img src="{% static 'accets/kkal.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'person_info' %}" class="buttonFooter">
-        <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"/></a>
-</footer>
+{% endblock %}
+
+
 
 </body>
 </html>

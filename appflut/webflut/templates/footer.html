@@ -1,20 +1,10 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/footer.css' %}" rel="stylesheet"/>
-    <!--Подключение шрифтов-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
-</head>
-<body>
-    <button class="main-orientations" onclick="goBack()">&lt;</button>
+<link href="{% static 'css/footer.css' %}" rel="stylesheet"/>
+
+<button class="main-orientations" onclick="goBack()">&lt;</button>
 {% block content %}
 {% endblock %}
-
+    
 <footer>
     <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
         <img src="{% static 'accets/журнал.png' %}" class="imgFooter"/></a>
@@ -27,5 +17,3 @@
     <a href="{% url 'person_info' %}" class="buttonFooter">
         <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"/></a>
 </footer>
-</body>
-</html>

@@ -16,7 +16,11 @@
 </head>
 
 <body>
+    {% include 'footer.html' %}
+    {% block content %}
+   
     <div class="page-container">
+        
         {% if user.is_authenticated %}
         <text>Вы уже вошли в систему как {{ user.username }}</text>
         <a href="{% url 'logout' %}" style="background-color: #293b4b;">Выйти</a>
@@ -29,6 +33,8 @@
         </form>
         {% endif %}
     </div>
+    
+    {% endblock %}
 </body>
 
 </html>
