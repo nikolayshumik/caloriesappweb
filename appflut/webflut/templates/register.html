@@ -1,25 +1,38 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Авторизация</title>
     <!--Медиа запросы, адаптив-->
-    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
-    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
     <!--Подключение шрифтов-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
-    <!--Скрипт-->
+    <!--Скрипт  {{ form.as_table }}  -->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
-<body>
 
-<form action="." method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create my account">
-</form>
+<body>
+    <form action="." method="post">
+        {% csrf_token %}
+
+        <div class="form_toggle">
+            <div class="form_toggle-item item-1">
+                <input id="fid-1" type="radio" name="radio" value="user" checked>
+                {{ form.user_type.choices.0 }}
+                <label for="{{ form.user_type.id_for_label }}">user</label>
+            </div>
+            <div class="form_toggle-item item-2">
+                <input id="fid-2" type="radio" name="radio" value="trainer">
+                {{ form.user_type.choices.1 }}
+                <label for="{{ form.user_type.id_for_label }}">trainer</label>
+            </div>
+        </div>Не рабочий переключатель<dr></dr>
+        {{ form.as_table }}
+        <input type="submit" value="Create my account">
+    </form>
 
 </html>

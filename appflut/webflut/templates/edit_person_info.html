@@ -1,19 +1,49 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>О мне</title>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <!--Медиа запросы, адаптив-->
+    <link href="{% static 'css/Profile Page/pers_info.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт-->
+    <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-<p>Страница редактирования информации</p>
+    {% block content %}
+    {% include 'footer.html' %}
+
+    
+    <text>Привет, {{ request.user.username }}</text>
 <!--{% if form.instance %}-->
 <!--        <a href="{% url 'edit_person_info' %}">Edit Personal Information</a>-->
 <!--    {% endif %}-->
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Сохранить</button>
-    </form>
+<form method="post">
+    {% csrf_token %}
+    <div class="WH">
+        {% for field in form %}
+            {% if field.name == 'weight' or field.name == 'height' %}
+                {{ field }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% for field in form %}
+        {% if field.name != 'weight' and field.name != 'height' %}
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+    <button type="submit" class="save">Сохранить</button>
+</form>
+
+{% endblock %}
+
+
+
 </body>
 </html>

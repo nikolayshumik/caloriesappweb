@@ -1,0 +1,108 @@
+$blue_color: #008187;
+$gray_color:#293b4b;
+$main_backgrounde: #f2f3ed;
+$font_main_text: 28px;
+$font_ps_text: 15px;
+$border_radius: 15px;
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
+      url('SegoeUI.woff2') format('woff2'),
+      url('SegoeUI.woff') format('woff'),
+      url('SegoeUI.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Segoe UI Bold';
+  src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
+      url('SegoeUI-Bold.woff2') format('woff2'),
+      url('SegoeUI-Bold.woff') format('woff'),
+      url('SegoeUI-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+html{
+    font-family: "Segoe UI";
+    background-color: $main_backgrounde;
+}
+body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+text{
+    font-size: $font_main_text;
+    margin: 10% auto 10% 10%;
+}
+#id_goals, #id_active{
+    padding: 20px;
+    border: 2px solid $blue_color;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: $border_radius;
+    margin-top: 5vw;
+}
+form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.WH{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#id_weight, #id_height{
+    font-family: "Segoe UI Bold";
+    background-color: $blue_color;
+    color: $main_backgrounde;
+    border-radius: $border_radius;
+    font-size: $font_main_text;
+    text-align: center;
+    border: 0;
+    width: 30vw;
+    height: 30vw;
+    padding: 10px;
+}
+.save{
+    margin: auto;
+    margin-top: 20vw;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+    border: 0;
+    background-color: $blue_color;
+    font-size: $font_main_text;
+    padding: 10px 20px;
+    font-family: "Segoe UI";
+    color: $main_backgrounde;
+    border-radius: $border_radius;
+}
+footer {
+    background-color: #293b4b;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 100%;
+    margin: auto;
+    position: fixed;
+    display: inline-block;
+    white-space: nowrap;
+    bottom: 4vw;
+}
+.imgFooter {
+    width: 8vw;
+}
+.buttonFooter {
+    display: inline-block;
+    font-size: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 0;
+}
+.buttonFooter:hover {
+    border: 2px solid black;
+}

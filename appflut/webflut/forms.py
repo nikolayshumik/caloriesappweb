@@ -9,7 +9,9 @@ class DateForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    user_type = forms.ChoiceField(choices=[('user', 'Пользователь'), ('trainer', 'Тренер')])
+    #user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')), widget=forms.RadioSelect)
+    user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
+    widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}))
 
     class Meta:
         model = User
@@ -25,12 +27,23 @@ class UserRegistrationForm(forms.ModelForm):
 class PersonalInformForm(forms.ModelForm):
     class Meta:
         model = Personal_Inform
-        fields = ['sex', 'first_name', 'last_name', 'date_of_birth', 'weight', 'height', 'goals', 'active',]
+        fields = ['weight', 'height', 'sex', 'first_name', 'last_name', 'date_of_birth',  'goals', 'active',]
 
 class Step1Form(forms.ModelForm):
     class Meta:
         model = Step1Model
         fields = ['first_name', 'last_name', 'date_of_birth']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Фамилию'}),
+            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Полных лет'}),
+        }
+        labels = {
+            'first_name': '',
+            'last_name': '',
+            'date_of_birth': '',
+        }
+
 
 class Step2Form(forms.ModelForm):
     class Meta:
@@ -44,6 +57,14 @@ class Step3Form(forms.ModelForm):
     class Meta:
         model = Step3Model
         fields = ['height', 'weight']
+        widgets = {
+            'height': forms.TextInput(attrs={'placeholder': 'Рост, см'}),
+            'weight': forms.TextInput(attrs={'placeholder': 'Вес, кг'}),
+        }
+        labels = {
+            'height': '',
+            'weight': '',
+        }
 
 class Step4Form(forms.ModelForm):
     class Meta:

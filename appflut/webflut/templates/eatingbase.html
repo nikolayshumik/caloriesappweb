@@ -2,10 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-  <link href="{% static 'css/main.css' %}" rel="stylesheet">
-
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <title>Добавить калории</title>
+  <!--Медиа запросы, адаптив-->
+  <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
+  <!--Подключение шрифтов-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+  <!--Скрипт-->
+  <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 
 <body>
@@ -25,26 +31,32 @@
   </div>
 </div>
 
+  <!--Поиск продуктов-->
+  <form action="" class="search" method="GET">
+    <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
+    <button type="submit"><img src="{% static 'accets/поиск.png' %}" style="width: 10vw;" /></button>
+  </form>
+  <!--Поиск продуктов-->
 
-<form action="" method="GET">
-  <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
-  <button type="submit">Поиск</button>
-</form>
-<div class="product-container">
-{% for product in products %}
-  <div class="product-item">
-    <h4>{{ product.name }}</h4>
-    <p>Каллории: {{ product.calories_in }}</p>
-    <p>Белки: {{ product.proteins }}</p>
-    <p>Жиры: {{ product.fats }}</p>
-    <p>Углеводы: {{ product.carbohydrates }}</p>
-{% block contenbutton %}
-    {% endblock %}
+  <div class="product-container">
+    {% for product in products %}
+    <div class="product-item">
+      <text>{{ product.name }}</text>
+      <p>Каллории: {{ product.calories_in }}</p>
+
+      <div class="product-row">
+        <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+        <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+        <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
+      </div>
+
+      {% block contenbutton %}
+      {% endblock %}
+    </div>
+    {% empty %}
+    <p>Ничего не найдено</p>
+    {% endfor %}
   </div>
-{% empty %}
-  <p>Ничего не найдено</p>
-{% endfor %}
-</div>
 
 <script>
 var modal = document.getElementById("modal");

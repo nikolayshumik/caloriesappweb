@@ -35,30 +35,6 @@ body {
   background-color: #293b4b;
 }
 
-footer {
-  background-color: #293b4b;
-  border-radius: 10px;
-  padding: 5px;
-  max-width: 100%;
-  margin: auto;
-  position: fixed;
-  bottom: 4vw;
-}
-footer .buttonFooter {
-  display: inline-block;
-  font-size: 10px;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  border: 0;
-}
-footer .buttonFooter .imgFooter {
-  width: 8vw;
-}
-footer .buttonFooter:hover {
-  border: 2px solid black;
-}
-
 /*
   .modal {
     display: none;

@@ -1,16 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <head>
+    <title>Шаг 3</title>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <!--Медиа запросы, адаптив-->
+    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>
+    <!--Подключение шрифтов-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <!--Скрипт-->
+    <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-<form method="POST" action="{% url 'step3' %}">
-  {% csrf_token %}
-
-  {{ form.as_p }}
-
-  <button type="submit">next</button>
-</form>
+  <div class="page-container">
+    <text>ВАШИ ПАРАМЕТРЫ</text>
+    <form method="POST" action="{% url 'step3' %}">
+      {% csrf_token %}
+      {{ form.as_table }}
+      <button type="submit">Далее</button>
+    </form>
+  </div>
 </body>
 </html>
