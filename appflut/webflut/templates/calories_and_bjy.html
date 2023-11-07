@@ -5,12 +5,12 @@
     <title>Калории</title>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
-    <link media="screen and (max-width: 400px)" href="{% static 'css/Calories Page/calories400.css' %}" rel="stylesheet"/>
-    <link media="screen and (min-width: 401px)" href="{% static 'css/Calories Page/calories600.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/Calories Page/calories400.css' %}" rel="stylesheet" />
     <!--Подключение шрифтов-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap"
+        rel="stylesheet">
     <!--Скрипт
         <script defer src="{% static 'js/main.js' %}"></script>
     -->
@@ -24,6 +24,9 @@
 
 
 </head>
+{% block content %}
+{% include 'footer.html' %}
+
 <body>
 <a href="{% url 'profile' %}" class="profile">p</a>
 
@@ -242,7 +245,7 @@
 
         <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
         <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
-
+        {% endblock %}
     <script>
 document.querySelectorAll('.clickable').forEach(item => {
   item.addEventListener('click', event => {

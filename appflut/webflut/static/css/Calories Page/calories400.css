@@ -45,12 +45,11 @@ body {
   font-size: 25px;
   border-radius: 10px;
   margin-top: 20px;
-  background-color: white;
-  color: #0c1c2c;
+  background-color: rgb(4, 177, 211);
+  color: white;
   padding-top: 5px;
 }
 .block .nutrition-div {
-  background-color: white;
   font-size: 18px;
   border-radius: 5px;
   margin: 5px;

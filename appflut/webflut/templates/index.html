@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +5,7 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Авторизация</title>
     <!--Медиа запросы, адаптив-->
-    <link media="screen and (max-width: 400px)" href="{% static 'css/main400.css' %}" rel="stylesheet"/>
-    <link media="screen and (min-width: 401px)" href="{% static 'css/main600.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/main400.css' %}" rel="stylesheet"/>
     <!--Подключение шрифтов-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +14,19 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-<img src="{% static 'accets/settings.png' %}" style="width: 50vw;" />
-тут будет лого
-<div class="main">
-    <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
-    <a href="{% url 'register' %}">Регистрация</a>
-    <!--<p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>-->
-    <a href="{% url 'logout' %}">Выйти</a>
-</div>
+    {% block content %}
+    {% include 'footer.html' %}
+        <img src="{% static 'accets/settings.png' %}" style="width: 50vw;" />
+        тут будет лого
 
+        <div class="main">
+            <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+            <!--<p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>-->
+            <a href="{% url 'logout' %}">Выйти</a>
+        </div>
+
+        
+    {% endblock %}
 </body>
 </html>

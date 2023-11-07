@@ -29,6 +29,8 @@ body {
   padding: 25px;
   color: #008187;
   font-size: 28px;
+  width: 50%;
+  margin: auto;
 }
 
 textarea {
