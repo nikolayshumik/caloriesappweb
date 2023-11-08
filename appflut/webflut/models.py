@@ -12,8 +12,9 @@ class Personal_Inform(models.Model):
     SEX_CHOICES = [
         ('M', 'Мужчина'),
         ('F', 'Женщина'),
+        ('', ''),
     ]
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
+    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='')
     date_of_birth = models.FloatField(default=0)
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
@@ -25,9 +26,8 @@ class Personal_Inform(models.Model):
     ]
     goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
     ACTIVE_CHOICES = [
-        ('L', 'Низкая активность'),
-        ('M', 'Средняя активность'),
-        ('H', 'Высокая активность'),
+        ('L', 'малоактивный'),
+        ('M', 'активный'),
     ]
     active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
 
@@ -45,12 +45,6 @@ class Step1Model(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.FloatField()
 
-class Step2Model(models.Model):
-    SEX_CHOICES = [
-        ('M', 'Мужчина'),
-        ('F', 'Женщина'),
-    ]
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='M')
 
 class StepTestModel(models.Model):
     is_male = models.BooleanField(verbose_name='Мужчина')
@@ -60,18 +54,21 @@ class Step3Model(models.Model):
     weight = models.IntegerField(blank=True, null=True)
 
 class Step4Model(models.Model):
+    ACTIVE_CHOICES = [
+        ('L', 'малоактивный'),
+        ('M', 'активный'),
+    ]
+    active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
+
+
+class Step5Model(models.Model):
     GOAL_CHOICES = [
         ('L', 'Похудение'),
         ('M', 'Набор массы'),
         ('F', 'Поддержание веса'),
     ]
     goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
-    ACTIVE_CHOICES = [
-        ('L', 'Низкая активность'),
-        ('M', 'Средняя активность'),
-        ('H', 'Высокая активность'),
-    ]
-    active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
+
 class Group(models.Model):
     name = models.CharField(max_length=100)
     users = models.ManyToManyField(User)  # Отношение "многие ко многим" с моделью User

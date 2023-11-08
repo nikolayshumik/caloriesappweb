@@ -5,11 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<form method="POST" action="{% url 'step4' %}">
+<form method="post">
   {% csrf_token %}
 
-  {{ form.as_p }}
-
-  <button type="submit">Submit</button>
-</body>
+  <button type="submit" name="active" value="L">малоактивный</button>
+  <button type="submit" name="active" value="M">активный</button>
+</form>
 </html>

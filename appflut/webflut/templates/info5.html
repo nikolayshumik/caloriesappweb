@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+  {% csrf_token %}
+
+  <button type="submit" name="goals" value="L">Похудение</button>
+  <button type="submit" name="goals" value="M">Набор массы</button>
+  <button type="submit" name="goals" value="F">Поддержание веса</button>
+</form>
+</body>
+</html>

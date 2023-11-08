@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
-from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step2Form, Step3Form, Step4Form, StepTestForm
+from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step3Form
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Add_Product, Ttime_Test
+from .models import Add_Product, Ttime_Test, StepTestModel
 from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Personal_Inform, Activities_Add
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
@@ -64,26 +64,16 @@ def step1_view(request):
 
 
 def step2_view(request):
+    personal_inform = get_object_or_404(Personal_Inform, user=request.user)
+
     if request.method == 'POST':
-        form = Step2Form(request.POST)
-        if form.is_valid():
-            # Retrieve the existing Personal_Inform object for the current user
-            try:
-                personal_info = Personal_Inform.objects.get(user=request.user)
-            except Personal_Inform.DoesNotExist:
-                personal_info = Personal_Inform(user=request.user)
-
-            # Update the fields with the entered values
-            personal_info.sex = form.cleaned_data['sex']
-
-
-            personal_info.save()
-
+        sex = request.POST.get('sex')
+        if sex in ('M', 'F'):
+            personal_inform.sex = sex
+            personal_inform.save()
             return redirect('step3')
-    else:
-        form = Step2Form()
 
-    context = {'form': form}
+    context = {'personal_inform': personal_inform}
     return render(request, 'info2.html', context)
 
 
@@ -110,29 +100,32 @@ def step3_view(request):
     context = {'form': form}
     return render(request, 'info3.html', context)
 
-
 def step4_view(request):
+    personal_inform = get_object_or_404(Personal_Inform, user=request.user)
+
     if request.method == 'POST':
-        form = Step4Form(request.POST)
-        if form.is_valid():
-            # Retrieve the existing Personal_Inform object for the current user
-            try:
-                personal_info = Personal_Inform.objects.get(user=request.user)
-            except Personal_Inform.DoesNotExist:
-                personal_info = Personal_Inform(user=request.user)
+        active = request.POST.get('active')
+        if active in ('L', 'M'):
+            personal_inform.active = active
+            personal_inform.save()
+            return redirect('step5')
 
-            # Update the fields with the entered values
-            personal_info.goals = form.cleaned_data['goals']
-            personal_info.active = form.cleaned_data['active']
-
-            personal_info.save()
-
-            return redirect('calories_and_bjy')
-    else:
-        form = StepTestForm()
-
-    context = {'form': form}
+    context = {'personal_inform': personal_inform}
     return render(request, 'info4.html', context)
+
+def step5_view(request):
+    personal_inform = get_object_or_404(Personal_Inform, user=request.user)
+
+    if request.method == 'POST':
+        goals = request.POST.get('goals')
+        if goals in ('L', 'M', 'F'):
+            personal_inform.goals = goals
+            personal_inform.save()
+            return redirect('calories_and_bjy')
+
+    context = {'personal_inform': personal_inform}
+    return render(request, 'info5.html', context)
+
 def person_info(request):
     if Personal_Inform.objects.filter(user=request.user).exists():
         return redirect('edit_person_info')  # Redirect to a different page indicating that the information is already filled

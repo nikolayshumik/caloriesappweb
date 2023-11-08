@@ -5,22 +5,21 @@
     <title>Шаг 2</title>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>
-    <!--Подключение шрифтов-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
-    <!--Скрипт-->
-    <script defer src="{% static 'js/main.js' %}"></script>
+<!--    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>-->
+<!--    &lt;!&ndash;Подключение шрифтов&ndash;&gt;-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">-->
+<!--    &lt;!&ndash;Скрипт&ndash;&gt;-->
+<!--    <script defer src="{% static 'js/main.js' %}"></script>-->
 </head>
 <body>
-
-<form method="POST" action="{% url 'step2' %}">
+<form method="post">
   {% csrf_token %}
 
-  {{ form.as_table }}
-
-  <button type="submit">Next</button>
+  <button type="submit" name="sex" value="M">Мужчина</button>
+  <button type="submit" name="sex" value="F">Женщина</button>
 </form>
+
 </body>
 </html>
