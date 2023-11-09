@@ -1,25 +1,32 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Шаг 2</title>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <!--Медиа запросы, адаптив-->
-<!--    <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>-->
-<!--    &lt;!&ndash;Подключение шрифтов&ndash;&gt;-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">-->
-<!--    &lt;!&ndash;Скрипт&ndash;&gt;-->
-<!--    <script defer src="{% static 'js/main.js' %}"></script>-->
+
+<head>
+  <title>Шаг 2</title>
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <!--Медиа запросы, адаптив-->
+  <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
+  <!--Подключение шрифтов-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+  <!--Скрипт-->
+  <script defer src="{% static 'js/main.js' %}"></script>
 </head>
+
 <body>
-<form method="post">
-  {% csrf_token %}
+  <div class="page-container">
+    <text>ВАШ ПОЛ</text>
+    <form method="post">
+      {% csrf_token %}
 
-  <button type="submit" name="sex" value="M">Мужчина</button>
-  <button type="submit" name="sex" value="F">Женщина</button>
-</form>
+      <button type="submit" name="sex" value="M">Мужчина</button>
+      <button type="submit" name="sex" value="F">Женщина</button>
 
+      <button type="submit" class="next">Далее</button>
+    </form>
+  </div>
 </body>
+
 </html>

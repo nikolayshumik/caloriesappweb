@@ -19,7 +19,7 @@
     <form method="POST" action="{% url 'step3' %}">
       {% csrf_token %}
       {{ form.as_table }}
-      <button type="submit">Далее</button>
+      <button type="submit" class="next">Далее</button>
     </form>
   </div>
 </body>
