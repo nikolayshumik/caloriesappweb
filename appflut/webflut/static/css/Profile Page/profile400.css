@@ -33,9 +33,19 @@ body {
   margin: auto;
 }
 
+img {
+  width: 10vw;
+}
+
 textarea {
   padding: 15px;
   font-size: 28px;
   border: 2px solid #008187;
   border-radius: 15px;
+}
+
+@media (min-width: 769px) {
+  img {
+    width: 6vw;
+  }
 }/*# sourceMappingURL=profile400.css.map */

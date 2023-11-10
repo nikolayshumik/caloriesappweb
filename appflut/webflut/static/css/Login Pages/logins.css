@@ -20,15 +20,14 @@ text {
   font-size: 28px;
   color: #293b4b;
   text-align: center;
-  margin-bottom: 20%;
+  margin-bottom: 5%;
   /* Увеличиваем нижний отступ для текста */
 }
 
 form {
-  width: 70%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 .page-container {
@@ -37,7 +36,7 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 a {
@@ -115,4 +114,19 @@ input {
 
 .form_toggle .item-2 input[type=radio]:checked + label {
   background: #bbffbb;
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding-top: 10%;
+  }
+  form {
+    width: 80%;
+    padding-top: 15vw;
+  }
+  button, .next {
+    margin-top: 8vw;
+    font-size: 30px;
+    padding: 15px 25px;
+  }
 }/*# sourceMappingURL=logins.css.map */
