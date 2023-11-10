@@ -533,27 +533,6 @@ def add_activity_view(request):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-# def remove_from_list(request, instance_id):
-#     if request.method == 'POST':
-#         meal_type = request.POST.get('meal_type','') # Получаем тип продукта для удаления из POST
-#         if meal_type == 'breakfast':
-#             product = get_object_or_404(Breakfast_Products, id=instance_id, user=request.user)
-#         elif meal_type == 'lunch':
-#             product = get_object_or_404(Lunch_Products, id=instance_id, user=request.user)
-#         elif meal_type == 'dinner':
-#             product = get_object_or_404(Dinner_Products, id=instance_id, user=request.user)
-#         elif meal_type == 'snack':
-#             product = get_object_or_404(Snack_Products, id=instance_id, user=request.user)
-#         elif meal_type == 'activities':
-#             product = get_object_or_404(Activities_Add, id=instance_id, user=request.user)
-#         else:
-#             raise Http404("Invalid meal type.")  # Или другой подход к обработке ошибок
-#
-#         product.delete()
-#         return redirect('calories_and_bjy')
-
-from datetime import datetime
-
 
 def remove_from_list(request, product_id):
     if request.method == 'POST':
@@ -821,27 +800,20 @@ def display_calories_chart(request):
     personal_info = Personal_Inform.objects.get(user=user)
     weight = float(personal_info.weight)
 
-    # Вычислите начало недели
     week_start = datetime.now().date() - timedelta(days=6)
-
-    # Получите активности пользователя за последние 7 дней
     activities = Activities_Add.objects.filter(user=user, date__date__range=[week_start, datetime.now().date()])
 
-    # Создайте словарь для хранения суммы сожженных калорий для каждого дня
     calories_by_day = {}
 
-    # Пройдитесь по активностям и вычислите сумму калорий для каждого дня
     for activity in activities:
         day = activity.date.date()
         burned_calories = round(activity.product.met * weight / activity.time, 1)
         if day not in calories_by_day:
-            calories_by_day[day] = burned_calories
-        else:
-            calories_by_day[day] += burned_calories
+            calories_by_day[day] = 0
+        calories_by_day[day] += max(burned_calories, 0)
 
-    # Создайте списки для дат и сожженных калорий для использования на диаграмме
-    dates = [(week_start + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
-    calories = [calories_by_day.get(date, 0) for date in dates]
+    dates = [day.strftime('%Y-%m-%d') for day in (week_start + timedelta(days=i) for i in range(7))]
+    calories = [calories_by_day.get(datetime.strptime(date, '%Y-%m-%d').date(), 0) for date in dates]
 
     plt.plot(dates, calories, marker='o')
     plt.xlabel('Дата')
@@ -850,13 +822,12 @@ def display_calories_chart(request):
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    # Получите путь к текущему файлу
     current_path = os.path.dirname(os.path.abspath(__file__))
     image_dir = os.path.join(current_path, 'static', 'phototest')
     os.makedirs(image_dir, exist_ok=True)
 
     image_path = os.path.join(image_dir, 'calories_chart.png')
-    plt.savefig(image_path)  # Сохранить диаграмму как изображение
+    plt.savefig(image_path)
     plt.close()
 
     return render(request, 'chart.html', {'image_path': '/static/phototest/calories_chart.png'})
