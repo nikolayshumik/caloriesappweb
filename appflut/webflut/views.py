@@ -184,7 +184,7 @@ def calories_and_bjy(request):
             selected_date -= timedelta(days=1)
     form = DateForm(initial={"date": selected_date})
 
-    selected_date += timedelta(days=1)
+    # selected_date += timedelta(days=1)
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
 
     user = request.user
