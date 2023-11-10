@@ -50,8 +50,8 @@ class StepTestModel(models.Model):
     is_male = models.BooleanField(verbose_name='Мужчина')
     is_female = models.BooleanField(verbose_name='Женщина')
 class Step3Model(models.Model):
-    height = models.IntegerField(blank=True, null=True)
-    weight = models.IntegerField(blank=True, null=True)
+    height = models.IntegerField(default='')
+    weight = models.IntegerField(default='')
 
 class Step4Model(models.Model):
     ACTIVE_CHOICES = [

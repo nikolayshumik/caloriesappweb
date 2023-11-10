@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Personal_Inform, Add_Product, Step1Model, Step3Model, Step4Model, Step5Model, StepTestModel
-
+from django.core.exceptions import ValidationError
 
 class DateForm(forms.Form):
     date = forms.DateField()
@@ -9,13 +9,22 @@ class DateForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    username = forms.CharField(label='Username', max_length=None)
     #user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')), widget=forms.RadioSelect)
     user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
     widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}))
 
+    def validate_username(self, value):
+        if not value:
+            raise ValidationError("тестовая валидация")
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        self.validate_username(username)
+        return username
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'user_type',)
+        fields = ('username', 'password', 'user_type',)
 
     # def clean_password2(self):
     #     cd = self.cleaned_data
