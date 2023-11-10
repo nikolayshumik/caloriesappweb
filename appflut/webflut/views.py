@@ -821,19 +821,27 @@ def display_calories_chart(request):
     personal_info = Personal_Inform.objects.get(user=user)
     weight = float(personal_info.weight)
 
+    # Вычислите начало недели
     week_start = datetime.now().date() - timedelta(days=6)
-    activity_prod = Activities_Add.objects.filter(user=user, date__date__range=[week_start, date.today()])
 
-    acttotal_calories = 0
-    activities_and_calories = []
+    # Получите активности пользователя за последние 7 дней
+    activities = Activities_Add.objects.filter(user=user, date__date__range=[week_start, datetime.now().date()])
 
-    for activity in activity_prod:
+    # Создайте словарь для хранения суммы сожженных калорий для каждого дня
+    calories_by_day = {}
+
+    # Пройдитесь по активностям и вычислите сумму калорий для каждого дня
+    for activity in activities:
+        day = activity.date.date()
         burned_calories = round(activity.product.met * weight / activity.time, 1)
-        acttotal_calories += burned_calories
-        activities_and_calories.append((activity.date.date(), burned_calories))
+        if day not in calories_by_day:
+            calories_by_day[day] = burned_calories
+        else:
+            calories_by_day[day] += burned_calories
 
-    dates = [activity[0] for activity in activities_and_calories]
-    calories = [activity[1] for activity in activities_and_calories]
+    # Создайте списки для дат и сожженных калорий для использования на диаграмме
+    dates = [(week_start + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
+    calories = [calories_by_day.get(date, 0) for date in dates]
 
     plt.plot(dates, calories, marker='o')
     plt.xlabel('Дата')
