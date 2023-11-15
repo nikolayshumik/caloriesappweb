@@ -47,7 +47,7 @@ body {
   margin-top: 20px;
   background-color: rgb(4, 177, 211);
   color: white;
-  padding-top: 5px;
+  padding: 15px;
 }
 .block .nutrition-div {
   font-size: 18px;
@@ -61,7 +61,6 @@ body {
   padding: 5px;
 }
 .container > * {
-  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
 
@@ -136,4 +135,4 @@ body {
 
 .clickable {
   cursor: pointer;
-}/*# sourceMappingURL=calories400.css.map */
+}/*# sourceMappingURL=calories.css.map */
