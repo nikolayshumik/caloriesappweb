@@ -40,6 +40,9 @@ body {
     margin: auto;
     display: flex;
     justify-content: center;
+    border-top: 1px solid black;
+    padding-top: 5vw;
+
     input {
         width: 90%;
         padding: 10px 20px;
@@ -47,15 +50,17 @@ body {
         font-size: $font_main_text;
         border: 2px solid $blue_color;
     }
-    img{
+
+    img {
         width: 10vw;
     }
+
     button {
         border: none;
     }
 }
 
-.product-item{
+.product-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,6 +74,16 @@ body {
         text-align: center;
         color: $blue_color;
         font-size: $font_main_text;
+    }
+    button {
+        width: 50%;
+        margin: auto;
+        margin-top: 20px;
+        background-color: $blue_color;
+        border-radius: $border_radius;
+        padding: 10px 20px;
+        border: none;
+        color: $main_backgrounde;
     }
 
     p {
@@ -95,18 +110,11 @@ body {
                 border: none;
             }
 
-            button {
-                margin-top: 20px;
-                background-color: $blue_color;
-                border-radius: $border_radius;
-                padding: 10px 20px;
-                border: none;
-                color: $main_backgrounde;
-            }
         }
     }
 
 }
+
 //стилизация добавления продукта
 .product-row {
     margin-top: 10px;
@@ -161,45 +169,84 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+
 ////////////////
 /// стилизация добавления своего продукта
-#modal{
+.modal {
+    display: none;
     margin: 5vw;
     padding: 20px;
-    width: 80%; 
+    width: 80%;
     border-radius: $border_radius;
     border: 2px solid $blue_color;
-    font-size: $font_ps_text;
+    font-size: $font_main_text;
     position: relative;
-    .close{
+
+    .close {
         position: absolute;
         right: 1vw;
         top: 0;
         font-size: $font_main_text;
+        cursor: pointer;
     }
-    .modal-content{
+
+    .modal-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+    .title {
+        display: flex;
+         flex-direction: column;
+        text-align: center;
+    }
+    .bju-row {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        >* {
+            font-size: $font_ps_text;
         }
-        textarea{
-            width: 300px;
-            height: 70px;
+        input {
+           width: 30px;
         }
-        input{
-            width: 40px;
+        }
+        form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        #id_calories_in {
+            width: 100px;
+        }
+
+        input {
+            padding: 5px 20px;
+            border-radius: 5px;
+            border: 1px solid $blue_color;
         }
     }
-
 }
+.buttonMod {
+    margin-top: 2vw;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border: 0;
+    background-color: $blue_color;
+    font-size: $font_ps_text;
+    padding: 10px 20px;
+    font-family: "Segoe UI";
+    color: $main_backgrounde;
+    border-radius: $border_radius;
+}
+
 @media (min-width: 769px) {
     .search {
-        img{
+        img {
             width: 5vw;
         }
     }
-  }
+}
