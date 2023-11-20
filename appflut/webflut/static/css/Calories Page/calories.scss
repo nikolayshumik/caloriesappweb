@@ -121,6 +121,11 @@ body{
         display: flex;
         justify-content: space-between;
     }
+    .korz{
+        width: 10vw;
+        height: 10vw;
+        background-image: url("{% static 'accets/корзина.png' %}");
+    }
 }
 .summ_kkal{
     margin-right: auto;

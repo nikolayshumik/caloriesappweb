@@ -1,52 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-
-</head>
+    <head>
+        <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+        <title>Активности</title>
+        <!--Медиа запросы, адаптив-->
+        <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
+        <!--Подключение шрифтов-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+        <!--Скрипт-->
+        <!--<script defer src="{% static 'js/main.js' %}"></script>-->
+      </head>
 <body>
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-    }
-
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-</style>
-<h>активности</h>
+<h>Активности</h>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
 
 
@@ -62,35 +31,37 @@
 <!--  </div>-->
 <!--</div>-->
 
-<form action="" method="GET">
-  <input type="text" name="search" placeholder="Search by name" value="{{ search_query }}">
-  <button type="submit">Поиск</button>
+
+<!--Поиск продуктов-->
+<form action="" class="search" method="GET">
+   <input type="text" name="search" placeholder="Поиск..." value="{{ search_query }}">
+   <button type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
 </form>
+<!--Поиск продуктов-->
+
 <div class="product-container">
     {% for el in activity %}
     <div class="product-item">
-        <p>Назв: {{ el.activity_type }}</p>
-<!--        <p>Каллории: {{ el.calories_in }}</p>-->
-
-        <!-- <p>Время: {{ el.time }}</p>-->
-        <button onclick="openModal({{ el.id }})">Открыть</button>
-        <div id="modal-{{ el.id }}" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal({{ el.id }})">&times;</span>
-                <form method="post" action="{% url 'add_activity_view' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ el.id }}">
-                    <label for="time-input">Введите время:</label>
-                    <input type="number" name="time" id="time-input">
-                    <button type="submit">Add to activities</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    {% empty %}
-    <p>Ничего не найдено</p>
-    {% endfor %}
-</div>
+      <text>{{ el.activity_type }}</text>
+      <!--<p>Каллории: {{ el.calories_in }}</p>-->
+      <!--<p>Время: {{ el.time }}</p>-->
+      <button onclick="openModal({{ el.id }})">Добавить</button>
+      <div id="modal-{{ el.id }}" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeModal({{ el.id }})">&times;</span>
+              <form method="post" action="{% url 'add_activity_view' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_id" value="{{ el.id }}">
+                  <label for="time-input">Введите время:</label>
+                  <input type="number" name="time" id="time-input">
+                  <button type="submit">Добавить активность</button>
+              </form>
+          </div>
+      </div>
+  </div>
+  {% empty %}
+  <p>Ничего не найдено</p>
+  {% endfor %}
 
 <script>
     function openModal(id) {
