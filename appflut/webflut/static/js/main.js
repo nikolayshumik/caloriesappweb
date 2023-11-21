@@ -13,8 +13,9 @@ currentDateElement.textContent = getCurrentDate();
 
 
 
+
 //modal window
-    var modal = document.getElementById("modal");
+    var modal = document.querySelector(".modal");
 
 function openModal() {
   modal.style.display = "block";
@@ -29,4 +30,5 @@ window.onclick = function(event) {
     closeModal();
   }
 };
+
 

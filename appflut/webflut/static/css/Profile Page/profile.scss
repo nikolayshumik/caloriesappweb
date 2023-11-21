@@ -47,10 +47,18 @@ body {
   width: 50%;
   margin: auto;
 }
+img{
+  width: 10vw;
+}
 
 textarea {
   padding: 15px;
   font-size: $font_main_text;
   border: 2px solid $blue_color;
   border-radius: $border_radius;
+}
+@media (min-width: 769px) {
+  img{
+    width: 6vw;
+  }
 }

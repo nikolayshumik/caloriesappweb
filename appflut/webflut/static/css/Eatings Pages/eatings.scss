@@ -38,6 +38,10 @@ body {
 .search {
     width: 90%;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid black;
+    padding-top: 5vw;
 
     input {
         width: 90%;
@@ -47,12 +51,14 @@ body {
         border: 2px solid $blue_color;
     }
 
+    img {
+        width: 10vw;
+    }
+
     button {
         border: none;
     }
 }
-
-.product-container {}
 
 .product-item {
     display: flex;
@@ -69,6 +75,16 @@ body {
         color: $blue_color;
         font-size: $font_main_text;
     }
+    button {
+        width: 50%;
+        margin: auto;
+        margin-top: 20px;
+        background-color: $blue_color;
+        border-radius: $border_radius;
+        padding: 10px 20px;
+        border: none;
+        color: $main_backgrounde;
+    }
 
     p {
         text-align: center;
@@ -78,10 +94,12 @@ body {
         display: flex;
         flex-direction: column;
         text-align: center;
-        .close2{
+
+        .close2 {
             font-size: $font_main_text;
             color: $blue_color;
         }
+
         form {
             display: flex;
             flex-direction: column;
@@ -92,26 +110,143 @@ body {
                 border: none;
             }
 
-            button {
-                margin-top: 20px;
-                background-color: $blue_color;
-                border-radius: $border_radius;
-                padding: 10px 20px;
-                border: none;
-                color: $main_backgrounde;
-            }
         }
     }
 
 }
 
+//стилизация добавления продукта
 .product-row {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-    li{
+
+    li {
         list-style-position: inside;
+    }
+}
+
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close2 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close2:hover,
+.close2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.row-up {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+////////////////
+/// стилизация добавления своего продукта
+.modal {
+    display: none;
+    margin: 5vw;
+    padding: 20px;
+    width: 80%;
+    border-radius: $border_radius;
+    border: 2px solid $blue_color;
+    font-size: $font_main_text;
+    position: relative;
+
+    .close {
+        position: absolute;
+        right: 1vw;
+        top: 0;
+        font-size: $font_main_text;
+        cursor: pointer;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    .title {
+        display: flex;
+         flex-direction: column;
+        text-align: center;
+    }
+    .bju-row {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        >* {
+            font-size: $font_ps_text;
+        }
+        input {
+           width: 30px;
+        }
+        }
+        form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        #id_calories_in {
+            width: 100px;
+        }
+
+        input {
+            padding: 5px 20px;
+            border-radius: 5px;
+            border: 1px solid $blue_color;
+        }
+    }
+}
+.buttonMod {
+    margin-top: 2vw;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border: 0;
+    background-color: $blue_color;
+    font-size: $font_ps_text;
+    padding: 10px 20px;
+    font-family: "Segoe UI";
+    color: $main_backgrounde;
+    border-radius: $border_radius;
+}
+
+@media (min-width: 769px) {
+    .search {
+        img {
+            width: 5vw;
+        }
     }
 }

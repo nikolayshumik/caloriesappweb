@@ -7,7 +7,7 @@
     align-items: center;
     margin-right: auto;
     justify-content: center;
-    font-size: 15vw;
+    font-size: 11vw;
     border-radius: 10px;
     border: none;
     background-color: #293b4b;
@@ -41,21 +41,27 @@ footer {
 .buttonFooter:hover {
     border: 2px solid black;
 }
-
+@media (min-width: 481px) {
+    .main-orientations {
+        width: 7vw;
+        height: 7vw;
+        font-size: 8vw;
+    }
+}
 @media (min-width: 769px) {
     .main-orientations {
-        width: 8vw;
-        height: 8vw;
-        font-size: 11vw;
+        width: 6vw;
+        height: 6vw;
+        font-size: 6vw;
         padding: 2vw;
     }
 }
 
 @media (min-width: 1025px) {
     .main-orientations {
-        width: 6vw;
-        height: 6vw;
-        font-size: 9vw;
+        width: 5vw;
+        height: 5vw;
+        font-size: 5vw;
         padding: 2vw;
     }
 }

@@ -53,7 +53,7 @@ body{
     margin-top: 20px;
     background-color: $blue_color;
     color: $white_color;
-    padding-top: 5px;
+    padding: 15px;
     .nutrition-div{
         //background-color: $white_color;
         font-size: $font_med_text;
@@ -66,7 +66,6 @@ body{
     grid-template-columns: 1fr 1fr 1fr;
     padding: 5px;
   >*{
-    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
   }
   }

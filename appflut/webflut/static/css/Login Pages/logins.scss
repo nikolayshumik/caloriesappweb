@@ -34,15 +34,14 @@ text {
   font-size: $font_main_text;
   color: $gray_color;
   text-align: center;
-  margin-bottom: 20%;
+  margin-bottom: 5%;
   /* Увеличиваем нижний отступ для текста */
 }
 
 form {
-  width: 90%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 .page-container {
@@ -51,8 +50,7 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 10%;
-  /* Добавляем отступ от верха страницы */
+  padding-top: 5%;
 }
 
 a {
@@ -67,10 +65,11 @@ a {
   border-radius: $border_radius;
 }
 
-button {
-  position: absolute;
-  bottom: -30%;
-  width: 90%;
+
+button, .next {
+  //position: absolute;
+  //bottom: -30%;
+  margin-top: 5vw;
   box-sizing: border-box;
   text-align: center;
   border: 0;
@@ -132,4 +131,18 @@ input {
 
 .form_toggle .item-2 input[type=radio]:checked+label {
   background: #bbffbb;
+}
+@media (max-width: 480px) {
+  .page-container {
+    padding-top: 10%;
+  }
+  form {
+    width: 80%;
+    padding-top: 15vw;
+  }
+  button, .next {
+    margin-top: 8vw;
+    font-size: 30px;
+    padding: 15px 25px;
+  }
 }
