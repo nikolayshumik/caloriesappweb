@@ -1,14 +1,13 @@
 {% load static %}
 <link href="{% static 'css/footer.css' %}" rel="stylesheet"/>
 
-<button class="main-orientations" onclick="goBack()">&lt;</button>
-{% block content %}
-{% endblock %}
+
+
     
 <footer>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
+    <a href="{% url 'display_chart' %}" class="buttonFooter">
         <img src="{% static 'accets/журнал.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
+    <a href="{% url 'display_chart' %}" class="buttonFooter">
         <img src="{% static 'accets/статистика.png' %}" class="imgFooter"/></a>
     <a href="{% url 'profile' %}" class="buttonFooter">
         <img src="{% static 'accets/profile.png' %}" class="imgFooter"/></a>

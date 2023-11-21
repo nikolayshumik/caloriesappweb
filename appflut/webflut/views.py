@@ -789,63 +789,20 @@ import matplotlib
 matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
 import matplotlib.pyplot as plt
 # import datetime
-
-
 from django.conf import settings
 import os
 from datetime import datetime, timedelta, date
-
-def display_calories_chart(request):
-    user = request.user
-    personal_info = Personal_Inform.objects.get(user=user)
-    weight = float(personal_info.weight)
-
-    week_start = datetime.now().date() - timedelta(days=6)
-    activities = Activities_Add.objects.filter(user=user, date__date__range=[week_start, datetime.now().date()])
-
-    calories_by_day = {}
-
-    for activity in activities:
-        day = activity.date.date()
-        burned_calories = round(activity.product.met * weight / activity.time, 1)
-        if day not in calories_by_day:
-            calories_by_day[day] = 0
-        calories_by_day[day] += max(burned_calories, 0)
-
-    dates = [day.strftime('%Y-%m-%d') for day in (week_start + timedelta(days=i) for i in range(7))]
-    calories = [calories_by_day.get(datetime.strptime(date, '%Y-%m-%d').date(), 0) for date in dates]
-
-    plt.plot(dates, calories, marker='o')
-    plt.xlabel('Дата')
-    plt.ylabel('Сожженные калории')
-    plt.title('Сожженные калории за неделю')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-
-    current_path = os.path.dirname(os.path.abspath(__file__))
-    image_dir = os.path.join(current_path, 'static', 'phototest')
-    os.makedirs(image_dir, exist_ok=True)
-
-    image_path = os.path.join(image_dir, 'calories_chart.png')
-    plt.savefig(image_path)
-    plt.close()
-
-    return render(request, 'chart.html', {'image_path': '/static/phototest/calories_chart.png'})
-
-
 import calendar
 
-def display(request):
+def display_chart(request):
     user = request.user
     week_start = datetime.now().date() - timedelta(days=6)
 
-    # Retrieve consumed products for each meal type
+    # Первая диаграмма - потраченные калории
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     lunch_products = Lunch_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     dinner_products = Dinner_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
     snack_products = Snack_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
-
-    # Calculate calories sum for each day
     calories_by_day = {}
     for i in range(7):
         current_date = week_start + timedelta(days=i)
@@ -860,28 +817,52 @@ def display(request):
                        'product__calories_in__sum'] or 0)
         )
         calories_by_day[current_date] = total_calories
-
-    # Prepare chart data
     days = [calendar.day_name[d.weekday()] for d in calories_by_day.keys()]
     calories = list(calories_by_day.values())
 
-    # Plot the chart
+    # Создание первой диаграммы
+    plt.figure(figsize=(10, 6))
     plt.bar(days, calories)
-    plt.xlabel('Day of the Week')
-    plt.ylabel('Total Calories')
-    plt.title('Total Consumed Calories by Day')
+    plt.xlabel('День недели')
+    plt.ylabel('Всего сожженных калорий')
+    plt.title('Сожженные калории за неделю')
     plt.tight_layout()
-
-    # Save the chart as an image
     current_path = os.path.dirname(os.path.abspath(__file__))
     image_dir = os.path.join(current_path, 'static', 'phototest')
     os.makedirs(image_dir, exist_ok=True)
+    image_path_1 = os.path.join(image_dir, 'chart_1.png')
+    plt.savefig(image_path_1)
+    plt.close()
 
-    image_path = os.path.join(image_dir, 'chart.png')
-    plt.savefig(image_path)
+    # Вторая диаграмма - сожженные калории
+    personal_info = Personal_Inform.objects.get(user=user)
+    weight = float(personal_info.weight)
+    activities = Activities_Add.objects.filter(user=user, date__date__range=[week_start, datetime.now().date()])
+    calories_by_day = {}
+    for activity in activities:
+        day = activity.date.date()
+        burned_calories = round(activity.product.met * weight / activity.time, 1)
+        if day not in calories_by_day:
+            calories_by_day[day] = 0
+        calories_by_day[day] += max(burned_calories, 0)
+
+    dates = [day.strftime('%Y-%m-%d') for day in (week_start + timedelta(days=i) for i in range(7))]
+    calories = [calories_by_day.get(datetime.strptime(date, '%Y-%m-%d').date(), 0) for date in dates]
+
+    # Создание второй диаграммы
+    plt.figure(figsize=(10, 6))
+    plt.plot(dates, calories, marker='o')
+    plt.xlabel('Дата')
+    plt.ylabel('Сожженные калории')
+    plt.title('Сожженные калории за неделю')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    image_path_2 = os.path.join(image_dir, 'chart_2.png')
+    plt.savefig(image_path_2)
     plt.close()
 
     context = {
-        'image_path': '/static/phototest/chart.png',
+        'image_path_1': '/static/phototest/chart_1.png',
+        'image_path_2': '/static/phototest/chart_2.png',
     }
-    return render(request, 'display.html', context)
+    return render(request, 'chart.html', context)

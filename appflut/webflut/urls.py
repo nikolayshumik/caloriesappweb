@@ -36,7 +36,7 @@ urlpatterns = [
     path('step3/', views.step3_view, name='step3'),
     path('step4/', views.step4_view, name='step4'),
     path('step5/', views.step5_view, name='step5'),
-    path('display_calories_chart/', views.display_calories_chart, name='display_calories_chart'),
-    path('display/', views.display, name='display'),
+    path('display_chart/', views.display_chart, name='display_chart'),
+    # path('display/', views.display, name='display'),
 
 ]
