@@ -16,11 +16,9 @@
         <script defer src="{% static 'js/main.js' %}"></script>
     -->
 </head>
-{% block content %}
-{% include 'footer.html' %}
+
 
 <body>
-    <a href="{% url 'profile' %}" class="profile">p</a>
 
     <form method="get">
         {{ form }}
@@ -212,31 +210,30 @@
         </div>
     </div>
     <!--/Перекус-->
+   
 
     <!--Активности-->
     <div class="eatings">
-        <!--        <div class="breakfast clickable"><a href="{% url 'activities' %}" class="buttonMod">Активности</a></div>-->
         <div class="breakfast clickable">Активности<a href="{% url 'activities' %}">+</a></div>
-
-        <div>
-            <p>Сумма: {{ acttotal_calories }}</p>
+        <div class="summ_kkal">
+            {{ acttotal_calories }} ккал
         </div>
 
         <div class="content">
-            <h1>Отчёт Активности</h1>
-
             <div class="product-eatings">
                 {% for activity, burned_calories in activities_and_calories %}
                 <div class="product-item">
-                    <h4>{{ activity.product.activity_type }}</h4>
-                    <p>Категория: {{ activity.product.category }}</p>
-                    <p>Время: {{ activity.time }}</p>
-                    <p>Сожженые {{ burned_calories }}</p>
-                    <form action="{% url 'delete_activity' id=activity.id %}" method="POST">
+                    <div class="title">
+                        <text style="text-decoration: dotted;">{{ activity.product.activity_type }}
+                            ({{ activity.time }} мин.)</text>
+                        <text>{{ burned_calories }} ккал</text>
+                    </div>
+                    <form method="POST" action="{% url 'delete_activity'  id=activity.id %}">
                         {% csrf_token %}
-                        <input type="submit" value="Удалить активность" />
+                        <input type="submit" value="Удалить активность">
                     </form>
                 </div>
+
                 {% empty %}
                 <p>Ничего не найдено</p>
                 {% endfor %}
@@ -247,9 +244,11 @@
     </div>
     <!--/Активности-->
 
-    <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Дневник</a><br>
-    <a href="{% url 'report' %}" class="buttonMod">Отчеты</a><br>
+    {% block content %}
+        {% include 'footer.html' %}
     {% endblock %}
+
+
     <script>
         document.querySelectorAll('.clickable').forEach(item => {
             item.addEventListener('click', event => {
