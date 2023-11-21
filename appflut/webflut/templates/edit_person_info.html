@@ -15,8 +15,7 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-    {% block content %}
-    {% include 'footer.html' %}
+
 
     
     <text>Привет, {{ request.user.username }}</text>
@@ -41,6 +40,9 @@
     <button type="submit" class="save">Сохранить</button>
 </form>
 
+
+{% block content %}
+{% include 'footer.html' %}
 {% endblock %}
 
 
