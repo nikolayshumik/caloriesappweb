@@ -14,8 +14,6 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-    {% block content %}
-    {% include 'footer.html' %}
         <img src="{% static 'accets/settings.png' %}" style="width: 50vw;" />
         тут будет лого
 
@@ -26,7 +24,8 @@
             <a href="{% url 'logout' %}">Выйти</a>
         </div>
 
-        
+    {% block content %}
+    {% include 'footer.html' %}
     {% endblock %}
 </body>
 </html>

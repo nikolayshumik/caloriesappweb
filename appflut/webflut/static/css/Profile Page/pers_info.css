@@ -62,44 +62,14 @@ form {
 
 .save {
   margin: auto;
-  margin-top: 20vw;
-  width: 90%;
+  margin-top: 5vw;
   box-sizing: border-box;
   text-align: center;
   border: 0;
   background-color: #008187;
   font-size: 28px;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-family: "Segoe UI";
   color: #f2f3ed;
   border-radius: 15px;
-}
-
-footer {
-  background-color: #293b4b;
-  border-radius: 10px;
-  padding: 5px;
-  max-width: 100%;
-  margin: auto;
-  position: fixed;
-  display: inline-block;
-  white-space: nowrap;
-  bottom: 4vw;
-}
-
-.imgFooter {
-  width: 8vw;
-}
-
-.buttonFooter {
-  display: inline-block;
-  font-size: 10px;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  border: 0;
-}
-
-.buttonFooter:hover {
-  border: 2px solid black;
 }/*# sourceMappingURL=pers_info.css.map */

@@ -19,6 +19,9 @@ body {
   align-items: center;
   flex-direction: column;
 }
+body h1 {
+  color: #008187;
+}
 
 .search {
   width: 90%;
@@ -87,6 +90,11 @@ body {
   border-radius: 15px;
   padding: 10px 20px;
   border: none;
+}
+
+.product-container {
+  width: 60%;
+  text-align: center;
 }
 
 .product-row {

@@ -14,8 +14,7 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-  {% block content %}
-  {% include 'footer.html' %}
+
 тут будет лого
       <img src="{% static 'accets/profile.png' %}" style="width: 50vw;" />
 
@@ -27,7 +26,10 @@
         <form method="post" action="{% url 'login' %}">
             <textarea placeholder="Тут какой-то input, хз для чего"></textarea>
         </form>
-        {% endblock %}
+
+      {% block content %}
+      {% include 'footer.html' %}
+      {% endblock %}
 
 </body>
 </html>

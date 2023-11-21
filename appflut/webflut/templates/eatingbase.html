@@ -1,139 +1,118 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>Добавить калории</title>
-    <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet"/>
-    <!--Подключение шрифтов-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
-    <!--Скрипт-->
-    <!--  <script defer src="{% static 'js/main.js' %}"></script>-->
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <title>Добавить калории</title>
+  <!--Медиа запросы, адаптив-->
+  <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
+  <!--Подключение шрифтов-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+  <!--Скрипт-->
+  <!--<script defer src="{% static 'js/main.js' %}"></script>-->
 </head>
 
 <body>
-{% block content %}
-<!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
-{% endblock %}
 
-<a href="#" class="buttonMod" style="margin-bottom: 2vw;" onclick="openModal()">Создать продукт</a>
-<div class="modal">
+
+  {% block content %}
+  <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
+  {% endblock %}
+
+  <a href="#" class="buttonMod" style="margin-bottom: 2vw;" onclick="openModal()">Создать продукт</a>
+  <div class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <form method="post">
-            {% csrf_token %}
-            <div class="title" style="width: 300px;">
-                {{ form.name.label_tag }}
-                {{ form.name }}
-            </div>
-            <div class="title" style="font-size: 20px;">
-                {{ form.calories_in.label_tag }}
-                {{ form.calories_in }}
-            </div>
-            <div class="bju-row">
-                <div style="color: #ca517a;">
-                    {{ form.proteins.label_tag }}
-                    {{ form.proteins }}
-                </div>
-                <div style="color: #fbb20d;">
-                    {{ form.fats.label_tag }}
-                    {{ form.fats }}
-                </div>
-                <div style="color: #4887ba;">
-                    {{ form.carbohydrates.label_tag }}
-                    {{ form.carbohydrates }}
-                </div>
-            </div>
-            <button class="buttonMod" type="submit">Создать</button>
-        </form>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <form method="post">
+        {% csrf_token %}
+        <div class="title" style="width: 300px;">
+          {{ form.name.label_tag }}
+          {{ form.name }}
+        </div>
+        <div class="title" style="font-size: 20px;">
+          {{ form.calories_in.label_tag }}
+          {{ form.calories_in }}
+        </div>
+        <div class="bju-row">
+          <div style="color: #ca517a;">
+            {{ form.proteins.label_tag }}
+            {{ form.proteins }}
+          </div>
+          <div style="color: #fbb20d;">
+            {{ form.fats.label_tag }}
+          {{ form.fats }}
+          </div>
+          <div style="color: #4887ba;">
+            {{ form.carbohydrates.label_tag }}
+          {{ form.carbohydrates }}
+          </div>
+        </div>
+        <button class="buttonMod" type="submit">Создать</button>
+      </form>
     </div>
-</div>
+  </div>
 
-<!--Поиск продуктов-->
-<form action="" class="search" method="GET">
+  <!--Поиск продуктов-->
+  <form action="" class="search" method="GET">
     <input type="text" name="search" placeholder="Поиск..." value="{{ search_query }}">
-    <button type="submit"><img src="{% static 'accets/поиск.png' %}"/></button>
-</form>
-<!--Поиск продуктов-->
+    <button type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
+  </form>
+  <!--Поиск продуктов-->
 
-<div class="product-container">
+  <div class="product-container">
     {% for product in products %}
     <div class="product-item">
-        <text>{{ product.name }}</text>
-        <p>Каллории: {{ product.calories_in }}</p>
+      <text>{{ product.name }}</text>
+      <p>Каллории: {{ product.calories_in }}</p>
 
-        <div class="product-row">
-            <li style="color: #ca517a;">{{ product.proteins }} г.</li>
-            <li style="color: #fbb20d;">{{ product.fats }} г.</li>
-            <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
-        </div>
+      <div class="product-row">
+        <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+        <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+        <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
+      </div>
 
-        {% block contenbutton %}
-        {% endblock %}
+      {% block contenbutton %}
+      {% endblock %}
     </div>
     {% empty %}
     <p>Ничего не найдено</p>
     {% endfor %}
-</div>
+  </div>
 
-<script>
+  <script>
     var modal = document.querySelector(".modal");
 
-    function openModal() {
-      modal.style.display = "block";
-    }
+function openModal() {
+  modal.style.display = "block";
+}
 
-    function closeModal() {
-      modal.style.display = "none";
-    }
+function closeModal() {
+  modal.style.display = "none";
+}
 
-    function openModal2(productID) {
-      var modalID = 'modal2_' + productID;
-      document.getElementById(modalID).style.display = "block";
-    }
+function openModal2(productID) {
+  var modalID = 'modal2_' + productID;
+  document.getElementById(modalID).style.display = "block";
+}
 
-    function closeModal2(productID) {
-      var modalID = 'modal2_' + productID;
-      document.getElementById(modalID).style.display = "none";
-    }
-
-    function openModal3(productID) {
-      var modalID = 'modal3_' + productID;
-      document.getElementById(modalID).style.display = "block";
-    }
-
-    function closeModal3(productID) {
-      var modalID = 'modal3_' + productID;
-      document.getElementById(modalID).style.display = "none";
-    }
-
-    function openModal4(productID) {
-      var modalID = 'modal4_' + productID;
-      document.getElementById(modalID).style.display = "block";
-    }
-
-    function closeModal4(productID) {
-      var modalID = 'modal4_' + productID;
-      document.getElementById(modalID).style.display = "none";
-    }
+function closeModal2(productID) {
+  var modalID = 'modal2_' + productID;
+  document.getElementById(modalID).style.display = "none";
+}
 
     window.onclick = function (event) {
       if (event.target === modal) {
         closeModal();
       } else if (event.target.classList.contains('modal2')) {
         event.target.style.display = "none";
-      } else if (event.target.classList.contains('modal3')) {
-        event.target.style.display = "none";
-      } else if (event.target.classList.contains('modal4')) {
-        event.target.style.display = "none";
       }
     };
 
 
-
-</script>
+  </script>
 </body>
+
 </html>
