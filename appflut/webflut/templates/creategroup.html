@@ -6,7 +6,14 @@
 </head>
 <body>
 <style>
-   .container {
+   body {
+        background-color: #f2f3ed;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
@@ -29,17 +36,18 @@
 
     button[type="submit"] {
         width: 100%;
-        background-color: #4caf50;
+        background-color: #008187;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
         cursor: pointer;
         border-radius: 4px;
+        transition: background-color 0.3s;
     }
 
     button[type="submit"]:hover {
-        background-color: #45a049;
+        background-color: #004d4f;
     }
 
     ul {
@@ -59,20 +67,19 @@
     a:hover {
         text-decoration: underline;
     }
-
-
 </style>
 <div class="container">
-    <form action="{% url 'creategroup' %}" method="post"> {% csrf_token %} <input type="text" name="group_name"
-                                                                                  placeholder="Введите название группы">
+    <form action="{% url 'creategroup' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="group_name" placeholder="Введите название группы">
         <button type="submit">Создать группу</button>
     </form>
-    <ul> {% for group in groups %}
+    <ul>
+        {% for group in groups %}
         <li><a href="{% url 'groupdetail' group_id=group.id %}">{{ group.name }}</a></li>
         {% endfor %}
     </ul>
 </div>
-
-    {% include 'footer.html' %}
+{% include 'footer.html' %}
 </body>
 </html>

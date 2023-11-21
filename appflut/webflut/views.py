@@ -775,6 +775,7 @@ def userinfo(request, user_id):
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
         'male': male,
+        'weight': weight,
 
     }
 
