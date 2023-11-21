@@ -21,7 +21,7 @@
 
       <div class="title"> 
         {{ user.username }}
-        <a href="{% url 'logout' %}"><img src="{% static 'accets/выйти.png' %}" style="width: 10vw;" /></a>
+        <a href="{% url 'logout' %}"><img src="{% static 'accets/выйти.png' %}"/></a>
       </div>      
 
         <form method="post" action="{% url 'login' %}">

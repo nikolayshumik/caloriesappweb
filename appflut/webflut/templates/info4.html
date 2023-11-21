@@ -1,14 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Шаг 4</title>
+  <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <!--Медиа запросы, адаптив-->
+  <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
+  <!--Подключение шрифтов-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+  <!--Скрипт-->
+  <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-<form method="post">
-  {% csrf_token %}
+<div class="page-container">
+    <text>ОБРАЗ ЖИЗНИ</text>
+    <form method="post">
+      {% csrf_token %}
 
-  <button type="submit" name="active" value="L">малоактивный</button>
-  <button type="submit" name="active" value="M">активный</button>
-</form>
+      <button type="submit" name="active" value="L">Малоактивный</button>
+      <button type="submit" name="active" value="M">Активный</button>
+
+      <button type="submit" class="next">Далее</button>
+    </form>
+  </div>
+</body>
 </html>
