@@ -389,7 +389,7 @@ def activities(request):
         activity = activity.filter(activity_type__icontains=search_query)
     return render(request, 'activities.html', {'activity': activity, 'search_query': search_query})
 def eatingbase(request):
-    search_query = request.GET.get('search')
+    search_query = request.GET.get('search', '')
 
     if request.method == 'POST':
         form = AddProductForm(request.POST)

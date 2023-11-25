@@ -34,7 +34,7 @@
 
 <!--Поиск продуктов-->
 <form action="" class="search" method="GET">
-   <input type="text" name="search" placeholder="Поиск..." value="{{ search_query }}">
+   <input type="text" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
    <button type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
 </form>
 <!--Поиск продуктов-->
