@@ -1,92 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <head>
+        <title>О группе</title>
+        <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+        <!--Медиа запросы, адаптив-->
+        <link href="{% static 'css/Groups Pages/Groups.css' %}" rel="stylesheet" />
+        <!--Подключение шрифтов-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap"
+            rel="stylesheet">
+        <!--Скрипт
+            <script defer src="{% static 'js/main.js' %}"></script>
+        -->
+    </head>
 <body>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f2f3ed;
-    }
 
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: white;
-        border: 2px solid #008187;
-    }
-
-    h1, h3 {
-        color: #333;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        padding: 10px 0;
-        border-bottom: 1px solid #ccc;
-    }
-
-    li a {
-        text-decoration: none;
-        color: #333;
-        transition: color 0.3s ease-in-out;
-    }
-
-    li a:hover {
-        color: #008187;
-    }
-
-    li button {
-        background-color: #008187;
-        color: white;
-        padding: 5px 10px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    li button:hover {
-        background-color: #006c6f;
-    }
-
-    form {
-        margin-top: 20px;
-    }
-
-    select {
-        padding: 5px;
-    }
-
-    button[type="submit"] {
-        background-color: #008187;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-</style>
 
 <div class="container">
-    <h1>Детали группы {{ group.name }}</h1>
-    <h3>Пользователи в группе:</h3>
+    <text class="title">{{ group.name }}</text>
+    <text class="ps_text">Пользователи в группе:</text>
     <ul>
         {% for user in group.users.all %}
         <li>
             <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
-            <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;">
+            <form action="{% url 'removeuser' group_id=group.id %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="username" value="{{ user.username }}">
-                <button type="submit">Удалить</button>
+                <button type="submit" id="delete">Удалить</button>
             </form>
         </li>
         {% endfor %}

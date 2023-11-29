@@ -14,10 +14,12 @@
 }
 
 footer {
+    max-width: 100%;
     background-color: #293b4b;
     border-radius: 10px;
     padding: 5px;
-    margin: 3vw auto 3vw auto;
+    display: inline-block;
+    margin: 3vw;
     white-space: nowrap;
 }
 

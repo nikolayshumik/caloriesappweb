@@ -50,15 +50,18 @@ body{
 .block{
     font-size: $font_big_text;
     border-radius: 10px;
-    margin-top: 20px;
-    background-color: $blue_color;
-    color: $white_color;
     padding: 15px;
+    padding-bottom: 0;
     .nutrition-div{
-        //background-color: $white_color;
+        background-color: white;
+        border: 2px solid $blue_color;
         font-size: $font_med_text;
         border-radius: 5px;
         margin: 5px;
+        p{
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
     }
 }
 .container {

@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI_Bold";
+  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+html {
+  font-family: "Segoe UI";
+  background-color: #f2f3ed;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#all {
+  border-top: 1px solid black;
+  width: 100%;
+  text-align: center;
+  margin-top: 2vw;
+  padding-top: 2vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.container .title {
+  font-size: 26px;
+  margin-bottom: 2vw;
+  font-family: "Segoe UI";
+  font-weight: 600;
+}
+.container .ps_text {
+  font-size: 20px;
+}
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+#delete {
+  padding: 10px;
+  font-size: 20px;
+}
+
+input[type=text] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+button[type=submit] {
+  font-size: 20px;
+  width: 100%;
+  background-color: #008187;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+button[type=submit]:hover {
+  background-color: #004d4f;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  overflow: hidden;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 23px;
+  border: 2px solid #008187;
+  margin-bottom: 10px;
+}
+
+select {
+  font-size: 23px;
+  border: 1px solid #008187;
+  border-radius: 5px;
+  padding: 5px;
+}
+select option {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+select option:hover {
+  background-color: #008187;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=Groups.css.map */
