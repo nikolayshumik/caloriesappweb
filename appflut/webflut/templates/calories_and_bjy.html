@@ -20,13 +20,20 @@
 
 <body>
 
-    <form method="get">
-        {{ form }}
-        <div class="row-buttons">
+<form method="get">
+    {{ form.date }}
+    <style>
+        #id_date {
+            display: none;
+        }
+    </style>
+    <div class="row-buttons">
         <button type="submit" name="move" value="prev"><</button>
         <button type="submit" name="move" value="next">></button>
-            </div>
-    </form>
+    </div>
+</form>
+
+<p>{{ formatted_date }}</p>
 
 <div class="block">Калории
 <div class="nutrition-div" style="margin-top: 20px; font-size: 20px; ">Норма

@@ -1,14 +1,32 @@
-from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
-from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step3Form
-from django.contrib.auth import authenticate, login, logout
+import os
+import matplotlib
+import calendar
+
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta, date
+from babel.dates import format_datetime
+from datetime import datetime, timedelta
+
+from django.conf import settings
 from django.contrib import messages
-from .models import Add_Product, Ttime_Test, StepTestModel
-from .models import Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Personal_Inform, Activities_Add
-from django.db.models import Sum
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required  # add this to your imports
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
+from django.db.models import Sum
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect, get_object_or_404
+from django.urls import reverse
+from django.utils.timezone import make_aware
+from django.http import HttpResponseRedirect
+
+from .forms import DateForm
+from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step3Form
+
+from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Personal_Inform, Activities_Add, Group
+
+
+matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
+
+
 # Create your views here.LoginForm,
 def index(request):
     return render(request, 'index.html')
@@ -170,6 +188,8 @@ def login_view(request):
     else:
         return render(request, 'login.html')
 
+
+
 @login_required
 def calories_and_bjy(request):
     if 'date' in request.GET:
@@ -182,7 +202,10 @@ def calories_and_bjy(request):
             selected_date += timedelta(days=1)
         elif request.GET['move'] == 'prev':
             selected_date -= timedelta(days=1)
-    form = DateForm(initial={"date": selected_date})
+
+    form = DateForm(initial={"date": selected_date.strftime('%Y-%m-%d')})
+    formatted_date = format_datetime(selected_date, format='EEEE, d MMMM ', locale='ru')
+    formatted_date = formatted_date.capitalize()
 
     # selected_date += timedelta(days=1)
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
@@ -301,6 +324,7 @@ def calories_and_bjy(request):
         'total_fats': total_fats,
         'activity_prod': activity_prod,
         'form': form,
+        'formatted_date': formatted_date,
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
         'male': male,
@@ -507,7 +531,7 @@ def add_snack_view(request):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-from django.utils.timezone import make_aware
+
 
 
 @login_required
@@ -572,9 +596,7 @@ def remove_from_list2(request, product_id):
         except Breakfast_Products.DoesNotExist:
             return HttpResponse("Product not found")
 
-from django.http import HttpResponseRedirect
-from .models import Activities_Add
-from django.urls import reverse
+
 def delete_activity(request, id):
     activity_to_delete = Activities_Add.objects.get(pk=id)
     activity_to_delete.delete()
@@ -583,9 +605,7 @@ def delete_activity(request, id):
 
 
 
-from django.shortcuts import render
-from .forms import DateForm
-from datetime import datetime, timedelta
+
 def date_view(request):
     if 'date' in request.GET:
         selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
@@ -604,7 +624,7 @@ def date_view(request):
     return render(request, 'date.html', {'form': form, 'models': models})
 
 
-from .models import Group
+
 def creategroup(request):
     if request.method == 'POST':
         group_name = request.POST.get('group_name')
@@ -786,14 +806,8 @@ def userinfo(request, user_id):
 
 
 
-import matplotlib
-matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
-import matplotlib.pyplot as plt
-# import datetime
-from django.conf import settings
-import os
-from datetime import datetime, timedelta, date
-import calendar
+
+
 
 def display_chart(request):
     user = request.user

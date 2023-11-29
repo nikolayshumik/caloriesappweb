@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!_=hia%yw+d$ics+^*2(v)i1$!-zk&gjy&kd0taq9zvy-hl!96
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,3 +124,43 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://cf4a-37-45-215-106.ngrok-free.app',
+    'https://cf4a-37-45-215-106.ngrok-free.app/register/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/person_info/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/login/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/logout/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/calories_and_bjy/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/profile/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/report/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/breakfast/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/lunch/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/dinner/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/snack/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/activities/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/eatingbase/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/add_breakfast/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/add_lunch/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/add_dinner/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/add_snack/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/add_activity_view/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/remove_from_list/<int:product_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/remove_from_list2/<int:product_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/delete_activity/<int:id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/edit_person_info/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/creategroup/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/groupdetail/<int:group_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/adduser/<int:group_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/removeuser/<int:group_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/userinfo/<int:user_id>/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/step1/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/step2/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/step3/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/step4/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/step5/',
+    'https://cf4a-37-45-215-106.ngrok-free.app/display_chart/',
+
+    # Другие доверенные источники (если есть)
+]
