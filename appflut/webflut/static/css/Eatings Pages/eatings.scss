@@ -1,7 +1,7 @@
 $blue_color: #008187;
 $gray_color: #293b4b;
 $main_backgrounde: #f2f3ed;
-$font_main_text: 28px;
+$font_main_text: 24px;
 $font_ps_text: 15px;
 $border_radius: 15px;
 
@@ -62,13 +62,16 @@ body {
         border: none;
     }
 }
-
+.product-container{
+    width: 90%;
+    text-align: center;
+}
 .product-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 20px;
-    padding: 20px;
+    padding: 10px;
     border-radius: $border_radius;
     border: 2px solid $blue_color;
     font-size: $font_ps_text;
@@ -78,6 +81,12 @@ body {
         color: $blue_color;
         font-size: $font_main_text;
     }
+    p {
+        text-align: center;
+        font-size: 20px;
+        margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    }
     button {
         width: 50%;
         margin: auto;
@@ -86,54 +95,65 @@ body {
         border-radius: $border_radius;
         padding: 10px 20px;
         border: none;
+        font-size: 18px;
         color: $main_backgrounde;
     }
+    .product-row {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        font-size: 18px;
+        justify-content: space-between;
+        li {
+            list-style-position: inside;
+        }
+    }
+}
 
-    p {
-        text-align: center;
+//стилизация модального окна
+.modal-content2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+
+    .close2 {
+        font-size: $font_main_text;
+        color: $blue_color;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .row-up {
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    .modal-content2 {
+    form {
         display: flex;
         flex-direction: column;
-        text-align: center;
 
-        .close2 {
-            font-size: $font_main_text;
-            color: $blue_color;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-
-            input {
-                border-radius: $border_radius;
-                padding: 10px 20px;
-                border: none;
-            }
-
+        input {
+            border: 1px solid $blue_color;
+            border-radius: 5px;
+            padding: 10px 5px;
+            font-size: 18px;
+            margin-top: 10px;
         }
     }
-
-}
-.product-container{
-    width: 60%;
-    text-align: center;
-}
-
-//стилизация добавления продукта
-.product-row {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    li {
-        list-style-position: inside;
+    button{
+        width: 70%;
     }
 }
-
+///////////////////
 .modal2 {
     display: none;
     position: fixed;
@@ -148,33 +168,11 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content2 {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close2 {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
 .close2:hover,
 .close2:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
-
-.row-up {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 }
 
 ////////////////
@@ -196,6 +194,7 @@ body {
         font-size: $font_main_text;
         cursor: pointer;
     }
+    
 
     .modal-content {
         display: flex;
@@ -236,6 +235,7 @@ body {
         }
     }
 }
+//кнопки вверху
 .buttonMod {
     margin-top: 2vw;
     box-sizing: border-box;
@@ -243,7 +243,7 @@ body {
     text-decoration: none;
     border: 0;
     background-color: $blue_color;
-    font-size: $font_ps_text;
+    font-size: 20px;
     padding: 10px 20px;
     font-family: "Segoe UI";
     color: $main_backgrounde;

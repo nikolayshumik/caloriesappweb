@@ -1,9 +1,9 @@
 $blue_color: #008187;
 $gray_color:#293b4b;
 $main_backgrounde: #f2f3ed;
-$font_main_text: 28px;
-$font_ps_text: 15px;
-$border_radius: 15px;
+$font_main_text: 24px;
+$font_ps_text: 20px;
+$border_radius: 5px;
 
 @font-face {
   font-family: 'Segoe UI';
@@ -32,40 +32,46 @@ body{
   align-items: center;
   flex-direction: column;
 }
-text{
+.title{
+    color: #008187;
+    font-weight: 700;
     font-size: $font_main_text;
-    margin: 10% auto 10% 10%;
 }
-#id_goals, #id_active{
-    padding: 20px;
-    border: 2px solid $blue_color;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: $border_radius;
-    margin-top: 5vw;
+.title-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3vw;
 }
 form{
     width: 90%;
     display: flex;
     flex-direction: column;
 }
-.WH{
+.common-class{
+    margin-top: 2vw;
+    font-size: $font_ps_text;
+    border: 1px solid $blue_color;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: $blue_color;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-}
-#id_weight, #id_height{
-    font-family: "Segoe UI Bold";
-    background-color: $blue_color;
-    color: $main_backgrounde;
-    border-radius: $border_radius;
-    font-size: $font_main_text;
-    text-align: center;
-    border: 0;
-    width: 30vw;
-    height: 30vw;
-    padding: 10px;
+    justify-content: space-between;
+    background-color: white;
+    font-weight: 500;
+    img{
+        width: 5vw;
+        border-radius: 50%;
+    }
+    input, select, option{
+        border: 0px;
+        font-weight: 700;
+        color: $blue_color;
+        background-color: white;
+        text-align: end;
+    }
 }
 .save{
     margin: auto;
@@ -78,5 +84,10 @@ form{
     padding: 10px 30px;
     font-family: "Segoe UI";
     color: $main_backgrounde;
-    border-radius: $border_radius;
+    border-radius: 15px;
 }
+@media (min-width: 350px) {
+    img{
+      width: 12vw;
+    }
+  }

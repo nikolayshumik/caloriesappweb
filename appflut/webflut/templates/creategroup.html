@@ -1,79 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <head>
+        <title>Группы</title>
+        <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+        <!--Медиа запросы, адаптив-->
+        <link href="{% static 'css/Groups Pages/Groups.css' %}" rel="stylesheet" />
+        <!--Подключение шрифтов-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap"
+            rel="stylesheet">
+        <!--Скрипт
+            <script defer src="{% static 'js/main.js' %}"></script>
+        -->
+    </head>
 <body>
-<style>
-   body {
-        background-color: #f2f3ed;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
 
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    input[type="text"] {
-        padding: 12px 20px;
-        margin: 8px 0;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        border-radius: 4px;
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        background-color: #008187;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #004d4f;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        margin-bottom: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #000;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}
         <input type="text" name="group_name" placeholder="Введите название группы">
         <button type="submit">Создать группу</button>
     </form>
+    <text class="title" id="all">Существующие группы</text>
     <ul>
         {% for group in groups %}
         <li><a href="{% url 'groupdetail' group_id=group.id %}">{{ group.name }}</a></li>
