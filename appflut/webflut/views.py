@@ -166,10 +166,10 @@ def edit_person_info(request):
         form = PersonalInformForm(request.POST, instance=personal_info)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Redirect to the successful registration page
+            return redirect('edit_person_info')  # Redirect to the successful registration page
     else:
         form = PersonalInformForm(instance=personal_info)
-    return render(request, 'edit_person_info.html', {'form': form})
+    return render(request, 'edit_person_info.html', {'form': form, 'personal_info': personal_info})
 def logout_view(request):
     logout(request)
     return redirect('home')

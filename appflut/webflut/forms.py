@@ -36,7 +36,7 @@ class UserRegistrationForm(forms.ModelForm):
 class PersonalInformForm(forms.ModelForm):
     class Meta:
         model = Personal_Inform
-        fields = ['weight', 'height', 'sex', 'first_name', 'last_name', 'date_of_birth',  'goals', 'active',]
+        fields = ['weight', 'height', 'sex', 'date_of_birth',  'goals', 'active',]
 
 class Step1Form(forms.ModelForm):
     class Meta:

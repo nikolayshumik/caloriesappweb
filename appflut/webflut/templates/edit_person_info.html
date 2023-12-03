@@ -16,10 +16,10 @@
 
 <div class="title-div">
     <img src="{% static 'accets/profile.png' %}"/>
-    тут надо имя и фамилия
+    {{ personal_info.first_name }} {{ personal_info.last_name }}
     <img src="{% static 'accets/settings.png' %}"/>
 </div>
-убери из цикла имя и фамилию и закинь вышел где я написал
+
 
     
     <!--{% if form.instance %}-->
