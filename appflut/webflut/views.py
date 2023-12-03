@@ -874,14 +874,14 @@ def display_chart(request):
     for i in range(7):
         current_date = week_start + timedelta(days=i)
         total_calories = (
-                (breakfast_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
-                     'product__calories_in__sum'] or 0)
-                + (lunch_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
-                       'product__calories_in__sum'] or 0)
-                + (dinner_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
-                       'product__calories_in__sum'] or 0)
-                + (snack_products.filter(date__date=current_date).aggregate(Sum('product__calories_in'))[
-                       'product__calories_in__sum'] or 0)
+                (breakfast_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                     'calories__sum'] or 0)
+                + (lunch_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
+                + (dinner_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
+                + (snack_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
         )
         calories_by_day[current_date] = total_calories
     days = [calendar.day_name[d.weekday()] for d in calories_by_day.keys()]
