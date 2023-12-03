@@ -264,7 +264,8 @@ def calories_and_bjy(request):
     activities_and_calories = []
 
     for activity in activity_prod:
-        burned_calories = round(activity.product.met * weight / activity.time, 1)
+        time = activity.time/60
+        burned_calories = round(activity.product.met * weight * time, 1)
         acttotal_calories += burned_calories  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
 
