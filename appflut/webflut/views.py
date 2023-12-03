@@ -143,7 +143,7 @@ def step5_view(request):
 
     context = {'personal_inform': personal_inform}
     return render(request, 'info5.html', context)
-
+@login_required
 def person_info(request):
     if Personal_Inform.objects.filter(user=request.user).exists():
         return redirect('edit_person_info')  # Redirect to a different page indicating that the information is already filled
@@ -207,7 +207,6 @@ def calories_and_bjy(request):
     formatted_date = format_datetime(selected_date, format='EEEE, d MMMM ', locale='ru')
     formatted_date = formatted_date.capitalize()
 
-    # selected_date += timedelta(days=1)
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
 
     user = request.user
@@ -332,12 +331,17 @@ def calories_and_bjy(request):
     }
     return render(request, 'calories_and_bjy.html', context)
 
+@login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
 def report(request):
     breakfast_products = Breakfast_Products.objects.all()
     products = [bp.product for bp in breakfast_products]
     return render(request, 'report.html', {'products': products})
+
+
 def breakfast(request):
     search_query = request.GET.get('search')
 
@@ -624,7 +628,7 @@ def date_view(request):
     return render(request, 'date.html', {'form': form, 'models': models})
 
 
-
+@login_required
 def creategroup(request):
     if request.method == 'POST':
         group_name = request.POST.get('group_name')
@@ -637,6 +641,7 @@ def creategroup(request):
 
     return render(request, 'creategroup.html', {'groups': groups,})
 
+@login_required
 def groupdetail(request, group_id):
     group = Group.objects.get(id=group_id)
     users = User.objects.all()
@@ -669,6 +674,7 @@ def removeuser(request, group_id):
 
     return redirect('groupdetail', group_id=group.id)
 
+@login_required
 def userinfo(request, user_id):
     if 'date' in request.GET:
         selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
@@ -808,7 +814,7 @@ def userinfo(request, user_id):
 
 
 
-
+@login_required
 def display_chart(request):
     user = request.user
     week_start = datetime.now().date() - timedelta(days=6)

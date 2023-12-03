@@ -102,6 +102,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+LOGIN_URL = 'home'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -127,40 +129,40 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://cf4a-37-45-215-106.ngrok-free.app',
-    'https://cf4a-37-45-215-106.ngrok-free.app/register/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/person_info/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/login/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/logout/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/calories_and_bjy/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/profile/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/report/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/breakfast/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/lunch/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/dinner/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/snack/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/activities/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/eatingbase/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/add_breakfast/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/add_lunch/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/add_dinner/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/add_snack/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/add_activity_view/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/remove_from_list/<int:product_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/remove_from_list2/<int:product_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/delete_activity/<int:id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/edit_person_info/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/creategroup/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/groupdetail/<int:group_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/adduser/<int:group_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/removeuser/<int:group_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/userinfo/<int:user_id>/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/step1/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/step2/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/step3/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/step4/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/step5/',
-    'https://cf4a-37-45-215-106.ngrok-free.app/display_chart/',
+    'https://f2cb-178-127-218-219.ngrok-free.app',
+    'https://f2cb-178-127-218-219.ngrok-free.app/register/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/person_info/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/login/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/logout/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/calories_and_bjy/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/profile/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/report/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/breakfast/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/lunch/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/dinner/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/snack/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/activities/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/eatingbase/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/add_breakfast/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/add_lunch/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/add_dinner/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/add_snack/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/add_activity_view/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/remove_from_list/<int:product_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/remove_from_list2/<int:product_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/delete_activity/<int:id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/edit_person_info/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/creategroup/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/groupdetail/<int:group_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/adduser/<int:group_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/removeuser/<int:group_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/userinfo/<int:user_id>/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/step1/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/step2/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/step3/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/step4/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/step5/',
+    'https://f2cb-178-127-218-219.ngrok-free.app/display_chart/',
 
     # Другие доверенные источники (если есть)
 ]
