@@ -215,7 +215,11 @@ def calories_and_bjy(request):
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
     bproducts = [{
         'product': bp.product,
-        'weight': bp.weight
+        'weight': bp.weight,
+        'calories': bp.calories,
+        'proteins': bp.proteins,
+        'fats': bp.fats,
+        'carbohydrates': bp.carbohydrates
     } for bp in breakfast_products]
 
     lunch_products = Lunch_Products.objects.filter(user=user, date__date=selected_date)
@@ -264,10 +268,10 @@ def calories_and_bjy(request):
         date_of_birth2 = inf.date_of_birth
         male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
 
-    bcalories_in = breakfast_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
-    bproteins = breakfast_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
-    bfats = breakfast_products.aggregate(Sum('product__fats'))['product__fats__sum'] or 0
-    bcarbohydrates = breakfast_products.aggregate(Sum('product__carbohydrates'))['product__carbohydrates__sum'] or 0
+    bcalories_in = breakfast_products.aggregate(Sum('calories'))['calories__sum'] or 0
+    bproteins = breakfast_products.aggregate(Sum('proteins'))['proteins__sum'] or 0
+    bfats = breakfast_products.aggregate(Sum('fats'))['fats__sum'] or 0
+    bcarbohydrates = breakfast_products.aggregate(Sum('carbohydrates'))['carbohydrates__sum'] or 0
 
     calories_in = lunch_products.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
     proteins = lunch_products.aggregate(Sum('product__proteins'))['product__proteins__sum'] or 0
@@ -459,7 +463,15 @@ def add_breakfast_view(request):
             selected_datetime_aware = make_aware(selected_datetime)
             product = Add_Product.objects.get(id=product_id)
             user = request.user
-            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight)
+
+            calories = float(weight) * (float(product.calories_in) / 100)
+            proteins = round(float(weight) * (float(product.proteins) / 100), 1)
+            fats = round(float(weight) * (float(product.fats) / 100), 1)
+            carbohydrates = round(float(weight) * (float(product.carbohydrates) / 100), 1)
+
+
+            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight,
+                                              calories=calories, proteins=proteins, fats=fats, carbohydrates=carbohydrates)
         except Add_Product.DoesNotExist:
             pass
         except ValueError:

@@ -53,7 +53,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="product_id" value="{{ el.id }}">
                   <label for="time-input">Введите время:</label>
-                  <input type="number" name="time" id="time-input">
+                  <input type="number" name="time" id="time-input" required>
                   <button type="submit">Добавить активность</button>
               </form>
           </div>

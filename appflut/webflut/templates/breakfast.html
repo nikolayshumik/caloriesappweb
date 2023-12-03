@@ -20,7 +20,7 @@
                 <label for="weight-input">Введите массу:</label>
 <!--                <span class="close2" onclick="closeModal2()">&times;</span>-->
             </div>
-            <input type="number" name="weight" id="weight-input" placeholder="В граммах">
+            <input type="number" name="weight" id="weight-input" placeholder="В граммах" required data-calories-per-100g="{{ product.calories_in }}">
             <button type="submit">Добавить в завтрак</button>
         </form>
     </div>

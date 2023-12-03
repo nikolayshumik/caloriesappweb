@@ -71,12 +71,12 @@
                     <text style="text-decoration: dotted;">{{ product.product.name }}
                         ({{ product.weight }} г.)
                     </text>
-                    <text>{{ product.product.calories_in }} ккал</text>
+                    <text>{{ product.calories }} ккал</text>
                 </div>
                 <div class="product-row">
-                    <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
-                    <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
-                    <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                    <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+                    <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+                    <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
                 </div>
 
                 <form method="POST" action="{% url 'remove_from_list2' product.product.id %}">
