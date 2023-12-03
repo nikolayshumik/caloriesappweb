@@ -77,3 +77,6 @@ class AddProductForm(forms.ModelForm):
     class Meta:
         model = Add_Product
         fields = ['name', 'calories_in', 'proteins', 'fats', 'carbohydrates',]
+        labels = {
+            'carbohydrates': 'carbo'
+        }
