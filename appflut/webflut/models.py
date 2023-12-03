@@ -111,6 +111,10 @@ class Lunch_Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
     weight = models.FloatField(default=0)
+    calories = models.FloatField(default=0)
+    proteins = models.FloatField(default=0)
+    fats = models.FloatField(default=0)
+    carbohydrates = models.FloatField(default=0)
     class Meta:
         verbose_name = 'Продукты Обеда'
         verbose_name_plural = 'Продукты Обеда'
@@ -122,6 +126,10 @@ class Dinner_Products(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
      date = models.DateTimeField(default=timezone.now)
      weight = models.FloatField(default=0)
+     calories = models.FloatField(default=0)
+     proteins = models.FloatField(default=0)
+     fats = models.FloatField(default=0)
+     carbohydrates = models.FloatField(default=0)
      class Meta:
          verbose_name = 'Продукты Ужина'
          verbose_name_plural = 'Продукты Ужина'
@@ -136,6 +144,10 @@ class Snack_Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     date = models.DateTimeField(default=timezone.now)
     weight = models.FloatField(default=0)
+    calories = models.FloatField(default=0)
+    proteins = models.FloatField(default=0)
+    fats = models.FloatField(default=0)
+    carbohydrates = models.FloatField(default=0)
     class Meta:
         verbose_name = 'Продукты Перекуса'
         verbose_name_plural = 'Продукты Перекуса'

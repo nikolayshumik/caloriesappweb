@@ -110,18 +110,21 @@
                     <text style="text-decoration: dotted;">{{ product.product.name }}
                         ({{ product.weight }} г.)
                     </text>
-                    <text>{{ product.product.calories_in }} ккал</text>
+                    <text>{{ product.calories }} ккал</text>
                 </div>
                 <div class="product-row">
-                    <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
-                    <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
-                    <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                    <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+                    <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+                    <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
                 </div>
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <input type="hidden" name="meal_type" value="lunch">
-                    <input type="submit" value="Удалить">
+                    <button type="submit" style="border: none; background: none; padding: 0;">
+                        <input type="hidden" name="meal_type" value="lunch">
+                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    </button>
+
                 </form>
             </div>
             {% empty %}
@@ -148,18 +151,21 @@
                     <text style="text-decoration: dotted;">{{ product.product.name }}
                         ({{ product.weight }} г.)
                     </text>
-                    <text>{{ product.product.calories_in }} ккал</text>
+                    <text>{{ product.calories }} ккал</text>
                 </div>
                 <div class="product-row">
-                    <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
-                    <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
-                    <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                    <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+                    <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+                    <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
                 </div>
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <input type="hidden" name="meal_type" value="dinner">
-                    <input type="submit" value="Удалить">
+                    <button type="submit" style="border: none; background: none; padding: 0;">
+                        <input type="hidden" name="meal_type" value="dinner">
+                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    </button>
+
                 </form>
             </div>
             {% empty %}
@@ -186,18 +192,21 @@
                     <text style="text-decoration: dotted;">{{ product.product.name }}
                         ({{ product.weight }} г.)
                     </text>
-                    <text>{{ product.product.calories_in }} ккал</text>
+                    <text>{{ product.calories }} ккал</text>
                 </div>
                 <div class="product-row">
-                    <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
-                    <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
-                    <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
+                    <li style="color: #ca517a;">{{ product.proteins }} г.</li>
+                    <li style="color: #fbb20d;">{{ product.fats }} г.</li>
+                    <li style="color: #4887ba;">{{ product.carbohydrates }} г.</li>
                 </div>
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <input type="hidden" name="meal_type" value="snack">
-                    <input type="submit" value="Удалить">
+                    <button type="submit" style="border: none; background: none; padding: 0;">
+                        <input type="hidden" name="meal_type" value="snack">
+                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    </button>
+
                 </form>
             </div>
             {% empty %}
@@ -253,6 +262,9 @@
                 event.target.parentElement.classList.toggle('active');
             });
         })
+
+
+
 
 </script>
 
