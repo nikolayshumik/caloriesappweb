@@ -20,7 +20,7 @@
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}
-        <input type="text" name="group_name" placeholder="Введите название группы">
+        <input type="text" name="group_name" placeholder="Введите название группы" required>
         <button type="submit">Создать группу</button>
     </form>
     <text class="title" id="all">Существующие группы</text>
