@@ -1,51 +1,60 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>О мне</title>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/Profile Page/pers_info.css' %}" rel="stylesheet"/>
-    <!--Подключение шрифтов-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+    <link href="{% static 'css/Profile Page/pers_info.css' %}" rel="stylesheet" />
     <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
-<body>
 
+<body>
+    <text class="title">Привет, {{ request.user.username }}</text>
+
+<div class="title-div">
+    <img src="{% static 'accets/profile.png' %}"/>
+    тут надо имя и фамилия
+    <img src="{% static 'accets/settings.png' %}"/>
+</div>
+убери из цикла имя и фамилию и закинь вышел где я написал
 
     
-    <text>Привет, {{ request.user.username }}</text>
-<!--{% if form.instance %}-->
-<!--        <a href="{% url 'edit_person_info' %}">Edit Personal Information</a>-->
-<!--    {% endif %}-->
+    <!--{% if form.instance %}-->
+    <!--        <a href="{% url 'edit_person_info' %}">Edit Personal Information</a>-->
+    <!--    {% endif %}-->
 
-<form method="post">
-    {% csrf_token %}
-    <div class="WH">
+    <form method="post">
+        {% csrf_token %}
         {% for field in form %}
-            {% if field.name == 'weight' or field.name == 'height' %}
-                {{ field }}
+        <div class="common-class">
+            {% if field.name == 'weight' %}
+            <text>Вес</text>
+            {% elif field.name == 'height' %}
+            <text>Рост</text>
+            {% elif field.name == 'sex' %}
+            <text>Пол</text>
+            {% elif field.name == 'date_of_birth' %}
+            <text>Полных лет</text>
+            {% elif field.name == 'goals' %}
+            <text>Цель</text>
+            {% elif field.name == 'active' %}
+            <text>Активность</text>
             {% endif %}
-        {% endfor %}
-    </div>
-    {% for field in form %}
-        {% if field.name != 'weight' and field.name != 'height' %}
             {{ field }}
-        {% endif %}
-    {% endfor %}
-    <button type="submit" class="save">Сохранить</button>
-</form>
+        </div>
+        {% endfor %}
+        <button type="submit" class="save">Сохранить</button>
+    </form>
 
-
-{% block content %}
-{% include 'footer.html' %}
-{% endblock %}
+    {% block content %}
+    {% include 'footer.html' %}
+    {% endblock %}
 
 
 
 </body>
+
 </html>
