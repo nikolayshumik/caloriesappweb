@@ -10,20 +10,16 @@ body {
   flex-direction: column;
 }
 
-.data {
-  display: flex;
-  flex-direction: column;
-}
-.data .row-buttons {
+.row-buttons {
   flex-direction: row;
   margin-top: 5px;
+  font-size: 18px;
 }
-.data .row-buttons > * {
+.row-buttons button {
   width: 60px;
   font-size: 22px;
   color: #0c1c2c;
   border: 0px;
-  background-color: rgb(4, 177, 211);
   padding-top: 5px;
   padding-bottom: 5px;
   text-decoration: none;
@@ -45,23 +41,33 @@ body {
   font-size: 25px;
   border-radius: 10px;
   margin-top: 20px;
-  background-color: rgb(4, 177, 211);
-  color: white;
-  padding: 15px;
 }
-.block .nutrition-div {
+.block .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.block .container .nutrition-div {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px rgb(4, 177, 211) solid;
   font-size: 18px;
   border-radius: 5px;
-  margin: 5px;
+  width: 32%;
+  font-weight: 500;
+  padding: 5px;
+  padding-top: 10px;
+  text-align: center;
+}
+.block .container .nutrition-div p {
+  font-weight: 600;
+  margin-block-start: 0.5em;
+  margin-block-end: 0em;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 5px;
-}
-.container > * {
-  text-align: center;
+#id_date {
+  display: none;
 }
 
 .eatings {

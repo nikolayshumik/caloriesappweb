@@ -7,11 +7,6 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Calories Page/calories.css' %}" rel="stylesheet" />
-    <!--Подключение шрифтов-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend&display=swap"
-        rel="stylesheet">
     <!--Скрипт
         <script defer src="{% static 'js/main.js' %}"></script>
     -->
@@ -20,32 +15,28 @@
 
 <body>
 
-<form method="get">
-    {{ form.date }}
-    <style>
-        #id_date {
-            display: none;
-        }
-    </style>
+<form method="get" style="margin: auto;">
     <div class="row-buttons">
         <button type="submit" name="move" value="prev"><</button>
+        {{ form.date }}<div style="display: inline-block;">{{ formatted_date }}</div>
         <button type="submit" name="move" value="next">></button>
     </div>
 </form>
 
-<p>{{ formatted_date }}</p>
+
 
 <div class="block">Калории
-<div class="nutrition-div" style="margin-top: 20px; font-size: 20px; ">Норма
-    <p style="color: #1ecb95;">{{ male }}</p>
-</div>
 
-<div class="container" style="grid-template-columns: auto auto">
+
+<div class="container">
     <div class="nutrition-div">Потреблено
-        <p style="color: #FF4040;">{{ total_calories }}</p>
+        <p>{{ total_calories }}</p>
+    </div>
+    <div class="nutrition-div">Норма
+        <p>{{ male }}</p>
     </div>
     <div class="nutrition-div">Сожжено
-        <p style="color: #FFD100;">{{ acttotal_calories }}</p>
+        <p>{{ acttotal_calories }}</p>
     </div>
 </div>
 </div>

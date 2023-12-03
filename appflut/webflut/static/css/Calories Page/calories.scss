@@ -1,43 +1,43 @@
-$blue_color: rgb(4,177,211);
+$blue_color: rgb(4, 177, 211);
 $white_color: white;
-$gray_color:rgb(47,47,47);
+$gray_color: rgb(47, 47, 47);
 $main_backgrounde: #f7f8fa;
 $text_color: #0c1c2c;
 $back_dark: #141414;
 $font_big_text: 25px;
 $font_med_text: 18px;
 $font_sm_text: 13px;
+
 html {
     height: 100%;
     font-family: "Inter";
     background-color: $main_backgrounde;
-  }
-body{
+}
+
+body {
     text-align: center;
     display: flex;
     flex-direction: column;
 }
-.data{
-    display: flex;
-    flex-direction: column;
 
-    .row-buttons{
-        flex-direction: row;
-        margin-top: 5px;
-        >*{
+.row-buttons {
+    flex-direction: row;
+    margin-top: 5px;
+    font-size: $font_med_text;
+
+    button {
         width: 60px;
         font-size: 22px;
         color: $text_color;
         border: 0px;
-        background-color: $blue_color;
         padding-top: 5px;
         padding-bottom: 5px;
         text-decoration: none;
         border-radius: 10px;
-        }
     }
 }
-.profile{
+
+.profile {
     margin-left: auto;
     font-size: 25px;
     color: $text_color;
@@ -47,29 +47,44 @@ body{
     text-decoration: none;
     border-radius: 10px;
 }
-.block{
+
+.block {
     font-size: $font_big_text;
     border-radius: 10px;
     margin-top: 20px;
-    background-color: $blue_color;
-    color: $white_color;
-    padding: 15px;
-    .nutrition-div{
-        //background-color: $white_color;
-        font-size: $font_med_text;
-        border-radius: 5px;
-        margin: 5px;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 10px;
+
+        .nutrition-div {
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 2px $blue_color solid;
+            font-size: $font_med_text;
+            border-radius: 5px;
+            width: 32%;
+            font-weight: 500;
+            padding: 5px;
+            padding-top: 10px;
+            text-align: center;
+
+            p {
+                font-weight: 600;
+                margin-block-start: 0.5em;
+                margin-block-end: 0em;
+            }
+        }
     }
 }
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 5px;
-  >*{
-    text-align: center;
-  }
-  }
-.eatings{
+
+#id_date {
+    display: none;
+}
+
+.eatings {
     border-radius: 10px;
     background-color: $white_color;
     display: flex;
@@ -80,18 +95,21 @@ body{
     margin: 10px auto 0 auto;
     border: 0px;
     padding: 8px 15px;
-    text-decoration: none;   
-    .buttonMod{
+    text-decoration: none;
+
+    .buttonMod {
         color: white;
-        text-decoration: none;   
+        text-decoration: none;
     }
-    .breakfast{
+
+    .breakfast {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        a{
+
+        a {
             text-decoration: none;
-            color:$blue_color;
+            color: $blue_color;
             width: 30px;
             height: 30px;
             font-size: 30px;
@@ -103,43 +121,48 @@ body{
     }
 }
 
-.product-item{
+.product-item {
     border-bottom: 1px solid $blue_color;
     font-size: $font_med_text;
     margin-top: 20px;
     padding-bottom: 5px;
-    .title{
+
+    .title {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-    >p{
+
+    >p {
         font-size: $font_sm_text;
     }
-    .product-row{
+
+    .product-row {
         margin-top: 20px;
         font-size: $font_med_text;
         display: flex;
         justify-content: space-around;
     }
-    form{
+
+    form {
         margin-top: 20px;
     }
 }
-.summ_kkal{
+
+.summ_kkal {
     margin-right: auto;
     margin-top: 10px;
     font-size: $font_med_text;
 }
+
 .eatings .content {
     display: none;
-  }
+}
+
 .eatings.active .content {
     display: block;
 }
+
 .clickable {
     cursor: pointer;
 }
-
-
-
