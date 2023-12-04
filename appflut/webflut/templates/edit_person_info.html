@@ -14,19 +14,16 @@
 <body>
     <text class="title">Привет, {{ request.user.username }}</text>
 
+    <!--
 <div class="title-div">
     <img src="{% static 'accets/profile.png' %}"/>
     {{ personal_info.first_name }} {{ personal_info.last_name }}
     <img src="{% static 'accets/settings.png' %}"/>
 </div>
+-->
 
 
-    
-    <!--{% if form.instance %}-->
-    <!--        <a href="{% url 'edit_person_info' %}">Edit Personal Information</a>-->
-    <!--    {% endif %}-->
-
-    <form method="post">
+    <form method="post" style="margin-top: 20px;">
         {% csrf_token %}
         {% for field in form %}
         <div class="common-class">

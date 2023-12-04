@@ -22,61 +22,66 @@ body {
 }
 
 .container {
-  font-size: 24px;
-  margin: 0 auto;
+  margin: 2vw;
   display: flex;
   flex-direction: column;
   padding: 20px;
   background-color: white;
   border: 2px solid #008187;
+  border-radius: 5px;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
 }
-
-li {
+ul li {
+  font-size: 18px;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-li form {
+ul li form {
   display: inline;
 }
-li form button {
-  padding: 5px 10px;
-  background-color: red;
-}
-
-li a {
+ul li a {
   text-decoration: none;
   color: #333;
   transition: color 0.3s ease-in-out;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 20px;
+  background-color: #008187;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 li a:hover {
   color: #008187;
 }
 
-li button {
-  background-color: #008187;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
 li button:hover {
   background-color: #006c6f;
 }
 
-form {
-  margin-top: 20px;
-}
-
 select {
   padding: 5px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 1px solid #008187;
+}
+
+option {
+  padding: 0px;
+  font-size: 12px;
 }
 
 button[type=submit] {

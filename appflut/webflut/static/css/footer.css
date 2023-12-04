@@ -1,20 +1,5 @@
-.main-orientations {
-    width: 11vw;
-    height: 11vw;
-    text-align: center;
-    display: flex;
-    color: #f2f3ed;
-    align-items: center;
-    margin-right: auto;
-    justify-content: center;
-    font-size: 11vw;
-    border-radius: 10px;
-    border: none;
-    background-color: #293b4b;
-}
-
 footer {
-    background-color: #293b4b;
+    background-color: rgb(4, 177, 211);
     border-radius: 10px;
     display: flex;
     width: 90%;
@@ -35,26 +20,19 @@ footer {
     width: 11vw;
 }
 
-
 .buttonFooter:hover {
 box-shadow: 5px 5px 5px white;
 }
 
+/*размеры телефонов*/
 @media (min-width: 481px) {
-    .main-orientations {
-        width: 7vw;
-        height: 7vw;
-        font-size: 8vw;
-    }
-}
-@media (min-width: 481px) {
-    .main-orientations {
-        width: 7vw;
-        height: 7vw;
-        font-size: 8vw;
+    footer{
+        width: 80%;
     }
 }
 /**/
+
+/*размеры планшетов*/
 @media (min-width: 769px) {
     footer{
         width: 50%;
@@ -62,19 +40,11 @@ box-shadow: 5px 5px 5px white;
 .imgFooter {
     width: 6vw;
 }
-    .main-orientations {
-        width: 6vw;
-        height: 6vw;
-        font-size: 6vw;
-        padding: 2vw;
-    }
 }
+/**/
 
+/*размеры компьютеров*/
 @media (min-width: 1025px) {
-    .main-orientations {
-        width: 5vw;
-        height: 5vw;
-        font-size: 5vw;
-        padding: 2vw;
-    }
+
 }
+/**/

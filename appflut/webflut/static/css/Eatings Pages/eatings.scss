@@ -179,7 +179,7 @@ body {
 /// стилизация добавления своего продукта
 .modal {
     display: none;
-    margin: 5vw;
+    margin: auto;
     padding: 20px;
     width: 80%;
     border-radius: $border_radius;
@@ -194,7 +194,6 @@ body {
         font-size: $font_main_text;
         cursor: pointer;
     }
-    
 
     .modal-content {
         display: flex;

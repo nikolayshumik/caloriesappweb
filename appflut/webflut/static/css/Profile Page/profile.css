@@ -1,4 +1,3 @@
-/* calories_and_bjy*/
 @font-face {
   font-family: "Segoe UI";
   src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
@@ -41,7 +40,7 @@ textarea {
   padding: 15px;
   font-size: 28px;
   border: 2px solid #008187;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 @media (min-width: 769px) {
