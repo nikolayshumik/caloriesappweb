@@ -2,7 +2,7 @@
 html {
   height: 100%;
   font-family: "Inter";
-  background-color: #f7f8fa;
+  background-color: #f2f3ed;
 }
 
 body {
@@ -51,7 +51,8 @@ body {
 .block .container .nutrition-div {
   box-sizing: border-box;
   border-radius: 5px;
-  border: 2px rgb(4, 177, 211) solid;
+  border: 2px rgb(202 215 217) solid;
+  background-color: white;
   font-size: 18px;
   border-radius: 5px;
   width: 32%;
