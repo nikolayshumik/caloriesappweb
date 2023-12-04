@@ -8,9 +8,8 @@ class DateForm(forms.Form):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    username = forms.CharField(label='Username', max_length=None)
-    #user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')), widget=forms.RadioSelect)
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+    username = forms.CharField(label='Логин', max_length=None)
     user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
     widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}))
 
@@ -25,6 +24,7 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password', 'user_type',)
+    
 
     # def clean_password2(self):
     #     cd = self.cleaned_data

@@ -28,69 +28,78 @@ html {
     font-family: "Segoe UI";
     background-color: $main_backgrounde;
 }
+
 body {
     margin: 0;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .container {
-    font-size: $font_main_text;
-    margin: 0 auto;
+    margin: 2vw;
     display: flex;
     flex-direction: column;
     padding: 20px;
     background-color: white;
     border: 2px solid $blue_color;
+    border-radius: 5px;
 }
-
 
 ul {
     list-style-type: none;
     padding: 0;
-}
 
-li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-    form{
-        display: inline;
-        button{
-            padding: 5px 10px;
-            background-color: red;
+    li {
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        form {
+            display: inline;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease-in-out;
         }
     }
 }
 
-li a {
-    text-decoration: none;
-    color: #333;
-    transition: color 0.3s ease-in-out;
-}
-
-li a:hover {
-    color: #008187;
-}
-
-li button {
+button {
+    padding: 5px 10px;
+    font-size: $font_ps_text;
     background-color: #008187;
     color: white;
     padding: 5px 10px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+}
+
+
+li a:hover {
+    color: #008187;
 }
 
 li button:hover {
     background-color: #006c6f;
 }
 
-form {
-    margin-top: 20px;
-}
-
 select {
     padding: 5px;
+    border-radius: 5px;
+    font-size: $font_ps_text;
+    border: 1px solid $blue_color;
+}
+option {
+    padding: 0px;
+    font-size: 12px;
 }
 
 button[type="submit"] {

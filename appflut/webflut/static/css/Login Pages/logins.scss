@@ -1,6 +1,5 @@
 $blue_color: #008187;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
 $font_main_text: 28px;
 $font_ps_text: 15px;
 $border_radius: 15px;
@@ -26,7 +25,7 @@ $border_radius: 15px;
 
 html {
   font-family: "Segoe UI";
-  background-color: $main_backgrounde;
+  background-color: white;
 }
 
 text {
@@ -35,13 +34,32 @@ text {
   color: $gray_color;
   text-align: center;
   margin-bottom: 5%;
-  /* Увеличиваем нижний отступ для текста */
 }
 
 form {
-  width: 40%;
+  padding: 10px;
+  width: 90%;
+  border-radius: 10px;
+  border: 2px solid $blue_color;
+  background-color: white;
+  margin: auto;
   display: flex;
   flex-direction: column;
+
+  input {
+    margin-top: 20px;
+    font-size: $font_main_text;
+    border: 2px solid $blue_color;
+    border-radius: $border_radius;
+    padding: 20px 30px;
+    background-color: white;
+    color: $gray_color;
+  }
+
+  label {
+    font-size: $font_main_text;
+    margin: 20px auto 0 auto;
+  }
 }
 
 .page-container {
@@ -53,22 +71,10 @@ form {
   padding-top: 5%;
 }
 
-a {
-  text-decoration: none;
-  text-align: center;
-  border: 0;
-  background-color: $blue_color;
-  font-size: $font_main_text;
-  padding: 10px 20px;
-  font-family: "Segoe UI";
-  color: $main_backgrounde;
-  border-radius: $border_radius;
-}
 
 
-button, .next {
-  //position: absolute;
-  //bottom: -30%;
+button,
+.next {
   margin-top: 5vw;
   box-sizing: border-box;
   text-align: center;
@@ -77,70 +83,57 @@ button, .next {
   font-size: $font_main_text;
   padding: 10px 20px;
   font-family: "Segoe UI";
-  color: $main_backgrounde;
+  color: white;
   border-radius: $border_radius;
 }
 
-input {
-  font-size: $font_main_text;
-  border: 3px solid $blue_color;
-  border-radius: $border_radius;
-  padding: 20px 30px;
-  background-color: $main_backgrounde;
-  color: $gray_color;
-  margin-top: 30px;
+
+.form_toggle-radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  >div {
+    text-align: center;
+
+    label {
+      display: flex;
+      flex-direction: column-reverse;
+
+      input[type="radio"]{
+        margin: auto;
+        margin-top: 10px;
+        color: $blue_color;
+      }
+    }
+  }
+
+}
+input[type="radio"] {
+  width: 10px; /* задать желаемую ширину */
+  height: 10px;
+  -webkit-appearance: none; /* убрать стандартный внешний вид браузера */
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid $blue_color; /* задать стиль рамки */
+  border-radius: 50%; /* сделать радио-кнопку круглой */
+  outline: none; /* убрать контур при фокусе */
 }
 
-.form_toggle {
-  display: inline-block;
-  overflow: hidden;
+input[type="radio"]:checked {
+  background-color: $blue_color; /* изменить цвет радио-кнопки при выборе */
 }
-
-.form_toggle-item {
-  float: left;
-  display: inline-block;
-}
-
-.form_toggle-item input[type=radio] {
-  display: none;
-}
-
-.form_toggle-item label {
-  display: inline-block;
-  padding: 0px 15px;
-  line-height: 34px;
-  border: 1px solid #999;
-  border-right: none;
-  cursor: pointer;
-  user-select: none;
-}
-
-.form_toggle .item-1 label {
-  border-radius: 6px 0 0 6px;
-}
-
-.form_toggle .item-2 label {
-  border-radius: 0 6px 6px 0;
-  border-right: 1px solid #999;
-}
-
-/* Checked */
-.form_toggle .item-1 input[type=radio]:checked+label {
-  background: #ffc5c5;
-}
-
-.form_toggle .item-2 input[type=radio]:checked+label {
-  background: #bbffbb;
-}
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .page-container {
     padding-top: 10%;
   }
+
   form {
-    width: 80%;
     padding-top: 15vw;
   }
-  button, .next {
+
+  button,
+  .next {
     margin-top: 8vw;
     font-size: 30px;
     padding: 15px 25px;

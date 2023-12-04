@@ -32,13 +32,13 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 2vw auto;
+  border-radius: 10px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .container .title {
-  font-size: 26px;
   margin-bottom: 2vw;
   font-family: "Segoe UI";
   font-weight: 600;

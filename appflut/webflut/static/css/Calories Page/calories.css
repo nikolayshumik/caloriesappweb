@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   height: 100%;
   font-family: "Inter";
@@ -16,12 +17,11 @@ body {
   font-size: 18px;
 }
 .row-buttons button {
-  width: 60px;
   font-size: 22px;
-  color: #0c1c2c;
+  color: #f7f8fa;
+  background-color: rgb(4, 177, 211);
   border: 0px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 10px;
   text-decoration: none;
   border-radius: 10px;
 }
@@ -70,6 +70,10 @@ body {
   display: none;
 }
 
+#delete_img {
+  width: 8vw;
+}
+
 .eatings {
   border-radius: 10px;
   background-color: white;
@@ -105,7 +109,7 @@ body {
 }
 
 .product-item {
-  border-bottom: 1px solid rgb(4, 177, 211);
+  border-bottom: 1px solid black;
   font-size: 18px;
   margin-top: 20px;
   padding-bottom: 5px;
@@ -114,6 +118,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.product-item .title :nth-child(1) {
+  text-align: left;
+}
+.product-item .title :nth-child(2) {
+  text-align: right;
 }
 .product-item > p {
   font-size: 13px;
@@ -125,7 +135,14 @@ body {
   justify-content: space-around;
 }
 .product-item form {
-  margin-top: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+.product-item form button {
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 .summ_kkal {
@@ -144,4 +161,11 @@ body {
 
 .clickable {
   cursor: pointer;
-}/*# sourceMappingURL=calories.css.map */
+}
+
+/*размеры телефонов*/
+/**/
+/*размеры планшетов*/
+/**/
+/*размеры компьютеров*/
+/**//*# sourceMappingURL=calories.css.map */

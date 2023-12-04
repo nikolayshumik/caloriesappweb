@@ -1,83 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Детали группы</title>
+    <link href="{% static 'css/Groups Pages/detailsGroups.css' %}" rel="stylesheet" />
 </head>
 <body>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f2f3ed;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: white;
-        border: 2px solid #008187;
-    }
-
-    h1, h3 {
-        color: #333;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        padding: 10px 0;
-        border-bottom: 1px solid #ccc;
-    }
-
-    li a {
-        text-decoration: none;
-        color: #333;
-        transition: color 0.3s ease-in-out;
-    }
-
-    li a:hover {
-        color: #008187;
-    }
-
-    li button {
-        background-color: #008187;
-        color: white;
-        padding: 5px 10px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    li button:hover {
-        background-color: #006c6f;
-    }
-
-    form {
-        margin-top: 20px;
-    }
-
-    select {
-        padding: 5px;
-    }
-
-    button[type="submit"] {
-        background-color: #008187;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-</style>
 
 <div class="container">
-    <h1>Детали группы {{ group.name }}</h1>
+    <h2>Детали группы {{ group.name }}</h2>
     <h3>Пользователи в группе:</h3>
     <ul>
         {% for user in group.users.all %}
@@ -98,7 +30,7 @@
             <option value="{{ user.username }}">{{ user.username }}</option>
             {% endfor %}
         </select>
-        <button type="submit">Добавить пользователя</button>
+        <button type="submit">Добавить</button>
     </form>
 </div>
 

@@ -26,8 +26,6 @@
 
 
 <div class="block">Калории
-
-
     <div class="container">
         <div class="nutrition-div">Потреблено
             <p>{{ total_calories }}</p>
@@ -41,8 +39,7 @@
     </div>
 </div>
 
-<div class="block">
-    БЖУ
+<div class="block">БЖУ
     <div class="container">
         <div class="nutrition-div">Белки
             <p style="color: #ca517a;">{{ total_proteins }}</p>
@@ -81,9 +78,9 @@
 
                 <form method="POST" action="{% url 'remove_from_list2' product.product.id %}">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; padding: 0;">
+                    <button type="submit">
                         <input type="hidden" name="meal_type" value="breakfast">
-                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
                     </button>
                 </form>
             </div>
@@ -120,11 +117,10 @@
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; padding: 0;">
-                        <input type="hidden" name="meal_type" value="lunch">
-                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="breakfast">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
                     </button>
-
                 </form>
             </div>
             {% empty %}
@@ -161,11 +157,10 @@
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; padding: 0;">
-                        <input type="hidden" name="meal_type" value="dinner">
-                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="breakfast">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
                     </button>
-
                 </form>
             </div>
             {% empty %}
@@ -202,11 +197,10 @@
 
                 <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
                     {% csrf_token %}
-                    <button type="submit" style="border: none; background: none; padding: 0;">
-                        <input type="hidden" name="meal_type" value="snack">
-                        <img src="{% static 'accets/корзина.png' %}" style="width: 5vw;">
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="breakfast">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
                     </button>
-
                 </form>
             </div>
             {% empty %}
@@ -237,7 +231,10 @@
                 </div>
                 <form method="POST" action="{% url 'delete_activity'  id=activity.id %}">
                     {% csrf_token %}
-                    <input type="submit" value="Удалить активность">
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="breakfast">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
+                    </button>
                 </form>
             </div>
 
