@@ -1,8 +1,18 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI_Bold";
+  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
 html {
-  height: 100%;
-  font-family: "Inter";
-  background-color: #f7f8fa;
+  font-family: "Segoe UI";
+  background-color: #f2f3ed;
 }
 
 body {
@@ -18,7 +28,7 @@ body {
 }
 .row-buttons button {
   font-size: 22px;
-  color: #f7f8fa;
+  color: #f2f3ed;
   background-color: #008187;
   border: 0px;
   text-align: center;
@@ -59,6 +69,7 @@ body {
   padding: 5px;
   padding-top: 10px;
   text-align: center;
+  background-color: white;
 }
 .block .container .nutrition-div p {
   font-weight: 600;

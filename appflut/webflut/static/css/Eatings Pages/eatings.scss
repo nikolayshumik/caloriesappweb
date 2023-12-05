@@ -188,6 +188,9 @@ body {
     border: 2px solid $blue_color;
     font-size: $font_main_text;
     position: relative;
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
 
     .close {
         position: absolute;
@@ -236,9 +239,19 @@ body {
         }
     }
 }
+@keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 //кнопки вверху
 .buttonMod {
-    margin-top: 2vw;
+    margin-bottom: 2vw;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
