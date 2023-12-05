@@ -123,6 +123,10 @@ input[type="radio"] {
 input[type="radio"]:checked {
   background-color: $blue_color; /* изменить цвет радио-кнопки при выборе */
 }
+footer{
+  position: absolute;
+  bottom: 0;
+}
 @media (min-width: 480px) {
   .page-container {
     padding-top: 10%;

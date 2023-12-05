@@ -23,7 +23,10 @@ $border_radius: 15px;
         url('SegoeUI-Bold.ttf') format('truetype');
     font-weight: 700;
 }
-
+footer{
+    position: absolute;
+    bottom: 0;
+  }
 html {
     font-family: "Segoe UI";
     background-color: $main_backgrounde;

@@ -87,6 +87,10 @@ form{
     border-radius: 15px;
     border: 1px solid $blue_color;
 }
+footer{
+    position: absolute;
+    bottom: 0;
+  }
 @media (min-width: 350px) {
     img{
       width: 12vw;

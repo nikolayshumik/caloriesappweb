@@ -95,6 +95,11 @@ form input {
   margin-top: 30px;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
 /*размеры телефонов*/
 /**/
 /*размеры планшетов*/
@@ -112,4 +117,4 @@ form input {
     margin: 5% auto;
   }
 }
-/**//*# sourceMappingURL=main400.css.map */
+/**//*# sourceMappingURL=index.css.map */

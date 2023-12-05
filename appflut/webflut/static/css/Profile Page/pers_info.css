@@ -80,6 +80,11 @@ form {
   border: 1px solid #008187;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
 @media (min-width: 350px) {
   img {
     width: 12vw;
