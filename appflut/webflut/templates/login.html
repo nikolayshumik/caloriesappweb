@@ -17,7 +17,7 @@
         
         {% if user.is_authenticated %}
         <text>Вы уже вошли в систему как {{ user.username }}</text>
-        <a href="{% url 'logout' %}" style="background-color: #293b4b;">Выйти</a>
+        <a href="{% url 'logout' %}" class="next" style="text-decoration: none;">Выйти</a>
         {% else %}
         <form method="post" action="{% url 'login' %}" style="border: none;">
             {% csrf_token %}

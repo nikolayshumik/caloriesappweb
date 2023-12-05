@@ -55,6 +55,7 @@ body h1 {
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
+  background-color: white;
   padding: 10px;
   border-radius: 15px;
   border: 2px solid #008187;
@@ -157,6 +158,7 @@ body h1 {
 .modal {
   display: none;
   margin: auto;
+  margin-bottom: 2vw;
   padding: 20px;
   width: 80%;
   border-radius: 15px;
