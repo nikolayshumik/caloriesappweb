@@ -71,6 +71,7 @@ body {
     flex-direction: column;
     justify-content: center;
     margin-top: 20px;
+    background-color: white;
     padding: 10px;
     border-radius: $border_radius;
     border: 2px solid $blue_color;
@@ -180,6 +181,7 @@ body {
 .modal {
     display: none;
     margin: auto;
+    margin-bottom: 2vw;
     padding: 20px;
     width: 80%;
     border-radius: $border_radius;

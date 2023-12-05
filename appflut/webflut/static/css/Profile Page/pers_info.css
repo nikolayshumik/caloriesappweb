@@ -71,12 +71,13 @@ form {
   box-sizing: border-box;
   text-align: center;
   border: 0;
-  background-color: #008187;
+  background-color: white;
   font-size: 24px;
   padding: 10px 30px;
   font-family: "Segoe UI";
-  color: #f2f3ed;
+  color: #008187;
   border-radius: 15px;
+  border: 1px solid #008187;
 }
 
 @media (min-width: 350px) {
