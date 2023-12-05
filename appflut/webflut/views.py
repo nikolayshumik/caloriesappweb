@@ -21,7 +21,8 @@ from django.http import HttpResponseRedirect
 from .forms import DateForm
 from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step3Form
 
-from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, Activity, Personal_Inform, Activities_Add, Group
+from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
+from .models import Activity, Personal_Inform, Activities_Add, Group
 
 
 matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
