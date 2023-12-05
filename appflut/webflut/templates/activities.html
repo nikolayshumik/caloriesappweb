@@ -5,11 +5,27 @@
         <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
         <title>Активности</title>
         <!--Медиа запросы, адаптив-->
-        <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/Eatings Pages/Eatings.css' %}" rel="stylesheet" />
         <!--Скрипт-->
         <!--<script defer src="{% static 'js/main.js' %}"></script>-->
       </head>
 <body>
+<script>
+    function openModal(id) {
+        document.querySelector(`#modal-${id}`).style.display = "block";
+    }
+
+    function closeModal(id) {
+        document.querySelector(`#modal-${id}`).style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = "none";
+        }
+    }
+
+</script>
 
 <h>Активности</h>
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">назад</a>
@@ -59,22 +75,7 @@
   <p>Ничего не найдено</p>
   {% endfor %}
 
-<script>
-    function openModal(id) {
-        document.querySelector(`#modal-${id}`).style.display = "block";
-    }
 
-    function closeModal(id) {
-        document.querySelector(`#modal-${id}`).style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = "none";
-        }
-    }
-
-</script>
 
 <!--<script>-->
 <!--    var modal = document.getElementById("modal");-->
