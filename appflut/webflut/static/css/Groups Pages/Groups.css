@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Segoe UI";
   src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
@@ -119,4 +120,9 @@ a {
 
 a:hover {
   text-decoration: underline;
-}/*# sourceMappingURL=groups.css.map */
+}
+
+/*размеры планшетов*/
+/**/
+/*размеры компьютеров*/
+/**//*# sourceMappingURL=groups.css.map */
