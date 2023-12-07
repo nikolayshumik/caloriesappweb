@@ -6,3 +6,4 @@ appflut/db.sqlite3
 /venv/
 
 .idea/
+/static/phototest/
