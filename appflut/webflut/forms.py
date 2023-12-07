@@ -78,5 +78,9 @@ class AddProductForm(forms.ModelForm):
         model = Add_Product
         fields = ['name', 'calories_in', 'proteins', 'fats', 'carbohydrates',]
         labels = {
-            'carbohydrates': 'carbo'
+            'name': 'название продукта',
+            'calories_in': 'ккал',
+            'proteins': 'Б',
+            'fats': 'Ж',
+            'carbohydrates': 'У',
         }

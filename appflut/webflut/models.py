@@ -10,8 +10,8 @@ class Personal_Inform(models.Model):
     first_name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=10)
     SEX_CHOICES = [
-        ('M', 'Мужчина'),
-        ('F', 'Женщина'),
+        ('M', 'Мужской'),
+        ('F', 'Женский'),
         ('', ''),
     ]
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='')
@@ -20,14 +20,14 @@ class Personal_Inform(models.Model):
     height = models.FloatField(default=0)
 
     GOAL_CHOICES = [
-        ('L', 'Похудение'),
-        ('M', 'Набор массы'),
+        ('L', 'Снижение веса'),
+        ('M', 'Набор веса'),
         ('F', 'Поддержание веса'),
     ]
     goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
     ACTIVE_CHOICES = [
-        ('L', 'малоактивный'),
-        ('M', 'активный'),
+        ('L', 'Малоактивный'),
+        ('M', 'Активный'),
     ]
     active = models.CharField(max_length=1, choices=ACTIVE_CHOICES, default='L')
 
