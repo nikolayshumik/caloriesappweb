@@ -5,16 +5,13 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Авторизация</title>
     <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/main400.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet"/>
 </head>
 <body>
-        <img src="{% static 'accets/settings.png' %}" style="width: 50vw;" />
-        тут будет лого
-
+        <img src="{% static 'accets/logoNerf.png' %}" id="logo" />
         <div class="main">
             <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
             <a href="{% url 'register' %}">Регистрация</a>
-            <!--<p style="font-size: 15px;">Вы уже вошли как Коля писькосос обыкновенный, {{ user.username }}</p>-->
             <a href="{% url 'logout' %}">Выйти</a>
         </div>
 

@@ -35,36 +35,12 @@ body {
   align-items: center;
   flex-direction: column;
 }
-
-.main-orientations {
-  width: 11vw;
-  height: 11vw;
-  text-align: center;
-  display: flex;
-  color: $main_backgrounde;
-  align-items: center;
-  margin-right: auto;
-  font-size: 15vw;
-  border-radius: 10px;
-  border: none;
-  background-color: $gray_color;
+#logo{
+  width:90%;
+  margin: 5% auto;
 }
-
-/*
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  */
 .main {
-  margin-top: 50%;
+  margin-top: 10%;
   box-sizing: border-box;
   display: flex;
   width: 100%;
@@ -135,3 +111,40 @@ form {
     margin-top: 30px;
   }
 }
+/*размеры телефонов*/
+@media (min-width: 481px) {
+  #logo{
+    width: 70%;
+    margin: 5% auto;
+  }
+}
+/**/
+
+
+/*размеры планшетов*/
+@media (min-width: 769px) {
+  #logo{
+    width: 35vw;
+    margin: 5% auto;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+/**/
+
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+  #logo{
+    width: 30vw;
+    margin: 5% auto;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+/**/
