@@ -313,7 +313,14 @@ def calories_and_bjy(request):
     # total_calories_activities = 0
     # total_calories_activities += acalories_in
 
-    water = WaterConsumption.objects.filter(user=request.user).last()
+    water = WaterConsumption.objects.filter(user=request.user, date__date=selected_date).last()
+
+    if water is not None:
+        # Если запись найдена, получить значение amount
+        amountwater = water.amount
+    else:
+        # Если запись не найдена, установить значение amount равным 0
+        amountwater = 0
 
 
     context = {
@@ -347,9 +354,9 @@ def calories_and_bjy(request):
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
         'male': male,
-        'water': water.amount,
+        'amountwater': amountwater,
 
-    } if water else {'water': 0}
+    }
     return render(request, 'calories_and_bjy.html', context)
 
 @login_required
@@ -943,11 +950,16 @@ from .models import WaterConsumption
 
 
 def add_water_consumption(request):
+    selected_date_str = request.session.get('selected_date', None)
+
     if request.method == 'POST':
         amount = int(request.POST.get('amount'))
 
-        # Получить последнюю запись потребления воды пользователя
-        previous_consumption = WaterConsumption.objects.filter(user=request.user).last()
+        # Преобразовать строку даты в объект datetime
+        selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d')
+
+        # Получить последнюю запись потребления воды пользователя для выбранной даты
+        previous_consumption = WaterConsumption.objects.filter(user=request.user, date=selected_date).last()
 
         if previous_consumption:
             # Если запись найдена, добавить новое значение к предыдущему и обновить
@@ -955,8 +967,8 @@ def add_water_consumption(request):
             previous_consumption.amount = total_amount
             previous_consumption.save()
         else:
-            # Если запись не найдена, создать новую запись с указанным значением
-            WaterConsumption.objects.create(user=request.user, amount=amount)
+            # Если запись не найдена, создать новую запись с указанными значениями
+            WaterConsumption.objects.create(user=request.user, amount=amount, date=selected_date)
 
         return redirect('calories_and_bjy')  # Редирект на страницу профиля пользователя
     return render(request, 'calories_and_bjy.html')
