@@ -54,23 +54,35 @@
 </div>
 
 
-<!--вода-->
-<!--<div class="eatings">-->
-<!--    <div class="breakfast clickable">Вода<a href="#">+</a></div>-->
-<!--    <div class="summ_kkal">-->
-<!--        <p>мл воды</p>-->
-<!--    </div>-->
+вода
+<style>
+    .water-progress {
+   background-color: blue;
+   height: 20px;
+   transition: width 0.5s;
+   max-width: 900px;
+}
+</style>
+<div class="eatings">
+    <div class="breakfast clickable">Вода {{ water }}мл<a href="#">+</a></div>
+    <div class="summ_kkal">
+        <p>мл воды</p>
+    </div>
 
-<!--    <div class="content">-->
-<!--        <div class="product-eatings">-->
+    <div class="content">
+        <div class="product-eatings">
 
-<!--            <p>Ничего не найдено</p>-->
+              <form method="post" action="{% url 'add_water_consumption' %}">
+       {% csrf_token %}
+       <input type="number" min="0" name="amount" placeholder="Enter amount in ml" required>
+       <button type="submit">Add</button>
+   </form>
 
-<!--        </div>-->
+        </div>
+<div class="water-progress" style="width: {{ water }}px;"></div>
 
-
-<!--    </div>-->
-<!--</div>-->
+    </div>
+</div>
 
 <!--Завтрак-->
 <div class="eatings" style="margin-top: 40px;">

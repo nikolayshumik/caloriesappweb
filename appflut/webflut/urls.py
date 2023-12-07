@@ -37,6 +37,7 @@ urlpatterns = [
     path('step4/', views.step4_view, name='step4'),
     path('step5/', views.step5_view, name='step5'),
     path('display_chart/', views.display_chart, name='display_chart'),
-    # path('display/', views.display, name='display'),
+    path('add-water/', views.add_water_consumption, name='add_water_consumption'),
+
 
 ]

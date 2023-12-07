@@ -13,6 +13,7 @@ from .models import Group
 from .models import UserProfile
 from .models import Step1Model
 from .models import Step3Model
+from .models import WaterConsumption
 
 from django.contrib import admin
 
@@ -39,3 +40,4 @@ admin.site.register(Activity)
 admin.site.register(Group)
 admin.site.register(Step1Model)
 admin.site.register(Step3Model)
+admin.site.register(WaterConsumption)

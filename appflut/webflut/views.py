@@ -313,6 +313,8 @@ def calories_and_bjy(request):
     # total_calories_activities = 0
     # total_calories_activities += acalories_in
 
+    water = WaterConsumption.objects.filter(user=request.user).last()
+
 
     context = {
         'bproducts': bproducts,
@@ -345,8 +347,9 @@ def calories_and_bjy(request):
         'acttotal_calories': acttotal_calories,
         'activities_and_calories': activities_and_calories,
         'male': male,
+        'water': water.amount,
 
-    }
+    } if water else {'water': 0}
     return render(request, 'calories_and_bjy.html', context)
 
 @login_required
@@ -934,3 +937,26 @@ def display_chart(request):
         'image_path_2': '/static/phototest/chart_2.png',
     }
     return render(request, 'chart.html', context)
+
+
+from .models import WaterConsumption
+
+
+def add_water_consumption(request):
+    if request.method == 'POST':
+        amount = int(request.POST.get('amount'))
+
+        # Получить последнюю запись потребления воды пользователя
+        previous_consumption = WaterConsumption.objects.filter(user=request.user).last()
+
+        if previous_consumption:
+            # Если запись найдена, добавить новое значение к предыдущему и обновить
+            total_amount = previous_consumption.amount + amount
+            previous_consumption.amount = total_amount
+            previous_consumption.save()
+        else:
+            # Если запись не найдена, создать новую запись с указанным значением
+            WaterConsumption.objects.create(user=request.user, amount=amount)
+
+        return redirect('calories_and_bjy')  # Редирект на страницу профиля пользователя
+    return render(request, 'calories_and_bjy.html')

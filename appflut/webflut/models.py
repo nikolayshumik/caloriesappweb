@@ -186,3 +186,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+class WaterConsumption(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.PositiveIntegerField(default=0)
+    date = models.DateTimeField(default=timezone.now)
+    # timestamp = models.DateTimeField(auto_now_add=True)
