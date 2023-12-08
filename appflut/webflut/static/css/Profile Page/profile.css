@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Segoe UI";
   src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
@@ -48,8 +49,26 @@ textarea {
   border-radius: 10px;
 }
 
+/*размеры телефонов*/
+/**/
+/*размеры планшетов*/
 @media (min-width: 769px) {
   img {
     width: 6vw;
+  }
+}
+/**/
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}
+/**/
+@media (min-width: 769px) {
+  footer {
+    position: static;
+    bottom: 0;
   }
 }/*# sourceMappingURL=profile.css.map */

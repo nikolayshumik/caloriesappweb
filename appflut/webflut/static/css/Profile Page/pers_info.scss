@@ -90,8 +90,26 @@ form{
     border-radius: 15px;
     border: 1px solid $blue_color;
 }
-@media (min-width: 350px) {
-    img{
-      width: 12vw;
-    }
+/*размеры телефонов*/
+@media (min-width: 481px) {
+  img{
+    width: 12vw;
   }
+}
+/**/
+
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}
+
+/**/
+@media (min-width: 769px) {
+  footer {
+    position:static;
+    bottom: 0;
+  }
+}
