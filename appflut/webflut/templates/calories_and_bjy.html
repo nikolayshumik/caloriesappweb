@@ -53,33 +53,18 @@
     </div>
 </div>
 
-
-вода
-<style>
-    .water-progress {
-   background-color: blue;
-   height: 20px;
-   transition: width 0.5s;
-   max-width: 900px;
-}
-</style>
-<div class="eatings">
-    <div class="breakfast clickable">Вода {{ amountwater }}мл<a href="#">+</a></div>
-    <div class="summ_kkal">
-        <p>мл воды</p>
-    </div>
-
-    <div class="content">
-        <div class="product-eatings">
-
-              <form method="post" action="{% url 'add_water_consumption' %}">
+<div class="block" >Вода
+    <div class="nutrition-div" style="width: 100%; margin: auto; margin-top: 10px;padding: 15px;">
+        Выпито {{ amountwater }} мл
+        <form method="post" action="{% url 'add_water_consumption' %}" id="water_form">
        {% csrf_token %}
-       <input type="number" min="0" name="amount" placeholder="Enter amount in ml" required>
-       <button type="submit">Add</button>
-   </form>
-
-        </div>
-<div class="water-progress" style="width: {{ amountwater }}px;"></div>
+       <input type="number" min="0" name="amount" id="water" placeholder="Вода в мл" required>
+       <button type="submit" style="border: none;background: none;padding: 0;">
+        <input type="hidden">
+        <img src="{% static 'accets/water.png' %}" id="delete_img">
+    </button>
+    </form>
+        <div class="water-progress" style="width: {{ amountwater }}px;"></div>
     </div>
 </div>
 
