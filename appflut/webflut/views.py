@@ -874,7 +874,13 @@ def userinfo(request, user_id):
 @login_required
 def display_chart(request):
     user = request.user
+    name = user.username
     week_start = datetime.now().date() - timedelta(days=6)
+    user_dir = os.path.join('webflut', 'static', 'phototest', user.username)  # Создаем путь к папке пользователя
+
+    # Проверяем, существует ли папка пользователя, и если нет, создаем ее
+    image_dir = os.path.join(settings.BASE_DIR, user_dir)
+    os.makedirs(image_dir, exist_ok=True)
 
     # Первая диаграмма - потраченные калории
     breakfast_products = Breakfast_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
@@ -900,14 +906,12 @@ def display_chart(request):
 
     # Создание первой диаграммы
     plt.figure(figsize=(10, 6))
-    plt.bar(days, calories)
+    plt.plot(days, calories, marker='o')
     plt.xlabel('День недели')
     plt.ylabel('Всего сожженных калорий')
     plt.title('Сожженные калории за неделю')
+    plt.xticks(rotation=45)
     plt.tight_layout()
-    current_path = os.path.dirname(os.path.abspath(__file__))
-    image_dir = os.path.join(current_path, 'static', 'phototest')
-    os.makedirs(image_dir, exist_ok=True)
     image_path_1 = os.path.join(image_dir, 'chart_1.png')
     plt.savefig(image_path_1)
     plt.close()
@@ -940,8 +944,9 @@ def display_chart(request):
     plt.close()
 
     context = {
-        'image_path_1': '/static/phototest/chart_1.png',
-        'image_path_2': '/static/phototest/chart_2.png',
+        # 'image_path_1': os.path.join(user_dir, 'chart_1.png'),  # Передаем путь к картинкам в контексте
+        # 'image_path_2': os.path.join(user_dir, 'chart_2.png'),
+        'name': name,
     }
     return render(request, 'chart.html', context)
 
