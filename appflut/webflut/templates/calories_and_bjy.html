@@ -54,8 +54,9 @@
 </div>
 
 <div class="block" >Вода
-    <div class="nutrition-div" style="width: 100%; margin: auto; margin-top: 10px;padding: 15px;">
+    <div class="nutrition-div" id="water_div">
        {{ amountwater }} мл
+       <div class="water-progress" style="width: {{ amountwater }}px;"></div>
         <form method="post" action="{% url 'add_water_consumption' %}" id="water_form">
        {% csrf_token %}
        <input type="number" min="0" name="amount" id="water" placeholder="Вода в мл" required>
@@ -64,7 +65,7 @@
         <img src="{% static 'accets/water.png' %}" id="delete_img">
     </button>
     </form>
-        <div class="water-progress" style="width: {{ amountwater }}px;"></div>
+        
     </div>
 </div>
 
