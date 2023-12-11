@@ -1,0 +1,79 @@
+{
+  "name": "Pain Tracker",
+  "short_name": "paintracker",
+  "start_url": "https://7435-178-127-32-71.ngrok-free.app/",
+  "scope": " ",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#493174",
+  "description": "Test app for Django and PWA",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "screenshots": [
+        {
+            "src": "/static/screenshots/3664.png",
+            "sizes": "360x640",
+            "type": "image/png",
+            "form_factor": "fullscreen"
+        },
+        {
+            "src": "/static/screenshots/1272.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "browser"
+        },
+              {
+            "src": "/static/screenshots/1272.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ],
+  "icons": [
+    {
+      "src": "/static/icons/72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icons/aurss.96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+
+    {
+      "src": "/static/icons/128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icons/144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icons/152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+
+    {
+      "src": "/static/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icons/384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+
+    {
+      "src": "/static/icons/aurss.512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
