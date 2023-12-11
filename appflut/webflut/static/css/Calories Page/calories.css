@@ -58,7 +58,37 @@ body {
   justify-content: space-between;
   padding-top: 10px;
 }
-.block .container .nutrition-div {
+
+#water_form {
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#water {
+  border: 1px solid rgb(4, 177, 211);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.water-progress {
+  background-color: #7FFFD4;
+  height: 20px;
+  border-radius: 10px;
+  transition: width 0.5s;
+  max-width: 100%;
+}
+
+#id_date {
+  display: none;
+}
+
+#delete_img {
+  width: 8vw;
+}
+
+.nutrition-div {
   box-sizing: border-box;
   border-radius: 5px;
   border: 2px darkgrey solid;
@@ -71,18 +101,10 @@ body {
   text-align: center;
   background-color: white;
 }
-.block .container .nutrition-div p {
+.nutrition-div p {
   font-weight: 600;
   margin-block-start: 0.5em;
   margin-block-end: 0em;
-}
-
-#id_date {
-  display: none;
-}
-
-#delete_img {
-  width: 8vw;
 }
 
 .eatings {
@@ -117,6 +139,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#water_div {
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px;
 }
 
 .product-item {
@@ -175,8 +204,23 @@ body {
 }
 
 /*размеры телефонов*/
+@media (min-width: 481px) {
+  #water_div {
+    padding: 15px;
+  }
+}
 /**/
 /*размеры планшетов*/
+@media (min-width: 769px) {
+  #delete_img {
+    width: 4vw;
+  }
+}
 /**/
 /*размеры компьютеров*/
+@media (min-width: 1025px) {
+  #delete_img {
+    width: 4vw;
+  }
+}
 /**//*# sourceMappingURL=calories.css.map */

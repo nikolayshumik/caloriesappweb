@@ -59,8 +59,32 @@ textarea {
   border: 2px solid $blue_color;
   border-radius: $border_radius;
 }
+/*размеры телефонов*/
+@media (min-width: 481px) {}
+
+/**/
+
+/*размеры планшетов*/
 @media (min-width: 769px) {
   img{
     width: 6vw;
+  }
+}
+
+/**/
+
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}
+
+/**/
+@media (min-width: 769px) {
+  footer {
+    position:static;
+    bottom: 0;
   }
 }

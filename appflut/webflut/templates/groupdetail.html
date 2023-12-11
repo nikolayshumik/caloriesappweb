@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-    <h2>Детали группы {{ group.name }}</h2>
+    <h2>{{ group.name }}</h2>
     <h3>Пользователи в группе:</h3>
     <ul>
         {% for user in group.users.all %}
