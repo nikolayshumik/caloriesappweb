@@ -53,24 +53,64 @@
     </div>
 </div>
 
-<div class="block" >Вода
-    <div class="nutrition-div" id="water_div">
-       {{ amountwater }} мл
-       <div class="water-progress" style="width: {{ amountwater }}px;"></div>
-        <form method="post" action="{% url 'add_water_consumption' %}" id="water_form">
-       {% csrf_token %}
-       <input type="number" min="0" name="amount" id="water" placeholder="Вода в мл" required>
-       <button type="submit" style="border: none;background: none;padding: 0;">
-        <input type="hidden">
-        <img src="{% static 'accets/water.png' %}" id="delete_img">
-    </button>
-    </form>
-        
+<!--вода кринж-->
+<!--<div class="block" >Вода-->
+<!--    <div class="nutrition-div" id="water_div">-->
+<!--       {{ amountwater }} мл-->
+<!--       <div class="water-progress" style="width: {{ amountwater }}px;"></div>-->
+<!--        <form method="post" action="{% url 'add_water_consumption' %}" id="water_form">-->
+<!--       {% csrf_token %}-->
+<!--       <input type="number" min="0" name="amount" id="water" placeholder="Вода в мл" required>-->
+<!--       <button type="submit" style="border: none;background: none;padding: 0;">-->
+<!--        <input type="hidden">-->
+<!--        <img src="{% static 'accets/water.png' %}" id="delete_img">-->
+<!--    </button>-->
+<!--    </form>-->
+<!--        -->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<!--Активности-->
+<div class="eatings" style="margin-top: 40px;">
+    <div class="breakfast clickable">Активности<a href="{% url 'activities' %}">+</a></div>
+    <div class="summ_kkal">
+        {{ acttotal_calories }} ккал
+    </div>
+
+    <div class="content">
+        <div class="product-eatings">
+            {% for activity, burned_calories in activities_and_calories %}
+            <div class="product-item">
+                <div class="title">
+                    <text style="text-decoration: dotted;">{{ activity.product.activity_type }}
+                        ({{ activity.time }} мин.)
+                    </text>
+                    <text>{{ burned_calories }} ккал</text>
+                </div>
+                <form method="POST" action="{% url 'delete_activity'  id=activity.id %}">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="activities">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
+                    </button>
+                </form>
+            </div>
+
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+
+
     </div>
 </div>
+<!--/Активности-->
+
 
 <!--Завтрак-->
-<div class="eatings" style="margin-top: 40px;">
+<div class="eatings">
     <div class="breakfast clickable">Завтрак<a href="{% url 'breakfast' %}">+</a></div>
     <div class="summ_kkal">
         {{ bcalories_in }} ккал
@@ -228,41 +268,7 @@
 <!--/Перекус-->
 
 
-<!--Активности-->
-<div class="eatings">
-    <div class="breakfast clickable">Активности<a href="{% url 'activities' %}">+</a></div>
-    <div class="summ_kkal">
-        {{ acttotal_calories }} ккал
-    </div>
 
-    <div class="content">
-        <div class="product-eatings">
-            {% for activity, burned_calories in activities_and_calories %}
-            <div class="product-item">
-                <div class="title">
-                    <text style="text-decoration: dotted;">{{ activity.product.activity_type }}
-                        ({{ activity.time }} мин.)
-                    </text>
-                    <text>{{ burned_calories }} ккал</text>
-                </div>
-                <form method="POST" action="{% url 'delete_activity'  id=activity.id %}">
-                    {% csrf_token %}
-                    <button type="submit">
-                        <input type="hidden" name="meal_type" value="activities">
-                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
-                    </button>
-                </form>
-            </div>
-
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
-        </div>
-
-
-    </div>
-</div>
-<!--/Активности-->
 
 {% block content %}
 {% include 'footer.html' %}
