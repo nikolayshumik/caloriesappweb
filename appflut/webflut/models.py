@@ -80,7 +80,7 @@ class Group(models.Model):
 
 class Add_Product(models.Model):
     name = models.CharField(max_length=50)
-    calories_in = models.FloatField()
+    calories_in = models.FloatField(default=0)
     proteins = models.FloatField()
     fats = models.FloatField()
     carbohydrates = models.FloatField()

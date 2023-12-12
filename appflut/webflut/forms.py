@@ -84,3 +84,14 @@ class AddProductForm(forms.ModelForm):
             'fats': 'Ж',
             'carbohydrates': 'У',
         }
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        proteins = self.cleaned_data.get('proteins')
+        fats = self.cleaned_data.get('fats')
+        carbohydrates = self.cleaned_data.get('carbohydrates')
+        calories = proteins * 4 + fats * 9 + carbohydrates * 4
+        instance.calories_in = calories
+
+        if commit:
+            instance.save()
+        return instance
