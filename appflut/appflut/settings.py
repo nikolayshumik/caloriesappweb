@@ -187,7 +187,7 @@ PWA_APP_ICONS = [
         'sizes': '160x160'
     },
     {
-        "src": "/static/icons/aurss.96x96.png",
+        "src": "/static/icons/9696.png",
         "sizes": "96x96",
         "type": "image/png"
     },
@@ -209,7 +209,7 @@ PWA_APP_ICONS = [
     },
 
     {
-        "src": "/static/icons/aurss.512x512.png",
+        "src": "/static/icons/512512.png",
         "sizes": "512x512",
         "type": "image/png"
     }
@@ -220,7 +220,7 @@ PWA_APP_ICONS_APPLE = [
         'sizes': '160x160'
     },
     {
-        "src": "/static/icons/aurss.512x512.png",
+        "src": "/static/icons/512512.png",
         "sizes": "512x512",
         "type": "image/png"
     }
