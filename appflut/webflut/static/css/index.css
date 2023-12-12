@@ -110,10 +110,6 @@ form input {
     width: 35vw;
     margin: 5% auto;
   }
-  footer {
-    position: absolute;
-    bottom: 0;
-  }
 }
 /**/
 /*размеры компьютеров*/
@@ -121,10 +117,6 @@ form input {
   #logo {
     width: 30vw;
     margin: 5% auto;
-  }
-  footer {
-    position: absolute;
-    bottom: 0;
   }
 }
 /**//*# sourceMappingURL=index.css.map */
