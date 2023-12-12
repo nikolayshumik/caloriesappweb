@@ -12,7 +12,27 @@
         {% progressive_web_app_meta %}
       </head>
 <body>
+<style>
 
+  #scrollTopButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: #008187;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#scrollTopButton.show {
+    display: block;
+}
+</style>
 <script>
     function openModal(id) {
         document.querySelector(`#modal-${id}`).style.display = "block";
@@ -54,7 +74,7 @@
    <button type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
 </form>
 <!--Поиск продуктов-->
-
+<div id="scrollTopButton">&#8679;</div>
 <div style="width: 70%;">
     {% for el in activity %}
     <div class="product-item">
@@ -80,7 +100,40 @@
   {% endfor %}
 
 
+<script>
+    // Получаем последнюю сохраненную позицию прокрутки
+    var scrollPosition = sessionStorage.getItem('scrollPosition');
 
+    // Восстанавливаем позицию прокрутки
+    if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition));
+    }
+
+    // Сохраняем текущую позицию прокрутки перед обновлением страницы
+    window.addEventListener('beforeunload', function () {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    });
+</script>
+<script>
+// Получаем кнопку прокрутки наверх
+var scrollTopButton = document.getElementById('scrollTopButton');
+
+// Отслеживаем событие прокрутки страницы
+window.addEventListener('scroll', function () {
+    // Если прокрутка больше определенной высоты, показываем кнопку
+    if (window.scrollY > 400) {
+        scrollTopButton.classList.add('show');
+    } else {
+        scrollTopButton.classList.remove('show');
+    }
+});
+
+// Отслеживаем событие клика на кнопке
+scrollTopButton.addEventListener('click', function () {
+    // Прокручиваем страницу наверх
+    window.scrollTo(0, 0);
+});
+</script>
 <!--<script>-->
 <!--    var modal = document.getElementById("modal");-->
 

@@ -306,10 +306,10 @@ def calories_and_bjy(request):
     # acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
 
 
-    total_calories = bcalories_in + calories_in + dcalories_in + scalories_in
-    total_proteins = bproteins + proteins + dproteins + sproteins
-    total_carbohydrates = bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates
-    total_fats = bfats + fats + dfats + sfats
+    total_calories = round((bcalories_in + calories_in + dcalories_in + scalories_in), 1)
+    total_proteins = round((bproteins + proteins + dproteins + sproteins), 1)
+    total_carbohydrates = round((bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates), 1)
+    total_fats = round((bfats + fats + dfats + sfats), 1)
 
     # total_calories_activities = 0
     # total_calories_activities += acalories_in
