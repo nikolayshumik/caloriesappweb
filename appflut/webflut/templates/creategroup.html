@@ -10,17 +10,7 @@
         {% progressive_web_app_meta %}
     </head>
 <body>
-        	 <script>
-       if ('serviceWorker' in navigator) {
-           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
-               // registration worked
-               console.log('Registration succeeded. Scope is ' + reg.scope);
-           }).catch(function(error) {
-               // registration failed
-               console.log('Registration failed with ' + error);
-           });
-       }
-   </script>
+
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}

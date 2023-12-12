@@ -16,17 +16,7 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-        	 <script>
-       if ('serviceWorker' in navigator) {
-           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
-               // registration worked
-               console.log('Registration succeeded. Scope is ' + reg.scope);
-           }).catch(function(error) {
-               // registration failed
-               console.log('Registration failed with ' + error);
-           });
-       }
-   </script>
+
   <div class="page-container">
     <text>ВАШИ ПАРАМЕТРЫ</text>
     <form method="POST" action="{% url 'step3' %}">

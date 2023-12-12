@@ -48,17 +48,7 @@
     </style>
 </head>
 <body>
-        	 <script>
-       if ('serviceWorker' in navigator) {
-           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
-               // registration worked
-               console.log('Registration succeeded. Scope is ' + reg.scope);
-           }).catch(function(error) {
-               // registration failed
-               console.log('Registration failed with ' + error);
-           });
-       }
-   </script>
+
 
 <h1>Диаграмма сожженных калорий за неделю </h1>
 <img src="/static/phototest/{{name}}/chart_1.png" alt="Calories Chart">
