@@ -1,13 +1,26 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    {% progressive_web_app_meta %}
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
+        	 <script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
 <button onclick="goBack()">Назад</button>
 <h2>Fill your personal info</h2>
 <h2>Hello, {{ request.user.username }}</h2>

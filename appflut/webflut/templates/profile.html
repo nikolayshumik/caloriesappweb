@@ -1,4 +1,5 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,7 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Profile Page/profile.css' %}" rel="stylesheet"/>
+    {% progressive_web_app_meta %}
     <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
@@ -20,7 +22,7 @@
       </div>      
 
         <form method="post" action="{% url 'login' %}">
-            <textarea placeholder="Тут какой-то input, хз для чего"></textarea>
+            <textarea placeholder="Страничка находится в разработке"></textarea>
         </form>
 
       {% block content %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,20 @@
     <title>Авторизация</title>
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/index.css' %}" rel="stylesheet"/>
+    {% progressive_web_app_meta %}
 </head>
 <body>
+        	 <script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
         <img src="{% static 'accets/logoNerf.png' %}" id="logo" />
         <div class="main">
             <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>

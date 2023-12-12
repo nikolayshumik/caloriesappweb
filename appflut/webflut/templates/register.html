@@ -1,4 +1,5 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +8,7 @@
     <title>Регистрация</title>
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
+    {% progressive_web_app_meta %}
 </head>
 
 <body>

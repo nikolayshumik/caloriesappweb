@@ -1,4 +1,5 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +7,21 @@
     <meta charset="UTF-8">
     <title>Детали пользователя</title>
     <link href="{% static 'css/Calories Page/calories.css' %}" rel="stylesheet" />
+    {% progressive_web_app_meta %}
 </head>
 
 <body>
+        	 <script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
     <form method="get">
         {{ form }}
         <div class="row-buttons">

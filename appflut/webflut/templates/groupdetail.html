@@ -1,13 +1,25 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Детали группы</title>
     <link href="{% static 'css/Groups Pages/detailsGroups.css' %}" rel="stylesheet" />
+    {% progressive_web_app_meta %}
 </head>
 <body>
-
+        	 <script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
 <div class="container">
     <h2>{{ group.name }}</h2>
     <h3>Пользователи в группе:</h3>

@@ -1,10 +1,22 @@
 {% load static %}
+{% load pwa %}
 <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
 <link href="{% static 'css/footer.css' %}" rel="stylesheet"/>
+{% progressive_web_app_meta %}
 
 {% block content %}
 {% endblock %}
-    
+            	 <script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
 <footer>
     <a href="{% url 'creategroup' %}" class="buttonFooter">
         <img src="{% static 'accets/журнал.png' %}" class="imgFooter"/></a>

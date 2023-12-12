@@ -24,6 +24,7 @@ from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Ste
 from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
 from .models import Activity, Personal_Inform, Activities_Add, Group
 
+from django.views.generic import TemplateView
 
 matplotlib.use('Agg')  # Использование фонового режима для Matplotlib
 
@@ -977,3 +978,14 @@ def add_water_consumption(request):
 
         return redirect('calories_and_bjy')  # Редирект на страницу профиля пользователя
     return render(request, 'calories_and_bjy.html')
+
+
+
+
+
+# Create your views here.
+
+class ServiceWorkerView(TemplateView):
+    template_name = 'sw.js'
+    content_type = 'application/javascript'
+    name = 'sw.js'

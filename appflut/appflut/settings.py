@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webflut',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -130,40 +133,120 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://calories.colanerxyz.xyz',
-    'https://calories.colanerxyz.xyz/register/',
-    'https://calories.colanerxyz.xyz/person_info/',
-    'https://calories.colanerxyz.xyz/login/',
-    'https://calories.colanerxyz.xyz/logout/',
-    'https://calories.colanerxyz.xyz/calories_and_bjy/',
-    'https://calories.colanerxyz.xyz/profile/',
-    'https://calories.colanerxyz.xyz/report/',
-    'https://calories.colanerxyz.xyz/breakfast/',
-    'https://calories.colanerxyz.xyz/lunch/',
-    'https://calories.colanerxyz.xyz/dinner/',
-    'https://calories.colanerxyz.xyz/snack/',
-    'https://calories.colanerxyz.xyz/activities/',
-    'https://calories.colanerxyz.xyz/eatingbase/',
-    'https://calories.colanerxyz.xyz/add_breakfast/',
-    'https://calories.colanerxyz.xyz/add_lunch/',
-    'https://calories.colanerxyz.xyz/add_dinner/',
-    'https://calories.colanerxyz.xyz/add_snack/',
-    'https://calories.colanerxyz.xyz/add_activity_view/',
-    'https://calories.colanerxyz.xyz/remove_from_list/<int:product_id>/',
-    'https://calories.colanerxyz.xyz/remove_from_list2/<int:product_id>/',
-    'https://calories.colanerxyz.xyz/delete_activity/<int:id>/',
-    'https://calories.colanerxyz.xyz/edit_person_info/',
-    'https://calories.colanerxyz.xyz/creategroup/',
-    'https://calories.colanerxyz.xyz/groupdetail/<int:group_id>/',
-    'https://calories.colanerxyz.xyz/adduser/<int:group_id>/',
-    'https://calories.colanerxyz.xyz/removeuser/<int:group_id>/',
-    'https://calories.colanerxyz.xyz/userinfo/<int:user_id>/',
-    'https://calories.colanerxyz.xyz/step1/',
-    'https://calories.colanerxyz.xyz/step2/',
-    'https://calories.colanerxyz.xyz/step3/',
-    'https://calories.colanerxyz.xyz/step4/',
-    'https://calories.colanerxyz.xyz/step5/',
-    'https://calories.colanerxyz.xyz/display_chart/',
+    'https://calories.colanerxyz.xyz/',
+    'https://calories.colanerxyz.xyz//register/',
+    'https://calories.colanerxyz.xyz//person_info/',
+    'https://calories.colanerxyz.xyz//login/',
+    'https://calories.colanerxyz.xyz//logout/',
+    'https://calories.colanerxyz.xyz//calories_and_bjy/',
+    'https://calories.colanerxyz.xyz//profile/',
+    'https://calories.colanerxyz.xyz//report/',
+    'https://calories.colanerxyz.xyz//breakfast/',
+    'https://calories.colanerxyz.xyz//lunch/',
+    'https://calories.colanerxyz.xyz//dinner/',
+    'https://calories.colanerxyz.xyz//snack/',
+    'https://calories.colanerxyz.xyz//activities/',
+    'https://calories.colanerxyz.xyz//eatingbase/',
+    'https://calories.colanerxyz.xyz//add_breakfast/',
+    'https://calories.colanerxyz.xyz//add_lunch/',
+    'https://calories.colanerxyz.xyz//add_dinner/',
+    'https://calories.colanerxyz.xyz//add_snack/',
+    'https://calories.colanerxyz.xyz//add_activity_view/',
+    'https://calories.colanerxyz.xyz//remove_from_list/<int:product_id>/',
+    'https://calories.colanerxyz.xyz//remove_from_list2/<int:product_id>/',
+    'https://calories.colanerxyz.xyz//delete_activity/<int:id>/',
+    'https://calories.colanerxyz.xyz//edit_person_info/',
+    'https://calories.colanerxyz.xyz//creategroup/',
+    'https://calories.colanerxyz.xyz//groupdetail/<int:group_id>/',
+    'https://calories.colanerxyz.xyz//adduser/<int:group_id>/',
+    'https://calories.colanerxyz.xyz//removeuser/<int:group_id>/',
+    'https://calories.colanerxyz.xyz//userinfo/<int:user_id>/',
+    'https://calories.colanerxyz.xyz//step1/',
+    'https://calories.colanerxyz.xyz//step2/',
+    'https://calories.colanerxyz.xyz//step3/',
+    'https://calories.colanerxyz.xyz//step4/',
+    'https://calories.colanerxyz.xyz//step5/',
+    'https://calories.colanerxyz.xyz//display_chart/',
 
     # Другие доверенные источники (если есть)
 ]
+
+
+PWA_APP_NAME = 'Калькулятор калорий'
+PWA_APP_DESCRIPTION = "My app description"
+PWA_APP_THEME_COLOR = '#0A0302'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait-primary'
+PWA_APP_START_URL = 'https://calories.colanerxyz.xyz/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/icons/1616.png',
+        'sizes': '160x160'
+    },
+    {
+        "src": "/static/icons/aurss.96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    },
+    {
+        "src": "/static/icons/152.png",
+        "sizes": "152x152",
+        "type": "image/png"
+    },
+
+    {
+        "src": "/static/icons/192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/static/icons/384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+
+    {
+        "src": "/static/icons/aurss.512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/icons/1616.png',
+        'sizes': '160x160'
+    },
+    {
+        "src": "/static/icons/aurss.512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/icons/6411.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
+PWA_APP_SHORTCUTS = [
+    {
+        'name': 'Shortcut',
+        'url': '/target',
+        'description': 'Shortcut to a page in my application'
+    }
+]
+PWA_APP_SCREENSHOTS = [
+    {
+      'src': '/static/icons/7513.png',
+      'sizes': '750x1334',
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+]
+
+PWA_SERVICE_WORKER_PATH = 'static/service_worker.js'
