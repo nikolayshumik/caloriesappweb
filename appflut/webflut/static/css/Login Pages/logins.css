@@ -10,6 +10,11 @@
   src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
   font-weight: 700;
 }
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
 html {
   font-family: "Segoe UI";
   background-color: white;
@@ -27,7 +32,6 @@ form {
   padding: 10px;
   width: 90%;
   border-radius: 10px;
-  border: 2px solid #008187;
   background-color: white;
   margin: auto;
   display: flex;
@@ -115,5 +119,10 @@ input[type=radio]:checked {
     margin-top: 8vw;
     font-size: 30px;
     padding: 15px 25px;
+  }
+}
+@media (min-width: 769px) {
+  form {
+    padding-top: 10vw;
   }
 }/*# sourceMappingURL=logins.css.map */
