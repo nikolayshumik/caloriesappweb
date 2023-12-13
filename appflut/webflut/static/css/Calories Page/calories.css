@@ -203,24 +203,36 @@ body {
   cursor: pointer;
 }
 
+/*размеры MINI телефонов*/
+@media (min-width: 200px) {
+  .nutrition-div {
+    width: 33%;
+    padding: 2px;
+    font-size: 15px;
+  }
+}
+/**/
 /*размеры телефонов*/
 @media (min-width: 481px) {
   #water_div {
     padding: 15px;
+  }
+  #delete_img {
+    width: 6vw;
   }
 }
 /**/
 /*размеры планшетов*/
 @media (min-width: 769px) {
   #delete_img {
-    width: 4vw;
+    width: 3vw;
   }
 }
 /**/
 /*размеры компьютеров*/
 @media (min-width: 1025px) {
   #delete_img {
-    width: 4vw;
+    width: 3vw;
   }
 }
 /**//*# sourceMappingURL=calories.css.map */

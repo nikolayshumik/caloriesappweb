@@ -12,8 +12,10 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-
+ <h2> Раздел находится в разработке</h2>
+<!--
 тут будет лого
+
       <img src="{% static 'accets/profile.png' %}" style="width: 50vw;" />
 
       <div class="title"> 
@@ -24,7 +26,7 @@
         <form method="post" action="{% url 'login' %}">
             <textarea placeholder="Страничка находится в разработке"></textarea>
         </form>
-
+-->
       {% block content %}
       {% include 'footer.html' %}
       {% endblock %}

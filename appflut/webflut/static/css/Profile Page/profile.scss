@@ -37,7 +37,12 @@ body {
   align-items: center;
   flex-direction: column;
 }
-
+h2{
+  text-align: center;
+  margin: auto;
+  margin-top: 80%;
+  opacity: 0.5;
+}
 .title {
   font-family: "Segoe UI Bold";
   display: flex;
@@ -60,7 +65,11 @@ textarea {
   border-radius: $border_radius;
 }
 /*размеры телефонов*/
-@media (min-width: 481px) {}
+@media (min-width: 481px) {
+  h2{
+    margin-top: 40%;
+  }
+}
 
 /**/
 
@@ -69,22 +78,14 @@ textarea {
   img{
     width: 6vw;
   }
+  h2{
+    margin-top: 30%;
+  }
 }
-
 /**/
 
 /*размеры компьютеров*/
 @media (min-width: 1025px) {
-  footer {
-    position: static;
-    bottom: 0;
-  }
 }
 
 /**/
-@media (min-width: 769px) {
-  footer {
-    position:static;
-    bottom: 0;
-  }
-}
