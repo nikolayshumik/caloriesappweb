@@ -133,3 +133,22 @@ a {
 a:hover {
     text-decoration: underline;
 }
+/*размеры телефонов*/
+@media (min-width: 481px) {
+    footer {
+        position: static;
+        bottom: 0;
+      }
+  }
+  /**/
+  
+  /*размеры планшетов*/
+  @media (min-width: 769px) {
+  }
+  /**/
+  
+  /*размеры компьютеров*/
+  @media (min-width: 1025px) {
+  }
+  
+  /**/
