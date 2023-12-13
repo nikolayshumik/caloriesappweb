@@ -201,7 +201,6 @@ body {
     margin-block-end: 0.5em;
     }
     button {
-        width: 50%;
         margin: auto;
         margin-top: 20px;
         background-color: $blue_color;
@@ -292,10 +291,10 @@ body {
 /// стилизация добавления своего продукта
 .modal {
     display: none;
-    margin: auto;
-    margin-bottom: 2vw;
+    margin: 4vw auto 2vw auto;
     padding: 20px;
-    width: 80%;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: $border_radius;
     border: 2px solid $blue_color;
     font-size: $font_main_text;
@@ -345,9 +344,10 @@ body {
         }
 
         input {
-            padding: 5px 20px;
+            padding: 5px;
             border-radius: 5px;
             border: 1px solid $blue_color;
+            width: 100%;
         }
     }
 }
@@ -375,11 +375,41 @@ body {
     color: $main_backgrounde;
     border-radius: $border_radius;
 }
-
-@media (min-width: 769px) {
+/*размеры телефонов*/
+@media (min-width: 481px) {
+.modal{
+    width: 70%;
+    .modal-content{
+    input{
+        width: 50%;
+    }
+}
+}
+  }
+  
+  /**/
+  
+  /*размеры планшетов*/
+  @media (min-width: 769px) {
+    .modal{
+        width: 60%;
+        margin-top: 2vw;
+        .modal-content{
+            input{
+                width: 30%;
+            }
+        }
+    }
     .search {
         img {
             width: 5vw;
         }
     }
-}
+  }
+  /**/
+  
+  /*размеры компьютеров*/
+  @media (min-width: 1025px) {
+  }
+  
+  /**/

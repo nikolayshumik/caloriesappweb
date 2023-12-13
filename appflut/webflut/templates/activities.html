@@ -6,33 +6,12 @@
         <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
         <title>Активности</title>
         <!--Медиа запросы, адаптив-->
-        <link href="{% static 'css/Eatings Pages/Eatings.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
         <!--Скрипт-->
         <!--<script defer src="{% static 'js/main.js' %}"></script>-->
         {% progressive_web_app_meta %}
       </head>
 <body>
-<style>
-
-  #scrollTopButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    width: 40px;
-    height: 40px;
-    background-color: #008187;
-    color: white;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-#scrollTopButton.show {
-    display: block;
-}
-</style>
 <script>
     function openModal(id) {
         document.querySelector(`#modal-${id}`).style.display = "block";
@@ -50,7 +29,7 @@
 
 </script>
 
-<h style="color: #008187; margin-bottom: 20px; font-size: 32px; font-weight: bold;">Активности</h>
+<h1>Активности</h1>
 
 <a href="{% url 'calories_and_bjy' %}" class="buttonMod">Назад</a>
 
