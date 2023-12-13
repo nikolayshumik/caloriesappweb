@@ -57,8 +57,9 @@ textarea {
 
 /*размеры телефонов*/
 @media (min-width: 481px) {
-  h2 {
-    margin-top: 40%;
+  footer {
+    position: static;
+    bottom: 0;
   }
 }
 /**/
@@ -66,9 +67,6 @@ textarea {
 @media (min-width: 769px) {
   img {
     width: 6vw;
-  }
-  h2 {
-    margin-top: 30%;
   }
 }
 /**/
