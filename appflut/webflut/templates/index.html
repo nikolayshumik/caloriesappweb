@@ -10,7 +10,16 @@
     {% progressive_web_app_meta %}
 </head>
 <body>
-
+{% if user.is_authenticated %}
+  {% url 'calories_and_bjy' as calories_and_bjy_url %}
+  {% if calories_and_bjy_url %}
+    <script>
+      window.location.href = "{% url 'calories_and_bjy' %}";
+    </script>
+  {% endif %}
+{% else %}
+  <!-- Дополнительные действия для неаутентифицированных пользователей -->
+{% endif %}
     <img src="{% static 'accets/mainLogo.png' %}" id="logo" />
         <div class="main">
             <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
