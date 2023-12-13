@@ -268,7 +268,7 @@ def calories_and_bjy(request):
     for activity in activity_prod:
         time = activity.time/60
         burned_calories = round(activity.product.met * weight * time, 1)
-        acttotal_calories += burned_calories  # добавить к общему количеству
+        acttotal_calories += round(burned_calories, 1)  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
 
     inf = Personal_Inform.objects.get(user=user)
@@ -305,6 +305,25 @@ def calories_and_bjy(request):
 
     # acalories_in = activity_prod.aggregate(Sum('product__calories_in'))['product__calories_in__sum'] or 0
 
+    bcalories_in = round(bcalories_in, 1)
+    bproteins = round(bproteins, 1)
+    bfats = round(bfats, 1)
+    bcarbohydrates = round(bcarbohydrates, 1)
+
+    calories_in = round(calories_in, 1)
+    proteins = round(proteins, 1)
+    fats = round(fats, 1)
+    carbohydrates = round(carbohydrates, 1)
+
+    dcalories_in = round(dcalories_in, 1)
+    dproteins = round(dproteins, 1)
+    dfats = round(dfats, 1)
+    dcarbohydrates = round(dcarbohydrates, 1)
+
+    scalories_in = round(scalories_in, 1)
+    sproteins = round(sproteins, 1)
+    sfats = round(sfats, 1)
+    scarbohydrates = round(scarbohydrates, 1)
 
     total_calories = round((bcalories_in + calories_in + dcalories_in + scalories_in), 1)
     total_proteins = round((bproteins + proteins + dproteins + sproteins), 1)
@@ -909,8 +928,8 @@ def display_chart(request):
     plt.figure(figsize=(10, 6))
     plt.plot(days, calories, marker='o')
     plt.xlabel('День недели')
-    plt.ylabel('Всего сожженных калорий')
-    plt.title('Сожженные калории за неделю')
+    plt.ylabel('Всего потраченных калорий')
+    plt.title('Потраченные калории за неделю')
     plt.xticks(rotation=45)
     plt.tight_layout()
     image_path_1 = os.path.join(image_dir, 'chart_1.png')
