@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Personal_Inform, Add_Product, Step1Model, Step3Model, Step4Model, Step5Model, StepTestModel
 from django.core.exceptions import ValidationError
 
+
 class DateForm(forms.Form):
     date = forms.DateField()
 
@@ -11,7 +12,8 @@ class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     username = forms.CharField(label='Логин', max_length=None)
     user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
-    widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}))
+                                  widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}),
+                                  label='Тип')
 
     def validate_username(self, value):
         if not value:
@@ -21,10 +23,10 @@ class UserRegistrationForm(forms.ModelForm):
         username = self.cleaned_data.get('username')
         self.validate_username(username)
         return username
+
     class Meta:
         model = User
         fields = ('username', 'password', 'user_type',)
-    
 
     # def clean_password2(self):
     #     cd = self.cleaned_data
@@ -36,7 +38,8 @@ class UserRegistrationForm(forms.ModelForm):
 class PersonalInformForm(forms.ModelForm):
     class Meta:
         model = Personal_Inform
-        fields = ['weight', 'height', 'sex', 'date_of_birth',  'goals', 'active',]
+        fields = ['weight', 'height', 'sex', 'date_of_birth', 'goals', 'active', ]
+
 
 class Step1Form(forms.ModelForm):
     class Meta:
@@ -58,6 +61,8 @@ class StepTestForm(forms.ModelForm):
     class Meta:
         model = StepTestModel
         fields = ['is_male', 'is_female']
+
+
 class Step3Form(forms.ModelForm):
     class Meta:
         model = Step3Model
@@ -72,11 +77,10 @@ class Step3Form(forms.ModelForm):
         }
 
 
-
 class AddProductForm(forms.ModelForm):
     class Meta:
         model = Add_Product
-        fields = ['name', 'calories_in', 'proteins', 'fats', 'carbohydrates',]
+        fields = ['name', 'calories_in', 'proteins', 'fats', 'carbohydrates', ]
         labels = {
             'name': 'Название продукта',
             'calories_in': 'ккал',
@@ -84,6 +88,7 @@ class AddProductForm(forms.ModelForm):
             'fats': 'Ж',
             'carbohydrates': 'У',
         }
+
     def save(self, commit=True):
         instance = super().save(commit=False)
         proteins = self.cleaned_data.get('proteins')
