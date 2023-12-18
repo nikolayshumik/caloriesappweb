@@ -709,14 +709,14 @@ def date_view(request):
 def creategroup(request):
     if request.method == 'POST':
         group_name = request.POST.get('group_name')
-        group = Group.objects.create(name=group_name)
+        user = request.user  # Получить текущего пользователя
+
+        group = Group.objects.create(name=group_name, creator=user)  # Создать группу с указанием создателя
         return redirect('creategroup')
 
-    groups = Group.objects.all()
+    groups = Group.objects.filter(creator=request.user)
 
-
-
-    return render(request, 'creategroup.html', {'groups': groups,})
+    return render(request, 'creategroup.html', {'groups': groups})
 
 @login_required
 def groupdetail(request, group_id):

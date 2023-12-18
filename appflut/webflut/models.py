@@ -69,9 +69,11 @@ class Step5Model(models.Model):
     ]
     goals = models.CharField(max_length=1, choices=GOAL_CHOICES, default='L')
 
+
 class Group(models.Model):
     name = models.CharField(max_length=100)
-    users = models.ManyToManyField(User)  # Отношение "многие ко многим" с моделью User
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_groups', null=True, blank=True)
+    users = models.ManyToManyField(User, related_name='joined_groups')
 
     def __str__(self):
         return self.name
