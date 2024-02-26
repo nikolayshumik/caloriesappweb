@@ -56,9 +56,10 @@
         </div>
     </div>
 </div>
+
 <!--Поиск продуктов-->
 <form action="" class="search" method="GET">
-    <input type="text" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
+    <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
     <button type="submit"><img src="{% static 'accets/поиск.png' %}"/></button>
 </form>
 <!--Поиск продуктов-->
@@ -84,6 +85,24 @@
     <p>Ничего не найдено</p>
     {% endfor %}
 </div>
+
+<script>
+  var searchInput = document.getElementById('search-input');
+  var productItems = document.getElementsByClassName('product-item');
+
+  searchInput.addEventListener('input', function() {
+    var query = searchInput.value.toLowerCase();
+    for (var i = 0; i < productItems.length; i++) {
+      var productItem = productItems[i];
+      var productText = productItem.getElementsByTagName('text')[0].textContent.toLowerCase();
+      if (productText.includes(query)) {
+        productItem.style.display = 'block';
+      } else {
+        productItem.style.display = 'none';
+      }
+    }
+  });
+</script>
 
 <script>
     // Получение элементов и назначение обработчиков событий

@@ -458,14 +458,20 @@ def snack(request):
         products = products.filter(name__icontains=search_query)
 
     return render(request, 'snack.html', {'form': form, 'products': products, 'search_query': search_query})
+
+from django.db.models import Q
+
 def activities(request):
     search_query = request.GET.get('search')
+    if search_query:
+        search_query = search_query.capitalize()
     activity = Activity.objects.all()
     if search_query:
-        activity = activity.filter(activity_type__icontains=search_query)
+        activity = activity.filter(Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query))
+
     return render(request, 'activities.html', {'activity': activity, 'search_query': search_query})
 def eatingbase(request):
-    search_query = request.GET.get('search', '')
+    search_query = request.GET.get('search')
 
     if request.method == 'POST':
         form = AddProductForm(request.POST)
@@ -478,7 +484,8 @@ def eatingbase(request):
 
     products = Add_Product.objects.all()
     if search_query:
-        products = products.filter(name__icontains=search_query)
+        search_query = search_query.capitalize()
+        products = products.filter(Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query))
 
     return render(request, 'eatingbase.html', {'form': form, 'products': products, 'search_query': search_query})
 
@@ -955,8 +962,8 @@ def display_chart(request):
     plt.figure(figsize=(10, 6))
     plt.plot(dates, calories, marker='o')
     plt.xlabel('Дата')
-    plt.ylabel('Потраченные калории')
-    plt.title('Потраченные калории за неделю')
+    plt.ylabel('сожженные калории')
+    plt.title('сожженные калории за неделю')
     plt.xticks(rotation=45)
     plt.tight_layout()
     image_path_2 = os.path.join(image_dir, 'chart_2.png')
