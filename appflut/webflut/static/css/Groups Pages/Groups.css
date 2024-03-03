@@ -10,11 +10,6 @@
   src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
   font-weight: 700;
 }
-footer {
-  position: absolute;
-  bottom: 0;
-}
-
 html {
   font-family: "Segoe UI";
   background-color: #f2f3ed;
@@ -36,6 +31,7 @@ body {
 }
 
 .container {
+  width: 90%;
   display: flex;
   flex-direction: column;
   margin: 2vw auto;
@@ -129,13 +125,17 @@ a:hover {
 
 /*размеры телефонов*/
 @media (min-width: 481px) {
-  footer {
-    position: static;
-    bottom: 0;
+  .container {
+    width: 70%;
   }
 }
 /**/
 /*размеры планшетов*/
+@media (min-width: 769px) {
+  .container {
+    width: 60%;
+  }
+}
 /**/
 /*размеры компьютеров*/
 /**//*# sourceMappingURL=groups.css.map */

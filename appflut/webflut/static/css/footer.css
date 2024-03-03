@@ -1,50 +1,51 @@
 footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #008187;
     border-radius: 10px;
     display: flex;
     width: 90%;
     justify-content: space-around;
     padding: 15px;
-    margin: 3vw auto 3vw auto;
     white-space: nowrap;
     box-sizing: border-box;
-    .buttonFooter {
-        font-size: 10px;
-        text-decoration: none;
-        border-radius: 5px;
-        border: 0;
-    }
-}
-
-.imgFooter {
+    margin: 3vw auto;
+  }
+  
+  .buttonFooter {
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 0;
+  }
+  
+  .imgFooter {
     width: 11vw;
-}
-
-.buttonFooter:hover {
-box-shadow: 5px 5px 5px white;
-}
-
-/*размеры телефонов*/
-@media (min-width: 481px) {
-    footer{
-        width: 80%;
+  }
+  
+  .buttonFooter:hover {
+    box-shadow: 5px 5px 5px white;
+  }
+  
+  /*размеры телефонов*/
+  @media (min-width: 481px) {
+    footer {
+      width: 70%;
     }
-}
-/**/
-
-/*размеры планшетов*/
-@media (min-width: 769px) {
-    footer{
-        width: 50%;
+    .imgFooter {
+        width: 8vw;
+      }
+  }
+  
+  /*размеры планшетов*/
+  @media (min-width: 769px) {
+    footer {
+      width: 50%;
     }
-.imgFooter {
-    width: 6vw;
-}
-}
-/**/
-
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-
-}
-/**/
+    .imgFooter {
+      width: 5vw;
+    }
+  }
+  

@@ -1,0 +1,89 @@
+$blue_color: #008187;
+$gray_color: #293b4b;
+$main_backgrounde: #f2f3ed;
+$font_main_text: 28px;
+$font_ps_text: 15px;
+$border_radius: 10px;
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
+    url('SegoeUI.woff2') format('woff2'),
+    url('SegoeUI.woff') format('woff'),
+    url('SegoeUI.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI Bold';
+  src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
+    url('SegoeUI-Bold.woff2') format('woff2'),
+    url('SegoeUI-Bold.woff') format('woff'),
+    url('SegoeUI-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+}
+html {
+  font-family: "Segoe UI";
+  background-color: $main_backgrounde;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+h2{
+  text-align: center;
+  margin: auto;
+  //margin-top: 80%;
+  opacity: 0.5;
+}
+.title {
+  font-family: "Segoe UI Bold";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  color: $blue_color;
+  font-size: $font_main_text;
+  width: 50%;
+  margin: auto;
+}
+img{
+  width: 10vw;
+}
+
+textarea {
+  padding: 15px;
+  font-size: 25px;
+  border: 2px solid $blue_color;
+  border-radius: $border_radius;
+}
+/*размеры телефонов*/
+@media (min-width: 481px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}
+
+/**/
+
+/*размеры планшетов*/
+@media (min-width: 769px) {
+  img{
+    width: 6vw;
+  }
+}
+/**/
+
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+}
+
+/**/

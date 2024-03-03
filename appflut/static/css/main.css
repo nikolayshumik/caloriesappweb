@@ -1,0 +1,147 @@
+@charset "UTF-8";
+/* calories_and_bjy*/
+html {
+  height: 100%;
+  font-family: "Inter";
+  background-color: #1d1d1d;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-orientations {
+  width: 11vw;
+  height: 11vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin: 3vw;
+  margin-left: -77%;
+  font-size: 15vw;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(4, 177, 211);
+  color: white;
+}
+
+footer {
+  background-color: rgb(4, 177, 211);
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  padding: 5px;
+  max-width: 90%;
+  margin: auto;
+}
+footer .buttonFooter {
+  color: white;
+  display: inline-block;
+  font-size: 46px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 0;
+  background-color: rgb(4, 177, 211);
+  border-left: #0387a0;
+}
+footer .buttonFooter:hover {
+  border: 2px solid black;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.main {
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: rgb(47, 47, 47);
+  padding: 8%;
+  text-align: center;
+  color: white;
+  font-size: 60px;
+}
+.main > a, .main .enter {
+  font-size: 60px;
+  color: white;
+  border: 0px;
+  margin: auto;
+  background-color: rgb(4, 177, 211);
+  text-align: center;
+  padding: 15px 40px;
+  text-decoration: none;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+.main > label {
+  margin-top: 50px;
+}
+.main a:hover {
+  background-color: rgba(4, 177, 211, 0.6901960784);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-container {
+  max-height: 600px; /* Максимальная высота контейнера */
+  overflow-y: auto; /* Добавление вертикального скролла при необходимости */
+}
+
+.product-item {
+  background-color: #f2f2f2;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.buttonMod:hover {
+  background-color: rgba(4, 177, 211, 0.6901960784);
+}
+
+input {
+  background-image: url(../../accets/profile.png);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: left top;
+  font-size: 50px;
+  border-width: 0px;
+  border-radius: 2px; /*rounded border */
+  padding: 20px 40px;
+  background-color: #141414;
+  color: white;
+  margin-top: 20px;
+}/*# sourceMappingURL=main.css.map */

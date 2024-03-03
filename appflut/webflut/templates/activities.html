@@ -2,51 +2,22 @@
 {% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-        <title>Активности</title>
-        <!--Медиа запросы, адаптив-->
-        <link href="{% static 'css/Eatings Pages/eatings.css' %}" rel="stylesheet" />
-        <!--Скрипт-->
-        <!--<script defer src="{% static 'js/main.js' %}"></script>-->
-        {% progressive_web_app_meta %}
-      </head>
+  <head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Активности</title>
+    <!--Медиа запросы, адаптив-->
+    <link href="{% static 'css/Eatings Pages/Activities/activities.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet" />
+    <!--Скрипт-->
+    <script src="{% static 'js/script_Eatings/script_activities.js' %}"></script>
+    {% progressive_web_app_meta %}
+  </head>
 <body>
-<script>
-    function openModal(id) {
-        document.querySelector(`#modal-${id}`).style.display = "block";
-    }
 
-    function closeModal(id) {
-        document.querySelector(`#modal-${id}`).style.display = "none";
-    }
 
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = "none";
-        }
-    }
-
-</script>
-<style>
-    #scrollTopButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    width: 40px;
-    height: 40px;
-    background-color: #008187;
-    color: white;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-</style>
 <h1>Активности</h1>
 
-<a href="{% url 'calories_and_bjy' %}" class="buttonMod">Назад</a>
+<a href="{% url 'calories_and_bjy' %}" class="general-button">Назад</a>
 
 
 <!--<a href="#" class="buttonMod" onclick="openModal()">создать продукт</a>-->
@@ -65,7 +36,7 @@
 <!--Поиск продуктов-->
 <form action="" class="search" method="GET" autocomplete="off">
    <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
-   <button type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
+   <button class="search-button" type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
 </form>
 <!--Поиск продуктов-->
 
@@ -73,20 +44,18 @@
     <div id="scrollTopButton">&#8679;</div>
     {% for el in activity %}
 
-    <div class="product-item">
-      <text style="color: black; font-size: 20px;">{{ el.activity_type }}<br>(мин)</text>
-      <!--<p>Каллории: {{ el.calories_in }}</p>-->
-      <!--<p>Время: {{ el.time }}</p>-->
-      <button onclick="openModal({{ el.id }})">Добавить</button>
+    <div class="activities-item">
+      <text style="color: #293b4b; font-size: 20px;">{{ el.activity_type }}</text>
+      <button onclick="openModal({{ el.id }})" id="add-button" class="general-button">Добавить</button>
       <div id="modal-{{ el.id }}" class="modal">
           <div class="modal-content">
               <span class="close" onclick="closeModal({{ el.id }})">&times;</span>
               <form method="post" action="{% url 'add_activity_view' %}">
                   {% csrf_token %}
-                  <input type="hidden" name="product_id" value="{{ el.id }}">
-                  <label for="time-input">Введите время:</label>
+                  <input type="hidden" name="activities_id" value="{{ el.id }}">
+                  <label for="time-input">Введите время (мин):</label>
                   <input type="number" name="time" id="time-input" inputmode="numeric" required>
-                  <button type="submit">Добавить активность</button>
+                  <button type="submit" class="general-button">Добавить активность</button>
               </form>
           </div>
       </div>
@@ -96,74 +65,6 @@
   {% endfor %}
 
 </div>
-
-<script>
-  var searchInput = document.getElementById('search-input');
-
-  searchInput.addEventListener('input', debounce(function() {
-    var query = searchInput.value;
-    if (query.length > 0) {
-      var results = document.getElementsByClassName('product-item');
-      for (var i = 0; i < results.length; i++) {
-        var result = results[i];
-        var text = result.querySelector('text').textContent.toLowerCase();
-        if (text.includes(query.toLowerCase())) {
-          result.style.display = 'block';
-        } else {
-          result.style.display = 'none';
-        }
-      }
-    } else {
-      var results = document.getElementsByClassName('product-item');
-      for (var i = 0; i < results.length; i++) {
-        var result = results[i];
-        result.style.display = 'block';
-      }
-    }
-  }, 300));
-
-  function debounce(func, delay) {
-    var timer = null;
-    return function() {
-      clearTimeout(timer);
-      timer = setTimeout(func, delay);
-    }
-  }
-</script>
-<script>
-    // Получаем последнюю сохраненную позицию прокрутки
-    var scrollPosition = sessionStorage.getItem('scrollPosition');
-
-    // Восстанавливаем позицию прокрутки
-    if (scrollPosition) {
-        window.scrollTo(0, parseInt(scrollPosition));
-    }
-
-    // Сохраняем текущую позицию прокрутки перед обновлением страницы
-    window.addEventListener('beforeunload', function () {
-        sessionStorage.setItem('scrollPosition', window.scrollY);
-    });
-</script>
-<script>
-// Получаем кнопку прокрутки наверх
-var scrollTopButton = document.getElementById('scrollTopButton');
-
-// Отслеживаем событие прокрутки страницы
-window.addEventListener('scroll', function () {
-    // Если прокрутка больше определенной высоты, показываем кнопку
-    if (window.scrollY > 400) {
-        scrollTopButton.classList.add('show');
-    } else {
-        scrollTopButton.classList.remove('show');
-    }
-});
-
-// Отслеживаем событие клика на кнопке
-scrollTopButton.addEventListener('click', function () {
-    // Прокручиваем страницу наверх
-    window.scrollTo(0, 0);
-});
-</script>
 
 </body>
 </html>

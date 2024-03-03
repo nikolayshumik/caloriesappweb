@@ -8,9 +8,10 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Calories Page/calories.css' %}" rel="stylesheet"/>
-    <!--Скрипт
-        <script defer src="{% static 'js/main.js' %}"></script>
+    <!--Скрипт  
+    <script src="{% static 'js/script_MainBJU/script_mainBJU.js' %}"></script>
     -->
+    
     {% progressive_web_app_meta %}
 </head>
 
@@ -42,7 +43,7 @@
 </div>
 
 <div class="block">БЖУ
-    <div class="container">
+    <div class="container" style="padding: 10px;">
         <div class="nutrition-div">Белки
             <p style="color: #ca517a;">{{ total_proteins|floatformat:"1" }}</p>
         </div>
@@ -278,56 +279,52 @@
 
 
 <script>
-        document.querySelectorAll('.clickable').forEach(item => {
-            item.addEventListener('click', event => {
-                event.target.parentElement.classList.toggle('active');
-            });
-        })
-
-</script>
-<script>
-    // Сохраняем состояние класса "active" перед обновлением страницы
-    window.addEventListener('beforeunload', function () {
-        var eatings = document.getElementsByClassName('eatings');
-        for (var i = 0; i < eatings.length; i++) {
-            var eating = eatings[i];
-            if (eating.classList.contains('active')) {
-                localStorage.setItem('eatings-' + i, 'active');
-            } else {
-                localStorage.removeItem('eatings-' + i);
-            }
+document.querySelectorAll('.clickable').forEach(item => {
+    item.addEventListener('click', event => {
+        event.target.parentElement.classList.toggle('active');
+    });
+})
+// Сохраняем состояние класса "active" перед обновлением страницы
+window.addEventListener('beforeunload', function () {
+    var eatings = document.getElementsByClassName('eatings');
+    for (var i = 0; i < eatings.length; i++) {
+        var eating = eatings[i];
+        if (eating.classList.contains('active')) {
+            localStorage.setItem('eatings-' + i, 'active');
+        } else {
+            localStorage.removeItem('eatings-' + i);
         }
-    });
+    }
+});
 
-    // Восстанавливаем состояние класса "active" после обновления страницы
-    window.addEventListener('load', function () {
-        var eatings = document.getElementsByClassName('eatings');
-        for (var i = 0; i < eatings.length; i++) {
-            var eating = eatings[i];
-            var isActive = localStorage.getItem('eatings-' + i);
-            if (isActive === 'active') {
-                eating.classList.add('active');
-            } else {
-                eating.classList.remove('active');
-            }
+// Восстанавливаем состояние класса "active" после обновления страницы
+window.addEventListener('load', function () {
+    var eatings = document.getElementsByClassName('eatings');
+    for (var i = 0; i < eatings.length; i++) {
+        var eating = eatings[i];
+        var isActive = localStorage.getItem('eatings-' + i);
+        if (isActive === 'active') {
+            eating.classList.add('active');
+        } else {
+            eating.classList.remove('active');
         }
-    });
-</script>
-<script>
-    // Сохраняем позицию прокрутки перед обновлением страницы
-    window.addEventListener('beforeunload', function() {
-        localStorage.setItem('scrollPosition', window.pageYOffset);
-    });
+    }
+});
+ // Сохраняем позицию прокрутки перед обновлением страницы
+ window.addEventListener('beforeunload', function() {
+    localStorage.setItem('scrollPosition', window.pageYOffset);
+});
 
-    // Восстанавливаем позицию прокрутки после обновления страницы
-    window.addEventListener('load', function() {
-        var scrollPosition = localStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-            window.scrollTo(0, scrollPosition);
-            localStorage.removeItem('scrollPosition');
-        }
-    });
+// Восстанавливаем позицию прокрутки после обновления страницы
+window.addEventListener('load', function() {
+    var scrollPosition = localStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+        window.scrollTo(0, scrollPosition);
+        localStorage.removeItem('scrollPosition');
+    }
+});
 </script>
+
 </body>
 
 </html>

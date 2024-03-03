@@ -1,64 +1,55 @@
-{% load static %}
-{% load pwa %}
+{% load static %} {% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
     {% progressive_web_app_meta %}
-        <style>
-        body {
-            background-color: #f2f3ed;
-            color: #008187;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-        }
+    <style>
+      body {
+        background-color: #f2f3ed;
+        color: #008187;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+      }
+      img {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      /*размеры компьютеров*/
+      @media (min-width: 1025px) {
+      }
+
+      /**/
+      @media (min-width: 769px) {
         footer {
-  position: absolute;
-  bottom: 0;
-}
-        img{
-            width: 90%;
+          position: static !important;
+          margin: auto !important;
+          left: 0% !important;
+          transform: translateX(0%) !important;
         }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        /*размеры компьютеров*/
-@media (min-width: 1025px) {
-  footer {
-    position: static;
-    bottom: 0;
-  }
-}
-
-/**/
-@media (min-width: 769px) {
-  footer {
-    position:static;
-    bottom: 0;
-  }
-}
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>Диаграмма потребленных калорий за неделю</h1>
+    <img src="/static/phototest/{{name}}/chart_1.png" alt="Calories Chart" />
 
+    <h1>Диаграмма сожженных калорий за неделю</h1>
+    <img src="/static/phototest/{{name}}/chart_2.png" alt="Calories Chart" />
 
-<h1>Диаграмма потребленных калорий за неделю </h1>
-<img src="/static/phototest/{{name}}/chart_1.png" alt="Calories Chart">
+    <!--<h1>Диаграмма выпитой воды за неделю</h1>-->
+    <!--<img src="/static/phototest/{{name}}/chart_3.png" alt="Calories Chart">-->
 
-<h1>Диаграмма сожженных калорий за неделю</h1>
-<img src="/static/phototest/{{name}}/chart_2.png" alt="Calories Chart">
-
-<!--<h1>Диаграмма выпитой воды за неделю</h1>-->
-<!--<img src="/static/phototest/{{name}}/chart_3.png" alt="Calories Chart">-->
-
-{% include 'footer.html' %}
-</body>
+    {% include 'footer.html' %}
+  </body>
 </html>

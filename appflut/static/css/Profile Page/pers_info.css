@@ -1,0 +1,109 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI Bold";
+  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+html {
+  font-family: "Segoe UI";
+  background-color: #f2f3ed;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  color: #008187;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.title-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3vw;
+}
+
+form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.common-class {
+  margin-top: 2vw;
+  font-size: 20px;
+  border: 1px solid #008187;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #008187;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  font-weight: 500;
+}
+.common-class img {
+  width: 5vw;
+  border-radius: 50%;
+}
+.common-class input, .common-class select, .common-class option {
+  border: 0px;
+  font-weight: 700;
+  color: #008187;
+  background-color: white;
+  text-align: end;
+}
+
+.save {
+  margin: auto;
+  margin-top: 5vw;
+  box-sizing: border-box;
+  text-align: center;
+  border: 0;
+  background-color: white;
+  font-size: 24px;
+  padding: 10px 30px;
+  font-family: "Segoe UI";
+  color: #008187;
+  border-radius: 15px;
+  border: 1px solid #008187;
+}
+
+/*размеры телефонов*/
+@media (min-width: 481px) {
+  img {
+    width: 12vw;
+  }
+}
+/**/
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}
+/**/
+@media (min-width: 769px) {
+  footer {
+    position: static;
+    bottom: 0;
+  }
+}/*# sourceMappingURL=pers_info.css.map */
