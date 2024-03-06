@@ -10,11 +10,6 @@
   src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
   font-weight: 700;
 }
-footer {
-  position: absolute;
-  bottom: 0;
-}
-
 html {
   font-family: "Segoe UI";
   background-color: #f2f3ed;
@@ -94,16 +89,12 @@ form {
 }
 /**/
 /*размеры компьютеров*/
-@media (min-width: 1025px) {
-  footer {
-    position: static;
-    bottom: 0;
-  }
-}
 /**/
 @media (min-width: 769px) {
   footer {
-    position: static;
-    bottom: 0;
+    position: static !important;
+    margin: 2vw auto !important;
+    left: 0% !important;
+    transform: translateX(0%) !important;
   }
 }/*# sourceMappingURL=pers_info.css.map */

@@ -2,11 +2,11 @@
 
 {% block content %}
 <h1>Обед</h1>
-<a href="{% url 'calories_and_bjy' %}" class="buttonMod">Назад</a>
+<a href="{% url 'calories_and_bjy' %}" class="general-button">Назад</a>
 {% endblock %}
 
 {% block contenbutton %}
-<button onclick="openModal2({{ product.id }})">Добавить</button>
+<button onclick="openModal2({{ product.id }})" class="general-button">Добавить</button>
 <div id="modal2_{{ product.id }}" class="modal2">
     <div class="modal-content2">
 
@@ -18,7 +18,7 @@
                 <span class="close2" onclick="closeModal2()">&times;</span>
             </div>
             <input type="number" name="weight" id="weight-input" placeholder="В граммах" required>
-            <button type="submit">Добавить в обед</button>
+            <button type="submit" class="general-button">Добавить в обед</button>
         </form>
     </div>
 </div>
