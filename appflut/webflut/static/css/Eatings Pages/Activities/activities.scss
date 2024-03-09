@@ -77,8 +77,10 @@ $border_radius: 15px;
       justify-content: space-between;
       align-items: center;
       label {
+        color: $gray_color;
         margin-bottom: 10px;
       }
+
     }
   }
 }

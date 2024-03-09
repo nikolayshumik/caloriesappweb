@@ -53,7 +53,7 @@ form{
     margin-top: 2vw;
     font-size: $font_ps_text;
     border: 1px solid $blue_color;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: 5px;
     color: $blue_color;
     display: flex;
@@ -73,19 +73,20 @@ form{
         text-align: end;
     }
 }
-.save{
-    margin: auto;
-    margin-top: 5vw;
-    box-sizing: border-box;
-    text-align: center;
-    border: 0;
-    background-color: white;
-    font-size: $font_main_text;
-    padding: 10px 30px;
-    font-family: "Segoe UI";
-    color: $blue_color;
-    border-radius: 15px;
-    border: 1px solid $blue_color;
+.general-button {
+  font-family: Arial;
+  text-decoration: none;
+  margin: 7vw auto;
+  background-color: $blue_color;
+  border-radius: $border_radius;
+  padding: 10px 20px;
+  border: none;
+  font-size: $font_main_text;
+  cursor: pointer;
+  color: $main_backgrounde;    
+}
+.general-button:hover{
+background-color: #293b4b
 }
 /*размеры телефонов*/
 @media (min-width: 481px) {
@@ -95,12 +96,7 @@ form{
 }
 /**/
 
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-
-}
-
-/**/
+/*размеры планшетов*/
 @media (min-width: 769px) {
   footer {
     position: static !important;
@@ -108,4 +104,18 @@ form{
     left: 0% !important;
     transform: translateX(0%) !important;
   }
+  .common-class{
+    padding: 10px 20px;
+  }
+  .general-button {
+    margin: 3vw auto;
+  }
 }
+/**/
+
+/*размеры компьютеров*/
+@media (min-width: 1025px) {
+
+}
+
+

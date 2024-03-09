@@ -70,6 +70,7 @@
   align-items: center;
 }
 .modal .modal-content form label {
+  color: #293b4b;
   margin-bottom: 10px;
 }
 

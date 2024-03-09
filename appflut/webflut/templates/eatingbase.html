@@ -1,24 +1,15 @@
-{% load static %} {% load pwa %}
+{% load static %} 
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta
-      name="viewport"
-      charset="UTF-8"
-      content="width=device-width, initial-scale=1"
-    />
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1"/>
     <title>Добавить калории</title>
     <!--Медиа запросы, адаптив-->
-    <link
-      href="{% static 'css/Eatings Pages/Eating/eatings.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/Eatings Pages/general.css' %}"
-      rel="stylesheet"
-    />
+    <link href="{% static 'css/Eatings Pages/Eating/eatings.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet"/>
     <!--Скрипт
-    <script src="{% static 'js/script_eatingbase.js' %}"></script>
+    <script src="{% static 'js/eatingbase/script_eatingbase.js' %}"></script>
     -->
     {% progressive_web_app_meta %}
   </head>
@@ -27,7 +18,6 @@
     {% block content %}
     <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
     {% endblock %}
-
     <button class="general-button" style="margin-top: 0" id="create-my-product">
       Создать продукт
     </button>
@@ -105,19 +95,20 @@
     </div>
 
     <script>
-      var searchInput = document.getElementById("search-input");
-      var productItems = document.getElementsByClassName("product-item");
-      var modal = document.querySelector(".modal");
-      var createMyProduct = document.querySelector("#create-my-product");
-      var modalshum = document.querySelector(".modalshum");
-      var closeProduct = document.querySelector(".closeX");
-      var scrollTopButton = document.getElementById("scrollTopButton");
+      let searchInput = document.getElementById("search-input");
+      let productItems = document.getElementsByClassName("product-item");
+      let modal = document.querySelector(".modal");
+      let createMyProduct = document.querySelector("#create-my-product");
+      let modalshum = document.querySelector(".modalshum");
+      let closeProduct = document.querySelector(".closeX");
+      let scrollTopButton = document.getElementById("scrollTopButton");
 
+      //Алгоритм поиска
       searchInput.addEventListener("input", function () {
-        var query = searchInput.value.toLowerCase();
-        for (var i = 0; i < productItems.length; i++) {
-          var productItem = productItems[i];
-          var productText = productItem
+        let query = searchInput.value.toLowerCase();
+        for (let i = 0; i < productItems.length; i++) {
+          let productItem = productItems[i];
+          let productText = productItem
             .getElementsByTagName("text")[0]
             .textContent.toLowerCase();
           if (productText.includes(query)) {
@@ -127,6 +118,7 @@
           }
         }
       });
+      ////Алгоритм поиска///
 
       createMyProduct.addEventListener("click", function () {
         modalshum.style.display = "block";
@@ -136,6 +128,7 @@
         modalshum.style.display = "none";
       });
 
+      //Логика работы модального окна
       window.addEventListener("click", function (event) {
         if (event.target == modalshum) {
           modalshum.style.display = "none";
@@ -145,31 +138,30 @@
           event.target.style.display = "none";
         }
       });
+      /////Логика работы модального окна
 
       function openModal2(productID) {
-        var modalID = "modal2_" + productID;
+        let modalID = "modal2_" + productID;
         document.getElementById(modalID).style.display = "block";
       }
 
       function closeModal2(productID) {
-        var modalID = "modal2_" + productID;
+        let modalID = "modal2_" + productID;
         document.getElementById(modalID).style.display = "none";
       }
 
+      //Скролл
       window.addEventListener("scroll", function () {
         if (window.scrollY > 400) {
           scrollTopButton.classList.add("show");
+          scrollTopButton.addEventListener("click", function () {
+            window.scrollTo({top: 0,behavior: "smooth"});
+          })
         } else {
           scrollTopButton.classList.remove("show");
         }
       });
 
-      scrollTopButton.addEventListener("click", function () {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
     </script>
   </body>
 </html>
