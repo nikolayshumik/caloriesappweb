@@ -8,8 +8,8 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Eatings Pages/Activities/activities.css' %}" rel="stylesheet" />
     <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet" />
-    <!--Скрипт-->
-    <script src="{% static 'js/script_Eatings/script_activities.js' %}"></script>
+    <!--Скрипт  -->
+    <script src="{% static 'js/eatingbase/script_activities.js' %}"></script>
     {% progressive_web_app_meta %}
   </head>
 <body>
@@ -55,7 +55,7 @@
                   <input type="hidden" name="activities_id" value="{{ el.id }}">
                   <label for="time-input">Введите время (мин):</label>
                   <input type="number" name="time" id="time-input" inputmode="numeric" required>
-                  <button type="submit" class="general-button">Добавить активность</button>
+                  <button type="submit" class="general-button" class="buttonMod">Добавить активность</button>
               </form>
           </div>
       </div>
@@ -65,6 +65,7 @@
   {% endfor %}
 
 </div>
+
 
 </body>
 </html>

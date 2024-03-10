@@ -1,51 +1,51 @@
 footer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #008187;
-    border-radius: 10px;
-    display: flex;
-    width: 90%;
-    justify-content: space-around;
-    padding: 15px;
-    white-space: nowrap;
-    box-sizing: border-box;
-    margin: 3vw auto;
+  position: fixed;
+  bottom: 0;
+  margin: 3vw auto;
+  left: 0;
+  right: 0;
+  background-color: #008187;
+  border-radius: 10px;
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+  padding: 15px;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.buttonFooter {
+  font-size: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 0;
+}
+
+.imgFooter {
+  width: 11vw;
+}
+
+.buttonFooter:hover {
+  box-shadow: 5px 5px 5px white;
+}
+
+/*размеры телефонов*/
+@media (min-width: 481px) {
+  footer {
+    width: 70%;
   }
-  
-  .buttonFooter {
-    font-size: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 0;
-  }
-  
   .imgFooter {
-    width: 11vw;
+    width: 8vw;
   }
-  
-  .buttonFooter:hover {
-    box-shadow: 5px 5px 5px white;
+}
+
+/*размеры планшетов*/
+@media (min-width: 769px) {
+  footer {
+    width: 50%;
+    padding: 10px;
   }
-  
-  /*размеры телефонов*/
-  @media (min-width: 481px) {
-    footer {
-      width: 70%;
-    }
-    .imgFooter {
-        width: 8vw;
-      }
+  .imgFooter {
+    width: 5vw;
   }
-  
-  /*размеры планшетов*/
-  @media (min-width: 769px) {
-    footer {
-      width: 50%;
-    }
-    .imgFooter {
-      width: 5vw;
-    }
-  }
-  
+}

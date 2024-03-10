@@ -8,10 +8,7 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Calories Page/calories.css' %}" rel="stylesheet"/>
-    <!--Скрипт  
-    <script src="{% static 'js/script_MainBJU/script_mainBJU.js' %}"></script>
-    -->
-    
+    <!--Скрипт на 275 строчке!!! -->
     {% progressive_web_app_meta %}
 </head>
 
@@ -29,21 +26,21 @@
 
 
 <div class="block">Калории
-    <div class="container" style="justify-content: space-around;">
-        <div class="nutrition-div" style="width: 47%;">Потреблено
+    <div class="container">
+        <div class="nutrition-div" style="flex-basis: 50%;">Потреблено
             <p>{{ total_calories|floatformat:"1" }}</p>
         </div>
 <!--        <div class="nutrition-div">Норма-->
 <!--            <p>{{ male }}</p>-->
 <!--        </div>-->
-        <div class="nutrition-div" style="width: 47%;">Потрачено
+        <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
             <p>{{ acttotal_calories|floatformat:"1" }}</p>
         </div>
     </div>
 </div>
 
-<div class="block">БЖУ
-    <div class="container" style="padding: 10px;">
+<div class="block" style="margin-top: 0px;">БЖУ
+    <div class="container">
         <div class="nutrition-div">Белки
             <p style="color: #ca517a;">{{ total_proteins|floatformat:"1" }}</p>
         </div>
@@ -76,7 +73,7 @@
 
 
 <!--Активности-->
-<div class="eatings" style="margin-top: 40px;">
+<div class="eatings">
     <div class="breakfast clickable">Активности<a href="{% url 'activities' %}">+</a></div>
     <div class="summ_kkal">
         {{ acttotal_calories }} ккал
@@ -270,60 +267,12 @@
 </div>
 <!--/Перекус-->
 
-
-
+<!--Скрипт-->
+<script src="{% static 'js/calories_and_bju/calories_and_bju.js' %}"></script>
 
 {% block content %}
 {% include 'footer.html' %}
 {% endblock %}
-
-
-<script>
-document.querySelectorAll('.clickable').forEach(item => {
-    item.addEventListener('click', event => {
-        event.target.parentElement.classList.toggle('active');
-    });
-})
-// Сохраняем состояние класса "active" перед обновлением страницы
-window.addEventListener('beforeunload', function () {
-    var eatings = document.getElementsByClassName('eatings');
-    for (var i = 0; i < eatings.length; i++) {
-        var eating = eatings[i];
-        if (eating.classList.contains('active')) {
-            localStorage.setItem('eatings-' + i, 'active');
-        } else {
-            localStorage.removeItem('eatings-' + i);
-        }
-    }
-});
-
-// Восстанавливаем состояние класса "active" после обновления страницы
-window.addEventListener('load', function () {
-    var eatings = document.getElementsByClassName('eatings');
-    for (var i = 0; i < eatings.length; i++) {
-        var eating = eatings[i];
-        var isActive = localStorage.getItem('eatings-' + i);
-        if (isActive === 'active') {
-            eating.classList.add('active');
-        } else {
-            eating.classList.remove('active');
-        }
-    }
-});
- // Сохраняем позицию прокрутки перед обновлением страницы
- window.addEventListener('beforeunload', function() {
-    localStorage.setItem('scrollPosition', window.pageYOffset);
-});
-
-// Восстанавливаем позицию прокрутки после обновления страницы
-window.addEventListener('load', function() {
-    var scrollPosition = localStorage.getItem('scrollPosition');
-    if (scrollPosition) {
-        window.scrollTo(0, scrollPosition);
-        localStorage.removeItem('scrollPosition');
-    }
-});
-</script>
 
 </body>
 

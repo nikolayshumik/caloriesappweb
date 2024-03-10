@@ -1,23 +1,46 @@
-{% load static %}
-{% load pwa %}
-<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-<link href="{% static 'css/footer.css' %}" rel="stylesheet"/>
-{% progressive_web_app_meta %}
-
-{% block content %}
-{% endblock %}
+{% load static %} {% load pwa %}
+<meta
+  name="viewport"
+  charset="UTF-8"
+  content="width=device-width, initial-scale=1"
+/>
+<link href="{% static 'css/footer.css' %}" rel="stylesheet" />
+{% progressive_web_app_meta %} {% block content %} {% endblock %}
 
 <footer>
-    <a href="{% url 'creategroup' %}" class="buttonFooter">
-        <img src="{% static 'accets/журнал.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'display_chart' %}" class="buttonFooter">
-        <img src="{% static 'accets/статистика.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'profile' %}" class="buttonFooter">
-        <img src="{% static 'accets/profile.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
-        <img src="{% static 'accets/kkal.png' %}" class="imgFooter"/></a>
-    <a href="{% url 'person_info' %}" class="buttonFooter">
-        <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"/></a>
+  <a href="{% url 'creategroup' %}" class="buttonFooter">
+    <img src="{% static 'accets/журнал.png' %}" class="imgFooter"
+  /></a>
+  <a href="{% url 'display_chart' %}" class="buttonFooter">
+    <img src="{% static 'accets/статистика.png' %}" class="imgFooter"
+  /></a>
+  <a href="{% url 'profile' %}" class="buttonFooter">
+    <img src="{% static 'accets/profile.png' %}" class="imgFooter"
+  /></a>
+  <a href="{% url 'calories_and_bjy' %}" class="buttonFooter">
+    <img src="{% static 'accets/kkal.png' %}" class="imgFooter"
+  /></a>
+  <a href="{% url 'person_info' %}" class="buttonFooter">
+    <img src="{% static 'accets/pers_info.png' %}" class="imgFooter"
+  /></a>
 </footer>
 
-<!--   
+<script>
+var windowHeight = window.innerHeight;
+
+console.log(windowHeight);
+
+if (windowHeight < 770) {
+  window.addEventListener("scroll", function () {
+    var scrollHeight = window.scrollY;
+    if (scrollHeight > windowHeight * 0.1) {
+      document.getElementsByTagName("footer")[0].style.position = "static";
+    } else {
+      document.getElementsByTagName("footer")[0].style.position = "fixed";
+    }
+  });
+} 
+else {
+  document.getElementsByTagName("footer")[0].style.position = "static";
+}
+</script>

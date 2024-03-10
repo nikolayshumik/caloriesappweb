@@ -45,7 +45,7 @@ form {
   margin-top: 2vw;
   font-size: 20px;
   border: 1px solid #008187;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 5px;
   color: #008187;
   display: flex;
@@ -66,19 +66,21 @@ form {
   text-align: end;
 }
 
-.save {
-  margin: auto;
-  margin-top: 5vw;
-  box-sizing: border-box;
-  text-align: center;
-  border: 0;
-  background-color: white;
+.general-button {
+  font-family: Arial;
+  text-decoration: none;
+  margin: 7vw auto;
+  background-color: #008187;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
   font-size: 24px;
-  padding: 10px 30px;
-  font-family: "Segoe UI";
-  color: #008187;
-  border-radius: 15px;
-  border: 1px solid #008187;
+  cursor: pointer;
+  color: #f2f3ed;
+}
+
+.general-button:hover {
+  background-color: #293b4b;
 }
 
 /*размеры телефонов*/
@@ -88,8 +90,7 @@ form {
   }
 }
 /**/
-/*размеры компьютеров*/
-/**/
+/*размеры планшетов*/
 @media (min-width: 769px) {
   footer {
     position: static !important;
@@ -97,4 +98,12 @@ form {
     left: 0% !important;
     transform: translateX(0%) !important;
   }
-}/*# sourceMappingURL=pers_info.css.map */
+  .common-class {
+    padding: 10px 20px;
+  }
+  .general-button {
+    margin: 3vw auto;
+  }
+}
+/**/
+/*размеры компьютеров*//*# sourceMappingURL=pers_info.css.map */
