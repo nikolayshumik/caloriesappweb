@@ -624,7 +624,7 @@ def add_snack_view(request):
 
 @login_required
 def add_activity_view(request):
-    activity_id = request.POST.get('product_id')
+    activity_id = request.POST.get('activities_id')
     time = request.POST.get('time')
     selected_date_str = request.session.get('selected_date', None)
 
