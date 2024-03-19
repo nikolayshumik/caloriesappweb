@@ -461,15 +461,27 @@ def snack(request):
 
 from django.db.models import Q
 
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Activity
+
 def activities(request):
     search_query = request.GET.get('search')
     if search_query:
         search_query = search_query.capitalize()
-    activity = Activity.objects.all()
-    if search_query:
-        activity = activity.filter(Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query))
 
-    return render(request, 'activities.html', {'activity': activity, 'search_query': search_query})
+    categories = set()
+    activities = Activity.objects.all()
+
+    if search_query:
+        activities = activities.filter(
+            Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
+        )
+
+    for activity in activities: # Получаем уникальные категории из списка активностей
+        categories.add(activity.category)
+
+    return render(request, 'activities.html', {'categories': categories, 'activities': activities})
 def eatingbase(request):
     search_query = request.GET.get('search')
 
