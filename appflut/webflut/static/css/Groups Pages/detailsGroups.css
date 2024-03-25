@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Segoe UI";
   src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
@@ -9,11 +10,6 @@
   src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
   font-weight: 700;
 }
-footer {
-  position: absolute;
-  bottom: 0;
-}
-
 html {
   font-family: "Segoe UI";
   background-color: #f2f3ed;
@@ -96,4 +92,12 @@ button[type=submit] {
   border: none;
   cursor: pointer;
   margin-left: 10px;
-}/*# sourceMappingURL=detailsGroups.css.map */
+}
+
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  footer {
+    position: fixed !important;
+  }
+}
+/**//*# sourceMappingURL=detailsGroups.css.map */

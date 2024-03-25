@@ -8,26 +8,21 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Profile Page/profile.css' %}" rel="stylesheet"/>
     {% progressive_web_app_meta %}
-    <!--Скрипт-->
-    <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
 
-      <img src="{% static 'accets/profile.png' %}" style="width: 40vw;" />
+  <img src="{% static 'accets/profile.png' %}" style="width: 40vw; margin: auto;" />
 
-      <div class="title"> 
-        {{ user.username }}
-        <a href="{% url 'logout' %}"><img src="{% static 'accets/выйти.png' %}"/></a>
-      </div>      
+  <div class="title"> 
+    {{ user.username }}
+      <a href="{% url 'logout' %}"><img src="{% static 'accets/выйти.png' %}"/></a>
+  </div>      
 
-      <h2>Раздел находится в разработке</h2>
-        <!--<form method="post" action="{% url 'login' %}">
-            <textarea placeholder="Раздел находится в разработке"></textarea>
-        </form>-->
+  <h2>Раздел находится в разработке</h2>
+    <!--<form method="post" action="{% url 'login' %}">
+      <textarea placeholder="Раздел находится в разработке"></textarea>
+    </form>-->
 
-      {% block content %}
-      {% include 'footer.html' %}
-      {% endblock %}
-
+{% include 'footer.html' %}
 </body>
 </html>

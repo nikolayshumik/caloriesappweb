@@ -23,10 +23,7 @@ $border_radius: 15px;
         url('SegoeUI-Bold.ttf') format('truetype');
     font-weight: 700;
 }
-footer {
-    position: absolute;
-    bottom: 0;
-  }
+
 html {
     font-family: "Segoe UI";
     background-color: $main_backgrounde;
@@ -113,3 +110,12 @@ button[type="submit"] {
     cursor: pointer;
     margin-left: 10px;
 }
+
+/*размеры планшетов*/
+@media (max-width: 769px) {
+footer{
+    position: fixed !important;
+}
+  }
+  /**/
+  

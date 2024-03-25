@@ -77,11 +77,11 @@ button[type=submit] {
   border: none;
   cursor: pointer;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: filter 0.3s ease;
 }
 
 button[type=submit]:hover {
-  background-color: #004d4f;
+  filter: brightness(0.6);
 }
 
 ul {
@@ -92,10 +92,16 @@ ul {
 li {
   overflow: hidden;
   padding: 10px 20px;
+  background-color: white;
   border-radius: 10px;
   font-size: 23px;
   border: 2px solid #008187;
   margin-bottom: 10px;
+  transition: filter 0.3s ease;
+}
+
+li:hover {
+  filter: brightness(0.9);
 }
 
 select {
@@ -119,23 +125,22 @@ a {
   color: #000;
 }
 
-a:hover {
-  text-decoration: underline;
+li:hover {
+  cursor: pointer;
 }
 
-/*размеры телефонов*/
-@media (min-width: 481px) {
+/*размеры планшетов*/
+@media (max-width: 769px) {
   .container {
     width: 70%;
   }
 }
 /**/
-/*размеры планшетов*/
-@media (min-width: 769px) {
+/*размеры телефонов*/
+@media (max-width: 481px) {
   .container {
-    width: 60%;
+    margin-top: 0;
+    width: 90%;
   }
 }
-/**/
-/*размеры компьютеров*/
 /**//*# sourceMappingURL=groups.css.map */

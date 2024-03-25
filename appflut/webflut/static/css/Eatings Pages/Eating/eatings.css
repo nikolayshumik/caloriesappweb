@@ -79,12 +79,12 @@
 }
 
 .product-container {
-  width: 70%;
   text-align: center;
 }
 
 .product-item {
   display: flex;
+  width: 90%;
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
@@ -106,9 +106,9 @@
   margin-block-end: 0.5em;
 }
 .product-item .product-row {
-  width: 90%;
-  margin-top: 10px;
-  margin: 10px auto;
+  padding-inline-start: 0px;
+  width: 100%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   font-size: 18px;
@@ -248,18 +248,8 @@
     opacity: 1;
   }
 }
-/*размеры телефонов*/
-@media (min-width: 481px) {
-  .modal {
-    width: 70%;
-  }
-  .modal .modal-content input {
-    width: 50%;
-  }
-}
-/**/
 /*размеры планшетов*/
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .modal {
     width: 60%;
     margin-top: 2vw;
@@ -272,5 +262,13 @@
   }
 }
 /**/
-/*размеры компьютеров*/
+/*размеры телефонов*/
+@media (max-width: 481px) {
+  .modal {
+    width: 70%;
+  }
+  .modal .modal-content input {
+    width: 50%;
+  }
+}
 /**//*# sourceMappingURL=eatings.css.map */
