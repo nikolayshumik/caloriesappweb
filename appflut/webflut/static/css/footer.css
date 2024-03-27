@@ -1,51 +1,58 @@
 footer {
-  position: fixed;
   bottom: 0;
+  position: fixed;
   margin: 3vw auto;
   left: 0;
   right: 0;
-  background-color: #008187;
-  border-radius: 10px;
+  border-radius: 15px;
   display: flex;
-  width: 90%;
-  justify-content: space-around;
-  padding: 15px;
+  width: 60%;
+  background-color: #008187;
+  justify-content: space-between;
   white-space: nowrap;
   box-sizing: border-box;
 }
 
 .buttonFooter {
+  background-color: #008187;
+  box-sizing: border-box;
   font-size: 10px;
+  padding: 10px 0px;
+  width: 20%;
+  text-align: center;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 0;
-}
-
-.imgFooter {
-  width: 11vw;
+  transition: filter 0.3s ease;
 }
 
 .buttonFooter:hover {
-  box-shadow: 5px 5px 5px white;
+  filter: brightness(0.6);
 }
 
-/*размеры телефонов*/
-@media (min-width: 481px) {
-  footer {
-    width: 70%;
-  }
-  .imgFooter {
-    width: 8vw;
-  }
+.imgFooter {
+  width: 7vw;
 }
-
 /*размеры планшетов*/
-@media (min-width: 769px) {
-  footer {
-    width: 50%;
+@media (max-width: 769px) {
+  footer{
+    width: 60%;
+  }
+  .buttonFooter {
+    padding: 10px;
+  }
+}
+/*размеры телефонов*/
+@media (max-width: 481px) {
+  footer{
+    width: 90%;
+  }
+  .buttonFooter {
     padding: 10px;
   }
   .imgFooter {
-    width: 5vw;
+    width: 12vw;
   }
 }
+
+

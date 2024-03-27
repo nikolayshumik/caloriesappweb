@@ -14,10 +14,13 @@
     {% progressive_web_app_meta %}
   </head>
 
-  <body style="font-family: Arial, Helvetica, sans-serif;">
+  <body>
     {% block content %}
     <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
     {% endblock %}
+    <!-- Кнопка наверх -->
+    <div id="scrollTopButton">&#8679;</div>
+
     <button class="general-button" style="margin-top: 0" id="create-my-product">
       Создать продукт
     </button>
@@ -74,18 +77,18 @@
     <!--Поиск продуктов-->
 
     <div class="product-container">
-      <div id="scrollTopButton">&#8679;</div>
+      
 
       {% for product in products %}
       <div class="product-item">
         <text>{{ product.name }}</text>
         <p>Каллории: {{ product.calories_in }}</p>
 
-        <div class="product-row">
+        <ul class="product-row">
           <li style="color: #ca517a">{{ product.proteins }} г.</li>
           <li style="color: #fbb20d">{{ product.fats }} г.</li>
           <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
-        </div>
+        </ul>
 
         {% block contenbutton %} {% endblock %}
       </div>

@@ -1,111 +1,89 @@
 $blue_color: #008187;
-$gray_color:#293b4b;
+$gray_color: #293b4b;
 $main_backgrounde: #f2f3ed;
 $font_main_text: 24px;
 $font_ps_text: 20px;
 $border_radius: 5px;
 
-@font-face {
-  font-family: 'Segoe UI';
-  src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
-      url('SegoeUI.woff2') format('woff2'),
-      url('SegoeUI.woff') format('woff'),
-      url('SegoeUI.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $main_backgrounde;
 }
-@font-face {
-  font-family: 'Segoe UI Bold';
-  src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
-      url('SegoeUI-Bold.woff2') format('woff2'),
-      url('SegoeUI-Bold.woff') format('woff'),
-      url('SegoeUI-Bold.ttf') format('truetype');
-  font-weight: 700;
-}
-
-html{
-    font-family: "Segoe UI";
-    background-color: $main_backgrounde;
-}
-body{
+body {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.title{
-    color: #008187;
+.title {
+  color: #008187;
+  font-weight: 700;
+  font-size: $font_main_text;
+}
+.title-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3vw;
+}
+form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.common-class {
+  margin-top: 2vw;
+  font-size: $font_ps_text;
+  border: 1px solid $blue_color;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: $blue_color;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  font-weight: 500;
+  img {
+    width: 5vw;
+    border-radius: 50%;
+  }
+  input,
+  select{
+    border: 0px;
     font-weight: 700;
-    font-size: $font_main_text;
-}
-.title-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 3vw;
-}
-form{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-}
-.common-class{
-    margin-top: 2vw;
-    font-size: $font_ps_text;
-    border: 1px solid $blue_color;
-    padding: 10px 10px;
-    border-radius: 5px;
     color: $blue_color;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     background-color: white;
-    font-weight: 500;
-    img{
-        width: 5vw;
-        border-radius: 50%;
-    }
-    input, select, option{
-        border: 0px;
-        font-weight: 700;
-        color: $blue_color;
-        background-color: white;
-        text-align: end;
-    }
+    font-size: $font_ps_text;
+    max-width: 50%;
+    text-align: end;
+  }
+  option{
+    font-size: 15px;
+    font-weight: 700;
+  }
 }
 .general-button {
   font-family: Arial;
   text-decoration: none;
-  margin: 7vw auto;
+  margin: 3vw auto 0vw auto;
   background-color: $blue_color;
   border-radius: $border_radius;
   padding: 10px 20px;
   border: none;
   font-size: $font_main_text;
   cursor: pointer;
-  color: $main_backgrounde;    
+  color: $main_backgrounde;
 }
-.general-button:hover{
-background-color: #293b4b
+.general-button:hover {
+  background-color: #293b4b;
 }
-/*размеры телефонов*/
-@media (min-width: 481px) {
-  img{
-    width: 12vw;
-  }
-}
-/**/
 
 /*размеры планшетов*/
-@media (min-width: 769px) {
-  footer {
-    position: static !important;
-    margin: 2vw auto !important;
-    left: 0% !important;
-    transform: translateX(0%) !important;
-  }
-  .common-class{
-    padding: 10px 20px;
+@media (max-width: 769px) {
+  .common-class {
+    padding: 10px 15px;
   }
   .general-button {
     margin: 3vw auto;
@@ -113,9 +91,20 @@ background-color: #293b4b
 }
 /**/
 
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-
+/*размеры телефонов*/
+@media (max-width: 481px) {
+  footer {
+    bottom: 0;
+    position: fixed !important;
+    margin: 3vw auto;
+    left: 0;
+    right: 0;
+  }
+  img {
+    width: 12vw;
+  }
+  .general-button {
+    margin: 10vw auto;
+  }
 }
-
-
+/**/

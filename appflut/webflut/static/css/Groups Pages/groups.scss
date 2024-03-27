@@ -6,148 +6,151 @@ $font_ps_text: 20px;
 $border_radius: 15px;
 
 @font-face {
-    font-family: 'Segoe UI';
-    src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
-        url('SegoeUI.woff2') format('woff2'),
-        url('SegoeUI.woff') format('woff'),
-        url('SegoeUI.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Segoe UI";
+  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"),
+    url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"),
+    url("SegoeUI.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Segoe UI_Bold';
-    src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
-        url('SegoeUI-Bold.woff2') format('woff2'),
-        url('SegoeUI-Bold.woff') format('woff'),
-        url('SegoeUI-Bold.ttf') format('truetype');
-    font-weight: 700;
+  font-family: "Segoe UI_Bold";
+  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"),
+    url("SegoeUI-Bold.woff2") format("woff2"),
+    url("SegoeUI-Bold.woff") format("woff"),
+    url("SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
 }
 html {
-    font-family: "Segoe UI";
-    background-color: $main_backgrounde;
+  font-family: "Segoe UI";
+  background-color: $main_backgrounde;
 }
 body {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-#all{
-    border-top: 1px solid black;
-    width: 100%;
-    text-align: center;
-    margin-top: 2vw;
-    padding-top: 2vw;
+#all {
+  border-top: 1px solid black;
+  width: 100%;
+  text-align: center;
+  margin-top: 2vw;
+  padding-top: 2vw;
 }
-.container {    
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    margin: 2vw auto;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    .title{
-        margin-bottom: 2vw;
-        font-family: 'Segoe UI';
-        font-weight: 600;
-    }
-    .ps_text{
-        font-size: 20px;
-        
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-}
-#delete{
-    padding: 10px;
+.container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 2vw auto;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  .title {
+    margin-bottom: 2vw;
+    font-family: "Segoe UI";
+    font-weight: 600;
+  }
+  .ps_text {
     font-size: 20px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+#delete {
+  padding: 10px;
+  font-size: 20px;
 }
 
 input[type="text"] {
-    padding: 12px 20px;
-    margin: 8px 0;
-    font-size: $font_ps_text;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 5px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: $font_ps_text;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 button[type="submit"] {
-    font-size: $font_ps_text;
-    width: 100%;
-    background-color: #008187;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+  font-size: $font_ps_text;
+  width: 100%;
+  background-color: #008187;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: filter 0.3s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: #004d4f;
+  filter: brightness(0.6);
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    overflow: hidden;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: $font_main_text;
-    border: 2px solid $blue_color; 
-    margin-bottom: 10px;
+  overflow: hidden;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 10px;
+  font-size: $font_main_text;
+  border: 2px solid $blue_color;
+  margin-bottom: 10px;
+  transition: filter 0.3s ease;
 }
-select{
-    font-size: $font_main_text;
-    border: 1px solid $blue_color;
+li:hover{
+    filter: brightness(0.9);
+}
+select {
+  font-size: $font_main_text;
+  border: 1px solid $blue_color;
+  border-radius: 5px;
+  padding: 5px;
+  option {
+    padding: 15px;
     border-radius: 5px;
-    padding: 5px;
-    option{
-        padding: 15px;
-        border-radius: 5px;
-        font-size: 20px;
-        margin-top: 20px;
-    }
-    option:hover {
-        background-color: $blue_color;
-      }
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  option:hover {
+    background-color: $blue_color;
+  }
 }
 a {
-    text-decoration: none;
-    color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
-a:hover {
-    text-decoration: underline;
+li:hover {
+  cursor: pointer;
 }
+
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  .container {
+    width: 70%;
+  }
+}
+/**/
+
 /*размеры телефонов*/
-@media (min-width: 481px) {
-    .container{
-        width: 70%;
-    }
+@media (max-width: 481px) {
+  .container {
+    margin-top: 0;
+    width: 90%;
   }
-  /**/
-  
-  /*размеры планшетов*/
-  @media (min-width: 769px) {
-    .container{
-        width: 60%;
-    }
-  }
-  /**/
-  
-  /*размеры компьютеров*/
-  @media (min-width: 1025px) {
-  }
-  
-  /**/
+}
+/**/
+
+
+
+

@@ -8,30 +8,14 @@ $font_big_text: 25px;
 $font_med_text: 18px;
 $font_sm_text: 13px;
 
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"),
-    url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"),
-    url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"),
-    url("SegoeUI-Bold.woff2") format("woff2"),
-    url("SegoeUI-Bold.woff") format("woff"),
-    url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
-
 html {
-  font-family: "Segoe UI";
+  font-family: Arial, Helvetica, sans-serif;
   background-color: $main_backgrounde;
 }
 
 body {
+  margin: 0;
+  overflow-x: hidden;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -81,7 +65,7 @@ body {
     .nutrition-div {
       border-radius: 5px;
       box-sizing: border-box;
-      border: 2px darkgrey solid;
+      border: 2px rgb(4, 177, 211) solid;
       font-size: 22px;
       border-radius: 10px;
       flex: 1;
@@ -223,56 +207,41 @@ body {
 
 .eatings.active .content {
   display: block;
+  
 }
 
 .clickable {
   cursor: pointer;
 }
-/*размеры MINI телефонов*/
-@media (min-width: 200px) {
-  .nutrition-div {
-    font-size: 15px;
+/*размеры компьютеров*/
+@media (max-width: 1025px) {
+  #delete_img {
+    width: 3vw;
+  }
+}
+/**/
+
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  #delete_img {
+    width: 3vw;
+  }
+  .block{
+    width: 95%;
   }
 }
 /**/
 
 /*размеры телефонов*/
-@media (min-width: 481px) {
+@media (max-width: 481px) {
   #water_div {
     padding: 15px;
   }
   #delete_img {
     width: 6vw;
   }
-}
-/**/
-
-/*размеры планшетов*/
-@media (min-width: 769px) {
-  #delete_img {
-    width: 3vw;
-  }
-  .block {
-    width: 95%;
-  }
-  footer {
-    position: static !important;
-    margin: 2vw auto !important;
-    left: 0% !important;
-    transform: translateX(0%) !important;
+  .block{
+    width: 100%;
   }
 }
-
-/**/
-
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-  .block {
-    width: 93%;
-  }
-  #delete_img {
-    width: 3vw;
-  }
-}
-
 /**/

@@ -39,23 +39,8 @@
         }
     });
 </script>
-<script>
-    // Сохраняем позицию прокрутки перед обновлением страницы
-    window.addEventListener('beforeunload', function() {
-        localStorage.setItem('scrollPosition', window.pageYOffset);
-    });
 
-    // Восстанавливаем позицию прокрутки после обновления страницы
-    window.addEventListener('load', function() {
-        var scrollPosition = localStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-            window.scrollTo(0, scrollPosition);
-            localStorage.removeItem('scrollPosition');
-        }
-    });
-</script>
-
-<body>
+<body class="content">
 
 <form method="get" style="margin: auto;">
     <div class="row-buttons">
@@ -312,9 +297,7 @@
 <!--Скрипт-->
 <script src="{% static 'js/calories_and_bju/calories_and_bju.js' %}"></script>
 
-{% block content %}
 {% include 'footer.html' %}
-{% endblock %}
 
 </body>
 

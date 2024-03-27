@@ -1,17 +1,6 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
 html {
-  font-family: "Segoe UI";
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #f2f3ed;
 }
 
@@ -35,16 +24,32 @@ h1 {
   height: 40px;
   background-color: #008187;
   color: white;
-  text-align: center;
-  line-height: 40px;
+  font-size: 25px;
   border-radius: 50%;
   cursor: pointer;
 }
 
 #scrollTopButton.show {
-  display: block;
+  display: flex;
+  align-items: center; /* Центрирование по вертикали */
+  justify-content: center; /* Центрирование по горизонтали */
 }
 
+#scrollTopButton:hover {
+  animation: jump 0.3s;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .general-button {
   font-family: Arial;
   text-decoration: none;
@@ -63,7 +68,7 @@ h1 {
 }
 
 .search {
-  width: 70%;
+  width: 90%;
   margin: auto;
   display: flex;
   justify-content: center;
