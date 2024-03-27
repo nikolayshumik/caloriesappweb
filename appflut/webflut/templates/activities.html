@@ -74,8 +74,8 @@
 
 <div style="width: 70%;">
     <div id="scrollTopButton">&#8679;</div>
-    {% for category in categories %}
-    <h2>{{ category }}</h2>
+<!--    {% for category in categories %}-->
+<!--    <h2>{{ category }}</h2>-->
     {% for activity in activities %}
     {% if activity.category == category %}
     <div class="activities-item">
@@ -98,7 +98,7 @@
     {% empty %}
     <p>Ничего не найдено</p>
     {% endfor %}
-    {% endfor %}
+<!--    {% endfor %}-->
 </div>
 
 
