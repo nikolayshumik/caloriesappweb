@@ -68,16 +68,21 @@
 <!--Поиск продуктов-->
 <form action="" class="search" method="GET" autocomplete="off">
    <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
+   <select name="category">
+       <option value="">Все категории</option>
+       {% for category in categories %}
+           <option value="{{ category }}">{{ category }}</option>
+       {% endfor %}
+   </select>
    <button class="search-button" type="submit"><img src="{% static 'accets/поиск.png' %}" /></button>
 </form>
 <!--Поиск продуктов-->
 
 <div style="width: 70%;">
     <div id="scrollTopButton">&#8679;</div>
-<!--    {% for category in categories %}-->
-<!--    <h2>{{ category }}</h2>-->
+
     {% for activity in activities %}
-    {% if activity.category == category %}
+
     <div class="activities-item">
         <text style="color: #293b4b; font-size: 20px;">{{ activity.activity_type }}</text>
         <button onclick="openModal({{ activity.id }})" id="add-button" class="general-button">Добавить</button>
@@ -94,11 +99,11 @@
             </div>
         </div>
     </div>
-    {% endif %}
+
     {% empty %}
     <p>Ничего не найдено</p>
     {% endfor %}
-<!--    {% endfor %}-->
+
 </div>
 
 

@@ -467,10 +467,11 @@ from .models import Activity
 
 def activities(request):
     search_query = request.GET.get('search')
+    category_filter = request.GET.get('category')
+
     if search_query:
         search_query = search_query.capitalize()
 
-    categories = set()
     activities = Activity.objects.all()
 
     if search_query:
@@ -478,10 +479,12 @@ def activities(request):
             Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
         )
 
-    for activity in activities: # Получаем уникальные категории из списка активностей
-        categories.add(activity.category)
+    categories = activities.values_list('category', flat=True).distinct()
 
-    return render(request, 'activities.html', {'categories': categories, 'activities': activities})
+    if category_filter:
+        activities = activities.filter(category=category_filter)
+
+    return render(request, 'activities.html', {'activities': activities, 'categories': categories})
 def eatingbase(request):
     search_query = request.GET.get('search')
 
