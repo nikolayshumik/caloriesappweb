@@ -97,8 +97,13 @@ body {
 }
 
 #delete_img {
-  width: 8vw;
+  width: 3vw;
   cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+#delete_img:hover {
+  filter: brightness(0.9);
 }
 
 .eatings {
@@ -142,10 +147,13 @@ body {
 }
 
 .product-item {
-  border-bottom: 1px solid black;
+  border: 1px solid rgb(4, 177, 211);
+  border-radius: 5px;
   font-size: 18px;
   margin-top: 20px;
-  padding-bottom: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px rgb(4, 177, 211);
+  transition: box-shadow 0.3s ease;
 }
 .product-item .title {
   display: flex;
@@ -176,6 +184,10 @@ body {
   border: none;
   background: none;
   padding: 0;
+}
+
+.product-item:hover {
+  box-shadow: 4px 4px rgb(4, 177, 211);
 }
 
 .summ_kkal {

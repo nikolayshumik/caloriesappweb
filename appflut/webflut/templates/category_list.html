@@ -13,13 +13,13 @@
     {% progressive_web_app_meta %}
   </head>
 <body>
-<ul>
+
  {% for category in categories %}
-     <li class="activities-item">
-         <a href="{% url 'category_items' category.category %}" style="text-decoration: none; color: black;">{{ category.category }}</a>
-     </li>
+     
+  <a href="{% url 'category_items' category.category %}" class="category-item">{{ category.category }}</a>
+     
   {% endfor %}
-</ul>
+
 
 
 

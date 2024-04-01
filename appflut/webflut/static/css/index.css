@@ -1,18 +1,7 @@
 @charset "UTF-8";
 /* calories_and_bjy*/
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
 html {
-  font-family: "Segoe UI";
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #f2f3ed;
 }
 
@@ -23,17 +12,17 @@ body {
 }
 
 #logo {
-  width: 90%;
-  margin: 5% auto;
+  width: 20%;
+  margin: 2% auto;
 }
 
 .main {
-  margin-top: 10%;
+  margin-top: 5%;
   box-sizing: border-box;
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 10%;
+  padding: 5%;
   text-align: center;
   background-color: #293b4b;
   font-size: 28px;
@@ -96,26 +85,18 @@ form input {
   margin-top: 30px;
 }
 
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  #logo {
+    width: 50%;
+    margin: 5% auto;
+  }
+}
+/**/
 /*размеры телефонов*/
-@media (min-width: 481px) {
+@media (max-width: 481px) {
   #logo {
     width: 70%;
-    margin: 5% auto;
-  }
-}
-/**/
-/*размеры планшетов*/
-@media (min-width: 769px) {
-  #logo {
-    width: 35vw;
-    margin: 5% auto;
-  }
-}
-/**/
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-  #logo {
-    width: 30vw;
     margin: 5% auto;
   }
 }

@@ -44,6 +44,23 @@ $border_radius: 15px;
     }
   }
 }
+/// стили для списка категорий
+.category-item {
+  width: 50%;
+  text-decoration: none;
+  color: #293b4b;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #008187;
+  padding: 1vw;
+  margin-top: 1vw;
+  transition: filter 0.3s ease;
+}
+.category-item:hover {
+  filter: brightness(0.9);
+}
+
 /// стиль для модального окна при добавлении активности
 .modal {
   display: none;
@@ -80,7 +97,6 @@ $border_radius: 15px;
         color: $gray_color;
         margin-bottom: 10px;
       }
-
     }
   }
 }
@@ -94,23 +110,8 @@ $border_radius: 15px;
     opacity: 1;
   }
 }
-
-/*размеры телефонов*/
-@media (min-width: 481px) {
-  .modal {
-    width: 70%;
-    .modal-content {
-      input {
-        width: 50%;
-      }
-    }
-  }
-}
-
-/**/
-
 /*размеры планшетов*/
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .modal {
     width: 60%;
     .modal-content {
@@ -126,9 +127,22 @@ $border_radius: 15px;
   }
 }
 /**/
-
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
+/*размеры телефонов*/
+@media (max-width: 481px) {
+  .modal {
+    width: 70%;
+    .modal-content {
+      input {
+        width: 50%;
+      }
+    }
+  }
+  .category-item {
+    width: 95%;
+    margin: 1vw auto;
+    padding: 10px;
+    font-size: 23px;
+  }
 }
 
 /**/
