@@ -1,13 +1,23 @@
+{% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+  <head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Активности</title>
+    <!--Медиа запросы, адаптив-->
+    <link href="{% static 'css/Eatings Pages/Activities/activities.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet" />
+    <!--Скрипт  -->
+    <script src="{% static 'js/eatingbase/script_activities.js' %}"></script>
+    {% progressive_web_app_meta %}
+  </head>
 <body>
 <ul>
-  {% for category in categories %}
-     <li><a href="{% url 'category_items' category.category %}">{{ category.category }}</a></li>
+ {% for category in categories %}
+     <li class="activities-item">
+         <a href="{% url 'category_items' category.category %}" style="text-decoration: none; color: black;">{{ category.category }}</a>
+     </li>
   {% endfor %}
 </ul>
 
