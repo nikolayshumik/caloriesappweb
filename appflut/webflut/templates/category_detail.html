@@ -49,7 +49,8 @@
 
 <h1>Активности</h1>
 
-<a href="{% url 'calories_and_bjy' %}" class="general-button">Назад</a>
+<a href="{% url 'calories_and_bjy' %}" class="general-button">На главную</a>
+<a href="{% url 'category_list' %}" class="general-button">Назад к категориям</a>
 <!--Поиск продуктов-->
 <form action="" class="search" method="GET" autocomplete="off">
    <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}">
