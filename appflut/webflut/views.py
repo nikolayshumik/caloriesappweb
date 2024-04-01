@@ -485,6 +485,22 @@ def activities(request):
         activities = activities.filter(category=category_filter)
 
     return render(request, 'activities.html', {'activities': activities, 'categories': categories})
+
+def category_list(request):
+    categories = Activity.objects.values('category').distinct()
+    return render(request, 'category_list.html', {'categories': categories})
+
+def category_items(request, category):
+    search_query = request.GET.get('search')
+    if search_query:
+        search_query = search_query.capitalize()
+    activities = Activity.objects.filter(category=category)
+    if search_query:
+        activities = activities.filter(
+            Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
+        )
+    return render(request, 'category_detail.html', {'activities': activities})
+
 def eatingbase(request):
     search_query = request.GET.get('search')
 
