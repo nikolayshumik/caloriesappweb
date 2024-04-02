@@ -1,13 +1,13 @@
-/* calories_and_bjy*/
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 28px;
-$font_ps_text: 15px;
-$border_radius: 15px;
+$green_color: #034236;
+$main_backgrounde: white;
+$font_20px: 20px;
+$font_15px: 15px;
+$border_radius: 10px;
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: $main_backgrounde;
 }
 
@@ -16,52 +16,55 @@ body {
   align-items: center;
   flex-direction: column;
 }
-#logo{
-  width:20%;
+#logo {
+  width: 20%;
   margin: 2% auto;
 }
+h3{
+  color: $green_color;
+  text-transform: uppercase;
+  font-size: $font_20px;
+  font-weight: 600;
+}
 .main {
-  margin-top: 5%;
+  margin-top: 2vw;
   box-sizing: border-box;
   display: flex;
-  width: 100%;
+  width: 40%;
   flex-direction: column;
-  padding: 5%;
   text-align: center;
-  background-color: $gray_color;
-  font-size: $font_main_text;
+  font-size: $font_20px;
 
-  >a {
-    font-size: $font_main_text;
-    text-transform: uppercase;
+  .buttons {
+    font-size: $font_20px;
     background-color: $blue_color;
     text-align: center;
+    font-weight: 400;
     padding: 10px;
     color: $main_backgrounde;
-    font-family: "Segoe UI_Bold";
     text-decoration: none;
-    margin-top: 30px;
+    margin-top: 2vw;
     border-radius: $border_radius;
+    transition: filter 0.3s ease;
   }
 
-  >label {
-    margin-top: 20px;
+  > label {
+    margin-top: 2vw;
   }
 
-  a:hover {
-    background-color: #04b1d3b0;
+  .buttons:hover {
+    filter: brightness(0.8);
   }
 }
 
 .enter {
   width: 100%;
-  font-size: $font_main_text;
+  font-size: $font_20px;
   text-transform: uppercase;
   background-color: $blue_color;
   text-align: center;
   padding: 10px;
   color: $main_backgrounde;
-  font-family: "Segoe UI_Bold";
   text-decoration: none;
   margin-top: 80vw;
   border-radius: $border_radius;
@@ -80,10 +83,10 @@ form {
   margin-right: auto;
   padding: 5%;
   text-align: center;
-  font-size: $font_main_text;
+  font-size: $font_20px;
 
   input {
-    font-size: $font_main_text;
+    font-size: $font_20px;
     border: 3px solid $blue_color;
     border-radius: $border_radius;
     padding: 20px 30px;
@@ -94,7 +97,7 @@ form {
 }
 /*размеры планшетов*/
 @media (max-width: 769px) {
-  #logo{
+  #logo {
     width: 50%;
     margin: 5% auto;
   }
@@ -103,11 +106,16 @@ form {
 
 /*размеры телефонов*/
 @media (max-width: 481px) {
-  #logo{
+  #logo {
     width: 70%;
     margin: 5% auto;
   }
+  .main {
+    margin-top: 9vw;
+    width: 90%;
+  }
+  .buttons {
+    margin-top: 5vw;
+  }
 }
 /**/
-
-

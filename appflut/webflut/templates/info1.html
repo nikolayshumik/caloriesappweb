@@ -7,19 +7,22 @@
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet"/>
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
 
-  <div class="page-container">
-    <text>ДАВАЙТЕ ПОЗНАКОМИМСЯ</text>
-    <form method="POST" action="{% url 'step1' %}">
-      {% csrf_token %}
-      {{ form.as_table }}
-      <button type="submit" class="next">Далее</button>
-    </form>
-  </div>
+  <h3>давайте познакомимся</h3>
+  <form method="POST" action="{% url 'step1' %}">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <button type="submit">Далее</button>
+  </form>
+
 </body>
 
 </html>

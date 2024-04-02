@@ -9,27 +9,28 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
     {% progressive_web_app_meta %}
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!--Скрипт-->
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 
 <body>
+    <h3>вход в систему</h3>
+    {% if user.is_authenticated %}
+    <text>Вы уже вошли в систему как {{ user.username }}</text>
+    <a href="{% url 'logout' %}" class="next" style="text-decoration: none;">Выйти</a>
+    {% else %}
+    <form method="post" action="{% url 'login' %}">
+       {% csrf_token %}
+       <input type="text" id="username" name="username" placeholder="Логин">
+       <input type="password" id="password" name="password" placeholder="Пароль">
+    <button type="submit" class="next">Войти</button>
+    </form>
+    {% endif %}
 
-   
-    <div class="page-container">
-        
-        {% if user.is_authenticated %}
-        <text>Вы уже вошли в систему как {{ user.username }}</text>
-        <a href="{% url 'logout' %}" class="next" style="text-decoration: none;">Выйти</a>
-        {% else %}
-        <form method="post" action="{% url 'login' %}" style="border: none;">
-            {% csrf_token %}
-            <input type="text" id="username" name="username" placeholder="Логин">
-            <input type="password" id="password" name="password" placeholder="Пароль">
-            <button type="submit" class="next">Войти</button>
-        </form>
-        {% endif %}
-    </div>
     
     {% block content %}
     {% include 'footer.html' %}

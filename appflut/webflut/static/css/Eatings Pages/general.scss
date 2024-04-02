@@ -1,28 +1,79 @@
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 24px;
-$font_ps_text: 15px;
-$border_radius: 15px;
+$green_color: #034236;
+$main_backgrounde: white;
+$font_20px: 20px;
+$font_17px: 17px;
+$font_15px: 15px;
+$border_radius: 10px;
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: $main_backgrounde;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(229, 255, 250, 1) 70%
+    )
+    no-repeat;
 }
-
 body {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
-
-//кнопки вверху
 h1 {
-  color: $blue_color;
-  margin-block-end: 0em;
+  margin-block-end: 0.2em;
+  text-align: center;
+  color: $green_color;
+  text-transform: uppercase;
+  font-weight: 600;
 }
+.general-button {
+  font-weight: 600;
+  text-decoration: none;
+  margin: 10px auto;
+  background-color: $blue_color;
+  border-radius: $border_radius;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: $main_backgrounde;
+  transition: filter 0.3s ease;
+}
+.general-button:hover {
+  filter: brightness(0.7);
+}
+.search {
+  width: 70%;
 
-/////////кнопки вверху///конец////
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid $blue_color;
+    border-radius: $border_radius;
+    padding: 1vw;
+    background-color: white;
+  }
+
+  .input-wrapper input {
+    font-size: $font_20px;
+    flex: 1;
+    border: none;
+    outline: none;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-wrapper img {
+    width: 3vw;
+  }
+}
 
 #scrollTopButton {
   position: fixed;
@@ -58,46 +109,7 @@ h1 {
     transform: translateY(0);
   }
 }
-.general-button {
-  font-family: Arial;
-  text-decoration: none;
-  margin: 10px auto;
-  background-color: $blue_color;
-  border-radius: $border_radius;
-  padding: 10px 20px;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: $main_backgrounde;
-  transition: filter 0.3s ease;
-}
-.general-button:hover {
-  filter: brightness(0.7);
-}
-.search {
-  width: 70%;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid black;
-  padding-top: 3vw;
 
-  input {
-    width: 90%;
-    padding: 10px 20px;
-    border-radius: $border_radius;
-    font-size: $font_main_text;
-    border: 2px solid $blue_color;
-  }
-
-  img {
-    width: 5vw;
-  }
-
-  .search-button {
-    border: none;
-  }
-}
 .closeX {
   position: absolute;
   color: $blue_color;
@@ -114,10 +126,17 @@ h1 {
   color: #293b4b;
 }
 
-
-
 /*размеры планшетов*/
 @media (max-width: 769px) {
+  .search{
+    width: 80%;
+    .input-wrapper{
+      padding: 1.5vw;
+    }
+    .icon-wrapper img {
+      width: 4vw;
+    }
+  }
   .modal {
     width: 60%;
     .modal-content {
@@ -126,14 +145,18 @@ h1 {
       }
     }
   }
-  .search {
-    img {
-      width: 5vw;
-    }
-  }
 }
 /**/
 @media (max-width: 481px) {
+  .search{
+    width: 90%;
+    .input-wrapper{
+      padding: 2vw;
+    }
+    .icon-wrapper img {
+      width: 7vw;
+    }
+  }
   .modal {
     width: 70%;
     .modal-content {

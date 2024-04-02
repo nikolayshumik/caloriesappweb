@@ -8,29 +8,23 @@
   <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
   <!--Медиа запросы, адаптив-->
   <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
-  <!--Подключение шрифтов-->
+  <!--Шрифт-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   {% progressive_web_app_meta %}
   <!--Скрипт-->
   <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 
 <body>
-
-  <div class="page-container">
-    <text>ВАША ЦЕЛЬ</text>
+  <h3>ваша цель</h3>
     <form method="post">
       {% csrf_token %}
-
       <button type="submit" name="goals" value="L">Снижение веса</button>
       <button type="submit" name="goals" value="M">Набор веса</button>
       <button type="submit" name="goals" value="F">Поддержание веса</button>
-<!--      <button type="submit" class="next">Закончить!</button>-->
-
     </form>
-  </div>
 </body>
 
 </html>

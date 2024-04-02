@@ -1,13 +1,29 @@
-{% load static %} 
-{% load pwa %}
+{% load static %} {% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1"/>
+    <meta
+      name="viewport"
+      charset="UTF-8"
+      content="width=device-width, initial-scale=1"
+    />
     <title>Добавить калории</title>
     <!--Медиа запросы, адаптив-->
-    <link href="{% static 'css/Eatings Pages/Eating/eatings.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet"/>
+    <link
+      href="{% static 'css/Eatings Pages/Eating/eatings.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/Eatings Pages/general.css' %}"
+      rel="stylesheet"
+    />
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <!--Скрипт
     <script src="{% static 'js/eatingbase/script_eatingbase.js' %}"></script>
     -->
@@ -18,12 +34,11 @@
     {% block content %}
     <!-- Основное содержимое страницы. Будет переопределено в наследованных шаблонах -->
     {% endblock %}
-    <!-- Кнопка наверх -->
-    <div id="scrollTopButton">&#8679;</div>
-
     <button class="general-button" style="margin-top: 0" id="create-my-product">
       Создать продукт
     </button>
+    <!-- Кнопка наверх -->
+    <div id="scrollTopButton">&#8679;</div>
 
     <div class="modalshum">
       <div class="modal-contentshum">
@@ -63,22 +78,16 @@
 
     <!--Поиск продуктов-->
     <form action="" class="search" method="GET">
-      <input
-        type="text"
-        id="search-input"
-        name="search"
-        placeholder="Поиск..."
-        value="{{ search_query|default_if_none:'' }}"
-      />
-      <button type="submit" class="search-button">
-        <img src="{% static 'accets/поиск.png' %}" />
-      </button>
+      <div class="input-wrapper">
+        <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}" />
+        <div class="icon-wrapper">
+          <img src="{% static 'accets/search.svg' %}" alt="Поиск" />
+        </div>
+      </div>
     </form>
     <!--Поиск продуктов-->
 
     <div class="product-container">
-      
-
       {% for product in products %}
       <div class="product-item">
         <text>{{ product.name }}</text>
@@ -158,13 +167,12 @@
         if (window.scrollY > 400) {
           scrollTopButton.classList.add("show");
           scrollTopButton.addEventListener("click", function () {
-            window.scrollTo({top: 0,behavior: "smooth"});
-          })
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
         } else {
           scrollTopButton.classList.remove("show");
         }
       });
-
     </script>
   </body>
 </html>
