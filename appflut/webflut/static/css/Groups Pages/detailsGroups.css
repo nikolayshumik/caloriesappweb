@@ -1,25 +1,23 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
 html {
-  font-family: "Segoe UI";
-  background-color: #f2f3ed;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  background: rgb(207, 255, 245);
+  background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
 body {
-  margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+h2, h3 {
+  margin-block-end: 0.2em;
+  text-align: center;
+  color: #034236;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .container {
@@ -28,7 +26,7 @@ body {
   flex-direction: column;
   padding: 20px;
   background-color: white;
-  border: 2px solid #008187;
+  border: 2px solid #2bbdb4;
   border-radius: 5px;
 }
 
@@ -55,7 +53,7 @@ ul li a {
 
 button {
   padding: 5px 10px;
-  font-size: 20px;
+  font-size: 17px;
   background-color: #008187;
   color: white;
   padding: 5px 10px;
@@ -76,8 +74,8 @@ li button:hover {
 select {
   padding: 5px;
   border-radius: 5px;
-  font-size: 20px;
-  border: 1px solid #008187;
+  font-size: 17px;
+  border: 1px solid #2bbdb4;
 }
 
 option {

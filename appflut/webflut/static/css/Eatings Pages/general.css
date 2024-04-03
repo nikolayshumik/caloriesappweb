@@ -1,9 +1,8 @@
 @charset "UTF-8";
 html {
-  height: 100%;
   font-family: "Inter", sans-serif;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(229, 255, 250) 70%) no-repeat;
+  background: rgb(207, 255, 245);
+  background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
 body {
@@ -21,8 +20,10 @@ h1 {
 }
 
 .general-button {
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   text-decoration: none;
+  text-transform: none;
   margin: 10px auto;
   background-color: #2bbdb4;
   border-radius: 10px;
@@ -98,56 +99,43 @@ h1 {
     transform: translateY(0);
   }
 }
-.closeX {
-  position: absolute;
-  color: #2bbdb4;
-  right: 3%;
-  text-align: center;
-  top: 0;
-  z-index: 1;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-
-.closeX:hover,
-.closeX:focus {
-  color: #293b4b;
-}
-
 /*размеры планшетов*/
 @media (max-width: 769px) {
-  .search {
+  .search, .activities-list, .product-item {
     width: 80%;
   }
-  .search .input-wrapper {
+  .search .input-wrapper, .activities-list .input-wrapper, .product-item .input-wrapper {
     padding: 1.5vw;
   }
-  .search .icon-wrapper img {
+  .search .icon-wrapper img, .activities-list .icon-wrapper img, .product-item .icon-wrapper img {
     width: 4vw;
   }
-  .modal {
-    width: 60%;
-  }
-  .modal .modal-content input {
+  .modal-content input {
     width: 30%;
   }
 }
 /**/
 @media (max-width: 481px) {
-  .search {
+  .search, .activities-list, .product-item {
     width: 90%;
   }
-  .search .input-wrapper {
+  .search .input-wrapper, .activities-list .input-wrapper, .product-item .input-wrapper {
     padding: 2vw;
   }
-  .search .icon-wrapper img {
+  .search .icon-wrapper img, .activities-list .icon-wrapper img, .product-item .icon-wrapper img {
     width: 7vw;
   }
-  .modal {
-    width: 70%;
-  }
-  .modal .modal-content input {
+  .modal-content input {
     width: 50%;
   }
 }

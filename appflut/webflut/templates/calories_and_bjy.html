@@ -123,10 +123,7 @@
               </text>
               <text>{{ burned_calories|floatformat:"1" }} ккал</text>
             </div>
-            <form
-              method="POST"
-              action="{% url 'delete_activity'  id=activity.id %}"
-            >
+            <form method="POST" action="{% url 'delete_activity'  id=activity.id %}">
               {% csrf_token %}
               <button type="submit">
                 <input type="hidden" name="meal_type" value="activities" />
@@ -166,10 +163,7 @@
               <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
             </div>
 
-            <form
-              method="POST"
-              action="{% url 'remove_from_list2' product.product.id %}"
-            >
+            <form method="POST" action="{% url 'remove_from_list2' product.product.id %}">
               {% csrf_token %}
               <button type="submit">
                 <input type="hidden" name="meal_type" value="breakfast" />
@@ -208,10 +202,7 @@
               <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
             </div>
 
-            <form
-              method="POST"
-              action="{% url 'remove_from_list'  product.product.id %}"
-            >
+            <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
               {% csrf_token %}
               <button type="submit">
                 <input type="hidden" name="meal_type" value="lunch" />

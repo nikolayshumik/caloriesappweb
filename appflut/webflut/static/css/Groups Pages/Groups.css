@@ -1,38 +1,30 @@
 @charset "UTF-8";
 html {
-  font-family: "Segoe UI";
-  background-color: #f2f3ed;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  background: rgb(207, 255, 245);
+  background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
 #all {
   border-top: 1px solid black;
   width: 100%;
+  font-size: 17px;
   text-align: center;
   margin-top: 2vw;
   padding-top: 2vw;
 }
 
 .container {
-  width: 90%;
   display: flex;
   flex-direction: column;
   margin: 2vw auto;
   border-radius: 10px;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 2vw;
 }
 .container .title {
   margin-bottom: 2vw;
-  font-family: "Segoe UI";
   font-weight: 600;
+  color: #293b4b;
 }
 .container .ps_text {
   font-size: 20px;
@@ -59,9 +51,10 @@ input[type=text] {
 button[type=submit] {
   font-size: 20px;
   width: 100%;
+  font-family: "Inter", sans-serif;
   background-color: #008187;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -73,29 +66,26 @@ button[type=submit]:hover {
   filter: brightness(0.6);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  overflow: hidden;
+.one-groupe {
   padding: 10px 20px;
   background-color: white;
   border-radius: 10px;
-  font-size: 23px;
-  border: 2px solid #008187;
+  font-size: 17px;
+  border: 2px solid #2bbdb4;
   margin-bottom: 10px;
   transition: filter 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  color: #293b4b;
 }
 
-li:hover {
+.one-groupe:hover {
   filter: brightness(0.9);
 }
 
 select {
-  font-size: 23px;
-  border: 1px solid #008187;
+  font-size: 20px;
+  border: 1px solid #2bbdb4;
   border-radius: 5px;
   padding: 5px;
 }
@@ -106,16 +96,7 @@ select option {
   margin-top: 20px;
 }
 select option:hover {
-  background-color: #008187;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-li:hover {
-  cursor: pointer;
+  background-color: #2bbdb4;
 }
 
 /*размеры планшетов*/

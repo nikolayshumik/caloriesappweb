@@ -9,22 +9,13 @@
     />
     <title>Добавить калории</title>
     <!--Медиа запросы, адаптив-->
-    <link
-      href="{% static 'css/Eatings Pages/Eating/eatings.css' %}"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/Eatings Pages/general.css' %}"
-      rel="stylesheet"
-    />
+    <link href="{% static 'css/Eatings Pages/Eating/eatings.css' %}"rel="stylesheet"/>
+    <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet"/>
     <!--Шрифт-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <!--Скрипт
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    <!--Скрипт в конце body
     <script src="{% static 'js/eatingbase/script_eatingbase.js' %}"></script>
     -->
     {% progressive_web_app_meta %}
@@ -40,139 +31,72 @@
     <!-- Кнопка наверх -->
     <div id="scrollTopButton">&#8679;</div>
 
-    <div class="modalshum">
-      <div class="modal-contentshum">
+    <!--Модальное окно создание своего продукта-->
+    <div class="modalCreacteProduct">
+      <div class="modalCreacteProduct-content">
         <span class="closeX">&times;</span>
-        <div class="modalnew">
-          <div class="modal-content">
-            <form method="post">
-              {% csrf_token %}
-              <div class="title">{{ form.name.label_tag }} {{ form.name }}</div>
-              <!--                    это поле не нужно но не удаляй его-->
-              <div style="display: none">
-                {{ form.calories_in.label_tag }} {{ form.calories_in }}
-              </div>
-              <div class="bju-row">
-                <div style="color: #ca517a">
-                  {{ form.proteins.label_tag }} {{ form.proteins }}
-                </div>
-                <div style="color: #fbb20d">
-                  {{ form.fats.label_tag }} {{ form.fats }}
-                </div>
-                <div style="color: #4887ba">
-                  {{ form.carbohydrates.label_tag }} {{ form.carbohydrates }}
-                </div>
-              </div>
-              <button
-                class="general-button"
-                style="margin-top: 20px"
-                type="submit"
-              >
-                Создать
-              </button>
-            </form>
+        <form method="post">
+          {% csrf_token %}
+          <div class="title">{{ form.name.label_tag }} {{ form.name }}</div>
+          <!--                    это поле не нужно но не удаляй его-->
+          <div style="display: none">
+            {{ form.calories_in.label_tag }} {{ form.calories_in }}
           </div>
-        </div>
+          <div class="bju-row">
+            <div style="color: #ca517a">
+              {{ form.proteins.label_tag }} {{ form.proteins }}
+            </div>
+            <div style="color: #fbb20d">
+              {{ form.fats.label_tag }} {{ form.fats }}
+            </div>
+            <div style="color: #4887ba">
+              {{ form.carbohydrates.label_tag }} {{ form.carbohydrates }}
+            </div>
+          </div>
+          <button class="general-button" style="margin-top: 20px" type="submit">
+            Создать
+          </button>
+        </form>
       </div>
     </div>
+    <!--//Модальное окно создание своего продукта-->
 
     <!--Поиск продуктов-->
     <form action="" class="search" method="GET">
       <div class="input-wrapper">
-        <input type="text" id="search-input" name="search" placeholder="Поиск..." value="{{ search_query|default_if_none:'' }}" />
+        <input
+          type="text"
+          id="search-input"
+          name="search"
+          placeholder="Поиск..."
+          value="{{ search_query|default_if_none:'' }}"
+        />
         <div class="icon-wrapper">
           <img src="{% static 'accets/search.svg' %}" alt="Поиск" />
         </div>
       </div>
     </form>
-    <!--Поиск продуктов-->
+    <!--//Поиск продуктов-->
 
-    <div class="product-container">
-      {% for product in products %}
-      <div class="product-item">
-        <text>{{ product.name }}</text>
-        <p>Каллории: {{ product.calories_in }}</p>
+    <!--Каждый продукт-->
+    {% for product in products %}
+    <div class="product-item">
+      <text>{{ product.name }}</text>
+      <p>Каллории: {{ product.calories_in }}</p>
 
-        <ul class="product-row">
-          <li style="color: #ca517a">{{ product.proteins }} г.</li>
-          <li style="color: #fbb20d">{{ product.fats }} г.</li>
-          <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
-        </ul>
+      <ul class="product-row">
+        <li style="color: #ca517a">{{ product.proteins }} г.</li>
+        <li style="color: #fbb20d">{{ product.fats }} г.</li>
+        <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
+      </ul>
 
-        {% block contenbutton %} {% endblock %}
-      </div>
-      {% empty %}
-      <p>Ничего не найдено</p>
-      {% endfor %}
+      {% block contenbutton %} {% endblock %}
     </div>
+    {% empty %}
+    <p>Ничего не найдено</p>
+    {% endfor %}
+    <!--//Каждый продукт-->
 
-    <script>
-      let searchInput = document.getElementById("search-input");
-      let productItems = document.getElementsByClassName("product-item");
-      let modal = document.querySelector(".modal");
-      let createMyProduct = document.querySelector("#create-my-product");
-      let modalshum = document.querySelector(".modalshum");
-      let closeProduct = document.querySelector(".closeX");
-      let scrollTopButton = document.getElementById("scrollTopButton");
-
-      //Алгоритм поиска
-      searchInput.addEventListener("input", function () {
-        let query = searchInput.value.toLowerCase();
-        for (let i = 0; i < productItems.length; i++) {
-          let productItem = productItems[i];
-          let productText = productItem
-            .getElementsByTagName("text")[0]
-            .textContent.toLowerCase();
-          if (productText.includes(query)) {
-            productItem.style.display = "block";
-          } else {
-            productItem.style.display = "none";
-          }
-        }
-      });
-      ////Алгоритм поиска///
-
-      createMyProduct.addEventListener("click", function () {
-        modalshum.style.display = "block";
-      });
-
-      closeProduct.addEventListener("click", function () {
-        modalshum.style.display = "none";
-      });
-
-      //Логика работы модального окна
-      window.addEventListener("click", function (event) {
-        if (event.target == modalshum) {
-          modalshum.style.display = "none";
-        } else if (event.target === modal) {
-          closeModal();
-        } else if (event.target.classList.contains("modal2")) {
-          event.target.style.display = "none";
-        }
-      });
-      /////Логика работы модального окна
-
-      function openModal2(productID) {
-        let modalID = "modal2_" + productID;
-        document.getElementById(modalID).style.display = "block";
-      }
-
-      function closeModal2(productID) {
-        let modalID = "modal2_" + productID;
-        document.getElementById(modalID).style.display = "none";
-      }
-
-      //Скролл
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 400) {
-          scrollTopButton.classList.add("show");
-          scrollTopButton.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-        } else {
-          scrollTopButton.classList.remove("show");
-        }
-      });
-    </script>
+    <script src="{% static 'js/eatingbase/script_eatingbase.js' %}"></script>
   </body>
 </html>

@@ -8,13 +8,12 @@ $font_15px: 15px;
 $border_radius: 5px;
 
 html {
-  height: 100%;
   font-family: "Inter", sans-serif;
-  background: rgb(255, 255, 255);
+  background: rgb(207, 255, 245);
   background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(229, 255, 250, 1) 70%
+      180deg,
+      rgba(207, 255, 245, 1) 0%,
+      rgba(241, 255, 252, 1) 100%
     )
     no-repeat;
 }

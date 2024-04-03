@@ -1,13 +1,18 @@
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 24px;
-$font_ps_text: 15px;
-$border_radius: 15px;
+$green_color: #034236;
+$main_backgrounde: white;
+$font_20px: 20px;
+$font_17px: 17px;
+$font_15px: 15px;
+$border_radius: 10px;
 
 .activities-container {
   width: 90%;
   text-align: center;
+}
+.activities-list {
+  width: 70%;
 }
 ///стиль каждой активности
 .activities-item {
@@ -19,12 +24,13 @@ $border_radius: 15px;
   background-color: white;
   border-radius: $border_radius;
   border: 2px solid $blue_color;
-  font-size: $font_ps_text;
+  font-size: $font_15px;
 
   text {
     text-align: center;
-    color: $blue_color;
-    font-size: $font_main_text;
+    padding: 0 1vw;
+    color: $gray_color;
+    font-size: $font_20px;
   }
   p {
     text-align: center;
@@ -60,17 +66,13 @@ $border_radius: 15px;
 .category-item:hover {
   filter: brightness(0.9);
 }
-
 /// стиль для модального окна при добавлении активности
 .modal {
   display: none;
-  margin: auto;
-  margin: 10px auto;
-  width: 100%;
+  margin: 1vw auto;
   box-sizing: border-box;
   border-radius: $border_radius;
-  border: 2px solid $blue_color;
-  font-size: $font_main_text;
+  font-size: $font_20px;
   position: relative;
   animation-name: slideIn;
   animation-duration: 0.5s;
@@ -80,14 +82,17 @@ $border_radius: 15px;
     position: absolute;
     right: 1vw;
     top: 0;
-    font-size: $font_main_text;
+    font-size: 25px;
     cursor: pointer;
   }
 
   .modal-content {
+    padding: 2vw;
+    background-color: #c6efed;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: $border_radius;
     form {
       display: flex;
       flex-direction: column;
@@ -97,46 +102,52 @@ $border_radius: 15px;
         color: $gray_color;
         margin-bottom: 10px;
       }
-    }
-  }
-}
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-/*размеры планшетов*/
-@media (max-width: 769px) {
-  .modal {
-    width: 60%;
-    .modal-content {
       input {
-        width: 30%;
+        width: 70%;
+        text-align: center;
+        border-radius: 5px;
+        padding: 0.5vw 1vw;
+        border: 1px solid $blue_color;
+      }
+      input:focus {
+        border-color: #00a0e9;
+        border-width: 2px;
+        outline: none;
+      }
+      input:valid {
+        border-color: #00b400;
+        border-width: 2px;
       }
     }
   }
-  .search {
-    img {
-      width: 5vw;
+}
+
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  .modal{
+    .modal-content {
+      padding: 2vw;
     }
   }
 }
 /**/
 /*размеры телефонов*/
 @media (max-width: 481px) {
-  .modal {
-    width: 70%;
+  .modal{
+    .close {
+      right: 2vw;
+      font-size: 30px;
+    }
     .modal-content {
-      input {
-        width: 50%;
-      }
+      padding: 3vw;
+      form {
+        input {
+          padding: 1vw;
+          font-size: $font_20px;
+        }
     }
   }
+}
   .category-item {
     width: 95%;
     margin: 1vw auto;

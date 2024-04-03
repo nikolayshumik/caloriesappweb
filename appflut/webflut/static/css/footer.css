@@ -7,14 +7,14 @@ footer {
   border-radius: 15px;
   display: flex;
   width: 35%;
-  background-color: #008187;
+  background-color: #2bbdb4;
   justify-content: space-between;
   white-space: nowrap;
   box-sizing: border-box;
 }
 
 .buttonFooter {
-  background-color: #008187;
+  background-color: #2bbdb4;
   box-sizing: border-box;
   font-size: 10px;
   padding: 10px 0px;
