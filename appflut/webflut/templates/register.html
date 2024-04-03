@@ -15,7 +15,9 @@
     <form action="." method="post">
         {% csrf_token %}
         {{ form.as_table }}
-        <input type="submit" class="next" style="padding: 20px 30px; margin: 2vw auto;" value="Создать аккаунт">
+        <button type="submit" class="next" style=" margin: 2vw auto;">
+            Создать аккаунт
+        </button>
     </form>
 </body>
 </html>

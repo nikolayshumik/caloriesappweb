@@ -4,25 +4,6 @@ $font_main_text: 28px;
 $font_ps_text: 15px;
 $border_radius: 15px;
 
-@font-face {
-  font-family: 'Segoe UI';
-  src: local('Segoe UI Regular'), local('Segoe-UI-Regular'),
-    url('SegoeUI.woff2') format('woff2'),
-    url('SegoeUI.woff') format('woff'),
-    url('SegoeUI.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Segoe UI_Bold';
-  src: local('Segoe UI Bold'), local('Segoe-UI-Bold'),
-    url('SegoeUI-Bold.woff2') format('woff2'),
-    url('SegoeUI-Bold.woff') format('woff'),
-    url('SegoeUI-Bold.ttf') format('truetype');
-  font-weight: 700;
-}
-
 html {
   font-family: "Segoe UI";
   background-color: white;
@@ -40,7 +21,6 @@ form {
   padding: 10px;
   width: 90%;
   border-radius: 10px;
-  border: 2px solid $blue_color;
   background-color: white;
   margin: auto;
   display: flex;
@@ -50,7 +30,7 @@ form {
     margin-top: 20px;
     font-size: $font_main_text;
     border: 2px solid $blue_color;
-    border-radius: $border_radius;
+    border-radius: 5px;
     padding: 20px 30px;
     background-color: white;
     color: $gray_color;
@@ -71,10 +51,7 @@ form {
   padding-top: 5%;
 }
 
-
-
-button,
-.next {
+button{
   margin-top: 5vw;
   box-sizing: border-box;
   text-align: center;
@@ -84,30 +61,28 @@ button,
   padding: 10px 20px;
   font-family: "Segoe UI";
   color: white;
-  border-radius: $border_radius;
+  border-radius: 5px;
 }
-
 
 .form_toggle-radio {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 
-  >div {
+  > div {
     text-align: center;
 
     label {
       display: flex;
       flex-direction: column-reverse;
 
-      input[type="radio"]{
+      input[type="radio"] {
         margin: auto;
         margin-top: 10px;
         color: $blue_color;
       }
     }
   }
-
 }
 input[type="radio"] {
   width: 10px; /* задать желаемую ширину */
@@ -123,19 +98,35 @@ input[type="radio"] {
 input[type="radio"]:checked {
   background-color: $blue_color; /* изменить цвет радио-кнопки при выборе */
 }
-@media (min-width: 480px) {
+/*размеры планшетов*/
+@media (max-width: 769px) {
   .page-container {
     padding-top: 10%;
   }
-
   form {
     padding-top: 15vw;
   }
-
-  button,
-  .next {
+  button {
     margin-top: 8vw;
     font-size: 30px;
     padding: 15px 25px;
+  }
+}
+/**/
+
+@media (max-width: 480px) {
+  .page-container {
+    padding-top: 10%;
+  }
+  form {
+    padding-top: 15vw;
+    input{
+      padding: 10px;
+    }
+  }
+  button {
+    margin-top: 8vw;
+    font-size: 30px;
+    padding: 10px;
   }
 }

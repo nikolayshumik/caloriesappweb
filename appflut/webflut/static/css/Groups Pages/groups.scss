@@ -5,23 +5,6 @@ $font_main_text: 23px;
 $font_ps_text: 20px;
 $border_radius: 15px;
 
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"),
-    url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"),
-    url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"),
-    url("SegoeUI-Bold.woff2") format("woff2"),
-    url("SegoeUI-Bold.woff") format("woff"),
-    url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
 html {
   font-family: "Segoe UI";
   background-color: $main_backgrounde;

@@ -61,19 +61,20 @@ h1 {
   font-size: 18px;
   cursor: pointer;
   color: #f2f3ed;
+  transition: filter 0.3s ease;
 }
 
 .general-button:hover {
-  background-color: #293b4b;
+  filter: brightness(0.7);
 }
 
 .search {
-  width: 90%;
+  width: 70%;
   margin: auto;
   display: flex;
   justify-content: center;
   border-top: 1px solid black;
-  padding-top: 5vw;
+  padding-top: 3vw;
 }
 .search input {
   width: 90%;
@@ -83,7 +84,7 @@ h1 {
   border: 2px solid #008187;
 }
 .search img {
-  width: 10vw;
+  width: 5vw;
 }
 .search .search-button {
   border: none;
@@ -106,17 +107,8 @@ h1 {
   color: #293b4b;
 }
 
-@media (min-width: 481px) {
-  .modal {
-    width: 70%;
-  }
-  .modal .modal-content input {
-    width: 50%;
-  }
-}
-/**/
 /*размеры планшетов*/
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .modal {
     width: 60%;
   }
@@ -128,5 +120,12 @@ h1 {
   }
 }
 /**/
-/*размеры компьютеров*/
+@media (max-width: 481px) {
+  .modal {
+    width: 70%;
+  }
+  .modal .modal-content input {
+    width: 50%;
+  }
+}
 /**//*# sourceMappingURL=general.css.map */

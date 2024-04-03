@@ -6,7 +6,7 @@ footer {
   right: 0;
   border-radius: 15px;
   display: flex;
-  width: 60%;
+  width: 40%;
   background-color: #008187;
   justify-content: space-between;
   white-space: nowrap;
@@ -31,7 +31,7 @@ footer {
 }
 
 .imgFooter {
-  width: 7vw;
+  width: 5vw;
 }
 /*размеры планшетов*/
 @media (max-width: 769px) {
@@ -40,6 +40,9 @@ footer {
   }
   .buttonFooter {
     padding: 10px;
+  }
+  .imgFooter {
+    width: 8vw;
   }
 }
 /*размеры телефонов*/
