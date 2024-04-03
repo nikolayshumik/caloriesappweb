@@ -1,23 +1,33 @@
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 24px;
-$font_ps_text: 20px;
-$border_radius: 5px;
+$green_color: #034236;
+$main_backgrounde: white;
+$font_20px: 20px;
+$font_17px: 17px;
+$font_15px: 15px;
+$border_radius: 10px;
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: $main_backgrounde;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  background: rgb(207, 255, 245);
+  background: linear-gradient(
+      180deg,
+      rgba(207, 255, 245, 1) 0%,
+      rgba(241, 255, 252, 1) 100%
+    )
+    no-repeat;
 }
 body {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.title {
-  color: #008187;
-  font-weight: 700;
-  font-size: $font_main_text;
+h3 {
+  margin-block-end: 0.2em;
+  text-align: center;
+  color: $green_color;
+  font-weight: 600;
 }
 .title-div {
   display: flex;
@@ -33,11 +43,11 @@ form {
 }
 .common-class {
   margin-top: 2vw;
-  font-size: $font_ps_text;
+  font-size: $font_17px;
   border: 1px solid $blue_color;
   padding: 10px 10px;
   border-radius: 5px;
-  color: $blue_color;
+  color: $green_color;
   display: flex;
   white-space: nowrap;
   flex-direction: row;
@@ -53,9 +63,9 @@ form {
   select{
     border: 0px;
     font-weight: 700;
-    color: $blue_color;
+    color: $green_color;
     background-color: white;
-    font-size: $font_ps_text;
+    font-size: $font_17px;
     max-width: 50%;
     text-align: end;
   }
@@ -72,7 +82,7 @@ form {
   border-radius: $border_radius;
   padding: 10px 20px;
   border: none;
-  font-size: $font_main_text;
+  font-size: $font_20px;
   cursor: pointer;
   color: $main_backgrounde;
 }

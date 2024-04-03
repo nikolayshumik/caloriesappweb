@@ -1,4 +1,6 @@
 {% extends 'eatingbase.html' %}
+{% load static %}
+{% load pwa %}
 
 {% block content %}
 <h1>Обед</h1>
@@ -15,7 +17,7 @@
             <input type="hidden" name="product_id" value="{{ product.id }}">
             <div class="row-up">
                 <label for="weight-input">Введите массу:</label>
-                <span class="close2" onclick="closeModal2()">&times;</span>
+                <!--<span id="close2" onclick="closeModal2()">&times;</span>-->
             </div>
             <input type="number" name="weight" id="weight-input" placeholder="В граммах" required>
             <button type="submit" class="general-button">Добавить в обед</button>

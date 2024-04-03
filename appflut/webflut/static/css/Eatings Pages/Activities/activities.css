@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.activities-list {
+  width: 70%;
+}
+
 .activities-item {
   display: flex;
   padding-top: 10px;
@@ -11,14 +15,15 @@
   justify-content: center;
   margin-top: 20px;
   background-color: white;
-  border-radius: 15px;
-  border: 2px solid #008187;
+  border-radius: 10px;
+  border: 2px solid #2bbdb4;
   font-size: 15px;
 }
 .activities-item text {
   text-align: center;
-  color: #008187;
-  font-size: 24px;
+  padding: 0 1vw;
+  color: #293b4b;
+  font-size: 20px;
 }
 .activities-item p {
   text-align: center;
@@ -56,13 +61,10 @@
 
 .modal {
   display: none;
-  margin: auto;
-  margin: 10px auto;
-  width: 100%;
+  margin: 1vw auto;
   box-sizing: border-box;
-  border-radius: 15px;
-  border: 2px solid #008187;
-  font-size: 24px;
+  border-radius: 10px;
+  font-size: 20px;
   position: relative;
   animation-name: slideIn;
   animation-duration: 0.5s;
@@ -72,13 +74,16 @@
   position: absolute;
   right: 1vw;
   top: 0;
-  font-size: 24px;
+  font-size: 25px;
   cursor: pointer;
 }
 .modal .modal-content {
+  padding: 2vw;
+  background-color: #c6efed;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10px;
 }
 .modal .modal-content form {
   display: flex;
@@ -90,37 +95,42 @@
   color: #293b4b;
   margin-bottom: 10px;
 }
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.modal .modal-content form input {
+  width: 70%;
+  text-align: center;
+  border-radius: 5px;
+  padding: 0.5vw 1vw;
+  border: 1px solid #2bbdb4;
 }
+.modal .modal-content form input:focus {
+  border-color: #00a0e9;
+  border-width: 2px;
+  outline: none;
+}
+.modal .modal-content form input:valid {
+  border-color: #00b400;
+  border-width: 2px;
+}
+
 /*размеры планшетов*/
 @media (max-width: 769px) {
-  .modal {
-    width: 60%;
-  }
-  .modal .modal-content input {
-    width: 30%;
-  }
-  .search img {
-    width: 5vw;
+  .modal .modal-content {
+    padding: 2vw;
   }
 }
 /**/
 /*размеры телефонов*/
 @media (max-width: 481px) {
-  .modal {
-    width: 70%;
+  .modal .close {
+    right: 2vw;
+    font-size: 30px;
   }
-  .modal .modal-content input {
-    width: 50%;
+  .modal .modal-content {
+    padding: 3vw;
+  }
+  .modal .modal-content form input {
+    padding: 1vw;
+    font-size: 20px;
   }
   .category-item {
     width: 95%;

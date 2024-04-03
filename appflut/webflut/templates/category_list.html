@@ -8,20 +8,17 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Eatings Pages/Activities/activities.css' %}" rel="stylesheet" />
     <link href="{% static 'css/Eatings Pages/general.css' %}" rel="stylesheet" />
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"rel="stylesheet"/>
     <!--Скрипт  -->
     <script src="{% static 'js/eatingbase/script_activities.js' %}"></script>
     {% progressive_web_app_meta %}
   </head>
 <body>
-
- {% for category in categories %}
-     
+  {% for category in categories %}
   <a href="{% url 'category_items' category.category %}" class="category-item">{{ category.category }}</a>
-     
   {% endfor %}
-
-
-
-
 </body>
 </html>

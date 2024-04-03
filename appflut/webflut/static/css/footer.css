@@ -6,15 +6,15 @@ footer {
   right: 0;
   border-radius: 15px;
   display: flex;
-  width: 40%;
-  background-color: #008187;
+  width: 35%;
+  background-color: #2bbdb4;
   justify-content: space-between;
   white-space: nowrap;
   box-sizing: border-box;
 }
 
 .buttonFooter {
-  background-color: #008187;
+  background-color: #2bbdb4;
   box-sizing: border-box;
   font-size: 10px;
   padding: 10px 0px;
@@ -31,7 +31,7 @@ footer {
 }
 
 .imgFooter {
-  width: 5vw;
+  width: 4vw;
 }
 /*размеры планшетов*/
 @media (max-width: 769px) {
@@ -42,7 +42,7 @@ footer {
     padding: 10px;
   }
   .imgFooter {
-    width: 8vw;
+    width: 6vw;
   }
 }
 /*размеры телефонов*/

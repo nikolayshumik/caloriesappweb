@@ -5,7 +5,6 @@
 {% block content %}
 <h1>Завтрак</h1>
 <a href="{% url 'calories_and_bjy' %}" class="general-button">Назад</a>
-
 {% endblock %}
 
 {% block contenbutton %}
@@ -13,13 +12,11 @@
 <button onclick="openModal2({{ product.id }})" class="general-button">Добавить</button>
 <div id="modal2_{{ product.id }}" class="modal2">
     <div class="modal-content2">
-
         <form id="breakfast-form" method="post" action="{% url 'add_breakfast_view' %}">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{ product.id }}">
             <div class="row-up">
                 <label for="weight-input">Введите массу:</label>
-<!--                <span class="close2" onclick="closeModal2()">&times;</span>-->
             </div>
             <input type="number" name="weight" id="weight-input" placeholder="В граммах" required data-calories-per-100g="{{ product.calories_in }}">
             <button type="submit" class="general-button">Добавить в завтрак</button>

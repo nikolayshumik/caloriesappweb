@@ -1,11 +1,13 @@
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 24px;
-$font_ps_text: 15px;
-$border_radius: 15px;
+$green_color: #034236;
+$main_backgrounde: white;
+$font_20px: 20px;
+$font_17px: 17px;
+$font_15px: 15px;
+$border_radius: 10px;
 //модально окно для создания продукта
-.modalshum {
+.modalCreacteProduct {
   display: none;
   position: fixed;
   z-index: 1;
@@ -15,80 +17,68 @@ $border_radius: 15px;
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-contentshum {
-  padding: 20px;
-  position: relative;
-  background-color: #fefefe;
-  margin: 15% auto;
-  border-radius: 10px;
-  width: 80%;
-}
-
-.modalnew {
-  /* display: none; */
-  margin: auto;
-  font-size: 24px;
-  position: relative;
-}
-
-.modal-content {
-  text-align: center;
-}
-
-.title {
-  margin-bottom: 10px;
-  input {
-    width: 70%;
-    font-size: 20px;
-    padding: 5px 10px;
-    border: 1px solid #008187;
-    border-radius: 5px;
+  .modalCreacteProduct-content {
+    padding: 20px;
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
   }
-}
-
-.bju-row {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  justify-content: space-between;
-  > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .closeX {
+    position: absolute;
+    color: $blue_color;
+    right: 2vw;
+    text-align: center;
+    top: 0;
+    z-index: 1;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .closeX:hover,
+  .closeX:focus {
+    color: #293b4b;
+  }
+  .title {
+    label {
+      font-size: 24px;
+    }
     input {
-      width: 80%;
+      margin-top: 2vw;
       font-size: 20px;
-      padding: 5px;
-      text-align: center;
+      padding: 5px 10px;
       border: 1px solid #008187;
       border-radius: 5px;
-      box-sizing: border-box;
+    }
+  }
+  .bju-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      input {
+        width: 80%;
+        font-size: 20px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #008187;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
     }
   }
 }
-.create-btnshum {
-  margin-bottom: 2vw;
-  margin-top: 0;
-  box-sizing: border-box;
-  text-align: center;
-  text-decoration: none;
-  border: 0;
-  background-color: #008187;
-  font-size: 20px;
-  padding: 10px 20px;
-  font-family: "Segoe UI";
-  color: #f2f3ed;
-  border-radius: 15px;
-}
-
-.product-container {
-  text-align: center;
-}
+//каждый продукт
 .product-item {
   display: flex;
-  width: 90%;
+  box-sizing: border-box;
+  width: 70%;
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
@@ -96,16 +86,18 @@ $border_radius: 15px;
   padding: 10px;
   border-radius: $border_radius;
   border: 2px solid $blue_color;
-  font-size: $font_ps_text;
+  font-size: $font_17px;
 
   text {
     text-align: center;
-    color: $blue_color;
-    font-size: $font_main_text;
+    font-weight: 600;
+    color: $green_color;
+    font-size: $font_20px;
   }
   p {
+    color: $green_color;
     text-align: center;
-    font-size: 20px;
+    font-size: $font_17px;
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
   }
@@ -116,33 +108,38 @@ $border_radius: 15px;
     margin: auto;
     display: flex;
     flex-direction: row;
-    font-size: 18px;
+    font-size: $font_17px;
     justify-content: space-between;
     li {
       list-style-position: inside;
     }
   }
 }
-
 //стилизация модального окна
-.modal-content2 {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: #fefefe;
+.modal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
   margin: auto;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content2 {
+  position: fixed;
+  z-index: 1;
+  background-color: #fefefe;
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  .close2 {
-    font-size: $font_main_text;
-    color: $blue_color;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
   .row-up {
     font-size: 20px;
     display: flex;
@@ -162,118 +159,30 @@ $border_radius: 15px;
       font-size: 18px;
       margin-top: 10px;
     }
+    input:focus {
+      border-color: #00a0e9;
+      border-width: 2px;
+      outline: none;
+    }
+    input:valid {
+      border-color: #00b400;
+      border-width: 2px;
+    }
   }
   button {
     width: 70%;
   }
 }
-///////////////////
-.modal2 {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.close2:hover,
-.close2:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-////////////////
-/// стилизация добавления своего продукта
-.modal {
-  display: none;
-  margin: 4vw auto 2vw auto;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: $border_radius;
-  border: 2px solid $blue_color;
-  font-size: $font_main_text;
-  position: relative;
-  animation-name: slideIn;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-
-  .close {
-    position: absolute;
-    right: 1vw;
-    top: 0;
-    font-size: $font_main_text;
-    cursor: pointer;
-  }
-
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .title {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-    .bju-row {
-      width: 100%;
-      margin-top: 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      > * {
-        font-size: $font_ps_text;
-      }
-      input {
-        width: 30px;
-      }
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    #id_calories_in {
-      width: 100px;
-    }
-
-    input {
-      padding: 5px;
-      border-radius: 5px;
-      border: 1px solid $blue_color;
-      width: 100%;
-    }
-  }
-}
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-//кнопки вверху
 
 /*размеры планшетов*/
 @media (max-width: 769px) {
-  .modal {
-    width: 60%;
-    margin-top: 2vw;
-    .modal-content {
-      input {
-        width: 30%;
-      }
+  .modalCreacteProduct-content {
+    width: 70%;
+  }
+  .modal-content {
+    width: 70%;
+    input {
+      width: 30%;
     }
   }
   .search {
@@ -286,13 +195,17 @@ $border_radius: 15px;
 
 /*размеры телефонов*/
 @media (max-width: 481px) {
-  .modal {
-    width: 70%;
-    .modal-content {
-      input {
-        width: 50%;
-      }
+  .modalCreacteProduct-content {
+    width: 80%;
+  }
+  .modal-content {
+    width: 80%;
+    input {
+      width: 50%;
     }
+  }
+  .modal-content2 {
+    width: 80%;
   }
 }
 
