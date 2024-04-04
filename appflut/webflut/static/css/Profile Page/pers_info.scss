@@ -21,7 +21,7 @@ header {
   display: flex;
   flex-direction: row;
   width: 60%;
-  margin: auto;
+  margin: 3vw auto;
   align-items: center;
   justify-content: space-between;
 }
@@ -108,6 +108,7 @@ form {
 @media (max-width: 769px) {
   header {
     width: 90%;
+    margin: 4vw auto;
     h3 {
       margin: 0;
       text-align: start;
@@ -142,6 +143,7 @@ form {
   }
   header {
     width: 95%;
+    margin: 5vw auto;
   }
     form {
       width: 95%;
