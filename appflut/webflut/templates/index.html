@@ -24,16 +24,11 @@
 {% else %}
   <!-- Дополнительные действия для неаутентифицированных пользователей -->
 {% endif %}
-    <img src="{% static 'accets/new_logo.svg' %}" id="logo" />
-    <h3>калькулятор калорий</h3>
-        <div class="main">
-            <a href="{% url 'login' %}" class="buttons" style="margin-top: 0px;">Войти</a>
-            <a href="{% url 'register' %}" class="buttons" >Регистрация</a>
-            <a href="{% url 'logout' %}" class="buttons" >Выйти</a>
-        </div>
-
-    {% block content %}
-    {% include 'footer.html' %}
-    {% endblock %}
+  <img src="{% static 'accets/new_logo.svg' %}" id="logo" />
+  <h3>калькулятор калорий</h3>
+    <div class="main">
+        <a href="{% url 'login' %}" class="buttons" style="margin-top: 0px;">Войти</a>
+        <a href="{% url 'register' %}" class="buttons" >Регистрация</a>
+    </div>
 </body>
 </html>

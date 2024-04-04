@@ -101,6 +101,9 @@ form {
     width: 50%;
     margin: 5% auto;
   }
+  .buttons {
+    margin-top: 3vw;
+  }
 }
 /**/
 
@@ -113,9 +116,10 @@ form {
   .main {
     margin-top: 9vw;
     width: 90%;
+    .buttons {
+      margin-top: 5vw;
+    }
   }
-  .buttons {
-    margin-top: 5vw;
-  }
+  
 }
 /**/

@@ -94,6 +94,9 @@ form input {
     width: 50%;
     margin: 5% auto;
   }
+  .buttons {
+    margin-top: 3vw;
+  }
 }
 /**/
 /*размеры телефонов*/
@@ -106,7 +109,7 @@ form input {
     margin-top: 9vw;
     width: 90%;
   }
-  .buttons {
+  .main .buttons {
     margin-top: 5vw;
   }
 }
