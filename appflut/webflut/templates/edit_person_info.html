@@ -25,35 +25,32 @@
 </div>
 -->
 
+<form method="post" style="margin-top: 10px;">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="common-class">
+        {% if field.name == 'weight' %}
+        <text>Вес</text>
+        {% elif field.name == 'height' %}
+        <text>Рост</text>
+        {% elif field.name == 'sex' %}
+        <text>Пол</text>
+        {% elif field.name == 'date_of_birth' %}
+        <text>Полных лет</text>
+        {% elif field.name == 'goals' %}
+        <text>Цель</text>
+        {% elif field.name == 'active' %}
+        <text>Активность</text>
+        {% endif %}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="general-button">Сохранить</button>
+</form>
 
-    <form method="post" style="margin-top: 10px;">
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="common-class">
-            {% if field.name == 'weight' %}
-            <text>Вес</text>
-            {% elif field.name == 'height' %}
-            <text>Рост</text>
-            {% elif field.name == 'sex' %}
-            <text>Пол</text>
-            {% elif field.name == 'date_of_birth' %}
-            <text>Полных лет</text>
-            {% elif field.name == 'goals' %}
-            <text>Цель</text>
-            {% elif field.name == 'active' %}
-            <text>Активность</text>
-            {% endif %}
-            {{ field }}
-        </div>
-        {% endfor %}
-        <button type="submit" class="general-button ">Сохранить</button>
-    </form>
-
-    {% block content %}
-    {% include 'footer.html' %}
-    {% endblock %}
-
-
+{% block content %}
+{% include 'footer.html' %}
+{% endblock %}
 
 </body>
 
