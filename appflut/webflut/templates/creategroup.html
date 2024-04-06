@@ -3,14 +3,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Группы</title>
-        <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-        <!--Медиа запросы, адаптив-->
-        <link href="{% static 'css/Groups Pages/groups.css' %}" rel="stylesheet" />
-        {% progressive_web_app_meta %}
+    <title>Группы</title>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <!--Медиа запросы, адаптив-->
+    <link href="{% static 'css/Groups Pages/groups.css' %}" rel="stylesheet" />
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    {% progressive_web_app_meta %}
     </head>
 <body>
-
+<a href="{% url 'calories_and_bjy' %}" class="general-button">На главную</a>
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}
@@ -18,11 +22,11 @@
         <button type="submit">Создать группу</button>
     </form>
     <text class="title" id="all">Существующие группы</text>
-    <ul>
-        {% for group in groups %}
-        <li><a href="{% url 'groupdetail' group_id=group.id %}">{{ group.name }}</a></li>
-        {% endfor %}
-    </ul>
+
+    {% for group in groups %}
+    <a href="{% url 'groupdetail' group_id=group.id %}" class="one-groupe">{{ group.name }}</a>
+    {% endfor %}
+
 </div>
 {% include 'footer.html' %}
 </body>

@@ -8,6 +8,10 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/index.css' %}" rel="stylesheet"/>
     {% progressive_web_app_meta %}
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 {% if user.is_authenticated %}
@@ -20,15 +24,11 @@
 {% else %}
   <!-- Дополнительные действия для неаутентифицированных пользователей -->
 {% endif %}
-    <img src="{% static 'accets/mainLogo.png' %}" id="logo" />
-        <div class="main">
-            <a href="{% url 'login' %}" style="margin-top: 0px;">Войти</a>
-            <a href="{% url 'register' %}">Регистрация</a>
-            <a href="{% url 'logout' %}">Выйти</a>
-        </div>
-
-    {% block content %}
-    {% include 'footer.html' %}
-    {% endblock %}
+  <img src="{% static 'accets/new_logo.svg' %}" id="logo" />
+  <h3>калькулятор калорий</h3>
+    <div class="main">
+        <a href="{% url 'login' %}" class="buttons" style="margin-top: 0px;">Войти</a>
+        <a href="{% url 'register' %}" class="buttons" >Регистрация</a>
+    </div>
 </body>
 </html>

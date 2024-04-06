@@ -1,19 +1,7 @@
 @charset "UTF-8";
-/* calories_and_bjy*/
-@font-face {
-  font-family: "Segoe UI";
-  src: local("Segoe UI Regular"), local("Segoe-UI-Regular"), url("SegoeUI.woff2") format("woff2"), url("SegoeUI.woff") format("woff"), url("SegoeUI.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Segoe UI_Bold";
-  src: local("Segoe UI Bold"), local("Segoe-UI-Bold"), url("SegoeUI-Bold.woff2") format("woff2"), url("SegoeUI-Bold.woff") format("woff"), url("SegoeUI-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
 html {
-  font-family: "Segoe UI";
-  background-color: #f2f3ed;
+  font-family: "Inter", sans-serif;
+  background-color: white;
 }
 
 body {
@@ -23,52 +11,56 @@ body {
 }
 
 #logo {
-  width: 90%;
-  margin: 5% auto;
+  width: 20%;
+  margin: 2% auto;
+}
+
+h3 {
+  color: #034236;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .main {
-  margin-top: 10%;
+  margin-top: 2vw;
   box-sizing: border-box;
   display: flex;
-  width: 100%;
+  width: 40%;
   flex-direction: column;
-  padding: 10%;
   text-align: center;
-  background-color: #293b4b;
-  font-size: 28px;
+  font-size: 20px;
 }
-.main > a {
-  font-size: 28px;
-  text-transform: uppercase;
-  background-color: #008187;
+.main .buttons {
+  font-size: 20px;
+  background-color: #2bbdb4;
   text-align: center;
+  font-weight: 400;
   padding: 10px;
-  color: #f2f3ed;
-  font-family: "Segoe UI_Bold";
+  color: white;
   text-decoration: none;
-  margin-top: 30px;
-  border-radius: 15px;
+  margin-top: 2vw;
+  border-radius: 10px;
+  transition: filter 0.3s ease;
 }
 .main > label {
-  margin-top: 20px;
+  margin-top: 2vw;
 }
-.main a:hover {
-  background-color: rgba(4, 177, 211, 0.6901960784);
+.main .buttons:hover {
+  filter: brightness(0.8);
 }
 
 .enter {
   width: 100%;
-  font-size: 28px;
+  font-size: 20px;
   text-transform: uppercase;
-  background-color: #008187;
+  background-color: #2bbdb4;
   text-align: center;
   padding: 10px;
-  color: #f2f3ed;
-  font-family: "Segoe UI_Bold";
+  color: white;
   text-decoration: none;
   margin-top: 80vw;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .buttonMod:hover {
@@ -84,39 +76,41 @@ form {
   margin-right: auto;
   padding: 5%;
   text-align: center;
-  font-size: 28px;
+  font-size: 20px;
 }
 form input {
-  font-size: 28px;
-  border: 3px solid #008187;
-  border-radius: 15px;
+  font-size: 20px;
+  border: 3px solid #2bbdb4;
+  border-radius: 10px;
   padding: 20px 30px;
-  background-color: #f2f3ed;
+  background-color: white;
   color: #293b4b;
   margin-top: 30px;
 }
 
+/*размеры планшетов*/
+@media (max-width: 769px) {
+  #logo {
+    width: 50%;
+    margin: 5% auto;
+  }
+  .buttons {
+    margin-top: 3vw;
+  }
+}
+/**/
 /*размеры телефонов*/
-@media (min-width: 481px) {
+@media (max-width: 481px) {
   #logo {
     width: 70%;
     margin: 5% auto;
   }
-}
-/**/
-/*размеры планшетов*/
-@media (min-width: 769px) {
-  #logo {
-    width: 35vw;
-    margin: 5% auto;
+  .main {
+    margin-top: 9vw;
+    width: 90%;
   }
-}
-/**/
-/*размеры компьютеров*/
-@media (min-width: 1025px) {
-  #logo {
-    width: 30vw;
-    margin: 5% auto;
+  .main .buttons {
+    margin-top: 5vw;
   }
 }
 /**//*# sourceMappingURL=index.css.map */

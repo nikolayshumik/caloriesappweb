@@ -282,7 +282,7 @@ def calories_and_bjy(request):
             time_child = activity_child.time/60
             burned_calories_child = round(float(activity_child.product.code_16_18) * weight * time_child, 1)
             acttotal_calories_child += round(burned_calories_child, 1)  # добавить к общему количеству
-            activities_and_calories_child.append((activity_child, burned_calories))
+            activities_and_calories_child.append((activity_child, burned_calories_child))
 
     inf = Personal_Inform.objects.get(user=user)
     if inf.sex=='M':
@@ -382,6 +382,7 @@ def calories_and_bjy(request):
         'total_carbohydrates': total_carbohydrates,
         'total_fats': total_fats,
         'activity_prod': activity_prod,
+        'activity_prod_child': activity_prod_child,
         'form': form,
         'formatted_date': formatted_date,
         'acttotal_calories': acttotal_calories,

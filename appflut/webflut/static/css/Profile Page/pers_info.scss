@@ -1,43 +1,63 @@
-$blue_color: #008187;
+$blue_color: #2bbdb4;
 $gray_color: #293b4b;
-$main_backgrounde: #f2f3ed;
-$font_main_text: 24px;
-$font_ps_text: 20px;
-$border_radius: 5px;
+$green_color: #034236;
+$font_20px: 20px;
+$font_17px: 17px;
+$font_15px: 15px;
+$border_radius: 10px;
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: $main_backgrounde;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  background: rgb(207, 255, 245);
+  background: linear-gradient(
+      180deg,
+      rgba(207, 255, 245, 1) 0%,
+      rgba(241, 255, 252, 1) 100%
+    )
+    no-repeat;
 }
-body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.title {
-  color: #008187;
-  font-weight: 700;
-  font-size: $font_main_text;
-}
-.title-div {
+header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  width: 60%;
+  margin: 3vw auto;
   align-items: center;
-  margin-top: 3vw;
+  justify-content: space-between;
+}
+h3 {
+  color: $green_color;
+  font-weight: 600;
+  display: inline-block;
+}
+#logout {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: $blue_color;
+  border-radius: $border_radius;
+  color: white;
+  text-decoration: none;
+  transition: filter 0.3s ease;
+}
+#logoutImg {
+  margin-left: 0.2vw;
+  width: 2vw;
 }
 form {
-  width: 90%;
+  margin: auto;
+  width: 60%;
   display: flex;
   flex-direction: column;
 }
 .common-class {
-  margin-top: 2vw;
-  font-size: $font_ps_text;
+  margin-top: 1vw;
+  font-size: $font_17px;
   border: 1px solid $blue_color;
   padding: 10px 10px;
   border-radius: 5px;
-  color: $blue_color;
+  color: $green_color;
   display: flex;
   white-space: nowrap;
   flex-direction: row;
@@ -50,45 +70,67 @@ form {
     border-radius: 50%;
   }
   input,
-  select{
+  select {
     border: 0px;
     font-weight: 700;
-    color: $blue_color;
+    color: $green_color;
     background-color: white;
-    font-size: $font_ps_text;
+    font-size: $font_17px;
     max-width: 50%;
     text-align: end;
   }
-  option{
+  option {
     font-size: 15px;
     font-weight: 700;
   }
 }
 .general-button {
-  font-family: Arial;
+  font-family: "Inter", sans-serif;
   text-decoration: none;
   margin: 3vw auto 0vw auto;
   background-color: $blue_color;
   border-radius: $border_radius;
   padding: 10px 20px;
   border: none;
-  font-size: $font_main_text;
+  font-size: $font_20px;
   cursor: pointer;
-  color: $main_backgrounde;
+  color: white;
+  transition: filter 0.3s ease;
 }
 .general-button:hover {
-  background-color: #293b4b;
+  filter: brightness(0.6);
+}
+#logout:hover {
+  filter: brightness(0.6);
 }
 
 /*размеры планшетов*/
 @media (max-width: 769px) {
+  header {
+    width: 90%;
+    margin: 4vw auto;
+    h3 {
+      margin: 0;
+      text-align: start;
+    }
+  }
+  form {
+    width: 90%;
+  }
   .common-class {
     padding: 10px 15px;
   }
   .general-button {
     margin: 3vw auto;
   }
+  #logout {
+    padding: 5px 10px;
+  }
+  #logoutImg {
+    width: 3vw;
+  }
 }
+
 /**/
 
 /*размеры телефонов*/
@@ -96,15 +138,28 @@ form {
   footer {
     bottom: 0;
     position: fixed !important;
-    margin: 3vw auto;
     left: 0;
     right: 0;
   }
-  img {
-    width: 12vw;
+  header {
+    width: 95%;
+    margin: 5vw auto;
   }
-  .general-button {
-    margin: 10vw auto;
+    form {
+      width: 95%;
+    }
+    #logout {
+      padding: 7px 15px;
+    }
+    #logoutImg {
+      width: 5vw;
+    }
+    img {
+      width: 12vw;
+    }
+    .general-button {
+      margin: 10vw auto;
+    }
   }
-}
+
 /**/

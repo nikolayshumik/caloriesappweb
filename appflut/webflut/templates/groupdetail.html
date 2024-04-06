@@ -6,35 +6,46 @@
     <meta charset="UTF-8">
     <title>Детали группы</title>
     <link href="{% static 'css/Groups Pages/detailsGroups.css' %}" rel="stylesheet" />
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
     {% progressive_web_app_meta %}
 </head>
 <body>
 
-<div class="container">
-    <h2>{{ group.name }}</h2>
-    <h3>Пользователи в группе:</h3>
-    <ul>
-        {% for user in group.users.all %}
-        <li>
-            <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
-            <form action="{% url 'removeuser' group_id=group.id %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="username" value="{{ user.username }}">
-                <button type="submit">Удалить</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
-    <form action="{% url 'adduser' group_id=group.id %}" method="post">
+<a href="{% url 'calories_and_bjy' %}" class="general-button">На главную</a>
+<a href="{% url 'creategroup' %}" class="general-button">Назад в группы </a>
+<h2 style="  text-transform: uppercase;font-size: 25px">{{ group.name }}</h2>
+
+<form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
+    Добавить пользователя
+    <div class="row">
+    {% csrf_token %}
+    <select name="username">
+      {% for user in users %}
+      <option value="{{ user.username }}">{{ user.username }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" id="addButton">Добавить</button>
+    </div>
+  </form>
+<h3>Пользователи в группе:</h3>
+
+
+
+{% for user in group.users.all %}
+<div class="person-groupe">
+  <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
+    <form action="{% url 'removeuser' group_id=group.id %}" method="post">
         {% csrf_token %}
-        <select name="username">
-            {% for user in users %}
-            <option value="{{ user.username }}">{{ user.username }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Добавить</button>
+        <button type="submit">Удалить</button>
     </form>
 </div>
+{% endfor %}
+ 
+    
+
 
 {% include 'footer.html' %}
 </body>

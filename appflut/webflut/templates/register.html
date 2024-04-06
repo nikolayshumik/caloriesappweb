@@ -9,13 +9,20 @@
     <!--Медиа запросы, адаптив-->
     <link href="{% static 'css/Login Pages/logins.css' %}" rel="stylesheet" />
     {% progressive_web_app_meta %}
+    <!--Шрифт-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <h3>давайте познакомимся</h3>
     <form action="." method="post">
         {% csrf_token %}
         {{ form.as_table }}
-        <input type="submit" class="next" style="padding: 20px 30px; margin: 2vw auto;" value="Создать аккаунт">
+        <button type="submit">
+            Создать аккаунт
+        </button>
     </form>
 </body>
 </html>
