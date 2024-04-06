@@ -24,91 +24,99 @@ body {
   align-items: center;
   flex-direction: column;
 }
-h2,h3 {
-  margin-block-end: 0.2em;
+h2,
+h3 {
   text-align: center;
   color: $green_color;
-  text-transform: uppercase;
   font-weight: 600;
+  font-size: $font_20px;
 }
-.container {
-  margin: 2vw;
+.new-user {
+  color: $green_color;
+  font-weight: 600;
+  margin: 0vw auto;
+  width: 90%;
+  font-size: $font_20px;
+  padding: 10px;
+  border-bottom: 1px solid $gray_color;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background-color: white;
-  border: 2px solid $blue_color;
-  border-radius: 5px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-
-  li {
-    font-size: 18px;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
+  text-align: center;
+  .row {
+    margin-top: 2vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  select {
+    padding: 5px;
+    width: 50%;
+    border-radius: 5px;
+    font-size: $font_17px;
+    border: 1px solid $blue_color;
+  }
+  option {
+    padding: 0px;
+    font-size: 12px;
+  }
+}
+.person-groupe {
+  width: 90%;
+  font-size: $font_20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #293b4b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 
-    form {
-      display: inline;
+  form {
+    width: 20%;
+    display: inline;
+    button {
+      width: 100%;
     }
+  }
 
-    a {
-      text-decoration: none;
-      color: #333;
-      transition: color 0.3s ease-in-out;
-    }
+  a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
   }
 }
 
+
 button {
-  padding: 5px 10px;
-  font-size: $font_17px;
-  background-color: #008187;
+  width: 100%;
+  text-align: center;
+  background-color: $blue_color;
+  border-radius: $border_radius;
+  font-size: $font_15px;
   color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-li a:hover {
-  color: #008187;
-}
-
-li button:hover {
-  background-color: #006c6f;
-}
-
-select {
-  padding: 5px;
-  border-radius: 5px;
-  font-size: $font_17px;
-  border: 1px solid $blue_color;
-}
-option {
-  padding: 0px;
-  font-size: 12px;
-}
-
-button[type="submit"] {
-  background-color: #008187;
-  color: white;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border: none;
   cursor: pointer;
-  margin-left: 10px;
+}
+#addButton {
+  width: 20%;
 }
 
 /*размеры планшетов*/
 @media (max-width: 769px) {
   footer {
     position: fixed !important;
+  }
+}
+/**/
+/*размеры планшетов*/
+@media (max-width: 481px) {
+  .person-groupe {
+    form {
+      width: 30%;
+    }
+  }
+  #addButton {
+    width: 30%;
   }
 }
 /**/
