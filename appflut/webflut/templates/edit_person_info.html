@@ -15,7 +15,13 @@
 
 <body>
 
+    <header>
     <h3>Привет, {{ request.user.username }}</h3>
+    <a href="{% url 'logout' %}" id="logout">
+        Выйти
+        <img src="{% static 'accets/logout.svg' %}" id="logoutImg"/>
+    </a>
+    </header>
 
     <!--
 <div class="title-div">
