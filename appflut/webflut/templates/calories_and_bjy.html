@@ -61,7 +61,12 @@
 <!--            <p>{{ male }}</p>-->
 <!--        </div>-->
         <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
-            <p>{{ acttotal_calories|floatformat:"1" }}</p>
+            {% if user_age < 18 %}
+         <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
+        {% else %}
+         <p>{{ acttotal_calories|floatformat:"1" }}</p>
+        {% endif %}
+
         </div>
     </div>
 </div>
@@ -103,11 +108,41 @@
 <div class="eatings">
     <div class="breakfast clickable">Активности<a href="{% url 'category_list' %}">+</a></div>
     <div class="summ_kkal">
+        {% if user_age < 18 %}
+        {{ acttotal_calories_child }} ккал
+        {% else %}
         {{ acttotal_calories }} ккал
+        {% endif %}
     </div>
 
     <div class="content">
+        {% if user_age < 18 %}
         <div class="product-eatings">
+
+            {% for activity_child, burned_calories_child in activities_and_calories_child %}
+            <div class="product-item">
+                <div class="title">
+                    <text style="text-decoration: dotted;">{{ activity_child.product.category }}
+                        ({{ activity_child.time}} мин.)
+                    </text>
+                    <text>{{ burned_calories|floatformat:"1" }} ккал</text>
+                </div>
+                <form method="POST" action="{% url 'delete_activity'  id=activity_child.id %}">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <input type="hidden" name="meal_type" value="activities">
+                        <img src="{% static 'accets/корзина.png' %}" id="delete_img">
+                    </button>
+                </form>
+            </div>
+
+            {% empty %}
+            <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+        {% else %}
+         <div class="product-eatings">
+
             {% for activity, burned_calories in activities_and_calories %}
             <div class="product-item">
                 <div class="title">
@@ -129,7 +164,7 @@
             <p>Ничего не найдено</p>
             {% endfor %}
         </div>
-
+        {% endif %}
 
     </div>
 </div>

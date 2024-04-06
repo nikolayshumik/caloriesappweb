@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Загрузите данные
-df = pd.read_excel(r'D:\flutappweb\appflut\МЕТы_для_БГУиР.xlsx')
+df = pd.read_excel(r'D:\КОЛЯМБА\25.03_проверка\caloriesappweb\МЕТы_для_БГУиР.xlsx')
 
 df['Категория'] = df['Категория'].fillna(method='ffill')
 # Fill NaN values with an arbitrary number
@@ -16,7 +16,7 @@ df['№'] = df['№'].apply(lambda x: int(x) if x == x else "")
 df = df.replace(np.nan, "", regex=True)
 
 # Подключитесь к БД
-conn = sqlite3.connect(r'D:\flutappweb\appflut\db.sqlite3')
+conn = sqlite3.connect(r'D:\КОЛЯМБА\25.03_проверка\caloriesappweb\appflut\db.sqlite3')
 cur = conn.cursor()
 
 # Итерируйте по данным и создайте экземпляры Activity

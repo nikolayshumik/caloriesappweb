@@ -65,7 +65,11 @@
     {% for activity in activities %}
 
     <div class="activities-item">
+        {% if user_age < 18 %}
+        <text style="color: #293b4b; font-size: 20px;">{{ activity.subcategory }}</text>
+        {% else %}
         <text style="color: #293b4b; font-size: 20px;">{{ activity.activity_type }}</text>
+        {% endif %}
         <button onclick="openModal({{ activity.id }})" id="add-button" class="general-button">Добавить</button>
         <div id="modal-{{ activity.id }}" class="modal">
             <div class="modal-content">

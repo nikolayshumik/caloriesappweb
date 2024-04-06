@@ -21,7 +21,8 @@ from django.http import HttpResponseRedirect
 from .forms import DateForm
 from .forms import UserRegistrationForm, PersonalInformForm, AddProductForm, Step1Form, Step3Form
 
-from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products
+from .models import Add_Product, Ttime_Test, Breakfast_Products, Lunch_Products, Dinner_Products, Snack_Products, \
+    Activity_for_children, Activities_Add_Children
 from .models import Activity, Personal_Inform, Activities_Add, Group
 
 from django.views.generic import TemplateView
@@ -261,15 +262,27 @@ def calories_and_bjy(request):
     personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
     weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
+    activity_prod_child = Activities_Add_Children.objects.filter(user=user, date__date=selected_date)
 
     acttotal_calories = 0  # общее количество сожженных калорий
+    acttotal_calories_child = 0  # общее количество сожженных калорий
     activities_and_calories = []
+    activities_and_calories_child = []
+
+    user = request.user
+    user_age = Personal_Inform.objects.get(user=user).date_of_birth
 
     for activity in activity_prod:
         time = activity.time/60
         burned_calories = round(activity.product.met * weight * time, 1)
         acttotal_calories += round(burned_calories, 1)  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
+    for activity_child in activity_prod_child:
+        if user_age<18:
+            time_child = activity_child.time/60
+            burned_calories_child = round(float(activity_child.product.code_16_18) * weight * time_child, 1)
+            acttotal_calories_child += round(burned_calories_child, 1)  # добавить к общему количеству
+            activities_and_calories_child.append((activity_child, burned_calories))
 
     inf = Personal_Inform.objects.get(user=user)
     if inf.sex=='M':
@@ -372,9 +385,12 @@ def calories_and_bjy(request):
         'form': form,
         'formatted_date': formatted_date,
         'acttotal_calories': acttotal_calories,
+        'acttotal_calories_child': acttotal_calories_child,
         'activities_and_calories': activities_and_calories,
+        'activities_and_calories_child': activities_and_calories_child,
         'male': male,
         'amountwater': amountwater,
+        'user_age': user_age,
 
     }
     return render(request, 'calories_and_bjy.html', context)
@@ -487,19 +503,34 @@ def activities(request):
     return render(request, 'activities.html', {'activities': activities, 'categories': categories})
 
 def category_list(request):
-    categories = Activity.objects.values('category').distinct()
+
+    user = Personal_Inform.objects.get(user=request.user)
+    user_age = user.date_of_birth  # получение возраста пользователя
+
+    if user_age < 18:
+        categories = Activity_for_children.objects.values('category').distinct()
+    else:
+        categories = Activity.objects.values('category').distinct()
     return render(request, 'category_list.html', {'categories': categories})
 
 def category_items(request, category):
     search_query = request.GET.get('search')
-    if search_query:
-        search_query = search_query.capitalize()
-    activities = Activity.objects.filter(category=category)
-    if search_query:
-        activities = activities.filter(
-            Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
-        )
-    return render(request, 'category_detail.html', {'activities': activities})
+    user = Personal_Inform.objects.get(user=request.user)
+    user_age = user.date_of_birth
+    if user_age < 18:
+        activities = Activity_for_children.objects.filter(category=category)
+        if search_query:
+            activities = Activity_for_children.filter(
+                Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
+            )
+    else:
+        activities = Activity.objects.filter(category=category)
+        if search_query:
+            activities = activities.filter(
+                Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
+            )
+
+    return render(request, 'category_detail.html', {'activities': activities, 'user_age': user_age})
 
 def eatingbase(request):
     search_query = request.GET.get('search')
@@ -664,10 +695,19 @@ def add_activity_view(request):
             selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
             selected_datetime = datetime.combine(selected_date, datetime.now().time())
             selected_datetime_aware = make_aware(selected_datetime)
-            activity = Activity.objects.get(id=activity_id)
             user = request.user
-            Activities_Add.objects.create(product=activity, user=user, time=time, date=selected_datetime_aware)
-        except Activity.DoesNotExist:
+            user_age = Personal_Inform.objects.get(user=user).date_of_birth
+
+            if user_age < 18:
+                activity = Activity_for_children.objects.get(id=activity_id)
+                user = request.user
+                Activities_Add_Children.objects.create(product=activity, user=user, time=time, date=selected_datetime_aware)
+            else:
+                activity = Activity.objects.get(id=activity_id)
+                user = request.user
+                Activities_Add.objects.create(product=activity, user=user, time=time, date=selected_datetime_aware)
+
+        except (Activity_for_children.DoesNotExist, Activity.DoesNotExist):
             pass
         except ValueError:
             pass
@@ -717,8 +757,14 @@ def remove_from_list2(request, product_id):
 
 
 def delete_activity(request, id):
-    activity_to_delete = Activities_Add.objects.get(pk=id)
-    activity_to_delete.delete()
+    user = request.user
+    user_age = Personal_Inform.objects.get(user=user).date_of_birth
+    if user_age<18:
+        activity_to_delete = Activities_Add_Children.objects.get(pk=id)
+        activity_to_delete.delete()
+    else:
+        activity_to_delete = Activities_Add.objects.get(pk=id)
+        activity_to_delete.delete()
 
     return HttpResponseRedirect(reverse('calories_and_bjy'))
 
