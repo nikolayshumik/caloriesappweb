@@ -167,14 +167,28 @@ class Activity(models.Model):
         verbose_name_plural = 'Виды Активностей'
     def __str__(self):
         return self.activity_type
-
+class Activity_for_children(models.Model):
+    code = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    subcategory = models.CharField(max_length=255)
+    code_6_9 = models.CharField(max_length=255)
+    code_10_12 = models.CharField(max_length=255)
+    code_13_15 = models.CharField(max_length=255)
+    code_16_18 = models.CharField(max_length=255)
+    class Meta:
+        verbose_name = 'Виды Детских Активностей '
+        verbose_name_plural = 'Виды Детских Активностей'
 
 class Activities_Add(models.Model):
     product = models.ForeignKey(Activity, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
     time = models.IntegerField(default=0)
     date = models.DateTimeField(default=timezone.now)
-
+class Activities_Add_Children(models.Model):
+    product = models.ForeignKey(Activity_for_children, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user)
+    time = models.IntegerField(default=0)
+    date = models.DateTimeField(default=timezone.now)
 
 class Ttime_Test(models.Model):
     name = models.TextField()

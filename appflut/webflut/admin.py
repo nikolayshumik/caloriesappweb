@@ -14,6 +14,8 @@ from .models import UserProfile
 from .models import Step1Model
 from .models import Step3Model
 from .models import WaterConsumption
+from .models import Activity_for_children
+from .models import Activities_Add_Children
 
 from django.contrib import admin
 
@@ -41,3 +43,5 @@ admin.site.register(Group)
 admin.site.register(Step1Model)
 admin.site.register(Step3Model)
 admin.site.register(WaterConsumption)
+admin.site.register(Activity_for_children)
+admin.site.register(Activities_Add_Children)

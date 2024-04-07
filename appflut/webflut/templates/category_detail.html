@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"rel="stylesheet"/>
     <!--Скрипт
       -->
-    
+
     {% progressive_web_app_meta %}
   </head>
 <body>
@@ -43,7 +43,11 @@
     {% for activity in activities %}
 
     <div class="activities-item">
+        {% if user_age < 18 %}
+        <text>{{ activity.subcategory }}</text>
+        {% else %}
         <text>{{ activity.activity_type }}</text>
+        {% endif %}
         <button onclick="openModal({{ activity.id }})" id="add-button" class="general-button">Добавить</button>
         <div id="modal-{{ activity.id }}" class="modal">
             <div class="modal-content">

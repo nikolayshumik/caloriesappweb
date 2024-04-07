@@ -6,35 +6,47 @@ html {
   background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
-body {
+header {
   display: flex;
+  flex-direction: row;
+  width: 60%;
+  margin: 3vw auto;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
 h3 {
-  margin-block-end: 0.2em;
-  text-align: center;
   color: #034236;
   font-weight: 600;
+  display: inline-block;
 }
 
-.title-div {
-  display: flex;
+#logout {
+  display: inline-flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  margin-top: 3vw;
+  padding: 10px 20px;
+  background-color: #2bbdb4;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  transition: filter 0.3s ease;
+}
+
+#logoutImg {
+  margin-left: 0.2vw;
+  width: 2vw;
 }
 
 form {
-  width: 90%;
+  margin: auto;
+  width: 60%;
   display: flex;
   flex-direction: column;
 }
 
 .common-class {
-  margin-top: 2vw;
+  margin-top: 1vw;
   font-size: 17px;
   border: 1px solid #2bbdb4;
   padding: 10px 10px;
@@ -68,7 +80,7 @@ form {
 }
 
 .general-button {
-  font-family: Arial;
+  font-family: "Inter", sans-serif;
   text-decoration: none;
   margin: 3vw auto 0vw auto;
   background-color: #2bbdb4;
@@ -78,19 +90,41 @@ form {
   font-size: 20px;
   cursor: pointer;
   color: white;
+  transition: filter 0.3s ease;
 }
 
 .general-button:hover {
-  background-color: #293b4b;
+  filter: brightness(0.6);
+}
+
+#logout:hover {
+  filter: brightness(0.6);
 }
 
 /*размеры планшетов*/
 @media (max-width: 769px) {
+  header {
+    width: 90%;
+    margin: 4vw auto;
+  }
+  header h3 {
+    margin: 0;
+    text-align: start;
+  }
+  form {
+    width: 90%;
+  }
   .common-class {
     padding: 10px 15px;
   }
   .general-button {
     margin: 3vw auto;
+  }
+  #logout {
+    padding: 5px 10px;
+  }
+  #logoutImg {
+    width: 3vw;
   }
 }
 /**/
@@ -99,9 +133,21 @@ form {
   footer {
     bottom: 0;
     position: fixed !important;
-    margin: 3vw auto;
     left: 0;
     right: 0;
+  }
+  header {
+    width: 95%;
+    margin: 5vw auto;
+  }
+  form {
+    width: 95%;
+  }
+  #logout {
+    padding: 7px 15px;
+  }
+  #logoutImg {
+    width: 5vw;
   }
   img {
     width: 12vw;
