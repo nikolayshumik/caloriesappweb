@@ -17,10 +17,10 @@ html {
 
 .container {
   display: flex;
+  width: 70%;
   flex-direction: column;
-  margin: 2vw auto;
+  margin: 5vw auto;
   border-radius: 10px;
-  padding: 2vw;
 }
 .container .title {
   margin-bottom: 2vw;
@@ -120,6 +120,12 @@ footer {
   .container {
     margin-top: 0;
     width: 90%;
+  }
+  .prev {
+    padding: 10px;
+  }
+  .prev #prev-logo {
+    width: 15px;
   }
 }
 /**//*# sourceMappingURL=groups.css.map */

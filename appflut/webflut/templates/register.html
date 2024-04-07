@@ -16,6 +16,13 @@
 </head>
 
 <body>
+    <!-- тут в ссылке нужно указать начальную страницу, т.е. index, но мне не дает потому что считает
+    ошибкой указывать в пути пустыое значение
+    <a href="{% url 'creategroup' %}" class="prev">
+        <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
+    </a>
+-->
+    
     <h3>давайте познакомимся</h3>
     <form action="." method="post">
         {% csrf_token %}

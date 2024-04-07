@@ -6,27 +6,46 @@ html {
   background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
-body {
-  display: flex;
+.prev {
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+}
+.prev #prev-logo {
+  width: 10px;
+}
+
+.prev:hover {
+  background-color: #80a9a0;
 }
 
 h2,
 h3 {
+  margin-block-start: 0em;
   text-align: center;
   color: #034236;
   font-weight: 600;
   font-size: 20px;
 }
 
+.conteiner {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+}
+
 .new-user {
   color: #034236;
   font-weight: 600;
   margin: 0vw auto;
-  width: 90%;
+  width: 100%;
   font-size: 20px;
-  padding: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #293b4b;
   display: flex;
   flex-direction: column;
@@ -51,7 +70,7 @@ h3 {
 }
 
 .person-groupe {
-  width: 90%;
+  width: 100%;
   font-size: 20px;
   padding: 10px 0;
   border-bottom: 1px solid #293b4b;
@@ -100,6 +119,12 @@ button {
 @media (max-width: 481px) {
   .person-groupe form {
     width: 30%;
+  }
+  .prev {
+    padding: 10px;
+  }
+  .prev #prev-logo {
+    width: 15px;
   }
   #addButton {
     width: 30%;

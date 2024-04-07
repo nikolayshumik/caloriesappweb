@@ -17,7 +17,24 @@ html {
     )
     no-repeat;
 }
-h3 {
+.prev{
+  position: absolute;
+  left: 5vw;
+  top: 5vw;
+  padding: 10px;
+  border-radius: $border_radius;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  #prev-logo{
+    width: 10px;
+  }
+}
+.prev:hover {
+  background-color: #80A9A0;
+}
+h3,h5 {
   margin-block-start: 3em;
   color: $green_color;
   text-transform: uppercase;
@@ -73,6 +90,10 @@ button {
   padding: 10px 20px;
   color: white;
   border-radius: 5px;
+  a{
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .form_toggle-radio {

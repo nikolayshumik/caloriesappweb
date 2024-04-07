@@ -14,9 +14,12 @@
 </head>
 <body>
 
-<a href="{% url 'calories_and_bjy' %}" class="general-button">На главную</a>
-<a href="{% url 'creategroup' %}" class="general-button">Назад в группы </a>
-<h2 style="  text-transform: uppercase;font-size: 25px">{{ group.name }}</h2>
+<a href="{% url 'creategroup' %}" class="prev">
+  <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
+</a>
+
+<div class="conteiner">
+<h2 style="text-transform: uppercase;font-size: 25px">{{ group.name }}</h2>
 
 <form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
     Добавить пользователя
@@ -43,7 +46,7 @@
     </form>
 </div>
 {% endfor %}
- 
+</div>
     
 
 

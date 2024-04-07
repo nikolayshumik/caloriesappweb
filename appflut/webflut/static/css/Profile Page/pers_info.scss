@@ -17,11 +17,27 @@ html {
     )
     no-repeat;
 }
+.prev {
+  //position: absolute;
+  //left: 5vw;
+  padding: 10px;
+  border-radius: $border_radius;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  #prev-logo {
+    width: 10px;
+  }
+}
+.prev:hover {
+  background-color: #80a9a0;
+}
 header {
   display: flex;
   flex-direction: row;
   width: 60%;
-  margin: 3vw auto;
+  margin: 0vw auto 3vw auto;
   align-items: center;
   justify-content: space-between;
 }
@@ -30,20 +46,10 @@ h3 {
   font-weight: 600;
   display: inline-block;
 }
-#logout {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: $blue_color;
-  border-radius: $border_radius;
-  color: white;
-  text-decoration: none;
-  transition: filter 0.3s ease;
-}
+
 #logoutImg {
   margin-left: 0.2vw;
-  width: 2vw;
+  width: 3vw;
 }
 form {
   margin: auto;
@@ -100,9 +106,7 @@ form {
 .general-button:hover {
   filter: brightness(0.6);
 }
-#logout:hover {
-  filter: brightness(0.6);
-}
+
 
 /*размеры планшетов*/
 @media (max-width: 769px) {

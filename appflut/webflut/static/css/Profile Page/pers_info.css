@@ -6,11 +6,27 @@ html {
   background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
 }
 
+.prev {
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.prev #prev-logo {
+  width: 10px;
+}
+
+.prev:hover {
+  background-color: #80a9a0;
+}
+
 header {
   display: flex;
   flex-direction: row;
   width: 60%;
-  margin: 3vw auto;
+  margin: 0vw auto 3vw auto;
   align-items: center;
   justify-content: space-between;
 }
@@ -21,21 +37,9 @@ h3 {
   display: inline-block;
 }
 
-#logout {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #2bbdb4;
-  border-radius: 10px;
-  color: white;
-  text-decoration: none;
-  transition: filter 0.3s ease;
-}
-
 #logoutImg {
   margin-left: 0.2vw;
-  width: 2vw;
+  width: 3vw;
 }
 
 form {
@@ -94,10 +98,6 @@ form {
 }
 
 .general-button:hover {
-  filter: brightness(0.6);
-}
-
-#logout:hover {
   filter: brightness(0.6);
 }
 

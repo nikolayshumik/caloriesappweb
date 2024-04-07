@@ -18,7 +18,9 @@
 </head>
 
 <body>
-
+  <a href="{% url 'step1' %}" class="prev">
+    <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
+</a>
   <h3>ваш пол</h3>
     <form method="post">
       {% csrf_token %}

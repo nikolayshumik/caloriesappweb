@@ -28,10 +28,10 @@ html {
 }
 .container {
   display: flex;
+  width: 70%;
   flex-direction: column;
-  margin: 2vw auto;
+  margin:5vw auto;
   border-radius: $border_radius;
-  padding: 2vw;
   .title {
     margin-bottom: 2vw;
     font-weight: 600;
@@ -124,10 +124,17 @@ footer {
 
 /*размеры телефонов*/
 @media (max-width: 481px) {
-
   .container {
     margin-top: 0;
     width: 90%;
+  }
+  .prev {
+    //position: absolute;
+    //left: 5vw;
+    padding: 10px;
+    #prev-logo {
+      width: 15px;
+    }
   }
 }
 /**/

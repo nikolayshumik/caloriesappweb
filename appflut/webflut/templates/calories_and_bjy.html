@@ -43,6 +43,11 @@
   </script>
 
   <body class="content">
+
+    <a href="{% url 'person_info' %}" id="link_pers">
+      <img src="{% static 'accets/pers_info.png' %}" class="img_link_pers"/>
+    </a>
+
     <form method="get">
       <div class="row-buttons">
         <button type="submit" name="move" value="prev"><</button>

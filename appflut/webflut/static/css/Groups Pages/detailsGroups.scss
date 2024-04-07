@@ -18,26 +18,44 @@ html {
     )
     no-repeat;
 }
-
-body {
-  display: flex;
+.prev {
+  //position: absolute;
+  //left: 5vw;
+  padding: 10px;
+  border-radius: $border_radius;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  #prev-logo {
+    width: 10px;
+  }
+}
+.prev:hover {
+  background-color: #80a9a0;
 }
 h2,
 h3 {
+  margin-block-start: 0em;
   text-align: center;
   color: $green_color;
   font-weight: 600;
   font-size: $font_20px;
 }
+.conteiner {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+}
 .new-user {
   color: $green_color;
   font-weight: 600;
   margin: 0vw auto;
-  width: 90%;
+  width: 100%;
   font-size: $font_20px;
-  padding: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid $gray_color;
   display: flex;
   flex-direction: column;
@@ -61,7 +79,7 @@ h3 {
   }
 }
 .person-groupe {
-  width: 90%;
+  width: 100%;
   font-size: $font_20px;
   padding: 10px 0;
   border-bottom: 1px solid #293b4b;
@@ -84,7 +102,6 @@ h3 {
     transition: color 0.3s ease-in-out;
   }
 }
-
 
 button {
   width: 100%;
@@ -113,6 +130,14 @@ button {
   .person-groupe {
     form {
       width: 30%;
+    }
+  }
+  .prev {
+    //position: absolute;
+    //left: 5vw;
+    padding: 10px;
+    #prev-logo {
+      width: 15px;
     }
   }
   #addButton {

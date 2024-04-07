@@ -15,7 +15,9 @@
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
-
+  <a href="{% url 'register' %}" class="prev">
+    <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
+</a>
   <h3>давайте познакомимся</h3>
   <form method="POST" action="{% url 'step1' %}">
     {% csrf_token %}

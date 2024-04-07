@@ -14,6 +14,19 @@ h3 {
   text-align: center;
 }
 
+#link_pers {
+  position: absolute;
+  right: 16vw;
+  top: 2vw;
+  padding: 7px;
+  background-color: #2bbdb4;
+  border-radius: 15px;
+}
+
+.img_link_pers {
+  width: 4vw;
+}
+
 .row-buttons {
   margin-top: 2vw;
   display: flex;
@@ -112,6 +125,7 @@ h3 {
   margin: 1vw auto 0 auto;
   padding: 1vw 2vw;
   text-decoration: none;
+  transition: box-shadow 0.3s ease;
 }
 .eatings .summ_kkal {
   margin-right: auto;
@@ -136,6 +150,10 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.eatings:hover {
+  box-shadow: 2px 2px #80A9A0;
 }
 
 #water_div {

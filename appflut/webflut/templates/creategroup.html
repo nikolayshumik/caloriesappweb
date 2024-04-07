@@ -14,7 +14,6 @@
     {% progressive_web_app_meta %}
     </head>
 <body>
-<a href="{% url 'calories_and_bjy' %}" class="general-button">На главную</a>
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}

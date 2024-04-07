@@ -20,8 +20,8 @@
 <body>
     <h3>вход в систему</h3>
     {% if user.is_authenticated %}
-    <text>Вы уже вошли в систему как {{ user.username }}</text>
-    <a href="{% url 'logout' %}" class="next" style="text-decoration: none;">Выйти</a>
+    <h5 style="font-size: 17px;text-transform: none;">Вы уже вошли в систему как {{ user.username }}</h5>
+    <button style="margin: 5vw auto 5vw auto; padding: 10px 15px;"><a href="{% url 'logout' %}">Выйти</a></button>
     {% else %}
     <form method="post" action="{% url 'login' %}">
        {% csrf_token %}

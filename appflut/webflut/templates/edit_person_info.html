@@ -14,11 +14,13 @@
 </head>
 
 <body>
+    <a href="{% url 'calories_and_bjy' %}" class="prev">
+        <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
+      </a>
 
     <header>
     <h3>Привет, {{ request.user.username }}</h3>
-    <a href="{% url 'logout' %}" id="logout">
-        Выйти
+    <a href="{% url 'logout' %}">
         <img src="{% static 'accets/logout.svg' %}" id="logoutImg"/>
     </a>
     </header>
