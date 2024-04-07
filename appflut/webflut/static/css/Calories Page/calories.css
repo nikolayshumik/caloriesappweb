@@ -34,15 +34,18 @@ h3 {
   justify-content: center;
   font-size: 17px;
 }
-.row-buttons button {
-  font-size: 22px;
-  color: white;
-  background-color: #008187;
+.row-buttons .arrow-logo {
+  transition: background-color 0.3s ease;
+  background-color: transparent;
   border: 0px;
   text-align: center;
-  padding: 0px 5px;
+  padding: 0px 15px;
   text-decoration: none;
   border-radius: 10px;
+  cursor: pointer;
+}
+.row-buttons .arrow-logo:hover {
+  background-color: #80a9a0;
 }
 
 .block {
@@ -61,6 +64,7 @@ h3 {
   padding-top: 10px;
 }
 .block .container .nutrition-div {
+  overflow: hidden;
   text-transform: none;
   border-radius: 5px;
   box-sizing: border-box;
@@ -153,7 +157,7 @@ h3 {
 }
 
 .eatings:hover {
-  box-shadow: 2px 2px #80A9A0;
+  box-shadow: 2px 2px #80a9a0;
 }
 
 #water_div {

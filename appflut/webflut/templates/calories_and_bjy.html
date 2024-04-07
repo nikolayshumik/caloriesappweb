@@ -50,10 +50,14 @@
 
     <form method="get">
       <div class="row-buttons">
-        <button type="submit" name="move" value="prev"><</button>
+        <button type="submit" name="move" value="prev" class="arrow-logo">
+          <img src="{% static 'accets/prev-arrow.svg' %}"/>
+        </button>
         {{ form.date }}
         <div style="display: inline-block">{{ formatted_date }}</div>
-        <button type="submit" name="move" value="next">></button>
+        <button type="submit" name="move" value="next" class="arrow-logo">
+          <img src="{% static 'accets/prev-arrow.svg' %}"style="transform: scaleX(-1);"/>
+        </button>
       </div>
     </form>
     <div class="block">
