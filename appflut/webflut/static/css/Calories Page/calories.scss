@@ -25,7 +25,7 @@ h3 {
   font-weight: 600;
   text-align: center;
 }
-#link_pers{
+#link_pers {
   position: absolute;
   right: 16vw;
   top: 2vw;
@@ -33,7 +33,7 @@ h3 {
   background-color: $blue_color;
   border-radius: 15px;
 }
-.img_link_pers{
+.img_link_pers {
   width: 4vw;
 }
 .row-buttons {
@@ -42,15 +42,18 @@ h3 {
   flex-direction: row;
   justify-content: center;
   font-size: $font_17px;
-  button {
-    font-size: 22px;
-    color: $main_backgrounde;
-    background-color: #008187;
+  .arrow-logo {
+    transition: background-color 0.3s ease;
+    background-color: transparent;
     border: 0px;
     text-align: center;
-    padding: 0px 5px;
+    padding: 0px 15px;
     text-decoration: none;
     border-radius: 10px;
+    cursor: pointer;
+  }
+  .arrow-logo:hover {
+    background-color: #80a9a0;
   }
 }
 .block {
@@ -69,6 +72,7 @@ h3 {
     padding-top: 10px;
 
     .nutrition-div {
+      overflow: hidden;
       text-transform: none;
       border-radius: $border_radius;
       box-sizing: border-box;
@@ -157,8 +161,8 @@ h3 {
     }
   }
 }
-.eatings:hover{
-box-shadow: 2px 2px #80A9A0;
+.eatings:hover {
+  box-shadow: 2px 2px #80a9a0;
 }
 #water_div {
   width: 100%;
