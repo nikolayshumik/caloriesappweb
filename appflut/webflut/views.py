@@ -279,8 +279,19 @@ def calories_and_bjy(request):
         activities_and_calories.append((activity, burned_calories))
     for activity_child in activity_prod_child:
         if user_age<18:
+            if user_age >= 16 and user_age <= 18:
+                calories_field = activity_child.product.code_16_18
+            elif user_age >= 13 and user_age <= 15:
+                calories_field = activity_child.product.code_13_15
+            elif user_age >= 10 and user_age <= 12:
+                calories_field = activity_child.product.code_10_12
+            elif user_age >= 6 and user_age <= 9:
+                calories_field = activity_child.product.code_6_9
+            else:
+
+                calories_field = activity_child.product.code_16_18
             time_child = activity_child.time/60
-            burned_calories_child = round(float(activity_child.product.code_16_18) * weight * time_child, 1)
+            burned_calories_child = round(float(calories_field) * weight * time_child, 1)
             acttotal_calories_child += round(burned_calories_child, 1)  # добавить к общему количеству
             activities_and_calories_child.append((activity_child, burned_calories_child))
 
