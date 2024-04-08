@@ -35,23 +35,42 @@ class Personal_Inform(models.Model):
     class Meta:
         verbose_name = 'Личная Информация'
         verbose_name_plural = 'Личная Информация'
+
+    def clean(self):
+        super().clean()
+        if self.height < 1 or self.height > 240:
+            raise ValidationError('Рост должен быть числом от 1 до 240')
+        if self.weight < 1 or self.weight > 240:
+            raise ValidationError('Вес должен быть числом от 1 до 240')
+        if self.date_of_birth < 1 or self.date_of_birth > 120:
+            raise ValidationError('Возраст должен быть числом от 1 до 120')
     def __str__(self):
         return self.user.username
 
 
 
 class Step1Model(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
     date_of_birth = models.FloatField()
 
 
 class StepTestModel(models.Model):
     is_male = models.BooleanField(verbose_name='Мужчина')
     is_female = models.BooleanField(verbose_name='Женщина')
+from django.core.exceptions import ValidationError
+
+def validate_height(value):
+    if not 1 <= value <= 240:
+        raise ValidationError('Рост должен быть в промежутке от 1 до 240')
+
+def validate_weight(value):
+    if not 1 <= value <= 200:
+        raise ValidationError('Вес должен быть в промежутке от 1 до 240')
+
 class Step3Model(models.Model):
-    height = models.IntegerField(default='')
-    weight = models.IntegerField(default='')
+    height = models.IntegerField(default='', validators=[validate_height])
+    weight = models.IntegerField(default='', validators=[validate_weight])
 
 class Step4Model(models.Model):
     ACTIVE_CHOICES = [

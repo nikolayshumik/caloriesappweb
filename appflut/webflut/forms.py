@@ -10,7 +10,7 @@ class DateForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
-    username = forms.CharField(label='Логин', max_length=None)
+    username = forms.CharField(label='Логин', max_length=30)
     user_type = forms.ChoiceField(choices=(('user', 'Пользователь'), ('trainer', 'Тренер')),
                                   widget=forms.RadioSelect(attrs={'class': 'form_toggle-radio'}),
                                   label='Тип')
@@ -40,6 +40,24 @@ class PersonalInformForm(forms.ModelForm):
         model = Personal_Inform
         fields = ['weight', 'height', 'sex', 'date_of_birth', 'goals', 'active', ]
 
+    def clean_weight(self):
+        weight = self.cleaned_data.get('weight')
+        if weight < 1 or weight > 240:
+            raise forms.ValidationError('Вес должен быть числом от 1 до 240')
+        return weight
+
+    def clean_height(self):
+        height = self.cleaned_data.get('height')
+        if height < 1 or height > 240:
+            raise forms.ValidationError('Рост должен быть числом от 1 до 240')
+        return height
+
+    def clean_date_of_birth(self):
+        date_of_birth = self.cleaned_data.get('date_of_birth')
+        if date_of_birth <= 0:
+            raise forms.ValidationError('Возраст должен быть положительным числом')
+        return date_of_birth
+
 
 class Step1Form(forms.ModelForm):
     class Meta:
@@ -48,7 +66,7 @@ class Step1Form(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Фамилию'}),
-            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Полных лет'}),
+            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Число полных лет'}),
         }
         labels = {
             'first_name': '',
