@@ -12,82 +12,60 @@
 
 <body>
 
-    <form method="get">
-        {{ form }}
-        <div class="row-buttons">
-            <button type="submit" name="move" value="prev"><</button>
-            <button type="submit" name="move" value="next">></button>
-        </div>
+ <form method="get">
+      <div class="row-buttons">
+        <button type="submit" name="move" value="prev" class="arrow-logo">
+          <img src="{% static 'accets/prev-arrow.svg' %}"/>
+        </button>
+        {{ form.date }}
+        <div style="display: inline-block">{{ formatted_date }}</div>
+        <button type="submit" name="move" value="next" class="arrow-logo">
+          <img src="{% static 'accets/prev-arrow.svg' %}"style="transform: scaleX(-1);"/>
+        </button>
+      </div>
     </form>
     <h2>Информация о пользователе</h2>
     <h2 style="margin-block-start: 0em;
-    margin-block-end: 0.4em;">{{ user.username }}</h2>
+    margin-block-end: 0.4em;">{{ personal_info.first_name }}</h2>
+    <h2 style="margin-block-start: 0em;
+    margin-block-end: 0.4em;">{{ personal_info.last_name }}</h2>
+     <h2 style="margin-block-start: 0em;
+    margin-block-end: 0.4em;">{{ personal_info.weight }}</h2>
+     <h2 style="margin-block-start: 0em;
+    margin-block-end: 0.4em;">{{ personal_info.height }}</h2>
+    <h2 style="margin-block-start: 0em;
+
 
 
     <!-- Дополнительная информация о пользователе -->
     <div class="block">Калории
         <div class="container">
             <div class="nutrition-div">Потреблено
-                <p>{{ total_calories }}</p>
+<!--                Представь что есть данные -->
+                <p>1000</p>
             </div>
             <div class="nutrition-div">Норма
-                <p>{{ male }}</p>
-            </div>
-            <div class="nutrition-div">Сожжено
-                <p>{{ acttotal_calories }}</p>
-            </div>
+            <p>{{ male }}</p>
+        </div>
+            <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
+            {% if user_age < 18 %}
+         <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
+        {% else %}
+         <p>{{ acttotal_calories|floatformat:"1" }}</p>
+        {% endif %}
+
+        </div>
         </div>
     </div>
 
-    <div class="block">БЖУ
-        <div class="container">
-            <div class="nutrition-div">Белки
-                <p style="color: #ca517a;">{{ total_proteins }}</p>
-            </div>
-            <div class="nutrition-div">Жиры
-                <p style="color: #fbb20d;">{{ total_fats }}</p>
-            </div>
-            <div class="nutrition-div">Углеводы
-                <p style="color: #4887ba">{{ total_carbohydrates }}</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="content" style="margin-top: 20px;">
-        <div class="product-eatings">
-            {% for product in bproducts %}
-            <div class="product-item">
-                <div class="title">
-                    <text style="text-decoration: dotted;">{{ product.product.name }}
-                        ({{ product.weight }} г.)</text>
-                    <text>{{ product.product.calories_in }} ккал</text>
-                </div>
-                <div class="product-row">
-                    <li style="color: #ca517a;">{{ product.product.proteins }} г.</li>
-                    <li style="color: #fbb20d;">{{ product.product.fats }} г.</li>
-                    <li style="color: #4887ba;">{{ product.product.carbohydrates }} г.</li>
-                </div>
 
-                <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="meal_type" value="breakfast">
-                    <input type="submit" value="Удалить">
-                </form>
-            </div>
-            {% empty %}
-            <p>Ничего не найдено</p>
-            {% endfor %}
-        </div>
-
-    </div>
-
-    <h1>{{weight}}</h1>
-
-<h1>Диаграмма потребленных калорий за неделю </h1>
-<img src="/static/phototest/{{ user.username }}/chart_1.png" alt="Calories Chart">
 
 <h1>Диаграмма потраченных калорий за неделю</h1>
 <img src="/static/phototest/{{ user.username }}/chart_2.png" alt="Calories Chart">
+
+
+
 
 
     {% include 'footer.html' %}

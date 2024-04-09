@@ -18,30 +18,53 @@
   <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
 </a>
 
+
+
+<form method="GET" class="user-search">
+     {% csrf_token %}
+  <input type="text" name="q" placeholder="Поиск по имени пользователя">
+  <button type="submit" id="searchButton">Искать</button>
+</form>
+
+{% if pers_info_search %}
+  <h3>Результаты поиска:</h3>
+  <ul>
+    {% for usersser in pers_info_search %}
+      <form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
+            {% csrf_token %}
+      <li><a href="{% url 'userinfo' user_id=usersser.user.id %}">{{ usersser.first_name }} {{ usersser.last_name }}</a></li>
+           <input type="hidden" name="username" value="{{ usersser.user.username }}">
+      <button type="submit" id="addButton">Добавить</button>
+        </form>
+    {% empty %}
+      <li>Нет результатов</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Нет такого пользвотеля</p>
+{% endif %}
+
+
 <div class="conteiner">
 <h2 style="text-transform: uppercase;font-size: 25px">{{ group.name }}</h2>
 
-<form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
-    Добавить пользователя
-    <div class="row">
-    {% csrf_token %}
-    <select name="username">
-      {% for user in users %}
-      <option value="{{ user.username }}">{{ user.username }}</option>
-      {% endfor %}
-    </select>
-    <button type="submit" id="addButton">Добавить</button>
-    </div>
-  </form>
 <h3>Пользователи в группе:</h3>
 
 
 
 {% for user in group.users.all %}
 <div class="person-groupe">
-  <a href="{% url 'userinfo' user_id=user.id %}">{{ user.username }}</a>
+  <a href="{% url 'userinfo' user_id=user.id %}">
+      {% for inform in pers_info %}
+    {% if inform.user.id == user.id %}
+    {{ inform.first_name }}
+    {{ inform.last_name }}
+    {% endif %}
+    {% endfor %}</a>
+
     <form action="{% url 'removeuser' group_id=group.id %}" method="post">
         {% csrf_token %}
+         <input type="hidden" name="username" value="{{ user.username }}">
         <button type="submit">Удалить</button>
     </form>
 </div>

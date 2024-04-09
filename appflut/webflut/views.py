@@ -470,12 +470,20 @@ def creategroup(request):
 def groupdetail(request, group_id):
     group = Group.objects.get(id=group_id)
     users = User.objects.all()
-    return render(request, 'groupdetail.html', {'group': group, 'users': users})
+    pers_info = Personal_Inform.objects.all()
+
+
+    query = request.GET.get('q')
+    usersserch = User.objects.filter(username__icontains=query) if query else User.objects.none()
+    pers_info_search = pers_info.filter(first_name__icontains=query) if query else Personal_Inform.objects.none()
+
+    return render(request, 'groupdetail.html', {'group': group, 'users': users, 'usersserch': usersserch, 'pers_info_search': pers_info_search, 'pers_info': pers_info})
 
 
 def adduser(request, group_id):
     group = Group.objects.get(id=group_id)
     users = User.objects.all()
+
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -500,7 +508,7 @@ def removeuser(request, group_id):
     return redirect('groupdetail', group_id=group.id)
 
 @login_required
-def userinfo(request, user_id):
+def userinfo(request, user_id: int):
     if 'date' in request.GET:
         selected_date = datetime.strptime(request.GET['date'], '%Y-%m-%d').date()
     else:
@@ -511,7 +519,12 @@ def userinfo(request, user_id):
             selected_date += timedelta(days=1)
         elif request.GET['move'] == 'prev':
             selected_date -= timedelta(days=1)
-    form = DateForm(initial={"date": selected_date})
+
+    form = DateForm(initial={"date": selected_date.strftime('%Y-%m-%d')})
+    formatted_date = format_datetime(selected_date, format='EEEE, d MMMM ', locale='ru')
+    formatted_date = formatted_date.capitalize()
+
+    request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
 
     selected_date += timedelta(days=1)
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
@@ -521,15 +534,38 @@ def userinfo(request, user_id):
     personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
     weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
-    # Остальной код для получения данных пользователя
+    activity_prod_child = Activities_Add_Children.objects.filter(user=user, date__date=selected_date)
 
     acttotal_calories = 0  # общее количество сожженных калорий
+    acttotal_calories_child = 0  # общее количество сожженных калорий
     activities_and_calories = []
+    activities_and_calories_child = []
+
+    user = request.user
+    user_age = Personal_Inform.objects.get(user=user).date_of_birth
 
     for activity in activity_prod:
-        burned_calories = round(activity.product.met * weight / activity.time, 1)
-        acttotal_calories += burned_calories  # добавить к общему количеству
+        time = activity.time / 60
+        burned_calories = round(activity.product.met * weight * time, 1)
+        acttotal_calories += round(burned_calories, 1)  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
+    for activity_child in activity_prod_child:
+        if user_age < 18:
+            if user_age >= 16 and user_age <= 18:
+                calories_field = activity_child.product.code_16_18
+            elif user_age >= 13 and user_age <= 15:
+                calories_field = activity_child.product.code_13_15
+            elif user_age >= 10 and user_age <= 12:
+                calories_field = activity_child.product.code_10_12
+            elif user_age >= 6 and user_age <= 9:
+                calories_field = activity_child.product.code_6_9
+            else:
+
+                calories_field = activity_child.product.code_16_18
+            time_child = activity_child.time / 60
+            burned_calories_child = round(float(calories_field) * weight * time_child, 1)
+            acttotal_calories_child += round(burned_calories_child, 1)  # добавить к общему количеству
+            activities_and_calories_child.append((activity_child, burned_calories_child))
 
     inf = Personal_Inform.objects.get(user=user)
     if inf.sex == 'M':
@@ -543,16 +579,19 @@ def userinfo(request, user_id):
         date_of_birth2 = inf.date_of_birth
         male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
 
-    # total_calories_activities = 0
-    # total_calories_activities += acalories_in
+
     context = {
+        'activity_prod': activity_prod,
+        'activity_prod_child': activity_prod_child,
         'user': user,
         'form': form,
-        'activity_prod': activity_prod,
+        'formatted_date': formatted_date,
         'acttotal_calories': acttotal_calories,
+        'acttotal_calories_child': acttotal_calories_child,
         'activities_and_calories': activities_and_calories,
+        'activities_and_calories_child': activities_and_calories_child,
         'male': male,
-        'weight': weight,
+        'personal_info': personal_info,
 
     }
 
