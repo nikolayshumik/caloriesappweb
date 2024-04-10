@@ -18,30 +18,36 @@
   <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
 </a>
 
-
-
-<form method="GET" class="user-search">
-     {% csrf_token %}
-  <input type="text" name="q" placeholder="Поиск по имени пользователя">
-  <button type="submit" id="searchButton">Искать</button>
+<!--Поиск пользователей-->
+<form class="search" method="GET">
+  {% csrf_token %}
+  <div class="input-wrapper">
+    <input type="text" name="q" placeholder="Поиск по имени пользователя">
+    <button type="submit" class="icon-wrapper" id="searchButton">
+      <img src="{% static 'accets/search.svg' %}" alt="Поиск" />
+    </button>
+  </div>
 </form>
+<!--//Поиск пользователей-->
+
 
 {% if pers_info_search %}
   <h3>Результаты поиска:</h3>
-  <ul>
+
     {% for usersser in pers_info_search %}
-      <form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
-            {% csrf_token %}
-      <li><a href="{% url 'userinfo' user_id=usersser.user.id %}">{{ usersser.first_name }} {{ usersser.last_name }}</a></li>
-           <input type="hidden" name="username" value="{{ usersser.user.username }}">
-      <button type="submit" id="addButton">Добавить</button>
-        </form>
+      <form action="{% url 'adduser' group_id=group.id %}" method="post" class="person-groupe">
+        {% csrf_token %}
+          <a href="{% url 'userinfo' user_id=usersser.user.id %}">
+            {{ usersser.first_name }} {{ usersser.last_name }}</a>
+           <input type="hidden" name="username" value="{{ usersser.user.username }}"/>
+          <button type="submit" id="addButton">Добавить</button>
+      </form>
     {% empty %}
       <li>Нет результатов</li>
     {% endfor %}
-  </ul>
+
 {% else %}
-  <p>Нет такого пользвотеля</p>
+  <p style="text-align: center;">Пользователь не найден</p>
 {% endif %}
 
 

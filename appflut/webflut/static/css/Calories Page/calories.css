@@ -1,5 +1,6 @@
 @charset "UTF-8";
 html {
+  height: 100%;
   font-family: "Inter", sans-serif;
   background: rgb(207, 255, 245);
   background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
@@ -224,6 +225,10 @@ h3 {
 
 .clickable {
   cursor: pointer;
+}
+
+footer {
+  position: fixed !important;
 }
 
 /*размеры компьютеров*/
