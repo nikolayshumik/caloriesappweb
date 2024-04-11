@@ -20,8 +20,10 @@
   <a href="{% url 'calories_and_bjy' %}" class="prev">
     <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
   </a>
-  {% for category in categories %}
-  <a href="{% url 'category_items' category.category %}" class="category-item">{{ category.category }}</a>
-  {% endfor %}
+  <div class="category-list">
+    {% for category in categories %}
+     <a href="{% url 'category_items' category.category %}" class="category-item">{{ category.category }}</a>
+    {% endfor %}
+  </div>
 </body>
 </html>
