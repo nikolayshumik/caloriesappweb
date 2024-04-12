@@ -3,7 +3,17 @@ html {
   height: 100%;
   font-family: "Inter", sans-serif;
   background: rgb(255, 237, 210);
-  background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%);
+  background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%), no-repeat;
+}
+
+h2, h3, h4 {
+  text-align: center;
+}
+
+.diagram_calories {
+  width: 90%;
+  display: block; /* Устанавливаем изображение как блочный элемент */
+  margin: 1vw auto;
 }
 
 h3 {
@@ -12,7 +22,6 @@ h3 {
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 600;
-  text-align: center;
 }
 
 #link_pers {
