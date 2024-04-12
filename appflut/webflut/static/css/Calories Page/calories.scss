@@ -10,13 +10,14 @@ $border_radius: 5px;
 html {
   height: 100%;
   font-family: "Inter", sans-serif;
-  background: rgb(207, 255, 245);
+  background: rgb(255, 237, 210);
   background: linear-gradient(
-      180deg,
-      rgba(207, 255, 245, 1) 0%,
-      rgba(241, 255, 252, 1) 100%
-    )
-    no-repeat;
+    0deg,
+    rgba(255, 237, 210, 0.8) 0%,
+    rgba(255, 241, 231, 0.8) 23%,
+    rgba(232, 255, 249, 0.8) 67%,
+    rgba(197, 219, 255, 0.8) 100%
+  );
 }
 h3 {
   margin-block-start: 3em;
@@ -47,7 +48,7 @@ h3 {
     transition: background-color 0.3s ease;
     background-color: transparent;
     border: 0px;
-    z-index: -1;
+    z-index: 0;
     text-align: center;
     padding: 0px 15px;
     text-decoration: none;
@@ -235,40 +236,45 @@ h3 {
 .clickable {
   cursor: pointer;
 }
-footer{
+footer {
   position: fixed !important;
 }
 ///бургер меню
-/* стилизуем кнопку */
 .menu__btn {
-
   width: 50px;
-
 }
-/* добавляем "гамбургер" */
 .menu__btn > span,
 .menu__btn > span::before,
 .menu__btn > span::after {
   display: block;
   position: absolute;
+  right: 5vw;
+  top: 5vw;
   width: 3%;
   height: 2px;
+  z-index: 2;
   background-color: #616161;
 }
+
 .menu__btn > span::before {
   content: "";
   top: -8px;
+  right: 0vw;
   width: 100%;
+  height: 3px;
 }
 .menu__btn > span::after {
   content: "";
+  right: 0vw;
   width: 100%;
   top: 8px;
+  height: 3px;
 }
-/* контейнер меню */
 .menu__box {
+  padding-top: 20%;
+  text-align: left;
   display: block;
-  background-color: rgb(178, 240, 255);
+  background-color: #cff2f0;
   position: fixed;
   visibility: hidden;
   top: 0;
@@ -276,16 +282,18 @@ footer{
   width: 100%;
   height: 100%;
   margin: 0;
+  z-index: 1;
   list-style: none;
   text-align: center;
   background-image: url("./assets/BG.jpg");
   background-size: cover;
   padding-inline-start: 0px;
-
 }
-
-/* элементы меню */
 .menu__item {
+  padding: 1vw 2vw;
+  width: 80%;
+  margin: auto;
+  align-items: center;
   background-color: white;
   border-radius: $border_radius;
   border: 1px solid $blue_color;
@@ -298,9 +306,9 @@ footer{
   display: flex;
   justify-content: space-between;
   text-decoration: none;
-  .menu_img{
-    width: 7vw;
-    height: 7vw;
+  .menu_img {
+    width: 4vw;
+    height: 4vw;
   }
 }
 .menu__item:hover {
@@ -319,10 +327,10 @@ footer{
 }
 #menu__toggle:checked ~ .menu__box {
   visibility: visible;
-  right:  0;
+  right: 0;
 }
 #menu__toggle {
-  display: none;
+ display: none;
 }
 .menu__btn > span,
 .menu__btn > span::before,
@@ -336,7 +344,7 @@ footer{
   transition-duration: 0.25s;
 }
 ////
-/// 
+///
 /*размеры компьютеров*/
 @media (max-width: 1025px) {
   #delete_img {
@@ -363,25 +371,47 @@ footer{
 /*размеры телефонов*/
 @media (max-width: 481px) {
   .menu__btn {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 5vw;
     right: 5vw;
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 1;
+
+    span {
+      right: -1vw;
+      width: 100%;
+      top: 3vw;
+    }
+    span::before {
+      content: "";
+      top: -8px;
+      right: 0vw;
+      width: 100%;
+      height: 2px;
+    }
+    span::after {
+      content: "";
+      right: 0vw;
+      width: 100%;
+      top: 8px;
+      height: 2px;
+    }
   }
   .menu__item {
     padding: 2vw 4vw;
     width: 80%;
     margin: auto;
     margin-bottom: 3vw;
+    .menu_img {
+      width: 7vw;
+      height: 7vw;
+    }
   }
-  .menu__box {
-    text-align: left;
-    padding-top: 20%;
+  .block{
+    margin: 5vw auto;
   }
   .block,
   .eatings {

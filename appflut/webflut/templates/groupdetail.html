@@ -18,45 +18,48 @@
   <img src="{% static 'accets/prev-arrow.svg' %}" id="prev-logo" />
 </a>
 
-<!--Поиск пользователей-->
-<form class="search" method="GET">
-  {% csrf_token %}
-  <div class="input-wrapper">
-    <input type="text" name="q" placeholder="Поиск по имени пользователя">
-    <button type="submit" class="icon-wrapper" id="searchButton">
-      <img src="{% static 'accets/search.svg' %}" alt="Поиск" />
-    </button>
-  </div>
-</form>
-<!--//Поиск пользователей-->
 
+<!-- Модальное окно -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Поиск пользователей</h2>
+    <form class="search" method="GET">
+      {% csrf_token %}
+      <div class="input-wrapper">
+        <input type="text" name="q" placeholder="Поиск по имени пользователя">
+        <button type="submit" class="icon-wrapper" id="searchButton">
+          <img src="{% static 'accets/search.svg' %}" alt="Поиск" />
+        </button>
+      </div>
+    </form>
 
-{% if pers_info_search %}
-  <h3>Результаты поиска:</h3>
-
-    {% for usersser in pers_info_search %}
-      <form action="{% url 'adduser' group_id=group.id %}" method="post" class="person-groupe">
-        {% csrf_token %}
+    {% if pers_info_search %}
+      <p>Результаты поиска:</p>
+      {% for usersser in pers_info_search %}
+        <form action="{% url 'adduser' group_id=group.id %}" method="post" class="new-user">
+          {% csrf_token %}
           <a href="{% url 'userinfo' user_id=usersser.user.id %}">
             {{ usersser.first_name }} {{ usersser.last_name }}</a>
-           <input type="hidden" name="username" value="{{ usersser.user.username }}"/>
-          <button type="submit" id="addButton">Добавить</button>
-      </form>
-    {% empty %}
-      <li>Нет результатов</li>
-    {% endfor %}
-
-{% else %}
-  <p style="text-align: center;">Пользователь не найден</p>
-{% endif %}
-
+          <input type="hidden" name="username" value="{{ usersser.user.username }}" />
+          <button type="submit" id="addButton" class="modal-add-button">Добавить</button>
+        </form>
+      {% empty %}
+        <p>Нет результатов</p>
+      {% endfor %}
+    {% else %}
+      <p>Пользователь не найден</p>
+    {% endif %}
+  </div>
+</div>
 
 <div class="conteiner">
 <h2 style="text-transform: uppercase;font-size: 25px">{{ group.name }}</h2>
 
-<h3>Пользователи в группе:</h3>
-
-
+<div class="groupe-row">
+  <h3>Пользователи в группе:</h3>
+  <button id="addNewButton">Добавить</button>
+</div>
 
 {% for user in group.users.all %}
 <div class="person-groupe">
@@ -76,8 +79,29 @@
 </div>
 {% endfor %}
 </div>
-    
 
+<script>
+  // Открытие модального окна при нажатии на кнопку "Добавить"
+  const addButton = document.getElementById("addNewButton");
+  const modal = document.getElementById("modal");
+  const closeModal = document.getElementsByClassName("close")[0];
+
+  addButton.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // Закрытие модального окна при нажатии на кнопку "Закрыть"
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Закрытие модального окна при клике вне окна
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>    
 
 {% include 'footer.html' %}
 </body>
