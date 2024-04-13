@@ -64,11 +64,7 @@
     <!--Поиск продуктов-->
     <form action="" class="search" method="GET">
       <div class="input-wrapper">
-        <input
-          type="text"
-          id="search-input"
-          name="search"
-          placeholder="Поиск..."
+        <input type="text" id="search-input" name="search" placeholder="Поиск..."
           value="{{ search_query|default_if_none:'' }}"
         />
         <div class="icon-wrapper">

@@ -42,8 +42,14 @@
   list-style-position: inside;
 }
 
-.category-item {
-  width: 50%;
+.category-list {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.category-list .category-item {
+  width: 100%;
+  box-sizing: border-box;
   text-decoration: none;
   color: #293b4b;
   font-size: 20px;
@@ -78,6 +84,7 @@
   cursor: pointer;
 }
 .modal .modal-content {
+  box-shadow: 5px 5px 10px rgba(109, 130, 127, 0.5333333333);
   padding: 2vw;
   background-color: #c6efed;
   display: flex;
@@ -121,6 +128,15 @@
 /**/
 /*размеры телефонов*/
 @media (max-width: 481px) {
+  .category-list {
+    margin-top: 10vw;
+    width: 100%;
+  }
+  .category-list .category-item {
+    margin-bottom: 2vw;
+    padding: 10px;
+    font-size: 23px;
+  }
   .modal .close {
     right: 2vw;
     font-size: 30px;
@@ -131,12 +147,6 @@
   .modal .modal-content form input {
     padding: 1vw;
     font-size: 20px;
-  }
-  .category-item {
-    width: 95%;
-    margin: 1vw auto;
-    padding: 10px;
-    font-size: 23px;
   }
 }
 /**//*# sourceMappingURL=activities.css.map */

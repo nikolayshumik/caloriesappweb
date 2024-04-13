@@ -1,8 +1,19 @@
 @charset "UTF-8";
 html {
+  height: 100%;
   font-family: "Inter", sans-serif;
-  background: rgb(207, 255, 245);
-  background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
+  background: rgb(255, 237, 210);
+  background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%), no-repeat;
+}
+
+h2, h3, h4 {
+  text-align: center;
+}
+
+.diagram_calories {
+  width: 90%;
+  display: block; /* Устанавливаем изображение как блочный элемент */
+  margin: 1vw auto;
 }
 
 h3 {
@@ -11,7 +22,6 @@ h3 {
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 600;
-  text-align: center;
 }
 
 #link_pers {
@@ -38,6 +48,7 @@ h3 {
   transition: background-color 0.3s ease;
   background-color: transparent;
   border: 0px;
+  z-index: 0;
   text-align: center;
   padding: 0px 15px;
   text-decoration: none;
@@ -226,6 +237,127 @@ h3 {
   cursor: pointer;
 }
 
+footer {
+  position: fixed !important;
+}
+
+.menu__btn {
+  width: 50px;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  right: 5vw;
+  top: 5vw;
+  width: 3%;
+  height: 2px;
+  z-index: 2;
+  background-color: #616161;
+}
+
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+  right: 0vw;
+  width: 100%;
+  height: 3px;
+}
+
+.menu__btn > span::after {
+  content: "";
+  right: 0vw;
+  width: 100%;
+  top: 8px;
+  height: 3px;
+}
+
+.menu__box {
+  padding-top: 20%;
+  text-align: left;
+  display: block;
+  background-color: #cff2f0;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 1;
+  list-style: none;
+  text-align: center;
+  background-image: url("./assets/BG.jpg");
+  background-size: cover;
+  padding-inline-start: 0px;
+}
+
+.menu__item {
+  padding: 1vw 2vw;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #2bbdb4;
+  color: #034236;
+  margin-bottom: 2vw;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  font-weight: 800;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.menu__item .menu_img {
+  width: 4vw;
+  height: 4vw;
+}
+
+.menu__item:hover {
+  filter: brightness(0.6);
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+#menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  right: 0;
+}
+
+#menu__toggle {
+  display: none;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: 0.25s;
+}
+
+.menu__box {
+  transition-duration: 0.25s;
+}
+
+.menu__item {
+  transition-duration: 0.25s;
+}
+
 /*размеры компьютеров*/
 @media (max-width: 1025px) {
   #delete_img {
@@ -235,6 +367,9 @@ h3 {
 /**/
 /*размеры планшетов*/
 @media (max-width: 769px) {
+  .header-menu {
+    width: 50%;
+  }
   .block,
   .eatings {
     width: 85%;
@@ -246,6 +381,48 @@ h3 {
 /**/
 /*размеры телефонов*/
 @media (max-width: 481px) {
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 5vw;
+    right: 5vw;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+  }
+  .menu__btn span {
+    right: -1vw;
+    width: 100%;
+    top: 3vw;
+  }
+  .menu__btn span::before {
+    content: "";
+    top: -8px;
+    right: 0vw;
+    width: 100%;
+    height: 2px;
+  }
+  .menu__btn span::after {
+    content: "";
+    right: 0vw;
+    width: 100%;
+    top: 8px;
+    height: 2px;
+  }
+  .menu__item {
+    padding: 2vw 4vw;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 3vw;
+  }
+  .menu__item .menu_img {
+    width: 7vw;
+    height: 7vw;
+  }
+  .block {
+    margin: 5vw auto;
+  }
   .block,
   .eatings {
     width: 100%;

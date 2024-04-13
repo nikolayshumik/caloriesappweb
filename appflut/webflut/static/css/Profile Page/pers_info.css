@@ -2,8 +2,8 @@
 html {
   height: 100%;
   font-family: "Inter", sans-serif;
-  background: rgb(207, 255, 245);
-  background: linear-gradient(180deg, rgb(207, 255, 245) 0%, rgb(241, 255, 252) 100%) no-repeat;
+  background: rgb(255, 237, 210);
+  background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%);
 }
 
 .prev {
@@ -25,10 +25,10 @@ html {
 header {
   display: flex;
   flex-direction: row;
-  width: 60%;
-  margin: 0vw auto 3vw auto;
   align-items: center;
   justify-content: space-between;
+  width: 60%;
+  margin: 0vw auto 3vw auto;
 }
 
 h3 {

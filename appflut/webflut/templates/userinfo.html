@@ -1,74 +1,85 @@
-{% load static %}
-{% load pwa %}
+{% load static %} {% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Детали пользователя</title>
-    <link href="{% static 'css/Calories Page/calories.css' %}" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Отчет {{ personal_info.first_name }} {{ personal_info.last_name }}
+    </title>
+    <link
+      href="{% static 'css/Calories Page/calories.css' %}"
+      rel="stylesheet"
+    />
     {% progressive_web_app_meta %}
-</head>
+    <style>html {
+      height:auto;
+      }</style>
+  </head>
 
-<body>
+  <body>
 
- <form method="get">
+    <h4 style="margin-block-end: 0em">Информация о пользователе</h4>
+    <h3 style="margin-block-start: 0.5em">
+      {{ personal_info.first_name }} {{ personal_info.last_name }}
+    </h3>
+
+    <div class="block" style="margin: 1vw auto;">
+      <div class="container" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="nutrition-div">
+          Рост
+          <p>{{ personal_info.height }}</p>
+        </div>
+        <div class="nutrition-div">
+          Вес
+          <p>{{ personal_info.weight }}</p>
+        </div>
+      </div>
+    </div>
+
+    <form method="get">
       <div class="row-buttons">
         <button type="submit" name="move" value="prev" class="arrow-logo">
-          <img src="{% static 'accets/prev-arrow.svg' %}"/>
+          <img src="{% static 'accets/prev-arrow.svg' %}" />
         </button>
         {{ form.date }}
         <div style="display: inline-block">{{ formatted_date }}</div>
         <button type="submit" name="move" value="next" class="arrow-logo">
-          <img src="{% static 'accets/prev-arrow.svg' %}"style="transform: scaleX(-1);"/>
+          <img
+            src="{% static 'accets/prev-arrow.svg' %}"
+            style="transform: scaleX(-1)"
+          />
         </button>
       </div>
     </form>
-    <h2>Информация о пользователе</h2>
-    <h2 style="margin-block-start: 0em;
-    margin-block-end: 0.4em;">{{ personal_info.first_name }}</h2>
-    <h2 style="margin-block-start: 0em;
-    margin-block-end: 0.4em;">{{ personal_info.last_name }}</h2>
-     <h2 style="margin-block-start: 0em;
-    margin-block-end: 0.4em;">{{ personal_info.weight }}</h2>
-     <h2 style="margin-block-start: 0em;
-    margin-block-end: 0.4em;">{{ personal_info.height }}</h2>
-    <h2 style="margin-block-start: 0em;
 
-
-
-    <!-- Дополнительная информация о пользователе -->
-    <div class="block">Калории
-        <div class="container">
-            <div class="nutrition-div">Потреблено
-<!--                Представь что есть данные -->
-                <p>1000</p>
-            </div>
-            <div class="nutrition-div">Норма
-            <p>{{ male }}</p>
+    <!--Дополнительная информация о пользователе-->
+    <div class="block">
+      Калории
+      <div class="container">
+        <div class="nutrition-div">
+          Потреблено
+          <!--                Представь что есть данные -->
+          <p>1000</p>
         </div>
-            <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
-            {% if user_age < 18 %}
-         <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
-        {% else %}
-         <p>{{ acttotal_calories|floatformat:"1" }}</p>
-        {% endif %}
-
+        <div class="nutrition-div">
+          Норма
+          <p>{{ male }}</p>
         </div>
+        <div class="nutrition-div" style="flex-basis: 50%">
+          Потрачено {% if user_age < 18 %}
+          <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
+          {% else %}
+          <p>{{ acttotal_calories|floatformat:"1" }}</p>
+          {% endif %}
         </div>
+      </div>
     </div>
 
-
-
-
-<h1>Диаграмма потраченных калорий за неделю</h1>
-<img src="/static/phototest/{{ user.username }}/chart_2.png" alt="Calories Chart">
-
-
-
-
+    <h3>Диаграмма потраченных калорий за неделю</h3>
+    <img src="/static/phototest/{{ user.username }}/chart_2.png"
+      alt="Calories Chart" class="diagram_calories"
+    />
 
     {% include 'footer.html' %}
-</body>
-
+  </body>
 </html>
