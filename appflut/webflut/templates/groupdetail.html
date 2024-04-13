@@ -42,6 +42,8 @@
           <a href="{% url 'userinfo' user_id=usersser.user.id %}">
             {{ usersser.first_name }} {{ usersser.last_name }}</a>
           <input type="hidden" name="username" value="{{ usersser.user.username }}" />
+          <input type="hidden" name="pers_info_search" value="{{ pers_info_search }}" />
+
           <button type="submit" id="addButton" class="modal-add-button">Добавить</button>
         </form>
       {% empty %}
@@ -81,6 +83,7 @@
 </div>
 
 <script>
+
   // Открытие модального окна при нажатии на кнопку "Добавить"
   const addButton = document.getElementById("addNewButton");
   const modal = document.getElementById("modal");
@@ -101,7 +104,29 @@
       modal.style.display = "none";
     }
   }
-</script>    
+
+
+</script>
+
+<script>
+  // Сохраняем состояние модального окна перед обновлением страницы
+  window.addEventListener("beforeunload", function() {
+    const modal = document.getElementById("modal");
+    const isModalOpen = modal.style.display === "block";
+    localStorage.setItem("modalOpen", isModalOpen ? "true" : "false");
+  });
+
+  // Восстанавливаем состояние модального окна после обновления страницы
+  window.addEventListener("load", function() {
+    const modal = document.getElementById("modal");
+    const isModalOpen = localStorage.getItem("modalOpen");
+    if (isModalOpen === "true") {
+      modal.style.display = "block";
+    } else {
+      modal.style.display = "none";
+    }
+  });
+</script>
 
 {% include 'footer.html' %}
 </body>

@@ -32,6 +32,8 @@ urlpatterns = [
     path('step5/', views.step5_view, name='step5'),
     path('display_chart/', views.display_chart, name='display_chart'),
     path('add-water/', views.add_water_consumption, name='add_water_consumption'),
+
+    path('deletegroup/<int:group_id>/', views.deletegroup, name='deletegroup'),
     path('sw.js', views.ServiceWorkerView.as_view(), name=views.ServiceWorkerView.name,)
 
 

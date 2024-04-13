@@ -452,7 +452,7 @@ def date_view(request):
 
     return render(request, 'date.html', {'form': form, 'models': models})
 
-
+from django.db.models import Count
 @login_required
 def creategroup(request):
     if request.method == 'POST':
@@ -462,10 +462,18 @@ def creategroup(request):
         group = Group.objects.create(name=group_name, creator=user)  # Создать группу с указанием создателя
         return redirect('creategroup')
 
-    groups = Group.objects.filter(creator=request.user)
+    # Получите список групп с количеством пользователей в каждой группе
+    groups_with_users_count = Group.objects.filter(creator=request.user).annotate(num_users=Count('users'))
 
-    return render(request, 'creategroup.html', {'groups': groups})
+    return render(request, 'creategroup.html', {'groups': groups_with_users_count})
 
+@login_required
+def deletegroup(request, group_id):
+    group = Group.objects.get(id=group_id)
+    # Проверяем, что пользователь является создателем группы
+    if request.user == group.creator:
+        group.delete()  # Удаляем группу
+    return redirect('creategroup')
 @login_required
 def groupdetail(request, group_id):
     group = Group.objects.get(id=group_id)
