@@ -355,7 +355,7 @@ def category_items(request, category):
                 Q(activity_type__icontains=search_query) | Q(activity_type__contains=search_query)
             )
 
-    return render(request, 'category_detail.html', {'activities': activities, 'user_age': user_age})
+    return render(request, 'category_detail.html', {'activities': activities, 'user_age': user_age, 'category': category})
 
 def eatingbase(request):
     search_query = request.GET.get('search')
