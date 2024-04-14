@@ -39,6 +39,9 @@ class PersonalInformForm(forms.ModelForm):
     class Meta:
         model = Personal_Inform
         fields = ['weight', 'height', 'sex', 'date_of_birth', 'goals', 'active', ]
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'min': '1924-01-01'})
+        }
 
 
     def clean_weight(self):

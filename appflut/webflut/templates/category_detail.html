@@ -57,8 +57,9 @@
                 <form method="post" action="{% url 'add_activity_view' %}">
                     {% csrf_token %}
                     <input type="hidden" name="activities_id" value="{{ activity.id }}">
-                    <label for="time-input">Введите время (мин):</label>
-                    <input type="number" name="time" id="time-input" placeholder="(мин)" inputmode="numeric" required>
+                    <label for="time-input" >Введите время (мин):</label>
+                    <input type="number" name="time" id="time-input" placeholder="(мин)" inputmode="numeric" required max="300">
+
                     <button type="submit" class="general-button" style="margin-bottom: 0">Добавить активность</button>
                 </form>
             </div>
