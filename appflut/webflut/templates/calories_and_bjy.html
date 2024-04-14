@@ -81,20 +81,20 @@
     <div class="block">
       Калории
       <div class="container">
-        <div class="nutrition-div">
-          Потреблено
-          <p>{{new_smth}}</p>
-        </div>
-        <div class="nutrition-div">Норма
+        
+        <div class="nutrition-div">Основной обмен
             <p>{{ male }}</p>
         </div>
-        <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
+        <div class="nutrition-div">Физическая активность
             {% if user_age < 18 %}
          <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
         {% else %}
          <p>{{ acttotal_calories|floatformat:"1" }}</p>
         {% endif %}
-
+        </div>
+        <div class="nutrition-div">
+          Общие энерготраты
+          <p>{{new_smth}}</p>
         </div>
       </div>
     </div>
