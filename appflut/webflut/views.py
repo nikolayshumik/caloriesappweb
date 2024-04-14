@@ -224,7 +224,9 @@ def calories_and_bjy(request):
     activities_and_calories_child = []
 
     user = request.user
-    user_age = Personal_Inform.objects.get(user=user).date_of_birth
+    date_of_birth = Personal_Inform.objects.get(user=user).date_of_birth
+    today = datetime.now().date()
+    user_age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
     for activity in activity_prod:
         time = activity.time/60
@@ -250,16 +252,19 @@ def calories_and_bjy(request):
             activities_and_calories_child.append((activity_child, burned_calories_child))
 
     inf = Personal_Inform.objects.get(user=user)
+    date_of_birth = inf.date_of_birth
+    today = datetime.now().date()
+    age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
     if inf.sex=='M':
         height2 = inf.height
         weight2 = inf.weight
         date_of_birth2 = inf.date_of_birth
-        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
+        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * age), 1)
     else:
         height2 = inf.height
         weight2 = inf.weight
         date_of_birth2 = inf.date_of_birth
-        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
+        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * age), 1)
 
 
     context = {
@@ -320,7 +325,10 @@ def activities(request):
 def category_list(request):
 
     user = Personal_Inform.objects.get(user=request.user)
-    user_age = user.date_of_birth  # получение возраста пользователя
+  # получение возраста пользователя
+    date_of_birth = user.date_of_birth
+    today = datetime.now().date()
+    user_age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
     if user_age < 18:
         categories = Activity_for_children.objects.values('category').distinct()
@@ -331,7 +339,9 @@ def category_list(request):
 def category_items(request, category):
     search_query = request.GET.get('search')
     user = Personal_Inform.objects.get(user=request.user)
-    user_age = user.date_of_birth
+    date_of_birth = user.date_of_birth
+    today = datetime.now().date()
+    user_age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
     if user_age < 18:
         activities = Activity_for_children.objects.filter(category=category)
         if search_query:
@@ -378,7 +388,10 @@ def add_activity_view(request):
             selected_datetime = datetime.combine(selected_date, datetime.now().time())
             selected_datetime_aware = make_aware(selected_datetime)
             user = request.user
-            user_age = Personal_Inform.objects.get(user=user).date_of_birth
+            date_of_birth = Personal_Inform.objects.get(user=user).date_of_birth
+            today = datetime.now().date()
+            user_age = today.year - date_of_birth.year - (
+                        (today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
             if user_age < 18:
                 activity = Activity_for_children.objects.get(id=activity_id)
@@ -422,7 +435,11 @@ def remove_from_list(request, product_id):
 
 def delete_activity(request, id):
     user = request.user
-    user_age = Personal_Inform.objects.get(user=user).date_of_birth
+    date_of_birth = Personal_Inform.objects.get(user=user).date_of_birth
+
+    today = datetime.now().date()
+    user_age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+
     if user_age<18:
         activity_to_delete = Activities_Add_Children.objects.get(pk=id)
         activity_to_delete.delete()
@@ -550,7 +567,9 @@ def userinfo(request, user_id: int):
     activities_and_calories_child = []
 
     user = request.user
-    user_age = Personal_Inform.objects.get(user=user).date_of_birth
+    date_of_birth = Personal_Inform.objects.get(user=user).date_of_birth
+    today = datetime.now().date()
+    user_age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
     for activity in activity_prod:
         time = activity.time / 60
@@ -580,12 +599,12 @@ def userinfo(request, user_id: int):
         height2 = inf.height
         weight2 = inf.weight
         date_of_birth2 = inf.date_of_birth
-        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * date_of_birth2), 1)
+        male = round(66.4730 + (5.0033 * height2) + (13.7516 * weight2) - (6.7550 * user_age), 1)
     else:
         height2 = inf.height
         weight2 = inf.weight
         date_of_birth2 = inf.date_of_birth
-        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * date_of_birth2), 1)
+        male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * user_age), 1)
 
 
     context = {

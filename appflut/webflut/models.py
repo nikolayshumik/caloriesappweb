@@ -15,7 +15,7 @@ class Personal_Inform(models.Model):
         ('', ''),
     ]
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default='')
-    date_of_birth = models.FloatField(default=0)
+    date_of_birth = models.DateField(default='1990-01-01')
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
 
@@ -42,8 +42,8 @@ class Personal_Inform(models.Model):
             raise ValidationError('Рост должен быть числом от 1 до 240')
         if self.weight < 1 or self.weight > 240:
             raise ValidationError('Вес должен быть числом от 1 до 240')
-        if self.date_of_birth < 1 or self.date_of_birth > 120:
-            raise ValidationError('Возраст должен быть числом от 1 до 120')
+        # if self.date_of_birth < 1 or self.date_of_birth > 120:
+        #     raise ValidationError('Возраст должен быть числом от 1 до 120')
     def __str__(self):
         return self.user.username
 
@@ -52,7 +52,7 @@ class Personal_Inform(models.Model):
 class Step1Model(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
-    date_of_birth = models.FloatField()
+    date_of_birth = models.DateField(default='1990-01-01')
 
 
 class StepTestModel(models.Model):

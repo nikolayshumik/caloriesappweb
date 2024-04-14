@@ -40,6 +40,7 @@ class PersonalInformForm(forms.ModelForm):
         model = Personal_Inform
         fields = ['weight', 'height', 'sex', 'date_of_birth', 'goals', 'active', ]
 
+
     def clean_weight(self):
         weight = self.cleaned_data.get('weight')
         if weight < 1 or weight > 240:
@@ -52,11 +53,11 @@ class PersonalInformForm(forms.ModelForm):
             raise forms.ValidationError('Рост должен быть числом от 1 до 240')
         return height
 
-    def clean_date_of_birth(self):
-        date_of_birth = self.cleaned_data.get('date_of_birth')
-        if date_of_birth <= 0:
-            raise forms.ValidationError('Возраст должен быть положительным числом')
-        return date_of_birth
+    # def clean_date_of_birth(self):
+    #     date_of_birth = self.cleaned_data.get('date_of_birth')
+    #     if date_of_birth <= 0:
+    #         raise forms.ValidationError('Возраст должен быть положительным числом')
+    #     return date_of_birth
 
 
 class Step1Form(forms.ModelForm):
@@ -66,7 +67,7 @@ class Step1Form(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Фамилию'}),
-            'date_of_birth': forms.DateInput(attrs={'placeholder': 'Число полных лет'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
         }
         labels = {
             'first_name': '',
