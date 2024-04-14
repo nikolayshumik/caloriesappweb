@@ -233,6 +233,7 @@ def calories_and_bjy(request):
         burned_calories = round(activity.product.met * weight * time, 1)
         acttotal_calories += round(burned_calories, 1)  # добавить к общему количеству
         activities_and_calories.append((activity, burned_calories))
+
     for activity_child in activity_prod_child:
         if user_age<18:
             if user_age >= 16 and user_age <= 18:
@@ -265,8 +266,10 @@ def calories_and_bjy(request):
         weight2 = inf.weight
         date_of_birth2 = inf.date_of_birth
         male = round(655.0955 + (1.8496 * height2) + (9.5634 * weight2) - (4.6756 * age), 1)
-
-
+    if user_age < 18:
+        new_smth = male + acttotal_calories_child
+    else:
+        new_smth = male + acttotal_calories
     context = {
         'activity_prod': activity_prod,
         'activity_prod_child': activity_prod_child,
@@ -278,6 +281,7 @@ def calories_and_bjy(request):
         'activities_and_calories_child': activities_and_calories_child,
         'male': male,
         'user_age': user_age,
+        'new_smth': new_smth,
 
     }
     return render(request, 'calories_and_bjy.html', context)
