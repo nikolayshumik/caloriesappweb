@@ -6,7 +6,9 @@ html {
   background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%), no-repeat;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   text-align: center;
 }
 
@@ -75,6 +77,10 @@ h3 {
   padding-top: 10px;
 }
 .block .container .nutrition-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   text-transform: none;
   border-radius: 5px;
@@ -242,34 +248,41 @@ footer {
 }
 
 .menu__btn {
-  width: 50px;
+  display: inline-flex;
+  align-items: center;
+  position: fixed;
+  top: 3vw;
+  right: 19vw;
+  cursor: pointer;
+  z-index: 2;
 }
-
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
+.menu__btn span {
   display: block;
   position: absolute;
-  right: 5vw;
-  top: 5vw;
-  width: 3%;
+  width: 30px;
   height: 2px;
   z-index: 2;
   background-color: #616161;
 }
-
-.menu__btn > span::before {
+.menu__btn span::before {
+  display: block;
+  z-index: 2;
+  position: absolute;
+  background-color: #616161;
   content: "";
   top: -8px;
   right: 0vw;
-  width: 100%;
+  width: 30px;
   height: 3px;
 }
-
-.menu__btn > span::after {
+.menu__btn span::after {
+  display: block;
+  z-index: 2;
+  position: absolute;
+  background-color: #616161;
   content: "";
   right: 0vw;
-  width: 100%;
+  width: 30px;
   top: 8px;
   height: 3px;
 }
@@ -296,7 +309,7 @@ footer {
 
 .menu__item {
   padding: 1vw 2vw;
-  width: 80%;
+  width: 70%;
   margin: auto;
   align-items: center;
   background-color: white;
@@ -367,6 +380,26 @@ footer {
 /**/
 /*размеры планшетов*/
 @media (max-width: 769px) {
+  .menu__btn span {
+    right: -10vw;
+    width: 30px;
+    top: 2vw;
+  }
+  .menu__btn span::before {
+    top: -8px;
+    right: 0vw;
+    width: 30px;
+    height: 2px;
+  }
+  .menu__btn span::after {
+    right: 0vw;
+    width: 30px;
+    top: 8px;
+    height: 2px;
+  }
+  .menu__item {
+    width: 80%;
+  }
   .header-menu {
     width: 50%;
   }
@@ -381,32 +414,20 @@ footer {
 /**/
 /*размеры телефонов*/
 @media (max-width: 481px) {
-  .menu__btn {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 5vw;
-    right: 5vw;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-  }
   .menu__btn span {
-    right: -1vw;
-    width: 100%;
-    top: 3vw;
+    right: -15vw;
+    width: 30px;
+    top: 5vw;
   }
   .menu__btn span::before {
-    content: "";
     top: -8px;
     right: 0vw;
-    width: 100%;
+    width: 30px;
     height: 2px;
   }
   .menu__btn span::after {
-    content: "";
     right: 0vw;
-    width: 100%;
+    width: 30px;
     top: 8px;
     height: 2px;
   }
