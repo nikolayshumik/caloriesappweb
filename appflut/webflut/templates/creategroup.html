@@ -23,16 +23,16 @@
     <text class="title" id="all">Существующие группы</text>
 
 {% for group in groups %}
-<div class="group-item">
+<!--<div class="group-item">-->
     <a href="{% url 'groupdetail' group_id=group.id %}" class="one-groupe">{{ group.name }}</a>
     <!-- Отображаем количество пользователей в группе -->
-    <span class="user-count">Количество пользователей: {{ group.num_users }}</span>
+<!--    <span class="user-count">Количество пользователей: {{ group.num_users }}</span>-->
     <!-- Добавляем кнопку для удаления группы -->
-    <form action="{% url 'deletegroup' group_id=group.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="delete-button">Удалить</button>
-    </form>
-</div>
+<!--    <form action="{% url 'deletegroup' group_id=group.id %}" method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <button type="submit" class="delete-button">Удалить</button>-->
+<!--    </form>-->
+<!--</div>-->
 {% endfor %}
 
 </div>
