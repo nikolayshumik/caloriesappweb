@@ -13,10 +13,10 @@ html {
   background: rgb(255, 237, 210);
   background: linear-gradient(
       0deg,
-      rgba(255, 237, 210, 0.8) 0%,
-      rgba(255, 241, 231, 0.8) 23%,
-      rgba(232, 255, 249, 0.8) 67%,
-      rgba(197, 219, 255, 0.8) 100%
+      rgba(255, 237, 210, 0.2) 0%,
+      rgba(255, 241, 231, 0.2) 23%,
+      rgba(232, 255, 249, 0.2) 67%,
+      rgba(197, 219, 255, 0.2) 100%
     ),
     no-repeat;
 }
@@ -298,7 +298,14 @@ footer {
   padding-top: 20%;
   text-align: left;
   display: block;
-  background-color: #cff2f0;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 237, 210, 1) 0%,
+      rgba(255, 241, 231, 1) 23%,
+      rgba(232, 255, 249, 1) 67%,
+      rgba(197, 219, 255, 1) 100%
+    ),
+    no-repeat;
   position: fixed;
   visibility: hidden;
   top: 0;
@@ -309,8 +316,6 @@ footer {
   z-index: 1;
   list-style: none;
   text-align: center;
-  background-image: url("./assets/BG.jpg");
-  background-size: cover;
   padding-inline-start: 0px;
 }
 .menu__item {
