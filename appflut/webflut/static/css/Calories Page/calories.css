@@ -3,7 +3,7 @@ html {
   height: 100%;
   font-family: "Inter", sans-serif;
   background: rgb(255, 237, 210);
-  background: linear-gradient(0deg, rgba(255, 237, 210, 0.8) 0%, rgba(255, 241, 231, 0.8) 23%, rgba(232, 255, 249, 0.8) 67%, rgba(197, 219, 255, 0.8) 100%), no-repeat;
+  background: linear-gradient(0deg, rgba(255, 237, 210, 0.2) 0%, rgba(255, 241, 231, 0.2) 23%, rgba(232, 255, 249, 0.2) 67%, rgba(197, 219, 255, 0.2) 100%), no-repeat;
 }
 
 h2,
@@ -291,7 +291,7 @@ footer {
   padding-top: 20%;
   text-align: left;
   display: block;
-  background-color: #cff2f0;
+  background: linear-gradient(0deg, rgb(255, 237, 210) 0%, rgb(255, 241, 231) 23%, rgb(232, 255, 249) 67%, rgb(197, 219, 255) 100%), no-repeat;
   position: fixed;
   visibility: hidden;
   top: 0;
@@ -302,8 +302,6 @@ footer {
   z-index: 1;
   list-style: none;
   text-align: center;
-  background-image: url("./assets/BG.jpg");
-  background-size: cover;
   padding-inline-start: 0px;
 }
 

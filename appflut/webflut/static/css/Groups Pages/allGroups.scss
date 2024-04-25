@@ -11,12 +11,13 @@ html {
   font-family: "Inter", sans-serif;
   background: rgb(255, 237, 210);
   background: linear-gradient(
-    0deg,
-    rgba(255, 237, 210, 0.8) 0%,
-    rgba(255, 241, 231, 0.8) 23%,
-    rgba(232, 255, 249, 0.8) 67%,
-    rgba(197, 219, 255, 0.8) 100%
-  );
+      0deg,
+      rgba(255, 237, 210, 0.2) 0%,
+      rgba(255, 241, 231, 0.2) 23%,
+      rgba(232, 255, 249, 0.2) 67%,
+      rgba(197, 219, 255, 0.2) 100%
+    ),
+    no-repeat;
 }
 #all {
   border-top: 1px solid black;
@@ -30,7 +31,7 @@ html {
   display: flex;
   width: 80%;
   flex-direction: column;
-  margin:5vw auto;
+  margin: 5vw auto;
   border-radius: $border_radius;
   .title {
     margin-bottom: 2vw;
