@@ -213,6 +213,47 @@ def calories_and_bjy(request):
     request.session['selected_date'] = selected_date.strftime('%Y-%m-%d')
 
     user = request.user
+    # Filter your queryset by user for each category
+    breakfast_products = Breakfast_Products.objects.filter(user=user, date__date=selected_date)
+    bproducts = [{
+        'product': bp.product,
+        'weight': bp.weight,
+        'calories': bp.calories,
+        'proteins': bp.proteins,
+        'fats': bp.fats,
+        'carbohydrates': bp.carbohydrates
+    } for bp in breakfast_products]
+
+    lunch_products = Lunch_Products.objects.filter(user=user, date__date=selected_date)
+    lproducts = [{
+        'product': bp.product,
+        'weight': bp.weight,
+        'calories': bp.calories,
+        'proteins': bp.proteins,
+        'fats': bp.fats,
+        'carbohydrates': bp.carbohydrates
+    } for bp in lunch_products]
+
+    dinner_products = Dinner_Products.objects.filter(user=user, date__date=selected_date)
+    dproducts = [{
+        'product': bp.product,
+        'weight': bp.weight,
+        'calories': bp.calories,
+        'proteins': bp.proteins,
+        'fats': bp.fats,
+        'carbohydrates': bp.carbohydrates
+    } for bp in dinner_products]
+
+    snack_products = Snack_Products.objects.filter(user=user, date__date=selected_date)
+    sproducts = [{
+        'product': bp.product,
+        'weight': bp.weight,
+        'calories': bp.calories,
+        'proteins': bp.proteins,
+        'fats': bp.fats,
+        'carbohydrates': bp.carbohydrates
+    } for bp in snack_products]
+
     personal_info = Personal_Inform.objects.get(user=user)  # получить личную информацию пользователя
     weight = float(personal_info.weight)  # получить вес пользователя и преобразовать в float
     activity_prod = Activities_Add.objects.filter(user=user, date__date=selected_date)
@@ -270,7 +311,86 @@ def calories_and_bjy(request):
         new_smth = male + acttotal_calories_child
     else:
         new_smth = male + acttotal_calories
+    bcalories_in = breakfast_products.aggregate(Sum('calories'))['calories__sum'] or 0
+    bproteins = breakfast_products.aggregate(Sum('proteins'))['proteins__sum'] or 0
+    bfats = breakfast_products.aggregate(Sum('fats'))['fats__sum'] or 0
+    bcarbohydrates = breakfast_products.aggregate(Sum('carbohydrates'))['carbohydrates__sum'] or 0
+
+    calories_in = lunch_products.aggregate(Sum('calories'))['calories__sum'] or 0
+    proteins = lunch_products.aggregate(Sum('proteins'))['proteins__sum'] or 0
+    fats = lunch_products.aggregate(Sum('fats'))['fats__sum'] or 0
+    carbohydrates = lunch_products.aggregate(Sum('carbohydrates'))['carbohydrates__sum'] or 0
+
+    dcalories_in = dinner_products.aggregate(Sum('calories'))['calories__sum'] or 0
+    dproteins = dinner_products.aggregate(Sum('proteins'))['proteins__sum'] or 0
+    dfats = dinner_products.aggregate(Sum('fats'))['fats__sum'] or 0
+    dcarbohydrates = dinner_products.aggregate(Sum('carbohydrates'))['carbohydrates__sum'] or 0
+
+    scalories_in = snack_products.aggregate(Sum('calories'))['calories__sum'] or 0
+    sproteins = snack_products.aggregate(Sum('proteins'))['proteins__sum'] or 0
+    sfats = snack_products.aggregate(Sum('fats'))['fats__sum'] or 0
+    scarbohydrates = snack_products.aggregate(Sum('carbohydrates'))['carbohydrates__sum'] or 0
+
+    bcalories_in = round(bcalories_in, 1)
+    bproteins = round(bproteins, 1)
+    bfats = round(bfats, 1)
+    bcarbohydrates = round(bcarbohydrates, 1)
+
+    calories_in = round(calories_in, 1)
+    proteins = round(proteins, 1)
+    fats = round(fats, 1)
+    carbohydrates = round(carbohydrates, 1)
+
+    dcalories_in = round(dcalories_in, 1)
+    dproteins = round(dproteins, 1)
+    dfats = round(dfats, 1)
+    dcarbohydrates = round(dcarbohydrates, 1)
+
+    scalories_in = round(scalories_in, 1)
+    sproteins = round(sproteins, 1)
+    sfats = round(sfats, 1)
+    scarbohydrates = round(scarbohydrates, 1)
+
+    total_calories = round((bcalories_in + calories_in + dcalories_in + scalories_in), 1)
+    total_proteins = round((bproteins + proteins + dproteins + sproteins), 1)
+    total_carbohydrates = round((bcarbohydrates + carbohydrates + dcarbohydrates + scarbohydrates), 1)
+    total_fats = round((bfats + fats + dfats + sfats), 1)
+
+    water = WaterConsumption.objects.filter(user=request.user, date__date=selected_date).last()
+
+    if water is not None:
+        # Если запись найдена, получить значение amount
+        amountwater = water.amount
+    else:
+        # Если запись не найдена, установить значение amount равным 0
+        amountwater = 0
+
     context = {
+        'bproducts': bproducts,
+        'lproducts': lproducts,
+        'dproducts': dproducts,
+        'sproducts': sproducts,
+        'bcalories_in': bcalories_in,
+        'bproteins': bproteins,
+        'bfats': bfats,
+        'bcarbohydrates': bcarbohydrates,
+        'calories_in': calories_in,
+        'proteins': proteins,
+        'fats': fats,
+        'carbohydrates': carbohydrates,
+        'dcalories_in': dcalories_in,
+        'dproteins': dproteins,
+        'dfats': dfats,
+        'dcarbohydrates': dcarbohydrates,
+        'scalories_in': scalories_in,
+        'sproteins': sproteins,
+        'sfats': sfats,
+        'scarbohydrates': scarbohydrates,
+        'total_calories': total_calories,
+        'total_proteins': total_proteins,
+        'total_carbohydrates': total_carbohydrates,
+        'total_fats': total_fats,
+
         'activity_prod': activity_prod,
         'activity_prod_child': activity_prod_child,
         'form': form,
@@ -423,8 +543,16 @@ def remove_from_list(request, product_id):
         selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d") if selected_date_str else None
 
         try:
+            if meal_type == 'breakfast':
+                product = Breakfast_Products.objects.filter(product_id=product_id, user=request.user)
+            elif meal_type == 'lunch':
+                product = Lunch_Products.objects.filter(product_id=product_id, user=request.user)
+            elif meal_type == 'dinner':
+                product = Dinner_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
+            elif meal_type == 'snack':
+                product = Snack_Products.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
 
-            if meal_type == 'activities':
+            elif meal_type == 'activities':
                 product = Activities_Add.objects.filter(product_id=product_id, user=request.user, date__date=selected_date)
             else:
                 raise Http404("Invalid meal type.")
@@ -432,9 +560,206 @@ def remove_from_list(request, product_id):
             product.delete()
             return redirect('calories_and_bjy')
 
-        except (Activities_Add.DoesNotExist):
+        except (Breakfast_Products.DoesNotExist, Lunch_Products.DoesNotExist, Dinner_Products.DoesNotExist,Snack_Products.DoesNotExist, Activities_Add.DoesNotExist):
             return HttpResponse("Product not found")
 
+def breakfast(request):
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'breakfast.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'breakfast.html', {'form': form, 'products': products, 'search_query': search_query})
+def lunch(request):
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'lunch.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'lunch.html', {'form': form, 'products': products, 'search_query': search_query})
+def dinner(request):
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'dinner.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'dinner.html', {'form': form, 'products': products, 'search_query': search_query})
+def snack(request):
+    search_query = request.GET.get('search')
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'snack.html', {'form': form, 'search_query': search_query})
+
+    else:
+        form = AddProductForm()
+
+    products = Add_Product.objects.all()
+    if search_query:
+        products = products.filter(name__icontains=search_query)
+
+    return render(request, 'snack.html', {'form': form, 'products': products, 'search_query': search_query})
+
+@login_required
+def add_breakfast_view(request):
+    product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
+    selected_date_str = request.session.get('selected_date', None)
+    print("one")
+    if product_id and selected_date_str and weight:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+            print("two")
+
+            calories = float(weight) * (float(product.calories_in) / 100)
+            proteins = round(float(weight) * (float(product.proteins) / 100), 1)
+            fats = round(float(weight) * (float(product.fats) / 100), 1)
+            carbohydrates = round(float(weight) * (float(product.carbohydrates) / 100), 1)
+
+
+            Breakfast_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight,
+                                              calories=calories, proteins=proteins, fats=fats, carbohydrates=carbohydrates)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+@login_required
+def add_lunch_view(request):
+    product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
+    selected_date_str = request.session.get('selected_date', None)
+
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+
+            calories = float(weight) * (float(product.calories_in) / 100)
+            proteins = round(float(weight) * (float(product.proteins) / 100), 1)
+            fats = round(float(weight) * (float(product.fats) / 100), 1)
+            carbohydrates = round(float(weight) * (float(product.carbohydrates) / 100), 1)
+
+            Lunch_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight,
+                                              calories=calories, proteins=proteins, fats=fats, carbohydrates=carbohydrates)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+@login_required
+def add_dinner_view(request):
+    product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
+    selected_date_str = request.session.get('selected_date', None)
+
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+
+            calories = float(weight) * (float(product.calories_in) / 100)
+            proteins = round(float(weight) * (float(product.proteins) / 100), 1)
+            fats = round(float(weight) * (float(product.fats) / 100), 1)
+            carbohydrates = round(float(weight) * (float(product.carbohydrates) / 100), 1)
+
+            Dinner_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight,
+                                              calories=calories, proteins=proteins, fats=fats, carbohydrates=carbohydrates)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+@login_required
+def add_snack_view(request):
+    product_id = request.POST.get('product_id')
+    weight = request.POST.get('weight')
+    selected_date_str = request.session.get('selected_date', None)
+
+    if product_id and selected_date_str:
+        try:
+            selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
+            selected_datetime = datetime.combine(selected_date, datetime.now().time())
+            selected_datetime_aware = make_aware(selected_datetime)
+            product = Add_Product.objects.get(id=product_id)
+            user = request.user
+
+            calories = float(weight) * (float(product.calories_in) / 100)
+            proteins = round(float(weight) * (float(product.proteins) / 100), 1)
+            fats = round(float(weight) * (float(product.fats) / 100), 1)
+            carbohydrates = round(float(weight) * (float(product.carbohydrates) / 100), 1)
+
+            Snack_Products.objects.create(product=product, user=user, date=selected_datetime_aware, weight=weight,
+                                              calories=calories, proteins=proteins, fats=fats, carbohydrates=carbohydrates)
+        except Add_Product.DoesNotExist:
+            pass
+        except ValueError:
+            pass
+    else:
+        pass
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def remove_from_list2(request, product_id):
+    if request.method == 'POST':
+        try:
+            products = Breakfast_Products.objects.filter(product_id=product_id)
+            products.delete()
+            return redirect('calories_and_bjy')
+
+        except Breakfast_Products.DoesNotExist:
+            return HttpResponse("Product not found")
 
 
 def delete_activity(request, id):
@@ -640,6 +965,39 @@ def display_chart(request):
     image_dir = os.path.join(settings.BASE_DIR, user_dir)
     os.makedirs(image_dir, exist_ok=True)
 
+    # Первая диаграмма - потраченные калории
+    breakfast_products = Breakfast_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    lunch_products = Lunch_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    dinner_products = Dinner_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    snack_products = Snack_Products.objects.filter(user=user, date__date__range=[week_start, date.today()])
+    calories_by_day = {}
+    for i in range(7):
+        current_date = week_start + timedelta(days=i)
+        total_calories = (
+                (breakfast_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                     'calories__sum'] or 0)
+                + (lunch_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
+                + (dinner_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
+                + (snack_products.filter(date__date=current_date).aggregate(Sum('calories'))[
+                       'calories__sum'] or 0)
+        )
+        calories_by_day[current_date] = total_calories
+    days = [calendar.day_name[d.weekday()] for d in calories_by_day.keys()]
+    calories = list(calories_by_day.values())
+
+    # Создание первой диаграммы
+    plt.figure(figsize=(10, 6))
+    plt.plot(days, calories, marker='o')
+    plt.xlabel('День недели')
+    plt.ylabel('Всего потребленных калорий')
+    plt.title('Потребленных калории за неделю')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    image_path_1 = os.path.join(image_dir, 'chart_1.png')
+    plt.savefig(image_path_1)
+    plt.close()
 
     # Вторая диаграмма - сожженные калории
     personal_info = Personal_Inform.objects.get(user=user)

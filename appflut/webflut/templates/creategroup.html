@@ -14,6 +14,55 @@
     {% progressive_web_app_meta %}
     </head>
 <body>
+<style>
+    .group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px #80a9a0;
+
+  margin-bottom: 20px;
+}
+
+.one-groupe-name {
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2bbdb4;
+}
+
+.user-count {
+  font-size: 14px;
+  color: #666;
+}
+
+.delete-button-group {
+  background-color: #2bbdb4;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #2bbdb4;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+</style>
 <div class="container">
     <form action="{% url 'creategroup' %}" method="post">
         {% csrf_token %}
@@ -23,16 +72,16 @@
     <text class="title" id="all">Существующие группы</text>
 
 {% for group in groups %}
-<!--<div class="group-item">-->
-    <a href="{% url 'groupdetail' group_id=group.id %}" class="one-groupe">{{ group.name }}</a>
+<div class="group-item">
+    <a href="{% url 'groupdetail' group_id=group.id %}" class="one-groupe-name">{{ group.name }}</a>
     <!-- Отображаем количество пользователей в группе -->
-<!--    <span class="user-count">Количество пользователей: {{ group.num_users }}</span>-->
+    <span class="user-count">Количество участников: {{ group.num_users }}</span>
     <!-- Добавляем кнопку для удаления группы -->
-<!--    <form action="{% url 'deletegroup' group_id=group.id %}" method="post">-->
-<!--        {% csrf_token %}-->
-<!--        <button type="submit" class="delete-button">Удалить</button>-->
-<!--    </form>-->
-<!--</div>-->
+    <form action="{% url 'deletegroup' group_id=group.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="delete-button-group">Удалить</button>
+    </form>
+</div>
 {% endfor %}
 
 </div>

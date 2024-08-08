@@ -13,6 +13,14 @@
     <!--Скрипт на 275 строчке!!! -->
     {% progressive_web_app_meta %}
   </head>
+
+  <style>
+      .nutrition-div {
+ box-shadow: 2px 2px #80a9a0;
+ border-radius: 5px;
+ border: 1px solid white;
+}
+  </style>
   <script>
     // Сохраняем состояние класса "active" перед обновлением страницы
     window.addEventListener("beforeunload", function () {
@@ -76,25 +84,26 @@
         <img src="{% static 'accets/prev-arrow.svg' %}"style="transform: scaleX(-1);"/>
       </button>
     </div>
-</form>   
+</form>
 
     <div class="block">
       Калории
       <div class="container">
-        
-        <div class="nutrition-div">Основной обмен
+        <div class="nutrition-div">
+          Потреблено
+<!--          <p>{{new_smth}}</p>-->
+          <p>{{ total_calories|floatformat:"1" }}</p>
+        </div>
+        <div class="nutrition-div">Норма
             <p>{{ male }}</p>
         </div>
-        <div class="nutrition-div">Физическая активность
+        <div class="nutrition-div" style="flex-basis: 50%;">Потрачено
             {% if user_age < 18 %}
          <p>{{ acttotal_calories_child|floatformat:"1" }}</p>
         {% else %}
          <p>{{ acttotal_calories|floatformat:"1" }}</p>
         {% endif %}
-        </div>
-        <div class="nutrition-div">
-          Общие энерготраты
-          <p>{{new_smth}}</p>
+
         </div>
       </div>
     </div>
@@ -180,6 +189,167 @@
 
     </div>
 </div>
+      <!--Завтрак-->
+    <div class="eatings">
+      <div class="breakfast clickable">
+        Завтрак<a href="{% url 'breakfast' %}" class="plus">+</a>
+      </div>
+      <div class="summ_kkal">{{ bcalories_in }} ккал</div>
+
+      <div class="content" style="margin-top: 20px">
+        <div class="product-eatings">
+          {% for product in bproducts %}
+          <div class="product-item">
+            <div class="title">
+              <text style="text-decoration: dotted"
+                >{{ product.product.name }} ({{ product.weight }} г.)
+              </text>
+              <text>{{ product.calories|floatformat:"1" }} ккал</text>
+            </div>
+            <div class="product-row">
+              <li style="color: #ca517a">{{ product.proteins }} г.</li>
+              <li style="color: #fbb20d">{{ product.fats }} г.</li>
+              <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
+            </div>
+
+            <form method="POST" action="{% url 'remove_from_list2' product.product.id %}">
+              {% csrf_token %}
+              <button type="submit">
+                <input type="hidden" name="meal_type" value="breakfast" />
+                <img src="{% static 'accets/корзина.png' %}" id="delete_img" />
+              </button>
+            </form>
+          </div>
+          {% empty %}
+          <p>Ничего не найдено</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!--/Завтрак-->
+
+    <!--Обед-->
+    <div class="eatings">
+      <div class="breakfast clickable">
+        Обед<a href="{% url 'lunch' %}" class="plus">+</a>
+      </div>
+      <div class="summ_kkal">{{ calories_in }} ккал</div>
+
+      <div class="content" style="margin-top: 20px">
+        <div class="product-eatings">
+          {% for product in lproducts %}
+          <div class="product-item">
+            <div class="title">
+              <text style="text-decoration: dotted"
+                >{{ product.product.name }} ({{ product.weight }} г.)
+              </text>
+              <text>{{ product.calories|floatformat:"1" }} ккал</text>
+            </div>
+            <div class="product-row">
+              <li style="color: #ca517a">{{ product.proteins }} г.</li>
+              <li style="color: #fbb20d">{{ product.fats }} г.</li>
+              <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
+            </div>
+
+            <form method="POST" action="{% url 'remove_from_list'  product.product.id %}">
+              {% csrf_token %}
+              <button type="submit">
+                <input type="hidden" name="meal_type" value="lunch" />
+                <img src="{% static 'accets/корзина.png' %}" id="delete_img" />
+              </button>
+            </form>
+          </div>
+          {% empty %}
+          <p>Ничего не найдено</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!--/Обед-->
+
+    <!--Ужин-->
+    <div class="eatings">
+      <div class="breakfast clickable">
+        Ужин<a href="{% url 'dinner' %}" class="plus">+</a>
+      </div>
+      <div class="summ_kkal">{{ dcalories_in }} ккал</div>
+
+      <div class="content" style="margin-top: 20px">
+        <div class="product-eatings">
+          {% for product in dproducts %}
+          <div class="product-item">
+            <div class="title">
+              <text style="text-decoration: dotted"
+                >{{ product.product.name }} ({{ product.weight }} г.)
+              </text>
+              <text>{{ product.calories|floatformat:"1" }} ккал</text>
+            </div>
+            <div class="product-row">
+              <li style="color: #ca517a">{{ product.proteins }} г.</li>
+              <li style="color: #fbb20d">{{ product.fats }} г.</li>
+              <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
+            </div>
+
+            <form
+              method="POST"
+              action="{% url 'remove_from_list'  product.product.id %}"
+            >
+              {% csrf_token %}
+              <button type="submit">
+                <input type="hidden" name="meal_type" value="dinner" />
+                <img src="{% static 'accets/корзина.png' %}" id="delete_img" />
+              </button>
+            </form>
+          </div>
+          {% empty %}
+          <p>Ничего не найдено</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!--/Ужин-->
+
+    <!--Перекус-->
+    <div class="eatings">
+      <div class="breakfast clickable">
+        Перекус<a href="{% url 'snack' %}" class="plus">+</a>
+      </div>
+      <div class="summ_kkal">{{ scalories_in }} ккал</div>
+
+      <div class="content" style="margin-top: 20px">
+        <div class="product-eatings">
+          {% for product in sproducts %}
+          <div class="product-item">
+            <div class="title">
+              <text style="text-decoration: dotted"
+                >{{ product.product.name }} ({{ product.weight }} г.)
+              </text>
+              <text>{{ product.calories|floatformat:"0" }} ккал</text>
+            </div>
+            <div class="product-row">
+              <li style="color: #ca517a">{{ product.proteins }} г.</li>
+              <li style="color: #fbb20d">{{ product.fats }} г.</li>
+              <li style="color: #4887ba">{{ product.carbohydrates }} г.</li>
+            </div>
+
+            <form
+              method="POST"
+              action="{% url 'remove_from_list'  product.product.id %}"
+            >
+              {% csrf_token %}
+              <button type="submit">
+                <input type="hidden" name="meal_type" value="snack" />
+                <img src="{% static 'accets/корзина.png' %}" id="delete_img" />
+              </button>
+            </form>
+          </div>
+          {% empty %}
+          <p>Ничего не найдено</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!--/Перекус-->
 <!--/Активности-->
 
     <!--Скрипт-->
