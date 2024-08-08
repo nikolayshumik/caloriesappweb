@@ -85,7 +85,7 @@ h3 {
   text-transform: none;
   border-radius: 5px;
   box-sizing: border-box;
-  border: 1px rgb(4, 177, 211) solid;
+/* border: 1px rgb(4, 177, 211) solid;*/
   font-size: 15px;
   text-align: center;
   font-weight: 700;
@@ -147,6 +147,7 @@ h3 {
   padding: 1vw 2vw;
   text-decoration: none;
   transition: box-shadow 0.3s ease;
+box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1); /* Добавлено */
 }
 .eatings .summ_kkal {
   margin-right: auto;

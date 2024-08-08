@@ -24,7 +24,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 25px;
-  color: #008187;
+  color: #2bbdb4;
   font-size: 28px;
   width: 50%;
   margin: auto;
@@ -37,7 +37,7 @@ img {
 textarea {
   padding: 15px;
   font-size: 25px;
-  border: 2px solid #008187;
+  border: 2px solid #2bbdb4;
   border-radius: 10px;
 }
 
